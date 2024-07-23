@@ -72,14 +72,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be at the top.
     'django.middleware.security.SecurityMiddleware',
-    # To serve static files in PaaS. To be removed if S3 is being used.
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # To serve static files in PaaS. To be removed if S3 is being used.
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",  # The allauth account middleware.
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -180,10 +180,14 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True  # Verify email by clicking on the confirmat
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_REQUIRED = False  # Make username optional for registration.
 ACCOUNT_PRESERVE_USERNAME_CASING = False  # Always use lowercase for username.
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400  # 1 day in seconds
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True  # No confirmation page for logout.
+ACCOUNT_RATE_LIMITS = {
+    'login_failed': '5/minute',  # Up to 5 failed login attempts per minute.
+    'registration_failed': '10/hour',  # Up to 10 failed registration attempts per hour.
+}
+
 
 # LOGIN_REDIRECT_URL = "base:home"
 # LOGIN_URL = '/'
