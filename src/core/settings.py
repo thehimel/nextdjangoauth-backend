@@ -18,7 +18,7 @@ import dj_database_url
 from decouple import config
 
 from apps.base.utils.cloudinary import parse_cloudinary_url
-from core.vars import DEVELOPMENT, PRODUCTION
+from core.constants import DEVELOPMENT, PRODUCTION, BRAND_NAME
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,13 +64,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # --- Storage
-    "cloudinary_storage",
-    "cloudinary",
-    "django_cleanup.apps.CleanupConfig",  # Must be on the bottom of INSTALLED_APPS.
+    'cloudinary_storage',
+    'cloudinary',
+    'django_cleanup.apps.CleanupConfig',  # Must be on the bottom of INSTALLED_APPS.
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",  # Must be at the top.
+    'corsheaders.middleware.CorsMiddleware',  # Must be at the top.
     'django.middleware.security.SecurityMiddleware',
     # To serve static files in PaaS. To be removed if S3 is being used.
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -193,7 +193,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD', default='')
-DEFAULT_FROM_EMAIL = 'Authentication Server <info@domain.com>'  # Default sender is mandatory.
+DEFAULT_FROM_EMAIL = f'{BRAND_NAME} <info@domain.com>'  # Default sender is mandatory.
 
 AUTH_USER_MODEL = "users.User"  # Using custom user model.
 
@@ -216,8 +216,8 @@ REST_AUTH = {
 }
 
 if ENVIRONMENT == PRODUCTION:
-    CLOUDINARY_URL = config("CLOUDINARY_URL")
+    CLOUDINARY_URL = config('CLOUDINARY_URL')
     CLOUDINARY_STORAGE = parse_cloudinary_url(cloudinary_url=CLOUDINARY_URL)
 
     # For images
-    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
