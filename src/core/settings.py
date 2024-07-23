@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # --- Utilities
-    'django_extensions',  # Generate ER Diagram.
+    'django_extensions',  # Generate graph model.
     # --- Storage
     'cloudinary_storage',
     'cloudinary',

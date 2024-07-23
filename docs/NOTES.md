@@ -77,15 +77,14 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 * Install [django-extensions](https://django-extensions.readthedocs.io/)
 
 ```
-pip install django-extensions
-pip install graphviz
-pip install pydotplus
+pip install django-extensions pydotplus
+brew install graphviz
 ```
 
 ```python
 INSTALLED_APPS = [
     ...,
-    "django_extensions",
+    'django_extensions',
 ]
 ```
 
