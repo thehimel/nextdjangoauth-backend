@@ -10,15 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 from datetime import timedelta
-from django.core.management.utils import get_random_secret_key
+from pathlib import Path
 
 import dj_database_url
 from decouple import config
+from django.core.management.utils import get_random_secret_key
 
 from apps.base.utils.cloudinary import parse_cloudinary_url
-from core.constants import DEVELOPMENT, PRODUCTION, BRAND_NAME
+from core.constants import BRAND_NAME, DEVELOPMENT, PRODUCTION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
