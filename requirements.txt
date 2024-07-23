@@ -16,3 +16,6 @@ python-decouple>=3.8
 gunicorn>=22.0.0
 whitenoise>=6.7.0
 setuptools>=71.1.0
+django-extensions>=3.2.3
+graphviz>=0.20.3
+pydotplus>=2.0.2
