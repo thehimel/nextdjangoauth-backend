@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "login",
+			"name": "/api/auth/login/",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -27,11 +27,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{hostname}}/auth/login/",
+					"raw": "{{hostname}}/api/auth/login/",
 					"host": [
 						"{{hostname}}"
 					],
 					"path": [
+						"api",
 						"auth",
 						"login",
 						""
@@ -41,7 +42,7 @@
 			"response": []
 		},
 		{
-			"name": "user",
+			"name": "/api/auth/user/",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -62,11 +63,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{hostname}}/auth/user/",
+					"raw": "{{hostname}}/api/auth/user/",
 					"host": [
 						"{{hostname}}"
 					],
 					"path": [
+						"api",
 						"auth",
 						"user",
 						""
@@ -76,8 +78,18 @@
 			"response": []
 		},
 		{
-			"name": "password/change",
+			"name": "/api/auth/password/change/",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -96,11 +108,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{hostname}}/auth/password/change/",
+					"raw": "{{hostname}}/api/auth/password/change/",
 					"host": [
 						"{{hostname}}"
 					],
 					"path": [
+						"api",
 						"auth",
 						"password",
 						"change",
