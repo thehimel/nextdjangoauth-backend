@@ -46,9 +46,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # ---
-    "apps.base",
+    'django.contrib.sites',  # Required by django-allauth
     # ---
-    "corsheaders",
+    'apps.base',
+    # --- Third-party apps
+    'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 ]
 
 MIDDLEWARE = [
