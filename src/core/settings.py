@@ -17,6 +17,7 @@ from django.core.management.utils import get_random_secret_key
 import dj_database_url
 from decouple import config
 
+from apps.base.utils.cloudinary import parse_cloudinary_url
 from core.vars import DEVELOPMENT, PRODUCTION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',  # Required by django-allauth
     # ---
     'apps.base',
-    # --- Third-party apps
+    'apps.users',
+    # --- REST APIs and authentication
     'drf_yasg',
     'corsheaders',
     'rest_framework',
@@ -61,6 +63,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # --- Storage
+    "cloudinary_storage",
+    "cloudinary",
+    "django_cleanup.apps.CleanupConfig",  # Must be on the bottom of INSTALLED_APPS.
 ]
 
 MIDDLEWARE = [
@@ -157,7 +163,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = 'media/'
 
-
 # The allauth configurations.
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = [
@@ -190,6 +195,8 @@ EMAIL_HOST_USER = config('EMAIL_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = 'Authentication Server <info@domain.com>'  # Default sender is mandatory.
 
+AUTH_USER_MODEL = "users.User"  # Using custom user model.
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -207,3 +214,10 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'JWT_AUTH_COOKIE',
     'JWT_AUTH_REFRESH_COOKIE': 'JWT_AUTH_REFRESH_COOKIE',
 }
+
+if ENVIRONMENT == PRODUCTION:
+    CLOUDINARY_URL = config("CLOUDINARY_URL")
+    CLOUDINARY_STORAGE = parse_cloudinary_url(cloudinary_url=CLOUDINARY_URL)
+
+    # For images
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
