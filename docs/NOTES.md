@@ -91,3 +91,14 @@ INSTALLED_APPS = [
 ### Run
 
 * Run `python manage.py graph_models -a -g -o models.png`
+
+## Registration of Admin User and Email Verification
+
+* The users created via `createsuperuser` is not added to `allauth` users. Therefore, email verification is not
+  possible. And resending verification email is not also possible for this type of user.
+* The trick is to create a user via `createsuperuser`.
+* Then create a normal user via REST API. Email can be same as the admin user because the admin user not yet present in
+  `allauth` users' database.
+* Now verify this normal user.
+* Login with the admin user in the admin panel and make the normal user an admin.
+* Login with the new admin user and delete the previous admin user.
