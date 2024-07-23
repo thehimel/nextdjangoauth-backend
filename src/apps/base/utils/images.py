@@ -44,18 +44,18 @@ def resize_image(instance, field_name, title=None, height_limit=300, square=True
     # For the default profile picture, as it is just a location and not a file, no content_type will be there, and the
     # function will return without saving a new file. It also solves the problem of repeated default image with every
     # new user creation.
-    if hasattr(source.file, "content_type"):
+    if hasattr(source.file, 'content_type'):
         content_type = source.file.content_type
     else:
         return
 
     # Fetching the part after the last slash.
-    file_format = content_type.split("/")[-1]
+    file_format = content_type.split('/')[-1]
 
     # Here format can be, format='JPEG', format='PNG'.
     image.save(output, format=file_format, quality=90)
 
-    file_name = f"{title}{os.path.splitext(source.name)[1]}" if title else source.name
+    file_name = f'{title}{os.path.splitext(source.name)[1]}' if title else source.name
 
     # Update the ImageField value to be the newly modified image value.
     output.seek(0)
