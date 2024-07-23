@@ -12,8 +12,8 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=NAME_MAX_LENGTH)
     last_name = models.CharField(max_length=NAME_MAX_LENGTH)
 
-    USER_TYPE_CHOICES = [(GENERAL, "General"), (MANAGER, "Manager")]
-    GENDER_CHOICES = [("F", "Female"), ("M", "Male"), ("O", "Other"), ("X", "Rather not say")]
+    USER_TYPE_CHOICES = [(GENERAL, 'General'), (MANAGER, 'Manager')]
+    GENDER_CHOICES = [('F', 'Female'), ('M', 'Male'), ('O', 'Other'), ('X', 'Rather not say')]
 
     user_type = models.CharField(max_length=1, choices=USER_TYPE_CHOICES, default=GENERAL)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
@@ -24,7 +24,7 @@ class User(AbstractUser):
     )
 
     def save(self, *args, **kwargs):
-        resize_image(instance=self, field_name="profile_picture")
+        resize_image(instance=self, field_name='profile_picture')
         super().save(*args, **kwargs)
 
     @property
@@ -40,4 +40,4 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
     def get_absolute_url(self):
-        return reverse(f"{APP_NAME}:profile", kwargs={"slug": self.username})
+        return reverse(f'{APP_NAME}:profile', kwargs={'slug': self.username})
