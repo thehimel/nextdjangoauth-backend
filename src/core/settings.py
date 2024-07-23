@@ -180,7 +180,6 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True  # Verify email by clicking on the confirmat
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_USERNAME_REQUIRED = False  # Make username optional for registration.
 ACCOUNT_PRESERVE_USERNAME_CASING = False  # Always use lowercase for username.
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400  # 1 day in seconds
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_ON_GET = True  # No confirmation page for logout.
 ACCOUNT_RATE_LIMITS = {
