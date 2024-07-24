@@ -7,6 +7,83 @@
 	},
 	"item": [
 		{
+			"name": "/api/auth/registration/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"{{email}}\",\n  \"password1\": \"{{password}}\",\n  \"password2\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostname}}/api/auth/registration/",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"registration",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/auth/registration/resend-email/",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"{{email}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostname}}/api/auth/registration/resend-email/",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"registration",
+						"resend-email",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/api/auth/login/",
 			"request": {
 				"method": "POST",
