@@ -18,3 +18,8 @@ npm i --save-dev @types/node
 
 * Configure `vite.config.ts`
   * Added `build` and `server` configuration.
+* Clean up client.
+
+### Install NextUI
+
+### Install shadcn/ui
