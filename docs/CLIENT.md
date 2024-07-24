@@ -26,4 +26,9 @@ npm i --save-dev @types/node
 
 ### Install NextUI
 
+* [Guide](https://nextui.org/docs/frameworks/vite)
+* Installation: `npm i @nextui-org/react framer-motion`.
+* Tailwind CSS Setup: Update `tailwind.config.js`.
+* Provider Setup: Update `main.tsx`.
+
 ### Install shadcn/ui
