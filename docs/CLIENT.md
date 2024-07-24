@@ -23,6 +23,9 @@ npm i --save-dev @types/node
 ### Install Tailwind CSS with Vite
 
 * [Guide](https://tailwindcss.com/docs/guides/vite#react)
+* Installation: `npm install -D tailwindcss postcss autoprefixer`, `npx tailwindcss init -p`.
+* Configure template paths: Update `tailwind.config.js`.
+* Add the Tailwind directives: Update `./src/index.css`.
 
 ### Install NextUI
 
