@@ -1,3 +1,4 @@
+import getpass
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from allauth.account.models import EmailAddress
@@ -11,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         username = input("Username: ")
         email = input("Email: ")
-        password = input("Password: ")
+        password = getpass.getpass("Password: ")
 
         if User.objects.filter(username=username).exists():
             self.stdout.write(self.style.ERROR(f'User "{username}" already exists.'))
