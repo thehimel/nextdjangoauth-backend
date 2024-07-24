@@ -23,10 +23,9 @@ class Command(BaseCommand):
 
         # Create the superuser
         user = User.objects.create_superuser(username=username, email=email, password=password)
-        user.is_active = False  # Superusers need to verify their email too
-        user.save()
         self.stdout.write(self.style.SUCCESS(f'Superuser created with email {email}'))
 
         # Create an EmailAddress object for Allauth
         email_address = EmailAddress.objects.create(user=user, email=email, verified=False, primary=True)
         email_address.send_confirmation()
+        self.stdout.write(self.style.SUCCESS(f'Verification email sent to {email}'))
