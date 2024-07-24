@@ -102,3 +102,11 @@ INSTALLED_APPS = [
 * Now verify this normal user.
 * Login with the admin user in the admin panel and make the normal user an admin.
 * Login with the new admin user and delete the previous admin user.
+
+### Mitigation
+
+* A signal in the `base` app is added to update the domain name automatically after migrations takes place.
+* A management command is added to create a superuser in the `allauth` database.
+  * Execute with `python manage.py create_superuser`.
+* However, it does not automatically send the confirmation email because even if it sends the link expires.
+* Therefore, you must resend the confirmation email.
