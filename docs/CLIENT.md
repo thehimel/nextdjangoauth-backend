@@ -35,6 +35,14 @@ npm i --save-dev @types/node
 * Tailwind CSS Setup: Update `tailwind.config.js`.
 * Provider Setup: Update `main.tsx`.
 
+### Dark Mode
+
+[Guide](https://nextui.org/docs/customization/dark-mode)
+
+* Install Next Themes: `npm install next-themes`
+
+> Configuration is on the next step.
+
 ### Extensions
 
 * Redux Toolkit: `npm install @reduxjs/toolkit`
@@ -42,6 +50,7 @@ npm i --save-dev @types/node
   * [Guide](https://redux-toolkit.js.org/introduction/getting-started#an-existing-app)
 * Redux Persist: `npm install redux-persist`
 * React Router Dom: `npm install react-router-dom`
+* Radix Icons: `npm install @radix-ui/react-icons`
 
 ### Configure Dark Mode with NextUI
 
