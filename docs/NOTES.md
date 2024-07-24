@@ -109,4 +109,4 @@ INSTALLED_APPS = [
 * A management command is added to create a superuser in the `allauth` database.
   * Execute with `python manage.py create_superuser`.
 * However, it does not automatically send the confirmation email because even if it sends the link expires.
-* Therefore, you must resend the confirmation email.
+* Therefore, email verification is skipped.
