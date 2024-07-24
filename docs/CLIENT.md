@@ -35,4 +35,8 @@ npm i --save-dev @types/node
 * Tailwind CSS Setup: Update `tailwind.config.js`.
 * Provider Setup: Update `main.tsx`.
 
+### Install Redux, Redux-Toolkit
+
+### Configure Dark Mode with NextUI
+
 ### Install shadcn/ui
