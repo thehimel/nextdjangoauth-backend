@@ -26,6 +26,5 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'Superuser created with email {email}'))
 
         # Create an EmailAddress object for Allauth
-        email_address = EmailAddress.objects.create(user=user, email=email, verified=False, primary=True)
-        # email_address.send_confirmation()
-        self.stdout.write(self.style.SUCCESS(f'Please resend verification email'))
+        EmailAddress.objects.create(user=user, email=email, verified=True, primary=True)
+        self.stdout.write(self.style.SUCCESS(f'Email is automatically verified'))
