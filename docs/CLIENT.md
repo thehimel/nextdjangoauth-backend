@@ -7,3 +7,14 @@
 * `npm create vite@latest client -- --template react-ts`
 
 > Extra double-dash is needed
+
+### Install Dependencies
+
+```shell
+npm i --save-dev @types/node
+```
+
+## Configure
+
+* Configure `vite.config.ts`
+  * Added `build` and `server` configuration.
