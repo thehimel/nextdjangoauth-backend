@@ -27,5 +27,5 @@ class Command(BaseCommand):
 
         # Create an EmailAddress object for Allauth
         email_address = EmailAddress.objects.create(user=user, email=email, verified=False, primary=True)
-        email_address.send_confirmation()
-        self.stdout.write(self.style.SUCCESS(f'Verification email sent to {email}'))
+        # email_address.send_confirmation()
+        self.stdout.write(self.style.SUCCESS(f'Please resend verification email'))
