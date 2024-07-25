@@ -34,7 +34,14 @@ npm i --save-dev @types/node
 * Installation: `npm i @nextui-org/react framer-motion`.
 * Tailwind CSS Setup: Update `tailwind.config.js`.
 * Provider Setup: Update `main.tsx`.
-* `npm install clsx tailwind-merge` according to [this guide](https://nextui.pro/documentation).
+
+#### Install NextUI Pro
+
+[Guide](https://nextui.pro/documentation)
+
+* `npm install --save-dev @iconify/react`
+* `npm install usehooks-ts`
+* `npm install clsx tailwind-merge`
 
 ### Dark Mode
 
