@@ -22,22 +22,7 @@ export default function Signup() {
       </div>
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
         <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
-          <Input
-            isRequired
-            label="Username"
-            name="username"
-            placeholder="Enter your username"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            isRequired
-            label="Email Address"
-            name="email"
-            placeholder="Enter your email"
-            type="email"
-            variant="bordered"
-          />
+          <Input isRequired label="Email Address" name="email" type="email"/>
           <Input
             isRequired
             endContent={
@@ -57,9 +42,7 @@ export default function Signup() {
             }
             label="Password"
             name="password"
-            placeholder="Enter your password"
             type={isVisible ? "text" : "password"}
-            variant="bordered"
           />
           <Input
             isRequired
@@ -80,9 +63,7 @@ export default function Signup() {
             }
             label="Confirm Password"
             name="confirmPassword"
-            placeholder="Confirm your password"
             type={isConfirmVisible ? "text" : "password"}
-            variant="bordered"
           />
           <Checkbox isRequired className="py-4" size="sm">
             I agree with the&nbsp;
@@ -106,15 +87,8 @@ export default function Signup() {
         <div className="flex flex-col gap-2">
           <Button
             startContent={<Icon icon="flat-color-icons:google" width={24} />}
-            variant="bordered"
           >
             Continue with Google
-          </Button>
-          <Button
-            startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
-            variant="bordered"
-          >
-            Continue with Github
           </Button>
         </div>
         <p className="text-center text-small">
