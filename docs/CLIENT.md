@@ -56,4 +56,11 @@ npm i --save-dev @types/node
 
 ### Configure Dark Mode with NextUI
 
-### Install shadcn/ui
+### Configure `@` for imports
+
+[Guide](https://ui.shadcn.com/docs/installation/vite)
+
+* Edit `tsconfig.json`
+* Edit `tsconfig.app.json`
+* Update `vite.config.ts`
+* That's it, do not install shadcn-ui if you do not want to.
