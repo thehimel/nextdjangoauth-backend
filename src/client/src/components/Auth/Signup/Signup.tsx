@@ -7,11 +7,19 @@ import {Icon} from "@iconify/react";
 import {AcmeIcon} from "./acme";
 
 export default function Signup() {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [isConfirmVisible, setIsConfirmVisible] = React.useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
 
-  const toggleVisibility = () => setIsVisible(!isVisible);
-  const toggleConfirmVisibility = () => setIsConfirmVisible(!isConfirmVisible);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+
+  const [isEmailValid, setIsEmailValid] = React.useState(true);
+  const [isPasswordValid, setIsPasswordValid] = React.useState(true);
+  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = React.useState(true);
+
+  const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
+  const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
@@ -26,8 +34,8 @@ export default function Signup() {
           <Input
             isRequired
             endContent={
-              <button type="button" onClick={toggleVisibility}>
-                {isVisible ? (
+              <button type="button" onClick={togglePasswordVisibility}>
+                {isPasswordVisible ? (
                   <Icon
                     className="pointer-events-none text-2xl text-default-400"
                     icon="solar:eye-closed-linear"
@@ -42,13 +50,13 @@ export default function Signup() {
             }
             label="Password"
             name="password"
-            type={isVisible ? "text" : "password"}
+            type={isPasswordVisible ? "text" : "password"}
           />
           <Input
             isRequired
             endContent={
-              <button type="button" onClick={toggleConfirmVisibility}>
-                {isConfirmVisible ? (
+              <button type="button" onClick={toggleConfirmPasswordVisibility}>
+                {isConfirmPasswordVisible ? (
                   <Icon
                     className="pointer-events-none text-2xl text-default-400"
                     icon="solar:eye-closed-linear"
@@ -63,7 +71,7 @@ export default function Signup() {
             }
             label="Confirm Password"
             name="confirmPassword"
-            type={isConfirmVisible ? "text" : "password"}
+            type={isConfirmPasswordVisible ? "text" : "password"}
           />
           <Checkbox isRequired className="py-4" size="sm">
             I agree with the&nbsp;
