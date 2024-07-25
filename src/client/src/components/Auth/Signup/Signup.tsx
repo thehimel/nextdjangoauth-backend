@@ -21,6 +21,41 @@ export default function Signup() {
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
   const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    let isFormValid = true;
+
+    // Email validation
+    if (!email.length) {
+      setIsEmailValid(false);
+      isFormValid = false;
+    } else {
+      setIsEmailValid(true);
+    }
+
+    // Password validation
+    if (!password.length) {
+      setIsPasswordValid(false);
+      isFormValid = false;
+    } else {
+      setIsPasswordValid(true);
+    }
+
+    // Confirm Password validation
+    if (!confirmPassword.length || confirmPassword !== password) {
+      setIsConfirmPasswordValid(false);
+      isFormValid = false;
+    } else {
+      setIsConfirmPasswordValid(true);
+    }
+
+    // If the form is valid, proceed with the next steps
+    if (isFormValid) {
+      console.log(`Email: ${email}, Password: ${password}`);
+    }
+  };
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <div className="flex flex-col items-center pb-2">
@@ -29,8 +64,21 @@ export default function Signup() {
         <p className="text-small text-default-500">Create your account to get started</p>
       </div>
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-        <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
-          <Input isRequired label="Email Address" name="email" type="email"/>
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+          <Input
+            autoFocus
+            isRequired
+            label="Email Address"
+            name="email"
+            type="email"
+            errorMessage={!isEmailValid ? "Enter a valid email" : undefined}
+            isInvalid={!isEmailValid}
+            value={email}
+            onValueChange={(value) => {
+              setIsEmailValid(true);
+              setEmail(value);
+            }}
+          />
           <Input
             isRequired
             endContent={
@@ -51,6 +99,13 @@ export default function Signup() {
             label="Password"
             name="password"
             type={isPasswordVisible ? "text" : "password"}
+            errorMessage={!isPasswordValid ? "Enter a valid password" : undefined}
+            isInvalid={!isPasswordValid}
+            value={password}
+            onValueChange={(value) => {
+              setIsPasswordValid(true);
+              setPassword(value);
+            }}
           />
           <Input
             isRequired
@@ -72,6 +127,13 @@ export default function Signup() {
             label="Confirm Password"
             name="confirmPassword"
             type={isConfirmPasswordVisible ? "text" : "password"}
+            errorMessage={!isConfirmPasswordValid ? "Passwords do not match" : undefined}
+            isInvalid={!isConfirmPasswordValid}
+            value={confirmPassword}
+            onValueChange={(value) => {
+              setIsConfirmPasswordValid(true);
+              setConfirmPassword(value);
+            }}
           />
           <Checkbox isRequired className="py-4" size="sm">
             I agree with the&nbsp;
