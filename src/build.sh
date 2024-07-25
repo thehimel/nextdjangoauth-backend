@@ -5,7 +5,7 @@ echo "Upgrading pip..."
 python3 -m pip install --upgrade pip
 
 echo "Installing packages..."
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 echo "Migrating Database..."
 python3 manage.py makemigrations
