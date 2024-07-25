@@ -42,6 +42,7 @@ npm i --save-dev @types/node
 * `npm install --save-dev @iconify/react`
 * `npm install usehooks-ts`
 * `npm install clsx tailwind-merge`
+* Add the `cn` utility function in `src/lib/utils.ts`
 
 ### Dark Mode
 
