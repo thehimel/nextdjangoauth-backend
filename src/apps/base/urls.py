@@ -6,4 +6,5 @@ app_name = "base"
 
 urlpatterns = [
     path("", ClientView.as_view(), name="client"),
+    path("signup/", ClientView.as_view(), name="signup"),
 ]
