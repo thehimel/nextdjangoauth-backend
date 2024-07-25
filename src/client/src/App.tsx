@@ -13,9 +13,9 @@ const App = () => {
   }, [darkMode, setTheme]);
 
   return (
-    <div className="w-screen h-screen">
+    <div className="min-h-screen">
       <NavigationBar/>
-      <main className="p-8 flex items-start justify-center">
+      <main className="mb-14 p-8 flex items-start justify-center">
         <Outlet/>
       </main>
       <Footer/>
