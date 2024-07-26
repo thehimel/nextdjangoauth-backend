@@ -1,5 +1,6 @@
 "use client";
 
+import {EyeClosedIcon, EyeOpenIcon} from "@/components/Auth/Icons.tsx";
 import {signup} from "@/store/users/usersActions.ts";
 import React from "react";
 import {Button, Input, Checkbox, Link, Divider} from "@nextui-org/react";
@@ -101,11 +102,7 @@ export default function Signup() {
             isRequired
             endContent={
               <button type="button" onClick={togglePasswordVisibility}>
-                {isPasswordVisible ? (
-                  <Icon className="pointer-events-none text-2xl text-default-400" icon="solar:eye-closed-linear"/>
-                ) : (
-                  <Icon className="pointer-events-none text-2xl text-default-400" icon="solar:eye-bold"/>
-                )}
+                {isPasswordVisible ? EyeClosedIcon: EyeOpenIcon}
               </button>
             }
             label="Password"
@@ -124,12 +121,7 @@ export default function Signup() {
             isRequired
             endContent={
               <button type="button" onClick={toggleConfirmPasswordVisibility}>
-                {isConfirmPasswordVisible ? (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400" icon="solar:eye-closed-linear"/>
-                ) : (
-                  <Icon className="pointer-events-none text-2xl text-default-400" icon="solar:eye-bold"/>
-                )}
+                {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
               </button>
             }
             label="Confirm Password"
