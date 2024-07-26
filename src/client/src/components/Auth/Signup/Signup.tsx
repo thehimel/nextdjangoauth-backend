@@ -102,15 +102,9 @@ export default function Signup() {
             endContent={
               <button type="button" onClick={togglePasswordVisibility}>
                 {isPasswordVisible ? (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-closed-linear"
-                  />
+                  <Icon className="pointer-events-none text-2xl text-default-400" icon="solar:eye-closed-linear"/>
                 ) : (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-bold"
-                  />
+                  <Icon className="pointer-events-none text-2xl text-default-400" icon="solar:eye-bold"/>
                 )}
               </button>
             }
@@ -132,14 +126,9 @@ export default function Signup() {
               <button type="button" onClick={toggleConfirmPasswordVisibility}>
                 {isConfirmPasswordVisible ? (
                   <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-closed-linear"
-                  />
+                    className="pointer-events-none text-2xl text-default-400" icon="solar:eye-closed-linear"/>
                 ) : (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-bold"
-                  />
+                  <Icon className="pointer-events-none text-2xl text-default-400" icon="solar:eye-bold"/>
                 )}
               </button>
             }
