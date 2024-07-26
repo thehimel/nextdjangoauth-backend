@@ -1,5 +1,6 @@
 "use client";
 
+import {signup} from "@/store/users/usersActions.ts";
 import React from "react";
 import {Button, Input, Checkbox, Link, Divider} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
@@ -53,6 +54,7 @@ export default function Signup() {
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
       console.log(`Email: ${email}, Password: ${password}`);
+      signup({email, password, confirmPassword})();
     }
   };
 
