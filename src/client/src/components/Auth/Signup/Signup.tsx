@@ -88,6 +88,7 @@ export default function Signup() {
             isRequired
             label="Email Address"
             name="email"
+            autoComplete="email"
             type="email"
             variant="bordered"
             errorMessage={!isEmailValid ? emailErrorMessage : undefined}
@@ -107,6 +108,7 @@ export default function Signup() {
             }
             label="Password"
             name="password"
+            autoComplete="new-password"
             variant="bordered"
             type={isPasswordVisible ? "text" : "password"}
             errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
@@ -126,6 +128,7 @@ export default function Signup() {
             }
             label="Confirm Password"
             name="confirmPassword"
+            autoComplete="new-password"
             variant="bordered"
             type={isConfirmPasswordVisible ? "text" : "password"}
             errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
@@ -136,12 +139,12 @@ export default function Signup() {
               setConfirmPassword(value);
             }}
           />
-          <Checkbox isRequired className="py-4" size="sm">
+          <Checkbox isRequired name="agree" className="py-4" size="sm">
             I agree with the&nbsp;
             <Link href="#" size="sm">
               Terms
             </Link>
-            &nbsp; and&nbsp;
+            &nbsp;and&nbsp;
             <Link href="#" size="sm">
               Privacy Policy
             </Link>
