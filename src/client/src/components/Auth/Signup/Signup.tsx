@@ -27,6 +27,8 @@ export default function Signup() {
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
   const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
+  const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -71,6 +73,7 @@ export default function Signup() {
     if (isFormValid) {
       console.log(`Email: ${email}, Password: ${password}, confirmPassword: ${confirmPassword}`);
       signup({email, password, confirmPassword})();
+      setIsSignupSuccessful(true);
     }
   };
 
@@ -81,97 +84,103 @@ export default function Signup() {
         <p className="text-xl font-medium">Welcome</p>
         <p className="text-small text-default-500">Create your account to get started</p>
       </div>
-      <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-          <Input
-            autoFocus
-            isRequired
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            type="email"
-            variant="bordered"
-            errorMessage={!isEmailValid ? emailErrorMessage : undefined}
-            isInvalid={!isEmailValid}
-            value={email}
-            onValueChange={(value) => {
-              setIsEmailValid(true);
-              setEmail(value);
-            }}
-          />
-          <Input
-            isRequired
-            endContent={
-              <button type="button" onClick={togglePasswordVisibility}>
-                {isPasswordVisible ? EyeClosedIcon: EyeOpenIcon}
-              </button>
-            }
-            label="Password"
-            name="password"
-            autoComplete="new-password"
-            variant="bordered"
-            type={isPasswordVisible ? "text" : "password"}
-            errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
-            isInvalid={!isPasswordValid}
-            value={password}
-            onValueChange={(value) => {
-              setIsPasswordValid(true);
-              setPassword(value);
-            }}
-          />
-          <Input
-            isRequired
-            endContent={
-              <button type="button" onClick={toggleConfirmPasswordVisibility}>
-                {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
-              </button>
-            }
-            label="Confirm Password"
-            name="confirmPassword"
-            autoComplete="new-password"
-            variant="bordered"
-            type={isConfirmPasswordVisible ? "text" : "password"}
-            errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
-            isInvalid={!isConfirmPasswordValid}
-            value={confirmPassword}
-            onValueChange={(value) => {
-              setIsConfirmPasswordValid(true);
-              setConfirmPassword(value);
-            }}
-          />
-          <Checkbox isRequired name="agree" className="py-4" size="sm">
-            I agree with the&nbsp;
+      {!isSignupSuccessful ? (
+        <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
+          <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+            <Input
+              autoFocus
+              isRequired
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              type="email"
+              variant="bordered"
+              errorMessage={!isEmailValid ? emailErrorMessage : undefined}
+              isInvalid={!isEmailValid}
+              value={email}
+              onValueChange={(value) => {
+                setIsEmailValid(true);
+                setEmail(value);
+              }}
+            />
+            <Input
+              isRequired
+              endContent={
+                <button type="button" onClick={togglePasswordVisibility}>
+                  {isPasswordVisible ? EyeClosedIcon: EyeOpenIcon}
+                </button>
+              }
+              label="Password"
+              name="password"
+              autoComplete="new-password"
+              variant="bordered"
+              type={isPasswordVisible ? "text" : "password"}
+              errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
+              isInvalid={!isPasswordValid}
+              value={password}
+              onValueChange={(value) => {
+                setIsPasswordValid(true);
+                setPassword(value);
+              }}
+            />
+            <Input
+              isRequired
+              endContent={
+                <button type="button" onClick={toggleConfirmPasswordVisibility}>
+                  {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                </button>
+              }
+              label="Confirm Password"
+              name="confirmPassword"
+              autoComplete="new-password"
+              variant="bordered"
+              type={isConfirmPasswordVisible ? "text" : "password"}
+              errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
+              isInvalid={!isConfirmPasswordValid}
+              value={confirmPassword}
+              onValueChange={(value) => {
+                setIsConfirmPasswordValid(true);
+                setConfirmPassword(value);
+              }}
+            />
+            <Checkbox isRequired name="agree" className="py-4" size="sm">
+              I agree with the&nbsp;
+              <Link href="#" size="sm">
+                Terms
+              </Link>
+              &nbsp;and&nbsp;
+              <Link href="#" size="sm">
+                Privacy Policy
+              </Link>
+            </Checkbox>
+            <Button color="primary" type="submit">
+              Sign Up
+            </Button>
+          </form>
+          <div className="flex items-center gap-4">
+            <Divider className="flex-1" />
+            <p className="shrink-0 text-tiny text-default-500">OR</p>
+            <Divider className="flex-1" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Button
+              startContent={<Icon icon="flat-color-icons:google" width={24} />}
+            >
+              Continue with Google
+            </Button>
+          </div>
+          <p className="text-center text-small">
+            Already have an account?&nbsp;
             <Link href="#" size="sm">
-              Terms
+              Log In
             </Link>
-            &nbsp;and&nbsp;
-            <Link href="#" size="sm">
-              Privacy Policy
-            </Link>
-          </Checkbox>
-          <Button color="primary" type="submit">
-            Sign Up
-          </Button>
-        </form>
-        <div className="flex items-center gap-4">
-          <Divider className="flex-1" />
-          <p className="shrink-0 text-tiny text-default-500">OR</p>
-          <Divider className="flex-1" />
+          </p>
         </div>
-        <div className="flex flex-col gap-2">
-          <Button
-            startContent={<Icon icon="flat-color-icons:google" width={24} />}
-          >
-            Continue with Google
-          </Button>
+        ) : (
+        <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
+          <p>Thanks for signing up. Please check your inbox to verify the email.</p>
         </div>
-        <p className="text-center text-small">
-          Already have an account?&nbsp;
-          <Link href="#" size="sm">
-            Log In
-          </Link>
-        </p>
-      </div>
+      )}
     </div>
   );
 }
