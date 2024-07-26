@@ -53,7 +53,11 @@ export default function Signup() {
     }
 
     // Confirm Password validation
-    if (!confirmPassword.length || confirmPassword !== password) {
+    if (!confirmPassword.length) {
+      setIsConfirmPasswordValid(false);
+      setConfirmPasswordErrorMessage("Enter a valid password");
+      isFormValid = false;
+    } else if (confirmPassword !== password) {
       setIsConfirmPasswordValid(false);
       setConfirmPasswordErrorMessage("Passwords do not match");
       isFormValid = false;
@@ -64,7 +68,7 @@ export default function Signup() {
 
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
-      console.log(`Email: ${email}, Password: ${password}`);
+      console.log(`Email: ${email}, Password: ${password}, confirmPassword: ${confirmPassword}`);
       signup({email, password, confirmPassword})();
     }
   };
