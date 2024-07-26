@@ -73,6 +73,7 @@ export default function Signup() {
             label="Email Address"
             name="email"
             type="email"
+            variant="bordered"
             errorMessage={!isEmailValid ? "Enter a valid email" : undefined}
             isInvalid={!isEmailValid}
             value={email}
@@ -100,6 +101,7 @@ export default function Signup() {
             }
             label="Password"
             name="password"
+            variant="bordered"
             type={isPasswordVisible ? "text" : "password"}
             errorMessage={!isPasswordValid ? "Enter a valid password" : undefined}
             isInvalid={!isPasswordValid}
@@ -128,6 +130,7 @@ export default function Signup() {
             }
             label="Confirm Password"
             name="confirmPassword"
+            variant="bordered"
             type={isConfirmPasswordVisible ? "text" : "password"}
             errorMessage={!isConfirmPasswordValid ? "Passwords do not match" : undefined}
             isInvalid={!isConfirmPasswordValid}
