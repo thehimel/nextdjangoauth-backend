@@ -1,5 +1,5 @@
 import {SIGNUP_API_URL} from "@/store/constants.ts";
-import {getCookie} from "@/utils/utils.ts";
+import {getCookie} from "@/utils/cookies.ts";
 import axios from "axios";
 
 interface Signup {
