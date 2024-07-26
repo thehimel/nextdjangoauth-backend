@@ -15,6 +15,10 @@ export default function Signup() {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
 
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = React.useState("");
+
   const [isEmailValid, setIsEmailValid] = React.useState(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState(true);
   const [isConfirmPasswordValid, setIsConfirmPasswordValid] = React.useState(true);
@@ -30,25 +34,31 @@ export default function Signup() {
 
     // Email validation
     if (email.length === 0 || !emailPattern.test(email)) {
+      setEmailErrorMessage("Enter a valid email");
       setIsEmailValid(false);
       isFormValid = false;
     } else {
+      setEmailErrorMessage("")
       setIsEmailValid(true);
     }
 
     // Password validation
     if (!password.length) {
       setIsPasswordValid(false);
+      setPasswordErrorMessage("Enter a valid password");
       isFormValid = false;
     } else {
+      setPasswordErrorMessage("");
       setIsPasswordValid(true);
     }
 
     // Confirm Password validation
     if (!confirmPassword.length || confirmPassword !== password) {
       setIsConfirmPasswordValid(false);
+      setConfirmPasswordErrorMessage("Passwords do not match");
       isFormValid = false;
     } else {
+      setConfirmPasswordErrorMessage("")
       setIsConfirmPasswordValid(true);
     }
 
@@ -75,7 +85,7 @@ export default function Signup() {
             name="email"
             type="email"
             variant="bordered"
-            errorMessage={!isEmailValid ? "Enter a valid email" : undefined}
+            errorMessage={!isEmailValid ? emailErrorMessage : undefined}
             isInvalid={!isEmailValid}
             value={email}
             onValueChange={(value) => {
@@ -104,7 +114,7 @@ export default function Signup() {
             name="password"
             variant="bordered"
             type={isPasswordVisible ? "text" : "password"}
-            errorMessage={!isPasswordValid ? "Enter a valid password" : undefined}
+            errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
             isInvalid={!isPasswordValid}
             value={password}
             onValueChange={(value) => {
@@ -133,7 +143,7 @@ export default function Signup() {
             name="confirmPassword"
             variant="bordered"
             type={isConfirmPasswordVisible ? "text" : "password"}
-            errorMessage={!isConfirmPasswordValid ? "Passwords do not match" : undefined}
+            errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
             isInvalid={!isConfirmPasswordValid}
             value={confirmPassword}
             onValueChange={(value) => {
