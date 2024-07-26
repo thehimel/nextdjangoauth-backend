@@ -26,9 +26,10 @@ export default function Signup() {
     e.preventDefault();
 
     let isFormValid = true;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Email validation
-    if (!email.length) {
+    if (email.length === 0 || !emailPattern.test(email)) {
       setIsEmailValid(false);
       isFormValid = false;
     } else {
