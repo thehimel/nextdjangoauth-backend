@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
@@ -19,12 +19,12 @@ const NavigationBar = () => {
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
-        <Link to="/">
+        <NavLink to="/">
           <NavbarBrand>
             <AcmeLogo />
             <p className="font-bold text-inherit">Client</p>
           </NavbarBrand>
-        </Link>
+        </NavLink>
       </NavbarContent>
 
       <NavbarContent justify="end">
