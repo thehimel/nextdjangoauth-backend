@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/Auth/Icons.tsx";
-import {signup} from "@/store/auth/authActions.ts";
+import {signup, SignupResponse} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {FormEvent} from "react";
@@ -41,7 +41,7 @@ export default function Signup() {
 
     // Email validation
     if (email.length === 0 || !emailPattern.test(email)) {
-      setEmailErrorMessage("Enter a valid email");
+      setEmailErrorMessage("Enter a valid email.");
       setIsEmailValid(false);
       isFormValid = false;
     } else {
@@ -52,7 +52,7 @@ export default function Signup() {
     // Password validation
     if (!password.length) {
       setIsPasswordValid(false);
-      setPasswordErrorMessage("Enter a valid password");
+      setPasswordErrorMessage("Enter a valid password.");
       isFormValid = false;
     } else {
       setPasswordErrorMessage("");
@@ -62,11 +62,11 @@ export default function Signup() {
     // Confirm Password validation
     if (!confirmPassword.length) {
       setIsConfirmPasswordValid(false);
-      setConfirmPasswordErrorMessage("Enter a valid password");
+      setConfirmPasswordErrorMessage("Enter a valid password.");
       isFormValid = false;
     } else if (confirmPassword !== password) {
       setIsConfirmPasswordValid(false);
-      setConfirmPasswordErrorMessage("Passwords do not match");
+      setConfirmPasswordErrorMessage("Passwords do not match.");
       isFormValid = false;
     } else {
       setConfirmPasswordErrorMessage("")
@@ -76,8 +76,25 @@ export default function Signup() {
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
       console.log(`Email: ${email}, Password: ${password}, confirmPassword: ${confirmPassword}`);
-      await dispatch(signup({email, password, confirmPassword}));
-      setIsSignupSuccessful(true);
+      const response: SignupResponse = await dispatch(signup({email, password, confirmPassword}));
+      if (response.success) {
+        setIsSignupSuccessful(true);
+      } else {
+        const emailError = response.errors.data.email;
+        const passwordError = response.errors.data.password;
+        if (emailError !== "") {
+          setIsEmailValid(false);
+          setEmailErrorMessage(response.errors.data.email);
+        }
+
+        if (passwordError !== "") {
+          setIsPasswordValid(false);
+          setPasswordErrorMessage(response.errors.data.password);
+
+          setIsConfirmPasswordValid(false);
+          setConfirmPasswordErrorMessage(response.errors.data.password);
+        }
+      }
     }
   };
 

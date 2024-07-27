@@ -11,12 +11,38 @@ interface Signup {
   confirmPassword: string
 }
 
+export interface SignupResponse {
+  success: boolean;
+  message: string;
+  errors: {
+    data: {
+      email: string;
+      password: string;
+    };
+    message: string;
+  };
+}
+
+const InitialSignupResponse: SignupResponse = {
+  success: false,
+  message: "",
+  errors: {
+    data: {
+      email: "",
+      password: "",
+    },
+    message: "",
+  },
+}
+
 export const signup = ({email, password, confirmPassword}: Signup) => {
-  return async (dispatch: AppDispatch) => {
+  return async (dispatch: AppDispatch): Promise<SignupResponse> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
     }
+
+    const response = InitialSignupResponse;
 
     try {
       dispatch(authActions.setAuthLoading(true));
@@ -25,19 +51,16 @@ export const signup = ({email, password, confirmPassword}: Signup) => {
         password1: password,
         password2: confirmPassword
       };
-      const response = await axios.post(SIGNUP_API_URL, params,{headers: headers});
-      console.log(response);
-      dispatch(authActions.setSignupSuccess(true));
+      await axios.post(SIGNUP_API_URL, params,{headers: headers});
+      response.success = true;
     } catch (error) {
-      console.log(error);
       const errors = getErrors({error: error as AxiosError});
-      if (errors.data) {
-        dispatch(authActions.setSignupErrors(errors.data));
-      }
-      if (errors.message) {
-        console.log(errors.message);
-      }
+      response.errors.data.email = errors.data?.email?.[0] ?? "";
+      response.errors.data.password = errors.data?.password1?.[0] ?? "";
+      response.errors.message = errors.message ?? "";
+    } finally {
       dispatch(authActions.setAuthLoading(false));
     }
+    return response;
   };
 };
