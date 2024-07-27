@@ -1,3 +1,4 @@
+import {authReducer} from "@/store/auth/authSlice.ts";
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {persistReducer, persistStore} from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -14,6 +15,7 @@ const persistConfig = {
 // combineReducers is mandatory to avoid type issues.
 const rootReducer =  combineReducers({
   base: baseReducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

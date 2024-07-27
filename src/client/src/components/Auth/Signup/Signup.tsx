@@ -2,13 +2,17 @@
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/Auth/Icons.tsx";
 import {signup} from "@/store/auth/authActions.ts";
-import React from "react";
+import {useAppDispatch} from "@/store/hooks.ts";
+import {AppDispatch} from "@/store/store.ts";
+import React, {FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "./acme";
 
 export default function Signup() {
+  const dispatch: AppDispatch = useAppDispatch();
+
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
 
@@ -29,8 +33,8 @@ export default function Signup() {
 
   const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
 
     let isFormValid = true;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -72,7 +76,7 @@ export default function Signup() {
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
       console.log(`Email: ${email}, Password: ${password}, confirmPassword: ${confirmPassword}`);
-      signup({email, password, confirmPassword})();
+      await dispatch(signup({email, password, confirmPassword}));
       setIsSignupSuccessful(true);
     }
   };

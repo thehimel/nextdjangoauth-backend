@@ -1,19 +1,22 @@
 import {AxiosError} from "axios";
 
-export interface ErrorInterface {
-  apiUrl: string;
-  errors: string[];
+interface ErrorsInterface {
+  data: Record<string, string[]> | undefined;
+  message: string | undefined;
 }
 
-export const getErrorMessage = ({apiUrl, error} : {apiUrl: string, error: AxiosError}) => {
-  const errorMessage: ErrorInterface = {
-    apiUrl: apiUrl,
-    errors: [],
-  }
+export const getErrors = ({error} : {error: AxiosError}) => {
+  const errors: ErrorsInterface = {
+    data: undefined,
+    message: undefined,
+  };
+
   if (error.response) {
-    errorMessage.errors = [error.response.data as never]
-  } else {
-    errorMessage.errors = [error.message || 'An unknown error occurred'];
+    if (error.response.data === "") {
+      errors.message = error.message || "An unknown error occurred";
+    } else {
+      errors.data = error.response.data as never;
+    }
   }
-  return errorMessage
+  return errors
 };
