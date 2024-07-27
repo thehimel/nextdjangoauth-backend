@@ -15,18 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from allauth.account.views import confirm_email
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path
 
 from core.views import schema_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    re_path('auth/registration/account-confirm-email/(?P<key>.+)/', confirm_email, name='account_confirm_email'),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
     path('', include('apps.base.urls', namespace='base')),

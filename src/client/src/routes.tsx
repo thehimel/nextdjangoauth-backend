@@ -7,7 +7,8 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App/>}>
       <Route index={true} path="/" element={<Home/>}/>
-      <Route path="/signup" element={<Signup/>}/>
+      <Route path="/signup/" element={<Signup/>}/>
+      <Route path="/signup/confirm-email/:key/" element={<Signup/>}/>
     </Route>
   )
 )

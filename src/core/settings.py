@@ -174,6 +174,8 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_ADAPTER = 'apps.base.adapters.AccountAdapter'  # Custom URLs
+
 # Use username or email as the primary identifier
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
