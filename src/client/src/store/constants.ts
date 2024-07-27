@@ -3,4 +3,5 @@ export const slices = {
   auth: "auth",
 }
 
-export const SIGNUP_API_URL = '/api/auth/registration/'
+export const SIGNUP_API_URL = "/api/auth/registration/";
+export const VERIFY_EMAIL_URL = "/api/auth/registration/verify-email/";
