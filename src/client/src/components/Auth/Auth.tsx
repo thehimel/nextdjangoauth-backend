@@ -1,17 +1,22 @@
 "use client";
 
-import {EyeClosedIcon, EyeOpenIcon} from "@/components/Auth/Icons.tsx";
+import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {signup, SignupResponse} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
-import React, {FormEvent} from "react";
+import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
 
-export default function Signup() {
+interface AuthProps {
+  pageType: "signup" | "login" | "confirm-email";
+}
+
+const Auth: FC<AuthProps> = ({pageType}) => {
   const dispatch: AppDispatch = useAppDispatch();
+  const isSignupPage = pageType === "signup";
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isFormValid, setIsFormValid] = React.useState(true);
@@ -146,7 +151,8 @@ export default function Signup() {
                 setPassword(value);
               }}
             />
-            <Input
+            {isSignupPage ? (
+              <Input
               isRequired
               endContent={
                 <button type="button" onClick={toggleConfirmPasswordVisibility}>
@@ -166,6 +172,7 @@ export default function Signup() {
                 setConfirmPassword(value);
               }}
             />
+            ) : null}
             <Checkbox isRequired name="agree" className="py-4" size="sm">
               I agree with the&nbsp;
               <Link href="#" size="sm">
@@ -211,3 +218,5 @@ export default function Signup() {
     </div>
   );
 }
+
+export default Auth;
