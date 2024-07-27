@@ -5,13 +5,16 @@ import {signup, SignupResponse} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {FormEvent} from "react";
-import {Button, Input, Checkbox, Link, Divider} from "@nextui-org/react";
+import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "./acme";
 
 export default function Signup() {
   const dispatch: AppDispatch = useAppDispatch();
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isFormValid, setIsFormValid] = React.useState(true);
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
@@ -35,15 +38,13 @@ export default function Signup() {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-
-    let isFormValid = true;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Email validation
     if (email.length === 0 || !emailPattern.test(email)) {
       setEmailErrorMessage("Enter a valid email.");
       setIsEmailValid(false);
-      isFormValid = false;
+      setIsFormValid(false);
     } else {
       setEmailErrorMessage("")
       setIsEmailValid(true);
@@ -53,7 +54,7 @@ export default function Signup() {
     if (!password.length) {
       setIsPasswordValid(false);
       setPasswordErrorMessage("Enter a valid password.");
-      isFormValid = false;
+      setIsFormValid(false);;
     } else {
       setPasswordErrorMessage("");
       setIsPasswordValid(true);
@@ -63,11 +64,11 @@ export default function Signup() {
     if (!confirmPassword.length) {
       setIsConfirmPasswordValid(false);
       setConfirmPasswordErrorMessage("Enter a valid password.");
-      isFormValid = false;
+      setIsFormValid(false);
     } else if (confirmPassword !== password) {
       setIsConfirmPasswordValid(false);
       setConfirmPasswordErrorMessage("Passwords do not match.");
-      isFormValid = false;
+      setIsFormValid(false);
     } else {
       setConfirmPasswordErrorMessage("")
       setIsConfirmPasswordValid(true);
@@ -75,6 +76,7 @@ export default function Signup() {
 
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
+      setIsLoading(true);
       console.log(`Email: ${email}, Password: ${password}, confirmPassword: ${confirmPassword}`);
       const response: SignupResponse = await dispatch(signup({email, password, confirmPassword}));
       if (response.success) {
@@ -95,6 +97,7 @@ export default function Signup() {
           setConfirmPasswordErrorMessage(response.errors.data.password);
         }
       }
+      setIsLoading(false);
     }
   };
 
@@ -174,7 +177,11 @@ export default function Signup() {
                 Privacy Policy
               </Link>
             </Checkbox>
-            <Button color="primary" type="submit">
+            <Button
+              color="primary"
+              type="submit"
+              isDisabled={isLoading}
+              endContent={isLoading ? (<Spinner size="sm" color="default" />) : null}>
               Sign Up
             </Button>
           </form>
