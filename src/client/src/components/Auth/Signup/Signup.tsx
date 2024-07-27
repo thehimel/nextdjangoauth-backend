@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/Auth/Icons.tsx";
-import {signup} from "@/store/users/usersActions.ts";
+import {signup} from "@/store/auth/authActions.ts";
 import React from "react";
 import {Button, Input, Checkbox, Link, Divider} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
