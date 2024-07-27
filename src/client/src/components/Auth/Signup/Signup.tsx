@@ -8,7 +8,7 @@ import React, {FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import {AcmeIcon} from "./acme";
+import {AcmeIcon} from "@/components/icons/acme.tsx";
 
 export default function Signup() {
   const dispatch: AppDispatch = useAppDispatch();

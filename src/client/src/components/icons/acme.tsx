@@ -1,6 +1,10 @@
-import type {IconSvgProps} from "./types";
-
 import React from "react";
+
+import type {SVGProps} from "react";
+
+export type IconSvgProps = SVGProps<SVGSVGElement> & {
+  size?: number;
+};
 
 export const AcmeIcon: React.FC<IconSvgProps> = ({size = 32, width, height, ...props}) => (
   <svg fill="none" height={size || height} viewBox="0 0 32 32" width={size || width} {...props}>
