@@ -77,7 +77,6 @@ export default function Signup() {
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
       setIsLoading(true);
-      console.log(`Email: ${email}, Password: ${password}, confirmPassword: ${confirmPassword}`);
       const response: SignupResponse = await dispatch(signup({email, password, confirmPassword}));
       if (response.success) {
         setIsSignupSuccessful(true);
