@@ -29,6 +29,7 @@ export interface SignupResponseInterface {
     };
     message: string;
   };
+  isTokenValid: boolean;
 }
 
 export interface ProfileUpdateResponseInterface {
@@ -42,6 +43,7 @@ export interface ProfileUpdateResponseInterface {
     };
     message: string;
   };
+  isTokenValid: boolean;
 }
 
 export const InitialSignupResponse: SignupResponseInterface = {
@@ -54,6 +56,7 @@ export const InitialSignupResponse: SignupResponseInterface = {
     },
     message: "",
   },
+  isTokenValid: false,
 }
 
 export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
@@ -67,6 +70,7 @@ export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
     },
     message: "",
   },
+  isTokenValid: false,
 }
 
 export const auth = ({email, password, confirmPassword, isRememberMe}: SignupInterface) => {
@@ -94,8 +98,10 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: SignupInt
         dispatch(authActions.setRememberMe(isRememberMe));
       }
       response.success = true;
+      response.isTokenValid = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
+      response.isTokenValid = errors.isTokenValid;
       response.errors.data.email = errors.data?.email?.[0] ?? "";
       response.errors.data.password = errors.data?.password1?.[0] ?? "";
       response.errors.message = errors.message ?? "";
@@ -152,9 +158,11 @@ export const updateProfile = ({access, username, firstName, lastName}: UpdatePro
       const result = await axios.get(USER_API_URL, {headers: headers});
       dispatch(authActions.setUserDetails(result.data));
       response.success = true;
+      response.isTokenValid = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
       response.success = false;
+      response.isTokenValid = errors.isTokenValid;
       response.errors.data.username = errors.data?.username?.[0] ?? "";
       response.errors.data.firstName = errors.data?.first_name?.[0] ?? "";
       response.errors.data.lastName = errors.data?.last_name?.[0] ?? "";

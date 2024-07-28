@@ -80,6 +80,11 @@ const Profile = (props: CardProps) => {
       const params = {access, email, firstName, lastName, ...(previousUsername !== username && { username })}
       const response = await dispatch(updateProfile(params));
 
+      if (!response.isTokenValid) {
+        const redirectPath = location.pathname;
+        navigate(LOGIN_URL, { state: { from: redirectPath } });
+      }
+
       if (!response.success) {
         const usernameError = response.errors.data.username;
         const firstNameError = response.errors.data.firstName;
