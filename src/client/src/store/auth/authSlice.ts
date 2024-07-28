@@ -50,6 +50,9 @@ const authSlice = createSlice({
       state.userData = action.payload;
       state.loggedIn = true;
     },
+    setUserDetails(state, action): void {
+      state.userData.user = action.payload;
+    },
     setRememberMe(state, action): void {
       state.rememberMe = action.payload;
     },

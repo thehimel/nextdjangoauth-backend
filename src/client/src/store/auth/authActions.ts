@@ -1,18 +1,25 @@
 import {authActions} from "@/store/auth/authSlice.ts";
-import {LOGIN_API_URL, SIGNUP_API_URL, VERIFY_EMAIL_URL} from "@/store/constants.ts";
+import {LOGIN_API_URL, SIGNUP_API_URL, USER_API_URL, VERIFY_EMAIL_API_URL} from "@/store/constants.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
-interface Signup {
-  email: string,
-  password: string,
-  confirmPassword?: string,
-  isRememberMe: boolean,
+interface SignupInterface {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+  isRememberMe: boolean;
 }
 
-export interface SignupResponse {
+interface UpdateProfileInterface {
+  access: string,
+  username?: string,
+  firstName: string,
+  lastName: string,
+}
+
+export interface SignupResponseInterface {
   success: boolean;
   message: string;
   errors: {
@@ -24,7 +31,20 @@ export interface SignupResponse {
   };
 }
 
-export const InitialSignupResponse: SignupResponse = {
+export interface ProfileUpdateResponseInterface {
+  success: boolean;
+  message: string;
+  errors: {
+    data: {
+      username: string;
+      firstName: string;
+      lastName: string;
+    };
+    message: string;
+  };
+}
+
+export const InitialSignupResponse: SignupResponseInterface = {
   success: false,
   message: "",
   errors: {
@@ -36,8 +56,21 @@ export const InitialSignupResponse: SignupResponse = {
   },
 }
 
-export const auth = ({email, password, confirmPassword, isRememberMe}: Signup) => {
-  return async (dispatch: AppDispatch): Promise<SignupResponse> => {
+export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
+  success: false,
+  message: "",
+  errors: {
+    data: {
+      username: "",
+      firstName: "",
+      lastName: "",
+    },
+    message: "",
+  },
+}
+
+export const auth = ({email, password, confirmPassword, isRememberMe}: SignupInterface) => {
+  return async (dispatch: AppDispatch): Promise<SignupResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
@@ -87,7 +120,7 @@ export const verifyEmail = ({key}: {key: string}) => {
       const params: Record<string, string> = {
         key: key,
       };
-      await axios.post(VERIFY_EMAIL_URL, params,{headers: headers});
+      await axios.post(VERIFY_EMAIL_API_URL, params,{headers: headers});
       response = true;
     } catch (error) {
       getErrors({error: error as AxiosError});
@@ -97,3 +130,38 @@ export const verifyEmail = ({key}: {key: string}) => {
     return response;
   };
 }
+
+export const updateProfile = ({access, username, firstName, lastName}: UpdateProfileInterface) => {
+  return async (dispatch: AppDispatch): Promise<ProfileUpdateResponseInterface> => {
+    const headers = {
+      'X-CSRFTOKEN': getCookie('csrftoken'),
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${access}`,
+    }
+
+    const response = InitialProfileUpdateResponse;
+
+    try {
+      dispatch(authActions.setAuthLoading(true));
+      const params: Record<string, string> = {
+        first_name: firstName,
+        last_name: lastName,
+        ...(username && { username })
+      };
+      await axios.patch(USER_API_URL, params,{headers: headers});
+      const result = await axios.get(USER_API_URL, {headers: headers});
+      dispatch(authActions.setUserDetails(result.data));
+      response.success = true;
+    } catch (error) {
+      const errors = getErrors({error: error as AxiosError});
+      response.success = false;
+      response.errors.data.username = errors.data?.username?.[0] ?? "";
+      response.errors.data.firstName = errors.data?.first_name?.[0] ?? "";
+      response.errors.data.lastName = errors.data?.last_name?.[0] ?? "";
+      response.errors.message = errors.message ?? "";
+    } finally {
+      dispatch(authActions.setAuthLoading(false));
+    }
+    return response;
+  };
+};

@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import {InitialSignupResponse, auth, SignupResponse} from "@/store/auth/authActions.ts";
+import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {FC, FormEvent} from "react";
@@ -99,7 +99,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     if (isFormValid) {
       setIsLoading(true);
 
-      let response: SignupResponse = InitialSignupResponse;
+      let response: SignupResponseInterface = InitialSignupResponse;
       const params = {
         email,
         password,

@@ -1,6 +1,8 @@
 "use client";
 
-import {useAppSelector} from "@/store/hooks.ts";
+import {updateProfile} from "@/store/auth/authActions.ts";
+import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
+import {AppDispatch} from "@/store/store.ts";
 import {isValidUsername} from "@/utils/validate.ts";
 import {CardProps, Spinner} from "@nextui-org/react";
 
@@ -13,10 +15,14 @@ const Profile = (props: CardProps) => {
   const location = useLocation();
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
 
+  const dispatch: AppDispatch = useAppDispatch();
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const [username, setUsername] = React.useState(useAppSelector((state) => state.auth.userData.user.username));
+  const previousUsername = useAppSelector((state) => state.auth.userData.user.username);
+  const [username, setUsername] = React.useState(previousUsername);
   const email = useAppSelector((state) => state.auth.userData.user.email);
+  const access = useAppSelector((state) => state.auth.userData.access);
+
   const [firstName, setFirstName] = React.useState(useAppSelector((state) => state.auth.userData.user.first_name));
   const [lastName, setLastName] = React.useState(useAppSelector((state) => state.auth.userData.user.last_name));
 
@@ -69,8 +75,30 @@ const Profile = (props: CardProps) => {
 
     if (isFormValid) {
       setIsLoading(true);
-      const params = {username, email, firstName, lastName}
-      console.log(params);
+      const params = {access, email, firstName, lastName, ...(previousUsername !== username && { username })}
+      const response = await dispatch(updateProfile(params));
+
+      if (!response.success) {
+        const usernameError = response.errors.data.username;
+        const firstNameError = response.errors.data.firstName;
+        const lastNameError = response.errors.data.lastName;
+
+        if (usernameError !== "") {
+          setIsUsernameValid(false);
+          setUsernameErrorMessage(usernameError);
+        }
+
+        if (firstNameError !== "") {
+          setIsFirstNameValid(false);
+          setFirstNameErrorMessage(firstNameError);
+        }
+
+        if (lastNameError !== "") {
+          setIsLastNameValid(false);
+          setLastNameErrorMessage(lastNameError);
+        }
+      }
+      setIsLoading(false);
     }
   };
 
@@ -83,7 +111,8 @@ const Profile = (props: CardProps) => {
               <Avatar className="h-14 w-14" src="/static/avatar.svg"/>
             </Badge>
             <div className="flex flex-col items-start justify-center">
-              <p className="font-medium">Please add your name.</p>
+              <p className="font-medium">{firstName} {lastName}</p>
+              <span className="text-small text-default-500">{email}</span>
             </div>
           </div>
         </CardHeader>
