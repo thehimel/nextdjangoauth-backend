@@ -88,7 +88,7 @@ const ChangePassword = (props: CardProps) => {
                   {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                 </button>
               }
-              label="Password"
+              label="New Password"
               name="password"
               autoComplete="new-password"
               variant="bordered"
@@ -109,7 +109,7 @@ const ChangePassword = (props: CardProps) => {
                     {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                   </button>
                 }
-                label="Confirm Password"
+                label="Confirm New Password"
                 name="confirmPassword"
                 autoComplete="new-password"
                 variant="bordered"
