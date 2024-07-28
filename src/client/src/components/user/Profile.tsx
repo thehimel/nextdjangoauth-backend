@@ -2,6 +2,7 @@
 
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/utils/constants.ts";
+import {validateField} from "@/components/utils/props.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -48,32 +49,26 @@ const Profile = (props: CardProps) => {
     event.preventDefault();
     let isFormValid = true;
 
-    if (!isValidUsername(username)) {
-      setIsUsernameValid(false);
-      setUsernameErrorMessage("Username must be minimum 6 characters, letters & numbers only.");
-      isFormValid = false;
-    } else {
-      setUsernameErrorMessage("");
-      setIsUsernameValid(true);
-    }
+    isFormValid = validateField({
+      isValid: isValidUsername(username),
+      setValidity: setIsUsernameValid,
+      setErrorMessage: setUsernameErrorMessage,
+      errorMessage: "Username must be minimum 6 characters, letters & numbers only.",
+    }) && isFormValid;
 
-    if (!firstName.length) {
-      setIsFirstNameValid(false);
-      setFirstNameErrorMessage("Enter a valid first name.");
-      isFormValid = false;
-    } else {
-      setFirstNameErrorMessage("");
-      setIsFirstNameValid(true);
-    }
+    isFormValid = validateField({
+      isValid: firstName.length > 0,
+      setValidity: setIsFirstNameValid,
+      setErrorMessage: setFirstNameErrorMessage,
+      errorMessage: "Enter a valid first name.",
+    }) && isFormValid;
 
-    if (!lastName.length) {
-      setIsLastNameValid(false);
-      setLastNameErrorMessage("Enter a valid first name.");
-      isFormValid = false;
-    } else {
-      setLastNameErrorMessage("");
-      setIsLastNameValid(true);
-    }
+    isFormValid = validateField({
+      isValid: lastName.length > 0,
+      setValidity: setIsLastNameValid,
+      setErrorMessage: setLastNameErrorMessage,
+      errorMessage: "Enter a valid last name.",
+    }) && isFormValid;
 
     if (isFormValid) {
       setIsLoading(true);
