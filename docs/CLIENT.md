@@ -61,6 +61,7 @@ npm i --save-dev @types/node
 * React Router Dom: `npm install react-router-dom`
 * Radix Icons: `npm install @radix-ui/react-icons`
 * Install Axios: `npm install axios`
+* Toast: `npm install sonner`
 
 ### Configure Dark Mode with NextUI
 
