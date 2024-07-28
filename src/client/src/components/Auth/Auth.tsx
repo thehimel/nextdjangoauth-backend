@@ -136,7 +136,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               isRequired
               endContent={
                 <button type="button" onClick={togglePasswordVisibility}>
-                  {isPasswordVisible ? EyeClosedIcon: EyeOpenIcon}
+                  {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                 </button>
               }
               label="Password"
@@ -154,42 +154,47 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
             />
             {isSignupPage ? (
               <Input
-              isRequired
-              endContent={
-                <button type="button" onClick={toggleConfirmPasswordVisibility}>
-                  {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
-                </button>
-              }
-              label="Confirm Password"
-              name="confirmPassword"
-              autoComplete="new-password"
-              variant="bordered"
-              type={isConfirmPasswordVisible ? "text" : "password"}
-              errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
-              isInvalid={!isConfirmPasswordValid}
-              value={confirmPassword}
-              onValueChange={(value) => {
-                setIsConfirmPasswordValid(true);
-                setConfirmPassword(value);
-              }}
-            />
+                isRequired
+                endContent={
+                  <button type="button" onClick={toggleConfirmPasswordVisibility}>
+                    {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                  </button>
+                }
+                label="Confirm Password"
+                name="confirmPassword"
+                autoComplete="new-password"
+                variant="bordered"
+                type={isConfirmPasswordVisible ? "text" : "password"}
+                errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
+                isInvalid={!isConfirmPasswordValid}
+                value={confirmPassword}
+                onValueChange={(value) => {
+                  setIsConfirmPasswordValid(true);
+                  setConfirmPassword(value);
+                }}
+              />
             ) : null}
-            <Checkbox isRequired name="agree" className="py-4" size="sm">
-              I agree with the&nbsp;
-              <Link href="#" size="sm">
-                Terms
-              </Link>
-              &nbsp;and&nbsp;
-              <Link href="#" size="sm">
-                Privacy Policy
-              </Link>
-            </Checkbox>
+            {isSignupPage ? (
+              <Checkbox isRequired name="agree" className="py-4" size="sm">
+                I agree with the&nbsp;
+                <Link href="#" size="sm">Terms</Link>&nbsp;and&nbsp;<Link href="#" size="sm">Privacy Policy</Link>
+              </Checkbox>
+            ) : (
+              <div className="flex items-center justify-between px-1 py-2">
+                <Checkbox name="remember" size="sm">
+                  Remember me
+                </Checkbox>
+                <Link className="text-default-500" href="#" size="sm">
+                  Forgot password?
+                </Link>
+              </div>
+            )}
             <Button
               color="primary"
               type="submit"
               isDisabled={isLoading}
-              endContent={isLoading ? (<Spinner size="sm" color="default" />) : null}>
-              Sign Up
+              endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}>
+              {isSignupPage ? "Sign Up" : "Log in"}
             </Button>
           </form>
           <div className="flex items-center gap-4">
@@ -198,17 +203,16 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
             <Divider className="flex-1" />
           </div>
           <div className="flex flex-col gap-2">
-            <Button
-              startContent={<Icon icon="flat-color-icons:google" width={24} />}
-            >
+            <Button startContent={<Icon icon="flat-color-icons:google" width={24} />}>
               Continue with Google
             </Button>
           </div>
           <p className="text-center text-small">
-            Already have an account?&nbsp;
-            <Link href="#" size="sm">
-              Log In
-            </Link>
+            {isSignupPage ? (
+              <>Already have an account?&nbsp;<Link href="#" size="sm">Log In</Link></>
+            ) : (
+              <>Need to create an account?&nbsp; <Link href="#" size="sm">Sign Up</Link></>
+            )}
           </p>
         </div>
         ) : (

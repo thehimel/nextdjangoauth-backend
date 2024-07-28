@@ -7,5 +7,6 @@ app_name = 'base'
 urlpatterns = [
     path('', ClientView.as_view(), name='client'),
     path('signup/', ClientView.as_view(), name='signup'),
+    path('login/', ClientView.as_view(), name='login'),
     re_path('signup/confirm-email/(?P<key>.+)/', ClientView.as_view(), name='confirm_email'),
 ]
