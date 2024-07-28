@@ -97,6 +97,8 @@ const ChangePassword = (props: CardProps) => {
       }
       setIsSubmitDisabled(true);
       setIsLoading(false);
+    } else {
+      setIsSubmitDisabled(true);
     }
   };
 
