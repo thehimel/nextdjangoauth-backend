@@ -1,6 +1,7 @@
 "use client";
 
 import ProfileHeader from "@/components/Profile/ProfileHeader.tsx";
+import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/Utils/constants.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -39,7 +40,7 @@ const Profile = (props: CardProps) => {
     if (!isLoggedIn) {
       // Store the path to redirect to after login
       const redirectPath = location.pathname;
-      navigate('/login/', { state: { from: redirectPath } });
+      navigate(LOGIN_URL, { state: { from: redirectPath } });
     }
   }, [isLoggedIn, navigate, location]);
 
@@ -110,7 +111,7 @@ const Profile = (props: CardProps) => {
           firstName={firstName}
           lastName={lastName}
           email={email}
-          navigationLink={{url: "/auth/change-password/", title: "Change Password"}}
+          navigationLink={{url: CHANGE_PASSWORD_URL, title: "Change Password"}}
         />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">

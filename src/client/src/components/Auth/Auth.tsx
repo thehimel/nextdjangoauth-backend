@@ -1,6 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
+import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/components/Utils/constants.ts";
 import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -20,7 +21,7 @@ interface AuthProps {
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || '/profile/'; // Default to profile page if no specific redirect
+  const from = location.state?.from || PROFILE_URL; // Default to profile page if no specific redirect
 
   const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
@@ -267,9 +268,9 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
           </div>
           <p className="text-center text-small">
             {isSignupPage ? (
-              <>Already have an account?&nbsp;<Link href={"/login/"} size="sm">Log In</Link></>
+              <>Already have an account?&nbsp;<Link href={LOGIN_URL} size="sm">Log In</Link></>
             ) : (
-              <>Need to create an account?&nbsp; <Link href={"/signup/"} size="sm">Sign Up</Link></>
+              <>Need to create an account?&nbsp; <Link href={SIGNUP_URL} size="sm">Sign Up</Link></>
             )}
           </p>
         </div>
