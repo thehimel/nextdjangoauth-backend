@@ -67,17 +67,19 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     }
 
     // Confirm Password validation
-    if (!confirmPassword.length) {
-      setIsConfirmPasswordValid(false);
-      setConfirmPasswordErrorMessage("Enter a valid password.");
-      setIsFormValid(false);
-    } else if (confirmPassword !== password) {
-      setIsConfirmPasswordValid(false);
-      setConfirmPasswordErrorMessage("Passwords do not match.");
-      setIsFormValid(false);
-    } else {
-      setConfirmPasswordErrorMessage("")
-      setIsConfirmPasswordValid(true);
+    if (isSignupPage) {
+      if (!confirmPassword.length) {
+        setIsConfirmPasswordValid(false);
+        setConfirmPasswordErrorMessage("Enter a valid password.");
+        setIsFormValid(false);
+      } else if (confirmPassword !== password) {
+        setIsConfirmPasswordValid(false);
+        setConfirmPasswordErrorMessage("Passwords do not match.");
+        setIsFormValid(false);
+      } else {
+        setConfirmPasswordErrorMessage("")
+        setIsConfirmPasswordValid(true);
+      }
     }
 
     // If the form is valid, proceed with the next steps
