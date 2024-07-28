@@ -1,5 +1,5 @@
 import {authActions} from "@/store/auth/authSlice.ts";
-import {SIGNUP_API_URL, VERIFY_EMAIL_URL} from "@/store/constants.ts";
+import {LOGIN_API_URL, SIGNUP_API_URL, VERIFY_EMAIL_URL} from "@/store/constants.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
@@ -8,7 +8,8 @@ import axios, {AxiosError} from "axios";
 interface Signup {
   email: string,
   password: string,
-  confirmPassword: string
+  confirmPassword?: string,
+  isRememberMe: boolean,
 }
 
 export interface SignupResponse {
@@ -23,7 +24,7 @@ export interface SignupResponse {
   };
 }
 
-const InitialSignupResponse: SignupResponse = {
+export const InitialSignupResponse: SignupResponse = {
   success: false,
   message: "",
   errors: {
@@ -35,7 +36,7 @@ const InitialSignupResponse: SignupResponse = {
   },
 }
 
-export const signup = ({email, password, confirmPassword}: Signup) => {
+export const signup = ({email, password, confirmPassword, isRememberMe}: Signup) => {
   return async (dispatch: AppDispatch): Promise<SignupResponse> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
@@ -43,17 +44,19 @@ export const signup = ({email, password, confirmPassword}: Signup) => {
     }
 
     const response = InitialSignupResponse;
+    console.log(isRememberMe);
 
     try {
       dispatch(authActions.setAuthLoading(true));
       const params: Record<string, string> = {
         email: email,
-        password1: password,
-        password2: confirmPassword
+        ...(!confirmPassword && { password: password }),
+        ...(confirmPassword && { password1: password, password2: confirmPassword }),
       };
-      await axios.post(SIGNUP_API_URL, params,{headers: headers});
+      await axios.post(confirmPassword ? SIGNUP_API_URL : LOGIN_API_URL, params,{headers: headers});
       response.success = true;
     } catch (error) {
+      console.log(error);
       const errors = getErrors({error: error as AxiosError});
       response.errors.data.email = errors.data?.email?.[0] ?? "";
       response.errors.data.password = errors.data?.password1?.[0] ?? "";

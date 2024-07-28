@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import {signup, SignupResponse} from "@/store/auth/authActions.ts";
+import {InitialSignupResponse, signup, SignupResponse} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {FC, FormEvent} from "react";
@@ -9,6 +9,7 @@ import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface AuthProps {
   pageType: "signup" | "login" | "confirm-email";
@@ -16,11 +17,13 @@ interface AuthProps {
 }
 
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
+  const isLoginPage = pageType === "login";
 
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isFormValid, setIsFormValid] = React.useState(true);
+  const [isRememberMe, setIsRememberMe] = React.useState(true);
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
@@ -44,13 +47,14 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    let isFormValid = true;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Email validation
     if (email.length === 0 || !emailPattern.test(email)) {
       setEmailErrorMessage("Enter a valid email.");
       setIsEmailValid(false);
-      setIsFormValid(false);
+      isFormValid = false;
     } else {
       setEmailErrorMessage("")
       setIsEmailValid(true);
@@ -60,7 +64,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     if (!password.length) {
       setIsPasswordValid(false);
       setPasswordErrorMessage("Enter a valid password.");
-      setIsFormValid(false);;
+      isFormValid = false;
     } else {
       setPasswordErrorMessage("");
       setIsPasswordValid(true);
@@ -71,11 +75,11 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
       if (!confirmPassword.length) {
         setIsConfirmPasswordValid(false);
         setConfirmPasswordErrorMessage("Enter a valid password.");
-        setIsFormValid(false);
+        isFormValid = false;
       } else if (confirmPassword !== password) {
         setIsConfirmPasswordValid(false);
         setConfirmPasswordErrorMessage("Passwords do not match.");
-        setIsFormValid(false);
+        isFormValid = false;
       } else {
         setConfirmPasswordErrorMessage("")
         setIsConfirmPasswordValid(true);
@@ -85,23 +89,47 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     // If the form is valid, proceed with the next steps
     if (isFormValid) {
       setIsLoading(true);
-      const response: SignupResponse = await dispatch(signup({email, password, confirmPassword}));
-      if (response.success) {
-        setIsSignupSuccessful(true);
-      } else {
-        const emailError = response.errors.data.email;
-        const passwordError = response.errors.data.password;
-        if (emailError !== "") {
-          setIsEmailValid(false);
-          setEmailErrorMessage(response.errors.data.email);
+
+      let response: SignupResponse = InitialSignupResponse;
+      const params = {
+        email,
+        password,
+        ...(isSignupPage && { confirmPassword }),
+        isRememberMe,
+      }
+
+      response = await dispatch(signup(params));
+
+      if (isSignupPage) {
+        if (response.success) {
+          setIsSignupSuccessful(true);
+        } else {
+          const emailError = response.errors.data.email;
+          const passwordError = response.errors.data.password;
+          if (emailError !== "") {
+            setIsEmailValid(false);
+            setEmailErrorMessage(response.errors.data.email);
+          }
+
+          if (passwordError !== "") {
+            setIsPasswordValid(false);
+            setPasswordErrorMessage(response.errors.data.password);
+
+            setIsConfirmPasswordValid(false);
+            setConfirmPasswordErrorMessage(response.errors.data.password);
+          }
         }
+      }
 
-        if (passwordError !== "") {
+      if (isLoginPage) {
+        if (response.success) {
+          navigate('/')
+        } else {
+          setIsEmailValid(false);
+          setEmailErrorMessage("");
+
           setIsPasswordValid(false);
-          setPasswordErrorMessage(response.errors.data.password);
-
-          setIsConfirmPasswordValid(false);
-          setConfirmPasswordErrorMessage(response.errors.data.password);
+          setPasswordErrorMessage("Unable to log in with provided credentials.");
         }
       }
       setIsLoading(false);
@@ -183,7 +211,9 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               </Checkbox>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
-                <Checkbox name="remember" size="sm">
+                <Checkbox name="remember" size="sm" defaultSelected={isRememberMe} onValueChange={(value) => {
+                  setIsRememberMe(value);
+                }}>
                   Remember me
                 </Checkbox>
                 <Link className="text-default-500" href="#" size="sm">
