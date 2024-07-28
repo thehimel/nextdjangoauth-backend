@@ -267,9 +267,9 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
           </div>
           <p className="text-center text-small">
             {isSignupPage ? (
-              <>Already have an account?&nbsp;<Link href="#" size="sm">Log In</Link></>
+              <>Already have an account?&nbsp;<Link href={"/login/"} size="sm">Log In</Link></>
             ) : (
-              <>Need to create an account?&nbsp; <Link href="#" size="sm">Sign Up</Link></>
+              <>Need to create an account?&nbsp; <Link href={"/signup/"} size="sm">Sign Up</Link></>
             )}
           </p>
         </div>
