@@ -12,9 +12,10 @@ import {AcmeIcon} from "@/components/icons/acme.tsx";
 
 interface AuthProps {
   pageType: "signup" | "login" | "confirm-email";
+  headline: string;
 }
 
-const Auth: FC<AuthProps> = ({pageType}) => {
+const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
 
@@ -110,7 +111,7 @@ const Auth: FC<AuthProps> = ({pageType}) => {
       <div className="flex flex-col items-center pb-2">
         <AcmeIcon size={60} />
         <p className="text-xl font-medium">Welcome</p>
-        <p className="text-small text-default-500">Create your account to get started</p>
+        <p className="text-small text-default-500">{headline}</p>
       </div>
       {!isSignupSuccessful ? (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
