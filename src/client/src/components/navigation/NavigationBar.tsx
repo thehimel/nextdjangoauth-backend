@@ -9,7 +9,7 @@ import {
   NavbarMenuItem,
   NavbarItem,
 } from "@nextui-org/react";
-import {AcmeLogo} from "@/components/Navigation/AcmeLogo.tsx";
+import {AcmeLogo} from "@/components/navigation/AcmeLogo.tsx";
 import {ThemeSwitcher} from "@/components/UI/ThemeSwitcher.tsx";
 
 const NavigationBar = () => {
