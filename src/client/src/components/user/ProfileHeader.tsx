@@ -13,7 +13,7 @@ interface ProfileHeaderProps {
   navigationLink?: {
     url: string,
     title: string,
-  }
+  };
 }
 
 const ProfileHeader: FC<ProfileHeaderProps> = ({title, firstName, lastName, email, navigationLink}) => {
