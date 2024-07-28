@@ -4,7 +4,9 @@ import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
-import {useAppSelector} from "@/store/hooks.ts";
+import {changePassword} from "@/store/auth/authActions.ts";
+import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
+import {AppDispatch} from "@/store/store.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
 import {CardProps} from "@nextui-org/react";
 
@@ -13,7 +15,7 @@ import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 const ChangePassword = (props: CardProps) => {
-  // const dispatch: AppDispatch = useAppDispatch();
+  const dispatch: AppDispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +24,7 @@ const ChangePassword = (props: CardProps) => {
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  // const access = useAppSelector((state) => state.auth.userData.access);
+  const access = useAppSelector((state) => state.auth.userData.access);
   const email = useAppSelector((state) => state.auth.userData.user.email);
   const firstName = useAppSelector((state) => state.auth.userData.user.first_name);
   const lastName = useAppSelector((state) => state.auth.userData.user.last_name);
@@ -65,7 +67,30 @@ const ChangePassword = (props: CardProps) => {
 
     if (isFormValid) {
       setIsLoading(true);
-      console.log(true);
+      const params = {access, password, confirmPassword}
+      const response = await dispatch(changePassword(params));
+
+      if (!response.isTokenValid) {
+        navigate(LOGIN_URL, { state: { from: redirectPath } });
+      }
+
+      if (response.success) {
+        navigate(PROFILE_URL, { replace: true });
+      } else {
+        const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
+        const confirmPasswordError = response.errors.data.confirmPassword;
+
+        if (passwordError) {
+          setIsPasswordValid(false);
+          setPasswordErrorMessage(passwordError);
+        }
+
+        if (confirmPasswordError) {
+          setIsConfirmPasswordValid(false);
+          setConfirmPasswordErrorMessage(confirmPasswordError);
+        }
+      }
+
       setIsLoading(false);
     }
   };

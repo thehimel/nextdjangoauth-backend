@@ -1,5 +1,11 @@
 import {authActions} from "@/store/auth/authSlice.ts";
-import {LOGIN_API_URL, SIGNUP_API_URL, USER_API_URL, VERIFY_EMAIL_API_URL} from "@/constants/urls.ts";
+import {
+  CHANGE_PASSWORD_API_URL,
+  LOGIN_API_URL,
+  SIGNUP_API_URL,
+  USER_API_URL,
+  VERIFY_EMAIL_API_URL,
+} from "@/constants/urls.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
@@ -12,13 +18,6 @@ interface SignupInterface {
   isRememberMe: boolean;
 }
 
-interface UpdateProfileInterface {
-  access: string,
-  username?: string,
-  firstName: string,
-  lastName: string,
-}
-
 export interface SignupResponseInterface {
   success: boolean;
   message: string;
@@ -26,20 +25,6 @@ export interface SignupResponseInterface {
     data: {
       email: string;
       password: string;
-    };
-    message: string;
-  };
-  isTokenValid: boolean;
-}
-
-export interface ProfileUpdateResponseInterface {
-  success: boolean;
-  message: string;
-  errors: {
-    data: {
-      username: string;
-      firstName: string;
-      lastName: string;
     };
     message: string;
   };
@@ -57,6 +42,59 @@ export const InitialSignupResponse: SignupResponseInterface = {
     message: "",
   },
   isTokenValid: false,
+}
+
+interface ChangePasswordInterface {
+  access: string,
+  password: string;
+  confirmPassword: string;
+}
+
+export interface ChangePasswordResponseInterface {
+  success: boolean;
+  message: string;
+  errors: {
+    data: {
+      password: string;
+      confirmPassword: string;
+    };
+    message: string;
+  };
+  isTokenValid: boolean;
+}
+
+export const InitialChangePasswordResponse: ChangePasswordResponseInterface = {
+  success: false,
+  message: "",
+  errors: {
+    data: {
+      password: "",
+      confirmPassword: "",
+    },
+    message: "",
+  },
+  isTokenValid: false,
+}
+
+interface UpdateProfileInterface {
+  access: string,
+  username?: string,
+  firstName: string,
+  lastName: string,
+}
+
+export interface ProfileUpdateResponseInterface {
+  success: boolean;
+  message: string;
+  errors: {
+    data: {
+      username: string;
+      firstName: string;
+      lastName: string;
+    };
+    message: string;
+  };
+  isTokenValid: boolean;
 }
 
 export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
@@ -112,6 +150,38 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: SignupInt
   };
 };
 
+export const changePassword = ({access, password, confirmPassword}: ChangePasswordInterface) => {
+  return async (dispatch: AppDispatch): Promise<ChangePasswordResponseInterface> => {
+    const headers = {
+      'X-CSRFTOKEN': getCookie('csrftoken'),
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${access}`,
+    }
+
+    const response = InitialChangePasswordResponse;
+
+    try {
+      dispatch(authActions.setAuthLoading(true));
+
+      const params: Record<string, string> = {new_password1: password, new_password2: confirmPassword,};
+      await axios.post(CHANGE_PASSWORD_API_URL, params,{headers: headers});
+
+      response.success = true;
+      response.isTokenValid = true;
+    } catch (error) {
+      const errors = getErrors({error: error as AxiosError});
+
+      response.isTokenValid = errors.isTokenValid;
+      response.errors.data.password = errors.data?.new_password1?.[0] ?? "";
+      response.errors.data.confirmPassword = errors.data?.new_password2?.[0] ?? "";
+      response.errors.message = errors.message ?? "";
+    } finally {
+      dispatch(authActions.setAuthLoading(false));
+    }
+    return response;
+  };
+};
+
 export const verifyEmail = ({key}: {key: string}) => {
   return async (dispatch: AppDispatch) => {
     const headers = {
@@ -154,15 +224,19 @@ export const updateProfile = ({access, username, firstName, lastName}: UpdatePro
         last_name: lastName,
         ...(username && { username })
       };
+
       await axios.patch(USER_API_URL, params,{headers: headers});
       const result = await axios.get(USER_API_URL, {headers: headers});
+
       dispatch(authActions.setUserDetails(result.data));
+
       response.success = true;
       response.isTokenValid = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
       response.success = false;
       response.isTokenValid = errors.isTokenValid;
+
       response.errors.data.username = errors.data?.username?.[0] ?? "";
       response.errors.data.firstName = errors.data?.first_name?.[0] ?? "";
       response.errors.data.lastName = errors.data?.last_name?.[0] ?? "";
