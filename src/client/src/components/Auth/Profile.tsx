@@ -48,7 +48,7 @@ const Profile = (props: CardProps) => {
 
     if (!isValidUsername(username)) {
       setIsUsernameValid(false);
-      setUsernameErrorMessage("Username must be at least 6 characters long and alphanumeric only.");
+      setUsernameErrorMessage("Username must be minimum 6 characters, letters & numbers only.");
       isFormValid = false;
     } else {
       setUsernameErrorMessage("");
