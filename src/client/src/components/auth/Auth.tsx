@@ -1,6 +1,6 @@
 "use client";
 
-import {EyeClosedIcon, EyeOpenIcon} from "@/components/Icons/eyes.tsx";
+import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/constants/urls.ts";
 import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
@@ -10,7 +10,7 @@ import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import {AcmeIcon} from "@/components/Icons/acme.tsx";
+import {AcmeIcon} from "@/components/icons/acme.tsx";
 import {useLocation, useNavigate} from "react-router-dom";
 
 interface AuthProps {
