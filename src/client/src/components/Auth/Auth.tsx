@@ -4,6 +4,7 @@ import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
+import {isValidEmail} from "@/utils/validate.ts";
 import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
@@ -54,10 +55,9 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     let isFormValid = true;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     // Email validation
-    if (email.length === 0 || !emailPattern.test(email)) {
+    if (!isValidEmail(email)) {
       setEmailErrorMessage("Enter a valid email.");
       setIsEmailValid(false);
       isFormValid = false;
