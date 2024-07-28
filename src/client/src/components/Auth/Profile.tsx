@@ -100,6 +100,7 @@ const Profile = (props: CardProps) => {
               placeholder="Enter username"
               errorMessage={!isUsernameValid ? usernameErrorMessage : undefined}
               isInvalid={!isUsernameValid}
+              isDisabled={isLoading}
               value={username}
               onValueChange={(value) => {
                 setIsUsernameValid(true);
@@ -116,6 +117,7 @@ const Profile = (props: CardProps) => {
               variant="bordered"
               labelPlacement="outside"
               placeholder="Enter email"
+              isDisabled={isLoading}
               value={email}
             />
             <Input
@@ -128,6 +130,7 @@ const Profile = (props: CardProps) => {
               placeholder="Enter first name"
               errorMessage={!isFirstNameValid ? firstNameErrorMessage : undefined}
               isInvalid={!isFirstNameValid}
+              isDisabled={isLoading}
               value={firstName}
               onValueChange={(value) => {
                 setIsFirstNameValid(true);
@@ -144,6 +147,7 @@ const Profile = (props: CardProps) => {
               placeholder="Enter last name"
               errorMessage={!isLastNameValid ? lastNameErrorMessage : undefined}
               isInvalid={!isLastNameValid}
+              isDisabled={isLoading}
               value={lastName}
               onValueChange={(value) => {
                 setIsLastNameValid(true);
