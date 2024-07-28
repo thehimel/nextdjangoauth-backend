@@ -165,6 +165,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               variant="bordered"
               errorMessage={!isEmailValid ? emailErrorMessage : undefined}
               isInvalid={!isEmailValid}
+              isDisabled={isLoading}
               value={email}
               onValueChange={(value) => {
                 setIsEmailValid(true);
@@ -185,6 +186,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               type={isPasswordVisible ? "text" : "password"}
               errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
               isInvalid={!isPasswordValid}
+              isDisabled={isLoading}
               value={password}
               onValueChange={(value) => {
                 setIsPasswordValid(true);
@@ -206,6 +208,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                 type={isConfirmPasswordVisible ? "text" : "password"}
                 errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
                 isInvalid={!isConfirmPasswordValid}
+                isDisabled={isLoading}
                 value={confirmPassword}
                 onValueChange={(value) => {
                   setIsConfirmPasswordValid(true);
@@ -220,6 +223,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                   name="agree"
                   size="sm"
                   isInvalid={!isAgree}
+                  isDisabled={isLoading}
                   defaultSelected={isAgree}
                   onValueChange={(value) => setIsAgree(value)}>
                   I agree with the&nbsp;
@@ -229,7 +233,13 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               </>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
-                <Checkbox name="remember" size="sm" isInvalid={!isRememberMe} defaultSelected={isRememberMe} onValueChange={(value) => setIsRememberMe(value)}>
+                <Checkbox
+                  name="remember"
+                  size="sm"
+                  isInvalid={!isRememberMe}
+                  isDisabled={isLoading}
+                  defaultSelected={isRememberMe}
+                  onValueChange={(value) => setIsRememberMe(value)}>
                   Remember me
                 </Checkbox>
                 <Link className="text-default-500" href="#" size="sm">
@@ -251,7 +261,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
             <Divider className="flex-1" />
           </div>
           <div className="flex flex-col gap-2">
-            <Button startContent={<Icon icon="flat-color-icons:google" width={24} />}>
+            <Button isDisabled={isLoading} startContent={<Icon icon="flat-color-icons:google" width={24} />}>
               Continue with Google
             </Button>
           </div>
