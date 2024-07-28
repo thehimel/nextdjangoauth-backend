@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import {InitialSignupResponse, signup, SignupResponse} from "@/store/auth/authActions.ts";
+import {InitialSignupResponse, auth, SignupResponse} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {FC, FormEvent} from "react";
@@ -104,7 +104,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
         isRememberMe,
       }
 
-      response = await dispatch(signup(params));
+      response = await dispatch(auth(params));
 
       if (isSignupPage) {
         if (response.success) {

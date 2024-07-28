@@ -36,7 +36,7 @@ export const InitialSignupResponse: SignupResponse = {
   },
 }
 
-export const signup = ({email, password, confirmPassword, isRememberMe}: Signup) => {
+export const auth = ({email, password, confirmPassword, isRememberMe}: Signup) => {
   return async (dispatch: AppDispatch): Promise<SignupResponse> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
