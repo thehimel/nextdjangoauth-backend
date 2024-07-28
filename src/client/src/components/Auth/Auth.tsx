@@ -28,8 +28,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const isLoginPage = pageType === "login";
 
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
-
   const [isRememberMe, setIsRememberMe] = React.useState(true);
   const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
 
@@ -126,10 +124,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
           setPasswordErrorMessage("Unable to log in with provided credentials.");
         }
       }
-      setIsSubmitDisabled(true);
       setIsLoading(false);
-    } else {
-      setIsSubmitDisabled(true);
     }
   };
 
@@ -158,7 +153,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               onValueChange={(value) => {
                 setIsEmailValid(true);
                 setEmail(value);
-                setIsSubmitDisabled(false);
               }}
             />
             <Input
@@ -180,7 +174,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               onValueChange={(value) => {
                 setIsPasswordValid(true);
                 setPassword(value);
-                setIsSubmitDisabled(false);
               }}
             />
             {isSignupPage ? (
@@ -203,7 +196,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                 onValueChange={(value) => {
                   setIsConfirmPasswordValid(true);
                   setConfirmPassword(value);
-                  setIsSubmitDisabled(false);
                 }}
               />
             ) : null}
@@ -243,7 +235,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
             <Button
               color="primary"
               type="submit"
-              isDisabled={isLoading || isSubmitDisabled}
+              isDisabled={isLoading}
               endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}>
               {isSignupPage ? "Sign Up" : "Log in"}
             </Button>
