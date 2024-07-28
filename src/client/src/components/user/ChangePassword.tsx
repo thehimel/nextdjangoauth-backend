@@ -4,8 +4,7 @@ import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
-import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {useAppSelector} from "@/store/hooks.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
 import {CardProps} from "@nextui-org/react";
 
@@ -14,7 +13,7 @@ import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 const ChangePassword = (props: CardProps) => {
-  const dispatch: AppDispatch = useAppDispatch();
+  // const dispatch: AppDispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,7 +22,7 @@ const ChangePassword = (props: CardProps) => {
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const access = useAppSelector((state) => state.auth.userData.access);
+  // const access = useAppSelector((state) => state.auth.userData.access);
   const email = useAppSelector((state) => state.auth.userData.user.email);
   const firstName = useAppSelector((state) => state.auth.userData.user.first_name);
   const lastName = useAppSelector((state) => state.auth.userData.user.last_name);
