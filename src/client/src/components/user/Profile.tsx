@@ -1,14 +1,15 @@
 "use client";
 
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
+import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/utils/constants.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidUsername, validateField} from "@/utils/validate.ts";
-import {CardProps, Spinner} from "@nextui-org/react";
+import {CardProps} from "@nextui-org/react";
 
-import {Card, CardBody, Button, Input, CardFooter} from "@nextui-org/react";
+import {Card, CardBody, Input} from "@nextui-org/react";
 import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
@@ -178,17 +179,7 @@ const Profile = (props: CardProps) => {
               }}
             />
           </CardBody>
-          <CardFooter className="mt-4 justify-end gap-2">
-            <Button
-              color="primary"
-              type="submit"
-              radius="full"
-              isDisabled={isLoading}
-              endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
-            >
-              Update
-            </Button>
-          </CardFooter>
+          <ProfileFooter title={"Save"} isLoading={isLoading} />
         </form>
     </Card>
   ) : null;
