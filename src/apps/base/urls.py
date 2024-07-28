@@ -9,4 +9,5 @@ urlpatterns = [
     path('signup/', ClientView.as_view(), name='signup'),
     path('login/', ClientView.as_view(), name='login'),
     re_path('signup/confirm-email/(?P<key>.+)/', ClientView.as_view(), name='confirm_email'),
+    re_path('profile/', ClientView.as_view(), name='profile'),
 ]
