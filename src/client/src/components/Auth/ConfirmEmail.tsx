@@ -1,6 +1,6 @@
 "use client";
 
-import Auth from "@/components/auth/Auth.tsx";
+import Auth from "@/components/Auth/Auth.tsx";
 import {verifyEmail} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
