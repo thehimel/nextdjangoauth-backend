@@ -6,8 +6,8 @@ import {CardHeader, Avatar, Badge} from "@nextui-org/react";
 import {FC} from "react";
 
 export interface AlertProps {
-  text: string;
-  color: "success" | "warning" | "error",
+  text?: string;
+  color?: "success" | "warning" | "error";
 }
 
 interface ProfileHeaderProps {

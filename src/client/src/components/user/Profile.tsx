@@ -39,23 +39,27 @@ const Profile = (props: CardProps) => {
   const [isUsernameValid, setIsUsernameValid] = React.useState(true);
   const [isFirstNameValid, setIsFirstNameValid] = React.useState(true);
   const [isLastNameValid, setIsLastNameValid] = React.useState(true);
-  const { alert } = location.state || {};
+  const [alert, setAlert] = React.useState<AlertProps>({});
+
+  const queryParams = new URLSearchParams(location.search);
+  const profileUpdated = queryParams.get('profileUpdate');
+  const passwordChanged = queryParams.get('passwordChanged');
+
+  const triggerAlert = ({text, color}: AlertProps) => {
+    setAlert({ text: text, color });
+  };
 
   useEffect(() => {
     if (!isLoggedIn) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
     } else {
-      if (alert) {
-        // Clear the alert after 3 seconds
-        const timer = setTimeout(() => {
-          navigate(location.pathname, { replace: true, state: { alert: undefined } });
-        }, 3000);
-
-        // Cleanup function to clear the timer if the component unmounts or dependencies change
-        return () => clearTimeout(timer);
+      if (profileUpdated === "true") {
+        triggerAlert({text: "Profile updated successfully.", color: "success"});
+      } else if (passwordChanged === "true") {
+        triggerAlert({text: "Password changed successfully.", color: "success"});
       }
     }
-  }, [isLoggedIn, navigate, redirectPath, location, alert]);
+  }, [isLoggedIn, navigate, redirectPath, profileUpdated, passwordChanged]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -92,11 +96,9 @@ const Profile = (props: CardProps) => {
       }
 
       if (response.success) {
-        const alert: AlertProps = {
-          text: "Profile updated successfully.",
-          color: "success"
-        }
-        navigate(location.pathname, { replace: true, state: { alert } });
+        const url = location.pathname;
+        const params = new URLSearchParams({ profileUpdate: 'true' }).toString();
+        navigate(`${url}?${params}`);
       } else {
         const usernameError = response.errors.data.username;
         const firstNameError = response.errors.data.firstName;

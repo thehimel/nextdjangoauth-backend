@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import ProfileHeader, {AlertProps} from "@/components/user/ProfileHeader.tsx";
+import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
 import {changePassword} from "@/store/auth/authActions.ts";
@@ -76,11 +76,9 @@ const ChangePassword = (props: CardProps) => {
       }
 
       if (response.success) {
-        const alert: AlertProps = {
-          text: "Password changed successfully.",
-          color: "success"
-        }
-        navigate(PROFILE_URL, { replace: true, state: { alert } });
+        const url = PROFILE_URL;
+        const params = new URLSearchParams({ passwordChanged: 'true' }).toString();
+        navigate(`${url}?${params}`);
       } else {
         const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
         const confirmPasswordError = response.errors.data.confirmPassword;
