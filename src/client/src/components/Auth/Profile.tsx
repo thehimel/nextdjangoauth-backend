@@ -137,7 +137,6 @@ const Profile = (props: CardProps) => {
               }}
             />
             <Input
-              isRequired
               readOnly
               label="Email"
               name="email"
