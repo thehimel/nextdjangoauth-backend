@@ -1,7 +1,7 @@
 "use client";
 
 import {useAppSelector} from "@/store/hooks.ts";
-import {isValidEmail, isValidUsername} from "@/utils/validate.ts";
+import {isValidUsername} from "@/utils/validate.ts";
 import {CardProps, Spinner} from "@nextui-org/react";
 
 import {Card, CardHeader, CardBody, Button, Avatar, Badge, Input, CardFooter} from "@nextui-org/react";
@@ -16,17 +16,15 @@ const Profile = (props: CardProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [username, setUsername] = React.useState(useAppSelector((state) => state.auth.userData.user.username));
-  const [email, setEmail] = React.useState(useAppSelector((state) => state.auth.userData.user.email));
+  const email = useAppSelector((state) => state.auth.userData.user.email);
   const [firstName, setFirstName] = React.useState(useAppSelector((state) => state.auth.userData.user.first_name));
   const [lastName, setLastName] = React.useState(useAppSelector((state) => state.auth.userData.user.last_name));
 
   const [usernameErrorMessage, setUsernameErrorMessage] = React.useState("");
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [firstNameErrorMessage, setFirstNameErrorMessage] = React.useState("");
   const [lastNameErrorMessage, setLastNameErrorMessage] = React.useState("");
 
   const [isUsernameValid, setIsUsernameValid] = React.useState(true);
-  const [isEmailValid, setIsEmailValid] = React.useState(true);
   const [isFirstNameValid, setIsFirstNameValid] = React.useState(true);
   const [isLastNameValid, setIsLastNameValid] = React.useState(true);
 
@@ -41,15 +39,6 @@ const Profile = (props: CardProps) => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     let isFormValid = true;
-
-    if (!isValidEmail(email)) {
-      setEmailErrorMessage("Enter a valid email.");
-      setIsEmailValid(false);
-      isFormValid = false;
-    } else {
-      setEmailErrorMessage("")
-      setIsEmailValid(true);
-    }
 
     if (!isValidUsername(username)) {
       setIsUsernameValid(false);
@@ -119,6 +108,7 @@ const Profile = (props: CardProps) => {
             />
             <Input
               isRequired
+              readOnly
               label="Email"
               name="email"
               autoComplete="email"
@@ -126,13 +116,7 @@ const Profile = (props: CardProps) => {
               variant="bordered"
               labelPlacement="outside"
               placeholder="Enter email"
-              errorMessage={!isEmailValid ? emailErrorMessage : undefined}
-              isInvalid={!isEmailValid}
               value={email}
-              onValueChange={(value) => {
-                setIsEmailValid(true);
-                setEmail(value);
-              }}
             />
             <Input
               isRequired
