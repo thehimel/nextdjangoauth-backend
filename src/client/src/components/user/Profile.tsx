@@ -2,11 +2,10 @@
 
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/utils/constants.ts";
-import {validateField} from "@/components/utils/props.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {isValidUsername} from "@/utils/validate.ts";
+import {isValidUsername, validateField} from "@/utils/validate.ts";
 import {CardProps, Spinner} from "@nextui-org/react";
 
 import {Card, CardBody, Button, Input, CardFooter} from "@nextui-org/react";
