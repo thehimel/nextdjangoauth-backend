@@ -41,7 +41,7 @@ const ConfirmEmail = () => {
           </div>
         ) : null}
         {!isEmailVerificationLoading && isEmailVerified ? (
-          <Auth pageType="login" headline="Email verified. You can now login."/>
+          <Auth pageType="login" headline="Email verified. Log in to your account to continue."/>
         ) : null}
         {!isEmailVerificationLoading && !isEmailVerified ? (
           <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
