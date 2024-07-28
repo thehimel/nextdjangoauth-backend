@@ -26,7 +26,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const [isRememberMe, setIsRememberMe] = React.useState(true);
 
   const [isAgree, setIsAgree] = React.useState(true);
-  const [isAgreeErrorMessage, setIsAgreeErrorMessage] = React.useState("");
+  const isAgreeErrorMessage = "You must agree to the Terms and Privacy Policy to continue.";
 
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
@@ -76,7 +76,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     // Confirm Password validation
     if (isSignupPage) {
       if (!isAgree) {
-        setIsAgreeErrorMessage("You must agree to the Terms and Privacy Policy to continue.")
         isFormValid = false;
       }
       if (!confirmPassword.length) {
@@ -216,7 +215,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                 <Checkbox
                   isRequired
                   name="agree"
-                  className="py-4"
                   size="sm"
                   isInvalid={!isAgree}
                   defaultSelected={isAgree}
@@ -224,7 +222,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                   I agree with the&nbsp;
                   <Link href="#" size="sm">Terms</Link>&nbsp;and&nbsp;<Link href="#" size="sm">Privacy Policy</Link>
                 </Checkbox>
-                {!isAgree ? <p className="text-small text-danger">{isAgreeErrorMessage}</p> : null}
+                {!isAgree ? <p className="text-small text-danger pb-2">{isAgreeErrorMessage}</p> : null}
               </>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
