@@ -25,6 +25,9 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRememberMe, setIsRememberMe] = React.useState(true);
 
+  const [isAgree, setIsAgree] = React.useState(true);
+  const [isAgreeErrorMessage, setIsAgreeErrorMessage] = React.useState("");
+
   const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
 
@@ -72,6 +75,10 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
     // Confirm Password validation
     if (isSignupPage) {
+      if (!isAgree) {
+        setIsAgreeErrorMessage("You must agree to the Terms and Privacy Policy to continue.")
+        isFormValid = false;
+      }
       if (!confirmPassword.length) {
         setIsConfirmPasswordValid(false);
         setConfirmPasswordErrorMessage("Enter a valid password.");
@@ -205,15 +212,23 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               />
             ) : null}
             {isSignupPage ? (
-              <Checkbox isRequired name="agree" className="py-4" size="sm">
-                I agree with the&nbsp;
-                <Link href="#" size="sm">Terms</Link>&nbsp;and&nbsp;<Link href="#" size="sm">Privacy Policy</Link>
-              </Checkbox>
+              <>
+                <Checkbox
+                  isRequired
+                  name="agree"
+                  className="py-4"
+                  size="sm"
+                  isInvalid={!isAgree}
+                  defaultSelected={isAgree}
+                  onValueChange={(value) => setIsAgree(value)}>
+                  I agree with the&nbsp;
+                  <Link href="#" size="sm">Terms</Link>&nbsp;and&nbsp;<Link href="#" size="sm">Privacy Policy</Link>
+                </Checkbox>
+                {!isAgree ? <p className="text-small text-danger">{isAgreeErrorMessage}</p> : null}
+              </>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
-                <Checkbox name="remember" size="sm" defaultSelected={isRememberMe} onValueChange={(value) => {
-                  setIsRememberMe(value);
-                }}>
+                <Checkbox name="remember" size="sm" defaultSelected={isRememberMe} onValueChange={(value) => setIsRememberMe(value)}>
                   Remember me
                 </Checkbox>
                 <Link className="text-default-500" href="#" size="sm">
