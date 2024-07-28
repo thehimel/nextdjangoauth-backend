@@ -228,7 +228,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               </>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
-                <Checkbox name="remember" size="sm" defaultSelected={isRememberMe} onValueChange={(value) => setIsRememberMe(value)}>
+                <Checkbox name="remember" size="sm" isInvalid={!isRememberMe} defaultSelected={isRememberMe} onValueChange={(value) => setIsRememberMe(value)}>
                   Remember me
                 </Checkbox>
                 <Link className="text-default-500" href="#" size="sm">
