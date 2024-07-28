@@ -4,7 +4,7 @@ import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidUsername} from "@/utils/validate.ts";
-import {CardProps, Spinner} from "@nextui-org/react";
+import {CardProps, Link, Spinner} from "@nextui-org/react";
 
 import {Card, CardHeader, CardBody, Button, Avatar, Badge, Input, CardFooter} from "@nextui-org/react";
 import React, {FormEvent, useEffect} from "react";
@@ -107,12 +107,15 @@ const Profile = (props: CardProps) => {
         <CardHeader className="flex flex-col items-start px-4 pb-0 pt-4">
           <p className="text-large text-center">Account Details</p>
           <div className="flex gap-4 py-4">
-            <Badge isInvisible>
-              <Avatar className="h-14 w-14" src="/static/avatar.svg"/>
-            </Badge>
+            <div className="flex flex-col items-start justify-center">
+              <Badge isInvisible>
+                <Avatar className="h-14 w-14" src="/static/avatar.svg"/>
+              </Badge>
+            </div>
             <div className="flex flex-col items-start justify-center">
               <p className="font-medium">{firstName} {lastName}</p>
               <span className="text-small text-default-500">{email}</span>
+              <Link href={"/auth/change-password/"} size="sm">Change Password</Link>
             </div>
           </div>
         </CardHeader>
