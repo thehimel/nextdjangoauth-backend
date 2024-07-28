@@ -29,29 +29,26 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRememberMe, setIsRememberMe] = React.useState(true);
+  const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
 
   const [isAgree, setIsAgree] = React.useState(true);
   const isAgreeErrorMessage = "You must agree to the Terms and Privacy Policy to continue.";
 
-  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
-
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
-
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
-  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = React.useState("");
-
   const [isEmailValid, setIsEmailValid] = React.useState(true);
+
+  const [password, setPassword] = React.useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [isPasswordValid, setIsPasswordValid] = React.useState(true);
-  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = React.useState(true);
-
+  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
-  const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
-  const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = React.useState("");
+  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = React.useState(true);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = React.useState(false);
+  const toggleConfirmPasswordVisibility = () => setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
