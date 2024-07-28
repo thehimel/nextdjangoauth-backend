@@ -1,12 +1,13 @@
 "use client";
 
+import ProfileHeader from "@/components/Profile/ProfileHeader.tsx";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidUsername} from "@/utils/validate.ts";
-import {CardProps, Link, Spinner} from "@nextui-org/react";
+import {CardProps, Spinner} from "@nextui-org/react";
 
-import {Card, CardHeader, CardBody, Button, Avatar, Badge, Input, CardFooter} from "@nextui-org/react";
+import {Card, CardBody, Button, Input, CardFooter} from "@nextui-org/react";
 import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
@@ -38,7 +39,7 @@ const Profile = (props: CardProps) => {
     if (!isLoggedIn) {
       // Store the path to redirect to after login
       const redirectPath = location.pathname;
-      navigate('/login', { state: { from: redirectPath } });
+      navigate('/login/', { state: { from: redirectPath } });
     }
   }, [isLoggedIn, navigate, location]);
 
@@ -104,21 +105,13 @@ const Profile = (props: CardProps) => {
 
   return isLoggedIn ? (
       <Card className="max-w-xl p-2" {...props}>
-        <CardHeader className="flex flex-col items-start px-4 pb-0 pt-4">
-          <p className="text-large text-center">Account Details</p>
-          <div className="flex gap-4 py-4">
-            <div className="flex flex-col items-start justify-center">
-              <Badge isInvisible>
-                <Avatar className="h-14 w-14" src="/static/avatar.svg"/>
-              </Badge>
-            </div>
-            <div className="flex flex-col items-start justify-center">
-              <p className="font-medium">{firstName} {lastName}</p>
-              <span className="text-small text-default-500">{email}</span>
-              <Link href={"/auth/change-password/"} size="sm">Change Password</Link>
-            </div>
-          </div>
-        </CardHeader>
+        <ProfileHeader
+          title={"Account Details"}
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          navigationLink={{url: "/auth/change-password/", title: "Change Password"}}
+        />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <Input
