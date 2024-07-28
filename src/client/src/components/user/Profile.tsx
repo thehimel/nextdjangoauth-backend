@@ -1,6 +1,6 @@
 "use client";
 
-import ProfileHeader from "@/components/user/ProfileHeader.tsx";
+import ProfileHeader, {AlertProps} from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
@@ -38,12 +38,23 @@ const Profile = (props: CardProps) => {
   const [isUsernameValid, setIsUsernameValid] = React.useState(true);
   const [isFirstNameValid, setIsFirstNameValid] = React.useState(true);
   const [isLastNameValid, setIsLastNameValid] = React.useState(true);
+  const { alert } = location.state || {};
 
   useEffect(() => {
     if (!isLoggedIn) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
+    } else {
+      if (alert) {
+        // Clear the alert after 3 seconds
+        const timer = setTimeout(() => {
+          navigate(location.pathname, { replace: true, state: { alert: undefined } });
+        }, 3000);
+
+        // Cleanup function to clear the timer if the component unmounts or dependencies change
+        return () => clearTimeout(timer);
+      }
     }
-  }, [isLoggedIn, navigate, redirectPath]);
+  }, [isLoggedIn, navigate, redirectPath, location, alert]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -79,7 +90,13 @@ const Profile = (props: CardProps) => {
         navigate(LOGIN_URL, { state: { from: redirectPath } });
       }
 
-      if (!response.success) {
+      if (response.success) {
+        const alert: AlertProps = {
+          text: "Profile updated successfully.",
+          color: "success"
+        }
+        navigate(location.pathname, { replace: true, state: { alert } });
+      } else {
         const usernameError = response.errors.data.username;
         const firstNameError = response.errors.data.firstName;
         const lastNameError = response.errors.data.lastName;
@@ -111,6 +128,7 @@ const Profile = (props: CardProps) => {
           lastName={lastName}
           email={email}
           navigationLink={{url: CHANGE_PASSWORD_URL, title: "Change Password"}}
+          alert={alert}
         />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
