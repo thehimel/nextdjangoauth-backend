@@ -1,7 +1,7 @@
 import App from "@/App.tsx";
-import Auth from "@/components/Auth/Auth.tsx";
-import ConfirmEmail from "@/components/Auth/ConfirmEmail.tsx";
-import Profile from "@/components/Profile/Profile.tsx";
+import Auth from "@/components/auth/Auth.tsx";
+import ConfirmEmail from "@/components/auth/ConfirmEmail.tsx";
+import Profile from "@/components/user/Profile.tsx";
 import Home from "@/Home.tsx";
 import {createBrowserRouter, Route, createRoutesFromElements} from "react-router-dom";
 

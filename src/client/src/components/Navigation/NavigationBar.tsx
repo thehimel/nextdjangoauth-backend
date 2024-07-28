@@ -9,8 +9,8 @@ import {
   NavbarMenuItem,
   NavbarItem,
 } from "@nextui-org/react";
-import {AcmeLogo} from "./AcmeLogo.tsx";
-import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
+import {AcmeLogo} from "@/components/navigation/AcmeLogo.tsx";
+import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher.tsx";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);

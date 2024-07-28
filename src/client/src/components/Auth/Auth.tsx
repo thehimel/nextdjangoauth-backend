@@ -1,7 +1,7 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/components/Utils/constants.ts";
+import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/components/utils/constants.ts";
 import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";

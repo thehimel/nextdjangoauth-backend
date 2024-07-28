@@ -1,7 +1,7 @@
 "use client";
 
-import ProfileHeader from "@/components/Profile/ProfileHeader.tsx";
-import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/Utils/constants.ts";
+import ProfileHeader from "@/components/user/ProfileHeader.tsx";
+import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/utils/constants.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
