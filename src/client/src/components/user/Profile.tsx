@@ -2,7 +2,7 @@
 
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
-import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/components/utils/constants.ts";
+import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";

@@ -10,7 +10,7 @@ import {
   LOGIN_URL,
   PROFILE_URL,
   SIGNUP_URL,
-} from "@/components/utils/constants.ts";
+} from "@/constants/urls.ts";
 import Home from "@/Home.tsx";
 import {createBrowserRouter, Route, createRoutesFromElements} from "react-router-dom";
 

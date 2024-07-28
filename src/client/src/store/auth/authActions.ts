@@ -1,5 +1,5 @@
 import {authActions} from "@/store/auth/authSlice.ts";
-import {LOGIN_API_URL, SIGNUP_API_URL, USER_API_URL, VERIFY_EMAIL_API_URL} from "@/store/constants.ts";
+import {LOGIN_API_URL, SIGNUP_API_URL, USER_API_URL, VERIFY_EMAIL_API_URL} from "@/constants/urls.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
