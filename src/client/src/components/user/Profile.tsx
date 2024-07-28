@@ -50,22 +50,22 @@ const Profile = (props: CardProps) => {
 
     isFormValid = validateField({
       isValid: isValidUsername(username),
-      setValidity: setIsUsernameValid,
-      setErrorMessage: setUsernameErrorMessage,
+      setIsFieldValid: setIsUsernameValid,
+      setFieldErrorMessage: setUsernameErrorMessage,
       errorMessage: "Username must be minimum 6 characters, letters & numbers only.",
     }) && isFormValid;
 
     isFormValid = validateField({
       isValid: firstName.length > 0,
-      setValidity: setIsFirstNameValid,
-      setErrorMessage: setFirstNameErrorMessage,
+      setIsFieldValid: setIsFirstNameValid,
+      setFieldErrorMessage: setFirstNameErrorMessage,
       errorMessage: "Enter a valid first name.",
     }) && isFormValid;
 
     isFormValid = validateField({
       isValid: lastName.length > 0,
-      setValidity: setIsLastNameValid,
-      setErrorMessage: setLastNameErrorMessage,
+      setIsFieldValid: setIsLastNameValid,
+      setFieldErrorMessage: setLastNameErrorMessage,
       errorMessage: "Enter a valid last name.",
     }) && isFormValid;
 

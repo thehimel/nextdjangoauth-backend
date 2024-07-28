@@ -10,15 +10,19 @@ export const isValidUsername = (username: string) => {
   return usernamePattern.test(username);
 };
 
+export const isValidPassword = (password: string) => {
+  return password.length > 0;
+}
+
 export interface ValidateFieldProps {
   isValid: boolean;
-  setValidity: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+  setIsFieldValid: React.Dispatch<React.SetStateAction<boolean>>;
+  setFieldErrorMessage: React.Dispatch<React.SetStateAction<string>>;
   errorMessage: string;
 }
 
-export const validateField = ({isValid, setValidity, setErrorMessage, errorMessage}: ValidateFieldProps): boolean => {
-  setValidity(isValid);
-  setErrorMessage(isValid ? "" : errorMessage);
+export const validateField = ({isValid, setIsFieldValid, setFieldErrorMessage, errorMessage}: ValidateFieldProps): boolean => {
+  setIsFieldValid(isValid);
+  setFieldErrorMessage(isValid ? "" : errorMessage);
   return isValid;
 };

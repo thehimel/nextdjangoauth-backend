@@ -5,7 +5,7 @@ import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/components/utils/constants.t
 import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {isValidEmail} from "@/utils/validate.ts";
+import {isValidEmail, isValidPassword, validateField} from "@/utils/validate.ts";
 import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
@@ -57,32 +57,26 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     event.preventDefault();
     let isFormValid = true;
 
-    // Email validation
-    if (!isValidEmail(email)) {
-      setEmailErrorMessage("Enter a valid email.");
-      setIsEmailValid(false);
-      isFormValid = false;
-    } else {
-      setEmailErrorMessage("")
-      setIsEmailValid(true);
-    }
+    isFormValid = validateField({
+      isValid: isValidEmail(email),
+      setIsFieldValid: setIsEmailValid,
+      setFieldErrorMessage: setEmailErrorMessage,
+      errorMessage: "Enter a valid email.",
+    }) && isFormValid;
 
-    // Password validation
-    if (!password.length) {
-      setIsPasswordValid(false);
-      setPasswordErrorMessage("Enter a valid password.");
-      isFormValid = false;
-    } else {
-      setPasswordErrorMessage("");
-      setIsPasswordValid(true);
-    }
+    isFormValid = validateField({
+      isValid: isValidPassword(password),
+      setIsFieldValid: setIsPasswordValid,
+      setFieldErrorMessage: setPasswordErrorMessage,
+      errorMessage: "Enter a valid password.",
+    }) && isFormValid;
 
     // Confirm Password validation
     if (isSignupPage) {
       if (!isAgree) {
         isFormValid = false;
       }
-      if (!confirmPassword.length) {
+      if (!isValidPassword(confirmPassword)) {
         setIsConfirmPasswordValid(false);
         setConfirmPasswordErrorMessage("Enter a valid password.");
         isFormValid = false;
@@ -116,6 +110,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
         } else {
           const emailError = response.errors.data.email;
           const passwordError = response.errors.data.password;
+
           if (emailError !== "") {
             setIsEmailValid(false);
             setEmailErrorMessage(response.errors.data.email);
