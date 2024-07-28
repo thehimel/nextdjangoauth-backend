@@ -71,26 +71,16 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
       errorMessage: "Enter a valid password.",
     }) && isFormValid;
 
-    // Confirm Password validation
     if (isSignupPage) {
-      if (!isAgree) {
-        isFormValid = false;
-      }
-      if (!isValidPassword(confirmPassword)) {
-        setIsConfirmPasswordValid(false);
-        setConfirmPasswordErrorMessage("Enter a valid password.");
-        isFormValid = false;
-      } else if (confirmPassword !== password) {
-        setIsConfirmPasswordValid(false);
-        setConfirmPasswordErrorMessage("Passwords do not match.");
-        isFormValid = false;
-      } else {
-        setConfirmPasswordErrorMessage("")
-        setIsConfirmPasswordValid(true);
-      }
+      isFormValid = isAgree && isFormValid;
+      isFormValid = validateField({
+        isValid: isValidPassword(confirmPassword) && confirmPassword === password,
+        setIsFieldValid: setIsConfirmPasswordValid,
+        setFieldErrorMessage: setConfirmPasswordErrorMessage,
+        errorMessage: confirmPassword !== password ? "Passwords do not match." : "Enter a valid password."
+      }) && isFormValid;
     }
 
-    // If the form is valid, proceed with the next steps
     if (isFormValid) {
       setIsLoading(true);
 
