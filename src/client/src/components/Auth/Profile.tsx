@@ -192,7 +192,7 @@ const Profile = (props: CardProps) => {
               isDisabled={isLoading}
               endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
             >
-              Save
+              Update
             </Button>
           </CardFooter>
         </form>
