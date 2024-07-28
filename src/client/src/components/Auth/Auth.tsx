@@ -19,7 +19,7 @@ interface AuthProps {
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || '/'; // Default to home if no specific redirect
+  const from = location.state?.from || '/profile/'; // Default to profile page if no specific redirect
 
   const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
