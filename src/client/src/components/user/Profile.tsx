@@ -13,11 +13,13 @@ import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 const Profile = (props: CardProps) => {
+  const dispatch: AppDispatch = useAppDispatch();
+
   const navigate = useNavigate();
   const location = useLocation();
-  const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
+  const redirectPath = location.pathname;  // Store the path to redirect to after login
 
-  const dispatch: AppDispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const previousUsername = useAppSelector((state) => state.auth.userData.user.username);
@@ -38,11 +40,9 @@ const Profile = (props: CardProps) => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      // Store the path to redirect to after login
-      const redirectPath = location.pathname;
       navigate(LOGIN_URL, { state: { from: redirectPath } });
     }
-  }, [isLoggedIn, navigate, location]);
+  }, [isLoggedIn, navigate, redirectPath]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -81,7 +81,6 @@ const Profile = (props: CardProps) => {
       const response = await dispatch(updateProfile(params));
 
       if (!response.isTokenValid) {
-        const redirectPath = location.pathname;
         navigate(LOGIN_URL, { state: { from: redirectPath } });
       }
 
