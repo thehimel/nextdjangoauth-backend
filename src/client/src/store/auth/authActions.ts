@@ -44,7 +44,6 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: Signup) =
     }
 
     const response = InitialSignupResponse;
-    console.log(isRememberMe);
 
     try {
       dispatch(authActions.setAuthLoading(true));
@@ -53,10 +52,16 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: Signup) =
         ...(!confirmPassword && { password: password }),
         ...(confirmPassword && { password1: password, password2: confirmPassword }),
       };
-      await axios.post(confirmPassword ? SIGNUP_API_URL : LOGIN_API_URL, params,{headers: headers});
+      const apiUrl = confirmPassword ? SIGNUP_API_URL : LOGIN_API_URL;
+      const result = await axios.post(apiUrl, params,{headers: headers});
+
+      // Save the user data after login.
+      if (!confirmPassword) {
+        dispatch(authActions.setUserData(result.data));
+        dispatch(authActions.setRememberMe(isRememberMe));
+      }
       response.success = true;
     } catch (error) {
-      console.log(error);
       const errors = getErrors({error: error as AxiosError});
       response.errors.data.email = errors.data?.email?.[0] ?? "";
       response.errors.data.password = errors.data?.password1?.[0] ?? "";
