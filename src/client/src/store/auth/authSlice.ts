@@ -17,6 +17,7 @@ export interface AuthStateProps {
   loading: boolean;
   userData: UserDataProps;
   rememberMe: boolean;
+  loggedIn: boolean;
 }
 
 const initialUserData = {
@@ -35,6 +36,7 @@ const initialState: AuthStateProps = {
   loading: false,
   userData: initialUserData,
   rememberMe: true,
+  loggedIn: false,
 }
 
 const authSlice = createSlice({
@@ -46,6 +48,7 @@ const authSlice = createSlice({
     },
     setUserData(state, action): void {
       state.userData = action.payload;
+      state.loggedIn = true;
     },
     setRememberMe(state, action): void {
       state.rememberMe = action.payload;
