@@ -9,7 +9,7 @@ import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface AuthProps {
   pageType: "signup" | "login" | "confirm-email";
@@ -18,6 +18,9 @@ interface AuthProps {
 
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || '/'; // Default to home if no specific redirect
+
   const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
   const isLoginPage = pageType === "login";
@@ -129,7 +132,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
       if (isLoginPage) {
         if (response.success) {
-          navigate('/');
+          navigate(from, { replace: true });
         } else {
           setIsEmailValid(false);
           setEmailErrorMessage("");
