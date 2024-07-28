@@ -1,8 +1,8 @@
 import App from "@/App.tsx";
 import Auth from "@/components/auth/Auth.tsx";
 import ConfirmEmail from "@/components/auth/ConfirmEmail.tsx";
-import ChangePassword from "@/components/User/ChangePassword.tsx";
-import Profile from "@/components/User/Profile.tsx";
+import ChangePassword from "@/components/user/ChangePassword.tsx";
+import Profile from "@/components/user/Profile.tsx";
 import {
   CHANGE_PASSWORD_URL,
   CONFIRM_EMAIL_URL,

@@ -1,7 +1,7 @@
 "use client";
 
-import ProfileHeader, {AlertProps} from "@/components/User/ProfileHeader.tsx";
-import ProfileFooter from "@/components/User/ProfileFooter.tsx";
+import ProfileHeader, {AlertProps} from "@/components/user/ProfileHeader.tsx";
+import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {updateProfile} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";

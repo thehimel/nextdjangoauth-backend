@@ -1,8 +1,8 @@
 "use client";
 
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import ProfileHeader, {AlertProps} from "@/components/User/ProfileHeader.tsx";
-import ProfileFooter from "@/components/User/ProfileFooter.tsx";
+import ProfileHeader, {AlertProps} from "@/components/user/ProfileHeader.tsx";
+import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
 import {changePassword} from "@/store/auth/authActions.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
