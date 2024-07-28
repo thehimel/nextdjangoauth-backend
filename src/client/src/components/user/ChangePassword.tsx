@@ -23,6 +23,7 @@ const ChangePassword = (props: CardProps) => {
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
 
   const access = useAppSelector((state) => state.auth.userData.access);
   const email = useAppSelector((state) => state.auth.userData.user.email);
@@ -94,7 +95,7 @@ const ChangePassword = (props: CardProps) => {
           setConfirmPasswordErrorMessage(confirmPasswordError);
         }
       }
-
+      setIsSubmitDisabled(true);
       setIsLoading(false);
     }
   };
@@ -129,6 +130,7 @@ const ChangePassword = (props: CardProps) => {
               onValueChange={(value) => {
                 setIsPasswordValid(true);
                 setPassword(value);
+                setIsSubmitDisabled(false);
               }}
             />
             <Input
@@ -150,10 +152,11 @@ const ChangePassword = (props: CardProps) => {
                 onValueChange={(value) => {
                   setIsConfirmPasswordValid(true);
                   setConfirmPassword(value);
+                  setIsSubmitDisabled(false);
                 }}
               />
           </CardBody>
-          <ProfileFooter title={"Save"} isLoading={isLoading} />
+          <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
         </form>
     </Card>
   ) : null;

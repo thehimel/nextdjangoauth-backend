@@ -7,16 +7,17 @@ import {FC} from "react";
 interface submitButtonProps {
   title: string;
   isLoading: boolean;
+  isDisabled: boolean;
 }
 
-const ProfileFooter: FC<submitButtonProps> = ({title, isLoading}) => {
+const ProfileFooter: FC<submitButtonProps> = ({title, isLoading, isDisabled}) => {
   return (
     <CardFooter className="justify-end gap-2">
       <Button
         color="primary"
         type="submit"
         radius="full"
-        isDisabled={isLoading}
+        isDisabled={isLoading || isDisabled}
         endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
       >
         {title}

@@ -22,6 +22,7 @@ const Profile = (props: CardProps) => {
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isSubmitDisabled, setIsSubmitDisabled] = React.useState(true);
 
   const previousUsername = useAppSelector((state) => state.auth.userData.user.username);
   const [username, setUsername] = React.useState(previousUsername);
@@ -116,6 +117,7 @@ const Profile = (props: CardProps) => {
           setLastNameErrorMessage(lastNameError);
         }
       }
+      setIsSubmitDisabled(true);
       setIsLoading(false);
     }
   };
@@ -148,6 +150,7 @@ const Profile = (props: CardProps) => {
               onValueChange={(value) => {
                 setIsUsernameValid(true);
                 setUsername(value);
+                setIsSubmitDisabled(false);
               }}
             />
             <Input
@@ -177,6 +180,7 @@ const Profile = (props: CardProps) => {
               onValueChange={(value) => {
                 setIsFirstNameValid(true);
                 setFirstName(value);
+                setIsSubmitDisabled(false);
               }}
             />
             <Input
@@ -194,10 +198,11 @@ const Profile = (props: CardProps) => {
               onValueChange={(value) => {
                 setIsLastNameValid(true);
                 setLastName(value);
+                setIsSubmitDisabled(false);
               }}
             />
           </CardBody>
-          <ProfileFooter title={"Save"} isLoading={isLoading} />
+          <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
         </form>
     </Card>
   ) : null;
