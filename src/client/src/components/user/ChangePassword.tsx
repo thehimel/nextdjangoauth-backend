@@ -78,7 +78,6 @@ const ChangePassword = (props: CardProps) => {
 
       if (response.success) {
         toast.success("Password changed successfully.")
-        navigate(PROFILE_URL);
       } else {
         const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
         const confirmPasswordError = response.errors.data.confirmPassword;
