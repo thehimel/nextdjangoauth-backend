@@ -120,37 +120,27 @@ const Profile = (props: CardProps) => {
         />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <Input
-              isRequired
-              label="Username"
-              name="username"
-              autoComplete="username"
-              labelPlacement="outside"
-              type="text"
-              variant="bordered"
-              placeholder="Enter username"
-              errorMessage={!isUsernameValid ? usernameErrorMessage : undefined}
-              isInvalid={!isUsernameValid}
-              isDisabled={isLoading}
-              value={username}
-              onValueChange={(value) => {
-                setIsUsernameValid(true);
-                setUsername(value);
-                setIsSubmitDisabled(false);
-              }}
-            />
-            <Input
-              readOnly
-              label="Email"
-              name="email"
-              autoComplete="email"
-              type="email"
-              variant="bordered"
-              labelPlacement="outside"
-              placeholder="Enter email"
-              isDisabled={isLoading}
-              value={email}
-            />
+            <div className="col-span-1 md:col-span-2">
+              <Input
+                isRequired
+                label="Username"
+                name="username"
+                autoComplete="username"
+                labelPlacement="outside"
+                type="text"
+                variant="bordered"
+                placeholder="Enter username"
+                errorMessage={!isUsernameValid ? usernameErrorMessage : undefined}
+                isInvalid={!isUsernameValid}
+                isDisabled={isLoading}
+                value={username}
+                onValueChange={(value) => {
+                  setIsUsernameValid(true);
+                  setUsername(value);
+                  setIsSubmitDisabled(false);
+                }}
+              />
+            </div>
             <Input
               isRequired
               label="First Name"
