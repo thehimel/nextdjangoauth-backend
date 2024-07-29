@@ -1,7 +1,7 @@
 import App from "@/App.tsx";
 import Auth from "@/components/auth/Auth.tsx";
 import ConfirmEmail from "@/components/auth/ConfirmEmail.tsx";
-import ChangePassword from "@/components/user/ChangePassword.tsx";
+import ChangePassword from "@/components/auth/ChangePassword.tsx";
 import Profile from "@/components/user/Profile.tsx";
 import SendAuthEmail from "@/components/user/SendAuthEmail.tsx";
 import {
