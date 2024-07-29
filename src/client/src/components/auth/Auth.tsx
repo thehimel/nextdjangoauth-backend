@@ -1,5 +1,6 @@
 "use client";
 
+import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/constants/urls.ts";
 import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
@@ -10,7 +11,6 @@ import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import {AcmeIcon} from "@/components/icons/acme.tsx";
 import {useLocation, useNavigate} from "react-router-dom";
 
 interface AuthProps {
@@ -130,11 +130,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <div className="flex flex-col items-center pb-2">
-        <AcmeIcon size={60} />
-        <p className="text-xl font-medium">Welcome</p>
-        <p className="text-small text-default-500">{headline}</p>
-      </div>
+      <AuthHeader headerTitle={"Welcome"} headline={{text: headline, color: "default"}}/>
       {!isSignupSuccessful ? (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>

@@ -1,5 +1,6 @@
 "use client";
 
+import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {resendEmailVerification} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -22,20 +23,23 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const isResendEmailVerificationPage = pageType === "resend_email_verification";
-  const isResetPassword = pageType === "reset_password";
+  const isResetPasswordPage = pageType === "reset_password";
 
-  const initialHeadline: MessageProps = {
+  const headerTitle= isResendEmailVerificationPage ? "Resend Verification Email"
+    : isResetPasswordPage ? "Reset Password" : "Welcome"
+
+  const initialMessage: MessageProps = {
     text: isResendEmailVerificationPage ?
-      "Email verification failed. However, you can resend the confirmation email." :
-      isResetPassword ? "Enter your email to reset password." : "Invalid request.",
+      "Email verification failed. However, you can resend the confirmation email."
+      : isResetPasswordPage ? "Enter your email to reset password." : "Invalid request.",
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isEmailSent, setIsEmailSent] = React.useState(false);
 
-  const [headlineText, setHeadlineText] = React.useState(initialHeadline.text);
-  const [headlineColor, setHeadlineColor] = React.useState(initialHeadline.color);
+  const [messageText, setMessageText] = React.useState(initialMessage.text);
+  const [messageColor, setMessageColor] = React.useState(initialMessage.color);
 
   const [email, setEmail] = React.useState("");
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
@@ -43,7 +47,7 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    setHeadlineColor("default");
+    setMessageColor("default");
     let isFormValid = true;
 
     isFormValid = validateField({
@@ -60,11 +64,11 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
 
       if (response.success) {
         setIsEmailSent(true);
-        setHeadlineColor("success");
+        setMessageColor("success");
         if (isResendEmailVerificationPage) {
-          setHeadlineText("Verification email sent successfully. Please check your inbox to verify the email.")
+          setMessageText("Verification email sent successfully. Please check your inbox to verify the email.")
         } else {
-          setHeadlineText("Email sent with a link to reset password. Please check your inbox.")
+          setMessageText("Email sent with a link to reset password. Please check your inbox.")
         }
       } else {
         const emailError = response.errors.data.email;
@@ -79,8 +83,9 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
+      <AuthHeader headerTitle={headerTitle}/>
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-        <p className={`text-${headlineColor}`}>{headlineText}</p>
+        <p className={`text-${messageColor}`}>{messageText}</p>
         {!isEmailSent &&
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
             <Input
@@ -116,4 +121,3 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
 }
 
 export default SendEmail;
-
