@@ -14,9 +14,9 @@ const ProfileFooter: FC<submitButtonProps> = ({title, isLoading, isDisabled}) =>
   return (
     <CardFooter className="justify-end gap-2">
       <Button
+        className="w-full"
         color="primary"
         type="submit"
-        radius="full"
         isDisabled={isLoading || isDisabled}
         endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
       >

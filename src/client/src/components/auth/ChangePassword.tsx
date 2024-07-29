@@ -109,7 +109,7 @@ const ChangePassword = (props: CardProps) => {
           navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
         />
         <form onSubmit={handleSubmit}>
-          <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <CardBody className="grid grid-cols-1 gap-4">
             <Input
               isRequired
               endContent={
