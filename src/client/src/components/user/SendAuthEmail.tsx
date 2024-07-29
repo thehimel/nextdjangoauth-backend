@@ -66,12 +66,12 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
         if (isResendEmailVerificationPage) {
           setHeadline({
             text: "Verification email sent successfully. Please check your inbox to verify the email.",
-            color: "success",
+            color: "default",
           });
         } else {
           setHeadline({
             text: "Password reset email is sent if you already have an account with this email address.",
-            color: "success",
+            color: "default",
           });
         }
       } else {
