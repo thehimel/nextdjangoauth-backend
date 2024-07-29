@@ -2,7 +2,7 @@
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/constants/urls.ts";
+import {FORGOT_PASSWORD_URL, LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/constants/urls.ts";
 import {InitialAuthResponse, auth, AuthResponseInterface} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -223,9 +223,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                 >
                   Remember me
                 </Checkbox>
-                <Link className="text-default-500" href="#" size="sm">
-                  Forgot password?
-                </Link>
+                <Link className="text-default-500" href={FORGOT_PASSWORD_URL} size="sm">Forgot password?</Link>
               </div>
             )}
             <Button
