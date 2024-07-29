@@ -1,7 +1,7 @@
 import {authActions} from "@/store/auth/authSlice.ts";
 import {
   CHANGE_PASSWORD_API_URL,
-  LOGIN_API_URL,
+  LOGIN_API_URL, RESEND_EMAIL_API_URL,
   SIGNUP_API_URL,
   USER_API_URL,
   VERIFY_EMAIL_API_URL,
@@ -10,6 +10,32 @@ import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
+
+interface ResendEmailVerificationInterface {
+  email: string;
+}
+
+export interface ResendEmailVerificationResponseInterface {
+  success: boolean;
+  message: string;
+  errors: {
+    data: {
+      email: string;
+    };
+    message: string;
+  };
+}
+
+export const InitialResendEmailVerificationResponse: ResendEmailVerificationResponseInterface = {
+  success: false,
+  message: "",
+  errors: {
+    data: {
+      email: "",
+    },
+    message: "",
+  },
+}
 
 interface SignupInterface {
   email: string;
@@ -110,6 +136,33 @@ export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
   },
   isTokenValid: false,
 }
+
+export const resendEmailVerification = ({email}: ResendEmailVerificationInterface) => {
+  return async (dispatch: AppDispatch): Promise<ResendEmailVerificationResponseInterface> => {
+    const headers = {
+      'X-CSRFTOKEN': getCookie('csrftoken'),
+      'Content-Type': 'application/json',
+    }
+
+    const response = InitialResendEmailVerificationResponse;
+
+    try {
+      dispatch(authActions.setAuthLoading(true));
+      const params: Record<string, string> = {
+        email: email,
+      };
+      await axios.post(RESEND_EMAIL_API_URL, params,{headers: headers});
+      response.success = true;
+    } catch (error) {
+      const errors = getErrors({error: error as AxiosError});
+      response.errors.data.email = errors.data?.email?.[0] ?? "";
+      response.errors.message = errors.message ?? "";
+    } finally {
+      dispatch(authActions.setAuthLoading(false));
+    }
+    return response;
+  };
+};
 
 export const auth = ({email, password, confirmPassword, isRememberMe}: SignupInterface) => {
   return async (dispatch: AppDispatch): Promise<SignupResponseInterface> => {
