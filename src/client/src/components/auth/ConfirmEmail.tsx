@@ -1,7 +1,7 @@
 "use client";
 
 import Auth from "@/components/auth/Auth.tsx";
-import SendEmail from "@/components/user/SendEmail.tsx";
+import SendAuthEmail from "@/components/user/SendAuthEmail.tsx";
 import {verifyEmail} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -44,7 +44,7 @@ const ConfirmEmail = () => {
       {!isEmailVerificationLoading && isEmailVerified && (
         <Auth pageType={"login"} headline={"Email verified. Log in to your account to continue."}/>
       )}
-      {!isEmailVerificationLoading && !isEmailVerified && (<SendEmail pageType={"resend_email_verification"}/>)}
+      {!isEmailVerificationLoading && !isEmailVerified && (<SendAuthEmail requestType={"resend_email_verification"}/>)}
     </>
   );
 }

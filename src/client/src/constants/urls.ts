@@ -12,3 +12,4 @@ export const VERIFY_EMAIL_API_URL = "/api/auth/registration/verify-email/";
 export const RESEND_EMAIL_VERIFICATION_API_URL = "/api/auth/registration/resend-email-verification/";
 export const USER_API_URL = "/api/auth/user/";
 export const CHANGE_PASSWORD_API_URL = "/api/auth/password/change/";
+export const FORGOT_PASSWORD_API_URL = "/api/auth/password/reset/";

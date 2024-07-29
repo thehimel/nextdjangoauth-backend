@@ -1,7 +1,7 @@
 "use client";
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
-import {resendEmailVerification} from "@/store/auth/authActions.ts";
+import {AuthEmailInterface, sendAuthEmail} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidEmail, validateField} from "@/utils/validate.ts";
@@ -10,20 +10,22 @@ import {Button, Spinner} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
 import React, {FC, FormEvent} from "react";
 
+export type AuthEmailRequestType = "resend_email_verification" | "forgot_password";
+
 export interface MessageProps {
   text: string;
   color: "default" | "success" | "warning" | "danger";
 }
 
 interface SendEmailProps {
-  pageType: "resend_email_verification" | "forgot_password";
+  requestType: AuthEmailRequestType;
 }
 
-const SendEmail: FC<SendEmailProps> = ({pageType}) => {
+const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
   const dispatch: AppDispatch = useAppDispatch();
 
-  const isResendEmailVerificationPage = pageType === "resend_email_verification";
-  const isForgotPasswordPage = pageType === "forgot_password";
+  const isResendEmailVerificationPage = requestType === "resend_email_verification";
+  const isForgotPasswordPage = requestType === "forgot_password";
 
   const headerTitle= isResendEmailVerificationPage ? "Resend Verification Email"
     : isForgotPasswordPage ? "Forgot Password?" : "Welcome"
@@ -57,8 +59,11 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
 
     if (isFormValid) {
       setIsLoading(true);
-      const params = {email}
-      const response = await dispatch(resendEmailVerification(params));
+      const params: AuthEmailInterface = {
+        email: email,
+        requestType: requestType
+      }
+      const response = await dispatch(sendAuthEmail(params));
 
       if (response.success) {
         setIsEmailSent(true);
@@ -69,7 +74,7 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
           });
         } else {
           setHeadline({
-            text: "Email sent with a link to reset password. Please check your inbox.",
+            text: "Password reset email is sent if you already have an account with this email address.",
             color: "success",
           });
         }
@@ -123,4 +128,4 @@ const SendEmail: FC<SendEmailProps> = ({pageType}) => {
   );
 }
 
-export default SendEmail;
+export default SendAuthEmail;

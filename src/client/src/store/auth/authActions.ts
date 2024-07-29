@@ -1,6 +1,7 @@
+import {AuthEmailRequestType} from "@/components/user/SendAuthEmail.tsx";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {
-  CHANGE_PASSWORD_API_URL,
+  CHANGE_PASSWORD_API_URL, FORGOT_PASSWORD_API_URL,
   LOGIN_API_URL, RESEND_EMAIL_VERIFICATION_API_URL,
   SIGNUP_API_URL,
   USER_API_URL,
@@ -11,11 +12,12 @@ import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
-interface ResendEmailVerificationInterface {
+export interface AuthEmailInterface {
   email: string;
+  requestType: AuthEmailRequestType;
 }
 
-export interface ResendEmailVerificationResponseInterface {
+export interface AuthEmailResponseInterface {
   success: boolean;
   message: string;
   errors: {
@@ -26,7 +28,7 @@ export interface ResendEmailVerificationResponseInterface {
   };
 }
 
-export const InitialResendEmailVerificationResponse: ResendEmailVerificationResponseInterface = {
+export const InitialAuthEmailResponse: AuthEmailResponseInterface = {
   success: false,
   message: "",
   errors: {
@@ -137,19 +139,22 @@ export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
   isTokenValid: false,
 }
 
-export const resendEmailVerification = ({email}: ResendEmailVerificationInterface) => {
-  return async (dispatch: AppDispatch): Promise<ResendEmailVerificationResponseInterface> => {
+export const sendAuthEmail = ({email, requestType}: AuthEmailInterface) => {
+  return async (dispatch: AppDispatch): Promise<AuthEmailResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
     }
 
-    const response = InitialResendEmailVerificationResponse;
+    const response = InitialAuthEmailResponse;
 
     try {
       dispatch(authActions.setAuthLoading(true));
-      const params: ResendEmailVerificationInterface = {email: email};
-      await axios.post(RESEND_EMAIL_VERIFICATION_API_URL, params,{headers: headers});
+      const params = {email: email};
+      const apiUrl = requestType === "resend_email_verification" ? RESEND_EMAIL_VERIFICATION_API_URL
+        : requestType === "forgot_password" ? FORGOT_PASSWORD_API_URL : "";
+
+      await axios.post(apiUrl, params,{headers: headers});
       response.success = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
