@@ -99,66 +99,66 @@ const ChangePassword = (props: CardProps) => {
     }
   };
 
-  return isLoggedIn ? (
-      <Card className="max-w-xl p-2" {...props}>
-        <ProfileHeader
-          title={"Change Password"}
-          firstName={firstName}
-          lastName={lastName}
-          email={email}
-          navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
-        />
-        <form onSubmit={handleSubmit}>
-          <CardBody className="grid grid-cols-1 gap-4">
-            <Input
+  return (
+    <Card className="max-w-xl p-2" {...props}>
+      <ProfileHeader
+        title={"Change Password"}
+        firstName={firstName}
+        lastName={lastName}
+        email={email}
+        navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
+      />
+      <form onSubmit={handleSubmit}>
+        <CardBody className="grid grid-cols-1 gap-4">
+          <Input
+            isRequired
+            endContent={
+              <button type="button" onClick={togglePasswordVisibility}>
+                {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+              </button>
+            }
+            label="New Password"
+            name="password"
+            autoComplete="new-password"
+            variant="bordered"
+            type={isPasswordVisible ? "text" : "password"}
+            errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
+            isInvalid={!isPasswordValid}
+            isDisabled={isLoading}
+            value={password}
+            onValueChange={(value) => {
+              setIsPasswordValid(true);
+              setPassword(value);
+              setIsSubmitDisabled(false);
+            }}
+          />
+          <Input
               isRequired
               endContent={
-                <button type="button" onClick={togglePasswordVisibility}>
-                  {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                <button type="button" onClick={toggleConfirmPasswordVisibility}>
+                  {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                 </button>
               }
-              label="New Password"
-              name="password"
+              label="Confirm New Password"
+              name="confirmPassword"
               autoComplete="new-password"
               variant="bordered"
-              type={isPasswordVisible ? "text" : "password"}
-              errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
-              isInvalid={!isPasswordValid}
+              type={isConfirmPasswordVisible ? "text" : "password"}
+              errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
+              isInvalid={!isConfirmPasswordValid}
               isDisabled={isLoading}
-              value={password}
+              value={confirmPassword}
               onValueChange={(value) => {
-                setIsPasswordValid(true);
-                setPassword(value);
+                setIsConfirmPasswordValid(true);
+                setConfirmPassword(value);
                 setIsSubmitDisabled(false);
               }}
             />
-            <Input
-                isRequired
-                endContent={
-                  <button type="button" onClick={toggleConfirmPasswordVisibility}>
-                    {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
-                  </button>
-                }
-                label="Confirm New Password"
-                name="confirmPassword"
-                autoComplete="new-password"
-                variant="bordered"
-                type={isConfirmPasswordVisible ? "text" : "password"}
-                errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
-                isInvalid={!isConfirmPasswordValid}
-                isDisabled={isLoading}
-                value={confirmPassword}
-                onValueChange={(value) => {
-                  setIsConfirmPasswordValid(true);
-                  setConfirmPassword(value);
-                  setIsSubmitDisabled(false);
-                }}
-              />
-          </CardBody>
-          <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
-        </form>
+        </CardBody>
+        <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
+      </form>
     </Card>
-  ) : null;
+  );
 }
 
 export default ChangePassword;
