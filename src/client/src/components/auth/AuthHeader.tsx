@@ -1,16 +1,12 @@
 "use client";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
+import {MessageInterface} from "@/constants/interfaces.ts";
 import {FC} from "react";
-
-export interface MessageProps {
-  text: string;
-  color: "default" | "success" | "warning" | "danger";
-}
 
 interface AuthHeaderProps {
   headerTitle: string;
-  headline?: MessageProps;
+  headline?: MessageInterface;
 }
 
 const AuthHeader: FC<AuthHeaderProps> = ({headerTitle, headline}) => {

@@ -5,11 +5,6 @@ import {Link} from "@nextui-org/react";
 import {CardHeader, Avatar, Badge} from "@nextui-org/react";
 import {FC} from "react";
 
-export interface AlertProps {
-  text?: string;
-  color?: "success" | "warning" | "error";
-}
-
 interface ProfileHeaderProps {
   title: string;
   firstName: string;
@@ -19,14 +14,12 @@ interface ProfileHeaderProps {
     url: string,
     title: string,
   };
-  alert?: AlertProps;
 }
 
-const ProfileHeader: FC<ProfileHeaderProps> = ({title, firstName, lastName, email, navigationLink, alert}) => {
+const ProfileHeader: FC<ProfileHeaderProps> = ({title, firstName, lastName, email, navigationLink}) => {
   return (
     <CardHeader className="flex flex-col items-start px-4 pb-0 pt-4">
       <p className="text-large text-center">{title}</p>
-      {alert && <p className={`text-small text-${alert.color}`}>{alert.text} </p>}
       <div className="flex gap-4 py-4">
         <div className="flex flex-col items-start justify-center">
           <Badge isInvisible>

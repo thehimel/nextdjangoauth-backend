@@ -14,7 +14,7 @@ import {Icon} from "@iconify/react";
 import {useLocation, useNavigate} from "react-router-dom";
 
 interface AuthProps {
-  pageType: "signup" | "login" | "confirm-email";
+  pageType: "signup" | "login" | "reset_password";
   headline: string;
 }
 

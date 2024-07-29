@@ -1,6 +1,7 @@
 "use client";
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
+import {MessageInterface} from "@/constants/interfaces.ts";
 import {AuthEmailInterface, sendAuthEmail} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -11,11 +12,6 @@ import {Input} from "@nextui-org/react";
 import React, {FC, FormEvent} from "react";
 
 export type AuthEmailRequestType = "resend_email_verification" | "forgot_password";
-
-export interface MessageProps {
-  text: string;
-  color: "default" | "success" | "warning" | "danger";
-}
 
 interface SendEmailProps {
   requestType: AuthEmailRequestType;
@@ -30,7 +26,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
   const headerTitle= isResendEmailVerificationPage ? "Resend Verification Email"
     : isForgotPasswordPage ? "Forgot Password?" : "Welcome"
 
-  const initialHeadline: MessageProps = {
+  const initialHeadline: MessageInterface = {
     text: isResendEmailVerificationPage ?
       "Email verification failed. However, you can resend the confirmation email."
       : isForgotPasswordPage ? "Enter your email address to reset password." : "Invalid request.",
