@@ -14,19 +14,19 @@ import React, {FC, FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
 
-interface ChangePasswordProps {
-  isPasswordChangePage?: boolean,
-  isPasswordResetPage?: boolean,
+interface UpdatePasswordProps {
+  isChangePasswordPage?: boolean,
+  isResetPasswordPage?: boolean,
 }
 
-const UpdatePassword: FC<ChangePasswordProps> = ({isPasswordChangePage = false, isPasswordResetPage = false}) => {
+const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, isResetPasswordPage = false}) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
   const redirectPath = location.pathname;  // Store the path to redirect to after login
 
-  const pageTitle = isPasswordChangePage ? "Change Password" : isPasswordResetPage ? "Reset Password" : "Welcome";
+  const pageTitle = isChangePasswordPage ? "Change Password" : isResetPasswordPage ? "Reset Password" : "Welcome";
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -107,13 +107,15 @@ const UpdatePassword: FC<ChangePasswordProps> = ({isPasswordChangePage = false, 
 
   return (
     <Card className="max-w-xl p-2">
-      <ProfileHeader
-        title={pageTitle}
-        firstName={firstName}
-        lastName={lastName}
-        email={email}
-        navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
-      />
+      {isChangePasswordPage && (
+        <ProfileHeader
+          title={pageTitle}
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
+        />
+      )}
       <form onSubmit={handleSubmit}>
         <CardBody className="grid grid-cols-1 gap-4">
           <Input

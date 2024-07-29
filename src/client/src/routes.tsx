@@ -24,7 +24,7 @@ export const router = createBrowserRouter(
       <Route path={CONFIRM_EMAIL_URL} element={<ConfirmEmail />}/>
       <Route path={PROFILE_URL} element={<Profile />}/>
       <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmail requestType={"forgot_password"}/>}/>
-      <Route path={CHANGE_PASSWORD_URL} element={<UpdatePassword isPasswordChangePage/>}/>
+      <Route path={CHANGE_PASSWORD_URL} element={<UpdatePassword isChangePasswordPage/>}/>
     </Route>
   )
 )
