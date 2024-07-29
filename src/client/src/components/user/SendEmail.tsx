@@ -7,17 +7,35 @@ import {isValidEmail, validateField} from "@/utils/validate.ts";
 import {Button, Spinner} from "@nextui-org/react";
 
 import {Input} from "@nextui-org/react";
-import React, {FormEvent} from "react";
+import React, {FC, FormEvent} from "react";
 
-const ResendEmailVerification = () => {
+export interface MessageProps {
+  text: string;
+  color: "default" | "success" | "warning" | "danger";
+}
+
+interface SendEmailProps {
+  pageType: "resend_email_verification" | "reset_password";
+}
+
+const SendEmail: FC<SendEmailProps> = ({pageType}) => {
   const dispatch: AppDispatch = useAppDispatch();
+
+  const isResendEmailVerificationPage = pageType === "resend_email_verification";
+  const isResetPassword = pageType === "reset_password";
+
+  const initialHeadline: MessageProps = {
+    text: isResendEmailVerificationPage ?
+      "Email verification failed. However, you can resend the confirmation email." :
+      isResetPassword ? "Enter your email to reset password." : "Invalid request.",
+    color: isResendEmailVerificationPage ? "danger" : "default",
+  }
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isEmailSent, setIsEmailSent] = React.useState(false);
 
-  const initialHeadline = "Email verification failed. However, you can resend the confirmation email."
-  const [headline, setHeadline] = React.useState(initialHeadline);
-  const [headlineColor, setHeadlineColor] = React.useState("danger");
+  const [headlineText, setHeadlineText] = React.useState(initialHeadline.text);
+  const [headlineColor, setHeadlineColor] = React.useState(initialHeadline.color);
 
   const [email, setEmail] = React.useState("");
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
@@ -43,10 +61,13 @@ const ResendEmailVerification = () => {
       if (response.success) {
         setIsEmailSent(true);
         setHeadlineColor("success");
-        setHeadline("Verification email sent successfully. Please check your inbox to verify the email.")
+        if (isResendEmailVerificationPage) {
+          setHeadlineText("Verification email sent successfully. Please check your inbox to verify the email.")
+        } else {
+          setHeadlineText("Email sent with a link to reset password. Please check your inbox.")
+        }
       } else {
         const emailError = response.errors.data.email;
-
         if (emailError !== "") {
           setIsEmailValid(false);
           setEmailErrorMessage(response.errors.data.email);
@@ -59,7 +80,7 @@ const ResendEmailVerification = () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-        <p className={`text-${headlineColor}`}>{headline}</p>
+        <p className={`text-${headlineColor}`}>{headlineText}</p>
         {!isEmailSent &&
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
             <Input
@@ -94,4 +115,5 @@ const ResendEmailVerification = () => {
   );
 }
 
-export default ResendEmailVerification;
+export default SendEmail;
+

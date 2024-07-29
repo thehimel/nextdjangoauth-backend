@@ -30,7 +30,7 @@ urlpatterns = [
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
     re_path(
-        'api/auth/registration/resend-verification-email/',
+        'api/auth/registration/resend-email-verification/',
         ResendEmailVerificationView.as_view(),
         name='resend_verification_email'
     ),

@@ -1,7 +1,7 @@
 "use client";
 
 import Auth from "@/components/auth/Auth.tsx";
-import ResendEmailVerification from "@/components/user/ResendEmailVerification.tsx";
+import SendEmail from "@/components/user/SendEmail.tsx";
 import {verifyEmail} from "@/store/auth/authActions.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -25,8 +25,6 @@ const ConfirmEmail = () => {
         if (response) {
           setIsEmailVerified(true);
           toast.success("Email verified successfully.")
-        } else {
-          console.log("failed");
         }
       }
     };
@@ -44,9 +42,9 @@ const ConfirmEmail = () => {
         </div>
       )}
       {!isEmailVerificationLoading && isEmailVerified && (
-        <Auth pageType="login" headline="Email verified. Log in to your account to continue."/>
+        <Auth pageType={"login"} headline={"Email verified. Log in to your account to continue."}/>
       )}
-      {!isEmailVerificationLoading && !isEmailVerified && <ResendEmailVerification/>}
+      {!isEmailVerificationLoading && !isEmailVerified && (<SendEmail pageType={"resend_email_verification"}/>)}
     </>
   );
 }

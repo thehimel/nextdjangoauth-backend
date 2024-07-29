@@ -1,7 +1,7 @@
 import {authActions} from "@/store/auth/authSlice.ts";
 import {
   CHANGE_PASSWORD_API_URL,
-  LOGIN_API_URL, RESEND_EMAIL_API_URL,
+  LOGIN_API_URL, RESEND_EMAIL_VERIFICATION_API_URL,
   SIGNUP_API_URL,
   USER_API_URL,
   VERIFY_EMAIL_API_URL,
@@ -148,10 +148,8 @@ export const resendEmailVerification = ({email}: ResendEmailVerificationInterfac
 
     try {
       dispatch(authActions.setAuthLoading(true));
-      const params: Record<string, string> = {
-        email: email,
-      };
-      await axios.post(RESEND_EMAIL_API_URL, params,{headers: headers});
+      const params: ResendEmailVerificationInterface = {email: email};
+      await axios.post(RESEND_EMAIL_VERIFICATION_API_URL, params,{headers: headers});
       response.success = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
