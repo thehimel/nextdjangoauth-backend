@@ -1,7 +1,7 @@
 import App from "@/App.tsx";
 import Auth from "@/components/auth/Auth.tsx";
 import ConfirmEmail from "@/components/auth/ConfirmEmail.tsx";
-import ChangePassword from "@/components/auth/ChangePassword.tsx";
+import UpdatePassword from "@/components/user/UpdatePassword.tsx";
 import Profile from "@/components/user/Profile.tsx";
 import SendAuthEmail from "@/components/auth/SendAuthEmail.tsx";
 import {
@@ -24,7 +24,7 @@ export const router = createBrowserRouter(
       <Route path={CONFIRM_EMAIL_URL} element={<ConfirmEmail />}/>
       <Route path={PROFILE_URL} element={<Profile />}/>
       <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmail requestType={"forgot_password"}/>}/>
-      <Route path={CHANGE_PASSWORD_URL} element={<ChangePassword/>}/>
+      <Route path={CHANGE_PASSWORD_URL} element={<UpdatePassword isPasswordChangePage/>}/>
     </Route>
   )
 )

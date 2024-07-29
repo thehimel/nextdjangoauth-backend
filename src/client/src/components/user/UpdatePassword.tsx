@@ -8,19 +8,25 @@ import {changePassword} from "@/store/auth/actions/changePassword.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
-import {CardProps} from "@nextui-org/react";
 
 import {Card, CardBody, Input} from "@nextui-org/react";
-import React, {FormEvent, useEffect} from "react";
+import React, {FC, FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
 
-const ChangePassword = (props: CardProps) => {
+interface ChangePasswordProps {
+  isPasswordChangePage?: boolean,
+  isPasswordResetPage?: boolean,
+}
+
+const UpdatePassword: FC<ChangePasswordProps> = ({isPasswordChangePage = false, isPasswordResetPage = false}) => {
   const dispatch: AppDispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const location = useLocation();
   const redirectPath = location.pathname;  // Store the path to redirect to after login
+
+  const pageTitle = isPasswordChangePage ? "Change Password" : isPasswordResetPage ? "Reset Password" : "Welcome";
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -77,7 +83,7 @@ const ChangePassword = (props: CardProps) => {
       }
 
       if (response.success) {
-        toast.success("Password changed successfully.")
+        toast.success("Password updated successfully.")
       } else {
         const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
         const confirmPasswordError = response.errors.data.confirmPassword;
@@ -100,9 +106,9 @@ const ChangePassword = (props: CardProps) => {
   };
 
   return (
-    <Card className="max-w-xl p-2" {...props}>
+    <Card className="max-w-xl p-2">
       <ProfileHeader
-        title={"Change Password"}
+        title={pageTitle}
         firstName={firstName}
         lastName={lastName}
         email={email}
@@ -161,4 +167,4 @@ const ChangePassword = (props: CardProps) => {
   );
 }
 
-export default ChangePassword;
+export default UpdatePassword;
