@@ -7,6 +7,7 @@ import {AppDispatch} from "@/store/store.ts";
 import React, {useEffect} from "react";
 import {Spinner} from "@nextui-org/react";
 import {useParams} from "react-router-dom";
+import {toast} from "sonner";
 
 
 const ConfirmEmail = () => {
@@ -22,6 +23,7 @@ const ConfirmEmail = () => {
         const response = await dispatch(verifyEmail({ key }));
         if (response) {
           setIsEmailVerified(true);
+          toast.success("Email verified successfully.")
         } else {
           console.log("failed");
         }
@@ -41,7 +43,7 @@ const ConfirmEmail = () => {
           </div>
         ) : null}
         {!isEmailVerificationLoading && isEmailVerified ? (
-          <Auth pageType="login" headline="Email verified. Log in to your account to continue."/>
+          <Auth pageType="login" headline="Log in to your account to continue."/>
         ) : null}
         {!isEmailVerificationLoading && !isEmailVerified ? (
           <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
