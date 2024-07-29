@@ -18,7 +18,9 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+
+from apps.base.views.registration import ResendEmailVerificationView
 
 from core.views import schema_view
 
@@ -27,6 +29,11 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+    re_path(
+        'api/auth/registration/resend-verification-email/',
+        ResendEmailVerificationView.as_view(),
+        name='resend_verification_email'
+    ),
     path('', include('apps.base.urls', namespace='base')),
 ]
 
