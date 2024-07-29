@@ -2,7 +2,7 @@
 
 import Auth from "@/components/auth/Auth.tsx";
 import SendAuthEmail from "@/components/user/SendAuthEmail.tsx";
-import {verifyEmail} from "@/store/auth/authActions.ts";
+import {verifyEmail} from "@/store/auth/actions/verifyEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {useEffect} from "react";
@@ -15,7 +15,7 @@ const ConfirmEmail = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const { key } = useParams();
 
-  const [isEmailVerificationLoading, setIsEmailVerificationLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [isEmailVerified, setIsEmailVerified] = React.useState(false);
 
   useEffect(() => {
@@ -28,23 +28,23 @@ const ConfirmEmail = () => {
         }
       }
     };
-    setIsEmailVerificationLoading(true);
+    setIsLoading(true);
     verifyUserEmail().then(() => {
-      setIsEmailVerificationLoading(false);
+      setIsLoading(false);
     })
   }, [key, dispatch]);
 
   return (
     <>
-      {isEmailVerificationLoading && (
+      {isLoading && (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <span className="text-center">Verifying email. <Spinner size="sm" color="default"/></span>
         </div>
       )}
-      {!isEmailVerificationLoading && isEmailVerified && (
+      {!isLoading && isEmailVerified && (
         <Auth pageType={"login"} headline={"Email verified. Log in to your account to continue."}/>
       )}
-      {!isEmailVerificationLoading && !isEmailVerified && (<SendAuthEmail requestType={"resend_email_verification"}/>)}
+      {!isLoading && !isEmailVerified && (<SendAuthEmail requestType={"resend_email_verification"}/>)}
     </>
   );
 }

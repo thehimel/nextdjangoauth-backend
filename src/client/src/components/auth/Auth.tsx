@@ -3,7 +3,7 @@
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/constants/urls.ts";
-import {InitialSignupResponse, auth, SignupResponseInterface} from "@/store/auth/authActions.ts";
+import {InitialAuthResponse, auth, AuthResponseInterface} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidEmail, isValidPassword, validateField} from "@/utils/validate.ts";
@@ -81,7 +81,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     if (isFormValid) {
       setIsLoading(true);
 
-      let response: SignupResponseInterface = InitialSignupResponse;
+      let response: AuthResponseInterface = InitialAuthResponse;
       const params = {
         email,
         password,

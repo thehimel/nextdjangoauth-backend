@@ -2,7 +2,7 @@
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {MessageInterface} from "@/constants/interfaces.ts";
-import {AuthEmailInterface, sendAuthEmail} from "@/store/auth/authActions.ts";
+import {AuthEmailInterface, sendAuthEmail} from "@/store/auth/actions/sendAuthEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidEmail, validateField} from "@/utils/validate.ts";
@@ -29,7 +29,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
   const initialHeadline: MessageInterface = {
     text: isResendEmailVerificationPage ?
       "Email verification failed. However, you can resend the confirmation email."
-      : isForgotPasswordPage ? "Enter your email address to reset password." : "Invalid request.",
+      : isForgotPasswordPage ? "Enter your email address to reset password." : "Welcome",
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
@@ -39,8 +39,8 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
   const [headline, setHeadline] = React.useState(initialHeadline);
 
   const [email, setEmail] = React.useState("");
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [isEmailValid, setIsEmailValid] = React.useState(true);
+  const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -114,7 +114,8 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
               color="primary"
               type="submit"
               isDisabled={isLoading}
-              endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}>
+              endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
+            >
               Send
             </Button>
           </form>

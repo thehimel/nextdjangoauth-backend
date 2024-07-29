@@ -4,7 +4,7 @@ import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
-import {changePassword} from "@/store/auth/authActions.ts";
+import {changePassword} from "@/store/auth/actions/changePassword.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";

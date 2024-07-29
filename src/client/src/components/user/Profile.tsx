@@ -1,9 +1,9 @@
 "use client";
 
-import ProfileHeader, {AlertProps} from "@/components/user/ProfileHeader.tsx";
+import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
-import {updateProfile} from "@/store/auth/authActions.ts";
+import {UpdateProfileResponseInterface, updateProfile, UpdateProfileInterface} from "@/store/auth/actions/updateProfile.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidUsername, validateField} from "@/utils/validate.ts";
@@ -40,30 +40,17 @@ const Profile = (props: CardProps) => {
   const [isUsernameValid, setIsUsernameValid] = React.useState(true);
   const [isFirstNameValid, setIsFirstNameValid] = React.useState(true);
   const [isLastNameValid, setIsLastNameValid] = React.useState(true);
-  const [alert, setAlert] = React.useState<AlertProps>({});
-
-  const queryParams = new URLSearchParams(location.search);
-  const profileUpdated = queryParams.get('profileUpdate');
-  const passwordChanged = queryParams.get('passwordChanged');
-
-  const triggerAlert = ({text, color}: AlertProps) => {
-    setAlert({ text: text, color });
-  };
 
   useEffect(() => {
     if (!isLoggedIn) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
-    } else {
-      if (profileUpdated === "true") {
-        triggerAlert({text: "Profile updated successfully.", color: "success"});
-      } else if (passwordChanged === "true") {
-        triggerAlert({text: "Password changed successfully.", color: "success"});
-      }
     }
-  }, [isLoggedIn, navigate, redirectPath, profileUpdated, passwordChanged]);
+  }, [isLoggedIn, navigate, redirectPath]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    setIsSubmitDisabled(true);
+
     let isFormValid = true;
 
     isFormValid = validateField({
@@ -89,8 +76,8 @@ const Profile = (props: CardProps) => {
 
     if (isFormValid) {
       setIsLoading(true);
-      const params = {access, email, firstName, lastName, ...(previousUsername !== username && { username })}
-      const response = await dispatch(updateProfile(params));
+      const params: UpdateProfileInterface = {access, firstName, lastName, ...(previousUsername !== username && { username })}
+      const response: UpdateProfileResponseInterface = await dispatch(updateProfile(params));
 
       if (!response.isTokenValid) {
         navigate(LOGIN_URL, { state: { from: redirectPath } });
@@ -118,10 +105,7 @@ const Profile = (props: CardProps) => {
           setLastNameErrorMessage(lastNameError);
         }
       }
-      setIsSubmitDisabled(true);
       setIsLoading(false);
-    } else {
-      setIsSubmitDisabled(true);
     }
   };
 
@@ -133,7 +117,6 @@ const Profile = (props: CardProps) => {
           lastName={lastName}
           email={email}
           navigationLink={{url: CHANGE_PASSWORD_URL, title: "Change Password"}}
-          alert={alert}
         />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
