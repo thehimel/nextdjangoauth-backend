@@ -13,6 +13,7 @@ import {CardProps} from "@nextui-org/react";
 import {Card, CardBody, Input} from "@nextui-org/react";
 import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
+import {toast} from "sonner";
 
 const ChangePassword = (props: CardProps) => {
   const dispatch: AppDispatch = useAppDispatch();
@@ -76,9 +77,8 @@ const ChangePassword = (props: CardProps) => {
       }
 
       if (response.success) {
-        const url = PROFILE_URL;
-        const params = new URLSearchParams({ passwordChanged: 'true' }).toString();
-        navigate(`${url}?${params}`);
+        toast.success("Password changed successfully.")
+        navigate(PROFILE_URL);
       } else {
         const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
         const confirmPasswordError = response.errors.data.confirmPassword;

@@ -12,6 +12,7 @@ import {CardProps} from "@nextui-org/react";
 import {Card, CardBody, Input} from "@nextui-org/react";
 import React, {FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
+import {toast} from "sonner";
 
 const Profile = (props: CardProps) => {
   const dispatch: AppDispatch = useAppDispatch();
@@ -96,9 +97,7 @@ const Profile = (props: CardProps) => {
       }
 
       if (response.success) {
-        const url = location.pathname;
-        const params = new URLSearchParams({ profileUpdate: 'true' }).toString();
-        navigate(`${url}?${params}`);
+        toast.success("Profile updated successfully.");
       } else {
         const usernameError = response.errors.data.username;
         const firstNameError = response.errors.data.firstName;
