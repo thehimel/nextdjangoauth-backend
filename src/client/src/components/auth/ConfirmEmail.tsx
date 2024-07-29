@@ -1,7 +1,7 @@
 "use client";
 
 import Auth from "@/components/auth/Auth.tsx";
-import SendAuthEmail from "@/components/user/SendAuthEmail.tsx";
+import SendAuthEmail from "@/components/auth/SendAuthEmail.tsx";
 import {verifyEmail} from "@/store/auth/actions/verifyEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
