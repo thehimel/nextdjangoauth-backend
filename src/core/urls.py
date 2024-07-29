@@ -21,7 +21,6 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 
 from apps.base.views.registration import ResendEmailVerificationView
-
 from core.views import schema_view
 
 urlpatterns = [

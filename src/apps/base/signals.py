@@ -1,9 +1,10 @@
 from django.conf import settings
-from django.db.models.signals import post_migrate
 from django.contrib.sites.models import Site
+from django.db.models.signals import post_migrate
 from django.dispatch import receiver
-from core.constants import DOMAIN_NAME, BRAND_NAME
+
 from apps.base.utils.utils import logger
+from core.constants import BRAND_NAME, DOMAIN_NAME
 
 # Module-level flag to track if the signal has already executed
 site_updated = False

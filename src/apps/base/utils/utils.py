@@ -1,6 +1,6 @@
+import logging
 import re
 from datetime import datetime, timedelta
-import logging
 
 
 def remove_special_characters(text: str):
