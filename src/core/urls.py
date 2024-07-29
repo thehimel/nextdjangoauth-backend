@@ -14,7 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from dj_rest_auth.views import PasswordResetConfirmView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -33,6 +33,7 @@ urlpatterns = [
         ResendEmailVerificationView.as_view(),
         name='resend_verification_email'
     ),
+    path('', include('django.contrib.auth.urls')),  # To support password reset email with dj_rest_auth.
     path('', include('apps.base.urls', namespace='base')),
 ]
 
