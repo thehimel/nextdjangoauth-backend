@@ -11,6 +11,9 @@ class ResendEmailVerificationView(MainResendEmailVerificationView):
         email = request.data.get('email')
         try:
             email_address = EmailAddress.objects.filter(email=email).last()
+            if not email_address:
+                raise EmailAddress.DoesNotExist
+
             if email_address.verified:
                 return Response(
                     {
