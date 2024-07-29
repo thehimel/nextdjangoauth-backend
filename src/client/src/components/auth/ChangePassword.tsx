@@ -102,7 +102,7 @@ const ChangePassword = (props: CardProps) => {
   return isLoggedIn ? (
       <Card className="max-w-xl p-2" {...props}>
         <ProfileHeader
-          title={"Account Details"}
+          title={"Change Password"}
           firstName={firstName}
           lastName={lastName}
           email={email}
