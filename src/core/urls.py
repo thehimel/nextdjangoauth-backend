@@ -33,8 +33,10 @@ urlpatterns = [
         ResendEmailVerificationView.as_view(),
         name='resend_verification_email'
     ),
-    path('', include('django.contrib.auth.urls')),  # To support password reset email with dj_rest_auth.
     path('', include('apps.base.urls', namespace='base')),
+
+    # To support password reset email with dj_rest_auth. Must be at the end to avoid errors.
+    path('', include('django.contrib.auth.urls')),
 ]
 
 oas_urls = [
