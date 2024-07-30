@@ -6,7 +6,7 @@ import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {FORGOT_PASSWORD_URL, LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
-import {changePassword, ChangePasswordInterface} from "@/store/auth/actions/changePassword.ts";
+import {updatePassword, UpdatePasswordInterface} from "@/store/auth/actions/updatePassword.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
@@ -83,8 +83,8 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
 
     if (isFormValid) {
       setIsLoading(true);
-      const params: ChangePasswordInterface = {isChangePassword, isResetPassword, access, password, confirmPassword, uid, token}
-      const response = await dispatch(changePassword(params));
+      const params: UpdatePasswordInterface = {isChangePassword, isResetPassword, access, password, confirmPassword, uid, token}
+      const response = await dispatch(updatePassword(params));
 
       if (!response.isTokenValid) {
         if (isChangePassword) {

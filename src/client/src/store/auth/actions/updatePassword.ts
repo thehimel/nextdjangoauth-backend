@@ -5,7 +5,7 @@ import {getCookie} from "@/utils/cookies.ts";
 import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
-export interface ChangePasswordInterface {
+export interface UpdatePasswordInterface {
   access?: string,
   password: string;
   confirmPassword: string;
@@ -15,7 +15,7 @@ export interface ChangePasswordInterface {
   isResetPassword?: boolean;
 }
 
-export interface ChangePasswordResponseInterface {
+export interface UpdatePasswordResponseInterface {
   success: boolean;
   message: string;
   errors: {
@@ -28,7 +28,7 @@ export interface ChangePasswordResponseInterface {
   isTokenValid: boolean;
 }
 
-export const InitialChangePasswordResponse: ChangePasswordResponseInterface = {
+export const UpdateChangePasswordResponse: UpdatePasswordResponseInterface = {
   success: false,
   message: "",
   errors: {
@@ -41,15 +41,15 @@ export const InitialChangePasswordResponse: ChangePasswordResponseInterface = {
   isTokenValid: false,
 }
 
-export const changePassword = ({isChangePassword = false, isResetPassword = false, access, password, confirmPassword, uid, token}: ChangePasswordInterface) => {
-  return async (dispatch: AppDispatch): Promise<ChangePasswordResponseInterface> => {
+export const updatePassword = ({isChangePassword = false, isResetPassword = false, access, password, confirmPassword, uid, token}: UpdatePasswordInterface) => {
+  return async (dispatch: AppDispatch): Promise<UpdatePasswordResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
       ...(!isResetPassword && { 'Authorization': `Bearer ${access}` }),
     }
 
-    const response = InitialChangePasswordResponse;
+    const response = UpdateChangePasswordResponse;
 
     try {
       dispatch(authActions.setAuthLoading(true));
