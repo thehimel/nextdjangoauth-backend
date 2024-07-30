@@ -110,7 +110,7 @@ const Profile = (props: CardProps) => {
   };
 
   return isLoggedIn ? (
-      <Card className="max-w-xl p-6 mt-2" {...props}>
+      <Card className="w-full max-w-xl p-6 mt-2" {...props}>
         <ProfileHeader
           title={"Account Details"}
           firstName={firstName}
