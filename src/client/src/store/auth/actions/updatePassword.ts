@@ -75,7 +75,6 @@ export const updatePassword = ({isChangePassword = false, isResetPassword = fals
 
       response.errors.data.password = errors.data?.new_password1?.[0] ?? "";
       response.errors.data.confirmPassword = errors.data?.new_password2?.[0] ?? "";
-
       response.errors.message = errors.message ?? "";
     } finally {
       dispatch(authActions.setAuthLoading(false));

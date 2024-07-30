@@ -23,10 +23,13 @@ export const verifyEmail = ({key}: VerifyEmailInterface) => {
       const params: Record<string, string> = {
         key: key,
       };
+
       await axios.post(VERIFY_EMAIL_API_URL, params,{headers: headers});
       response = true;
     } catch (error) {
       getErrors({error: error as AxiosError});
+
+      response = false;
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }

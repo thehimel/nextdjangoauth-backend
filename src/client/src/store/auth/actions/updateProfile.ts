@@ -67,6 +67,7 @@ export const updateProfile = ({access, username, firstName, lastName}: UpdatePro
       response.isTokenValid = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
+
       response.success = false;
       response.isTokenValid = errors.isTokenValid;
 

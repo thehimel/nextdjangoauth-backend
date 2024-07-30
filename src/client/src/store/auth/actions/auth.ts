@@ -54,6 +54,7 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: AuthInter
         ...(!confirmPassword && { password: password }),
         ...(confirmPassword && { password1: password, password2: confirmPassword }),
       };
+
       const apiUrl = confirmPassword ? SIGNUP_API_URL : LOGIN_API_URL;
       const result = await axios.post(apiUrl, params,{headers: headers});
 
@@ -62,13 +63,18 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: AuthInter
         dispatch(authActions.setUserData(result.data));
         dispatch(authActions.setRememberMe(isRememberMe));
       }
+
       response.success = true;
       response.isTokenValid = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
+
+      response.success = false;
       response.isTokenValid = errors.isTokenValid;
+
       response.errors.data.email = errors.data?.email?.[0] ?? "";
       response.errors.data.password = errors.data?.password1?.[0] ?? "";
+
       response.errors.message = errors.message ?? "";
     } finally {
       dispatch(authActions.setAuthLoading(false));

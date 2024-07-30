@@ -52,6 +52,8 @@ export const sendAuthEmail = ({email, requestType}: AuthEmailInterface) => {
       response.success = true;
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
+
+      response.success = false;
       response.errors.data.email = errors.data?.email?.[0] ?? "";
       response.errors.message = errors.message ?? "";
     } finally {
