@@ -29,7 +29,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
   const initialHeadline: MessageInterface = {
     text: isResendEmailVerificationPage ?
       "Email verification failed. However, you can resend the confirmation email."
-      : isForgotPasswordPage ? "Enter your email address to reset password." : "Welcome",
+      : isForgotPasswordPage ? "Enter your email address and we'll send you a link to reset your password." : "Welcome",
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
