@@ -9,7 +9,7 @@ import {
   CONFIRM_EMAIL_URL, FORGOT_PASSWORD_URL,
   HOME_URL,
   LOGIN_URL,
-  PROFILE_URL,
+  PROFILE_URL, RESET_PASSWORD_URL,
   SIGNUP_URL,
 } from "@/constants/urls.ts";
 import Home from "@/Home.tsx";
@@ -25,6 +25,7 @@ export const router = createBrowserRouter(
       <Route path={PROFILE_URL} element={<Profile />}/>
       <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmail requestType={"forgot_password"}/>}/>
       <Route path={CHANGE_PASSWORD_URL} element={<UpdatePassword isChangePasswordPage/>}/>
+      <Route path={RESET_PASSWORD_URL} element={<UpdatePassword isResetPasswordPage/>}/>
     </Route>
   )
 )
