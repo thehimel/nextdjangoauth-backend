@@ -38,7 +38,7 @@ export const UpdateChangePasswordResponse: UpdatePasswordResponseInterface = {
     },
     message: "",
   },
-  isTokenValid: false,
+  isTokenValid: true,
 }
 
 export const updatePassword = ({isChangePassword = false, isResetPassword = false, access, password, confirmPassword, uid, token}: UpdatePasswordInterface) => {
