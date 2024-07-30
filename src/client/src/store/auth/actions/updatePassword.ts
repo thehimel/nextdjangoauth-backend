@@ -67,6 +67,7 @@ export const updatePassword = ({isChangePassword = false, isResetPassword = fals
     } catch (error) {
       const errors = getErrors({error: error as AxiosError});
 
+      response.success = false;
       response.isTokenValid = isChangePassword ? errors.isTokenValid : response.isTokenValid;
       if (isResetPassword && errors.data?.token?.[0]) {
         response.isTokenValid = false;
