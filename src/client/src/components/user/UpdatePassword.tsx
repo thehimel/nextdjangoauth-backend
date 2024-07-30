@@ -1,5 +1,6 @@
 "use client";
 
+import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
@@ -9,7 +10,7 @@ import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
 
-import {Card, CardBody, Input} from "@nextui-org/react";
+import {Card, CardBody, CardHeader, Input} from "@nextui-org/react";
 import React, {FC, FormEvent, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
@@ -50,10 +51,10 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isChangePasswordPage && !isLoggedIn) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
     }
-  }, [isLoggedIn, navigate, redirectPath]);
+  }, [isChangePasswordPage, isLoggedIn, navigate, redirectPath]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -106,66 +107,74 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
   };
 
   return (
-    <Card className="max-w-xl p-2">
-      {isChangePasswordPage && (
-        <ProfileHeader
-          title={pageTitle}
-          firstName={firstName}
-          lastName={lastName}
-          email={email}
-          navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
-        />
-      )}
-      <form onSubmit={handleSubmit}>
-        <CardBody className="grid grid-cols-1 gap-4">
-          <Input
-            isRequired
-            endContent={
-              <button type="button" onClick={togglePasswordVisibility}>
-                {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
-              </button>
-            }
-            label="New Password"
-            name="password"
-            autoComplete="new-password"
-            variant="bordered"
-            type={isPasswordVisible ? "text" : "password"}
-            errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
-            isInvalid={!isPasswordValid}
-            isDisabled={isLoading}
-            value={password}
-            onValueChange={(value) => {
-              setIsPasswordValid(true);
-              setPassword(value);
-              setIsSubmitDisabled(false);
-            }}
+    <div className="flex flex-col">
+      {isResetPasswordPage && <AuthHeader headerTitle={"Reset Password"}/>}
+      <Card className="max-w-xl p-6 mt-2">
+        {isChangePasswordPage && (
+          <ProfileHeader
+            title={pageTitle}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
           />
-          <Input
+        )}
+        {isResetPasswordPage && (
+          <CardHeader className="flex flex-col pt-0 pb-0">
+            <p className="text-center">{"Verification link confirmed. You can now reset the password."}</p>
+          </CardHeader>
+        )}
+        <form onSubmit={handleSubmit}>
+          <CardBody className="grid grid-cols-1 gap-4">
+            <Input
               isRequired
               endContent={
-                <button type="button" onClick={toggleConfirmPasswordVisibility}>
-                  {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                <button type="button" onClick={togglePasswordVisibility}>
+                  {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                 </button>
               }
-              label="Confirm New Password"
-              name="confirmPassword"
+              label="New Password"
+              name="password"
               autoComplete="new-password"
               variant="bordered"
-              type={isConfirmPasswordVisible ? "text" : "password"}
-              errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
-              isInvalid={!isConfirmPasswordValid}
+              type={isPasswordVisible ? "text" : "password"}
+              errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
+              isInvalid={!isPasswordValid}
               isDisabled={isLoading}
-              value={confirmPassword}
+              value={password}
               onValueChange={(value) => {
-                setIsConfirmPasswordValid(true);
-                setConfirmPassword(value);
+                setIsPasswordValid(true);
+                setPassword(value);
                 setIsSubmitDisabled(false);
               }}
             />
-        </CardBody>
-        <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
-      </form>
-    </Card>
+            <Input
+                isRequired
+                endContent={
+                  <button type="button" onClick={toggleConfirmPasswordVisibility}>
+                    {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                  </button>
+                }
+                label="Confirm New Password"
+                name="confirmPassword"
+                autoComplete="new-password"
+                variant="bordered"
+                type={isConfirmPasswordVisible ? "text" : "password"}
+                errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
+                isInvalid={!isConfirmPasswordValid}
+                isDisabled={isLoading}
+                value={confirmPassword}
+                onValueChange={(value) => {
+                  setIsConfirmPasswordValid(true);
+                  setConfirmPassword(value);
+                  setIsSubmitDisabled(false);
+                }}
+              />
+          </CardBody>
+          <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
+        </form>
+      </Card>
+    </div>
   );
 }
 
