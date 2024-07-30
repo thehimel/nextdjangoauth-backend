@@ -2,36 +2,34 @@
 
 import Auth from "@/components/auth/Auth.tsx";
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
-import SendAuthEmail from "@/components/auth/SendAuthEmail.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
-import {LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
-import {changePassword} from "@/store/auth/actions/changePassword.ts";
+import {FORGOT_PASSWORD_URL, LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
+import {changePassword, ChangePasswordInterface} from "@/store/auth/actions/changePassword.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
 
-import {Card, CardBody, CardHeader, Input} from "@nextui-org/react";
+import {Card, CardBody, CardHeader, Input, Link} from "@nextui-org/react";
 import React, {FC, FormEvent, useEffect} from "react";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {toast} from "sonner";
 
 interface UpdatePasswordProps {
-  isChangePasswordPage?: boolean,
-  isResetPasswordPage?: boolean,
+  isChangePassword?: boolean,
+  isResetPassword?: boolean,
 }
 
-const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, isResetPasswordPage = false}) => {
+const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isResetPassword = false}) => {
   const dispatch: AppDispatch = useAppDispatch();
   const { uid, token } = useParams();
-  console.log(uid, token);
 
   const navigate = useNavigate();
   const location = useLocation();
   const redirectPath = location.pathname;  // Store the path to redirect to after login
 
-  const pageTitle = isChangePasswordPage ? "Change Password" : isResetPasswordPage ? "Reset Password" : "Welcome";
+  const pageTitle = isChangePassword ? "Change Password" : isResetPassword ? "Reset Password" : "Welcome";
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -40,6 +38,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
   const [isResetPasswordSuccessful, setIsResetPasswordSuccessful] = React.useState(false);
   const [isResetPasswordDone, setIsResetPasswordDone] = React.useState(false);
   const [showCard, setShowCard] = React.useState(true);
+  const [showForm, setShowForm] = React.useState(true);
 
   const access = useAppSelector((state) => state.auth.userData.access);
   const email = useAppSelector((state) => state.auth.userData.user.email);
@@ -59,10 +58,10 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
 
   useEffect(() => {
-    if (isChangePasswordPage && !isLoggedIn) {
+    if (isChangePassword && !isLoggedIn) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
     }
-  }, [isChangePasswordPage, isLoggedIn, navigate, redirectPath]);
+  }, [isChangePassword, isLoggedIn, navigate, redirectPath]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -84,15 +83,26 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
 
     if (isFormValid) {
       setIsLoading(true);
-      const params = {access, password, confirmPassword}
+      const params: ChangePasswordInterface = {isChangePassword, isResetPassword, access, password, confirmPassword, uid, token}
       const response = await dispatch(changePassword(params));
 
       if (!response.isTokenValid) {
-        navigate(LOGIN_URL, { state: { from: redirectPath } });
+        if (isChangePassword) {
+          navigate(LOGIN_URL, { state: { from: redirectPath } });
+        } else if (isResetPassword) {
+          setShowForm(false);
+          setIsResetPasswordDone(true);
+          setIsResetPasswordSuccessful(false);
+        }
       }
 
       if (response.success) {
         toast.success("Password updated successfully.")
+        if (isResetPassword) {
+          setShowCard(false);
+          setIsResetPasswordDone(true);
+          setIsResetPasswordSuccessful(true);
+        }
       } else {
         const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
         const confirmPasswordError = response.errors.data.confirmPassword;
@@ -118,9 +128,9 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
     <>
       {showCard && (
         <div className="flex flex-col">
-          {isResetPasswordPage && <AuthHeader headerTitle={"Reset Password"}/>}
+          {isResetPassword && <AuthHeader headerTitle={"Reset Password"}/>}
           <Card className="max-w-xl p-6 mt-2">
-            {isChangePasswordPage && (
+            {isChangePassword && (
               <ProfileHeader
                 title={pageTitle}
                 firstName={firstName}
@@ -129,67 +139,70 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePasswordPage = false, 
                 navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
               />
             )}
-            {isResetPasswordPage && (
+            {isResetPasswordDone && !isResetPasswordSuccessful && (
               <CardHeader className="flex flex-col pt-0 pb-0">
-                <p className="text-center">{"Verification link confirmed. You can now reset the password."}</p>
+                <p className="text-center text-danger">
+                  {"Invalid password reset link."} <Link href={FORGOT_PASSWORD_URL} >Resend password resend link?</Link>
+                </p>
               </CardHeader>
             )}
-            <form onSubmit={handleSubmit}>
-              <CardBody className="grid grid-cols-1 gap-4">
-                <Input
-                  isRequired
-                  endContent={
-                    <button type="button" onClick={togglePasswordVisibility}>
-                      {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
-                    </button>
-                  }
-                  label="New Password"
-                  name="password"
-                  autoComplete="new-password"
-                  variant="bordered"
-                  type={isPasswordVisible ? "text" : "password"}
-                  errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
-                  isInvalid={!isPasswordValid}
-                  isDisabled={isLoading}
-                  value={password}
-                  onValueChange={(value) => {
-                    setIsPasswordValid(true);
-                    setPassword(value);
-                    setIsSubmitDisabled(false);
-                  }}
-                />
-                <Input
-                  isRequired
-                  endContent={
-                    <button type="button" onClick={toggleConfirmPasswordVisibility}>
-                      {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
-                    </button>
-                  }
-                  label="Confirm New Password"
-                  name="confirmPassword"
-                  autoComplete="new-password"
-                  variant="bordered"
-                  type={isConfirmPasswordVisible ? "text" : "password"}
-                  errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
-                  isInvalid={!isConfirmPasswordValid}
-                  isDisabled={isLoading}
-                  value={confirmPassword}
-                  onValueChange={(value) => {
-                    setIsConfirmPasswordValid(true);
-                    setConfirmPassword(value);
-                    setIsSubmitDisabled(false);
-                  }}
-                />
-              </CardBody>
-              <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled}/>
-            </form>
+            {showForm && (
+              <form onSubmit={handleSubmit}>
+                <CardBody className="grid grid-cols-1 gap-4">
+                  <Input
+                    isRequired
+                    endContent={
+                      <button type="button" onClick={togglePasswordVisibility}>
+                        {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                      </button>
+                    }
+                    label="New Password"
+                    name="password"
+                    autoComplete="new-password"
+                    variant="bordered"
+                    type={isPasswordVisible ? "text" : "password"}
+                    errorMessage={!isPasswordValid ? passwordErrorMessage : undefined}
+                    isInvalid={!isPasswordValid}
+                    isDisabled={isLoading}
+                    value={password}
+                    onValueChange={(value) => {
+                      setIsPasswordValid(true);
+                      setPassword(value);
+                      setIsSubmitDisabled(false);
+                    }}
+                  />
+                  <Input
+                    isRequired
+                    endContent={
+                      <button type="button" onClick={toggleConfirmPasswordVisibility}>
+                        {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
+                      </button>
+                    }
+                    label="Confirm New Password"
+                    name="confirmPassword"
+                    autoComplete="new-password"
+                    variant="bordered"
+                    type={isConfirmPasswordVisible ? "text" : "password"}
+                    errorMessage={!isConfirmPasswordValid ? confirmPasswordErrorMessage : undefined}
+                    isInvalid={!isConfirmPasswordValid}
+                    isDisabled={isLoading}
+                    value={confirmPassword}
+                    onValueChange={(value) => {
+                      setIsConfirmPasswordValid(true);
+                      setConfirmPassword(value);
+                      setIsSubmitDisabled(false);
+                    }}
+                  />
+                </CardBody>
+                <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled}/>
+              </form>
+            )}
           </Card>
         </div>
       )}
       {isResetPasswordSuccessful && (
         <Auth pageType={"login"} headline={"Password reset successful. Log in to your to continue."}/>
       )}
-      {isResetPasswordDone && !isResetPasswordSuccessful && (<SendAuthEmail requestType={"forgot_password"}/>)}
     </>
   );
 }
