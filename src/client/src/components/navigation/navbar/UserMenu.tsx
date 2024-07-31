@@ -1,5 +1,15 @@
+import {PROFILE_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
-import {Avatar, Badge, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, NavbarItem} from "@nextui-org/react";
+import {
+  Avatar,
+  Badge,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  Link,
+  NavbarItem,
+} from "@nextui-org/react";
 
 const UserMenu = () => {
   const userData = useAppSelector((state) => state.auth.userData);
@@ -17,7 +27,9 @@ const UserMenu = () => {
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownItem key="profile" textValue="profile" className="h-12 gap-2">
-            <p className="font-semibold">{fullName.length > 1 ? fullName : userData.user.username}</p>
+            <Link href={PROFILE_URL} color="foreground">
+              <p className="font-semibold">{fullName.length > 1 ? fullName : userData.user.username}</p>
+            </Link>
           </DropdownItem>
           <DropdownItem key="settings" textValue="My Settings">My Settings</DropdownItem>
           <DropdownItem key="team_settings" textValue="Team Settings">Team Settings</DropdownItem>
