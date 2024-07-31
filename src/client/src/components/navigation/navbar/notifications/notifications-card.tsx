@@ -16,7 +16,7 @@ import {
 } from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import NotificationItem from "./notification-item";
+import NotificationItem from "./notification-item.tsx";
 
 type Notification = {
   id: string;

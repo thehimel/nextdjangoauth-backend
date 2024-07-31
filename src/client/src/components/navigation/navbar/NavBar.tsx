@@ -34,7 +34,7 @@ import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
 
-import NotificationsCard from "./notifications-card";
+import NotificationsCard from "./notifications/notifications-card.tsx";
 
 export default function NavBar() {
   return (
