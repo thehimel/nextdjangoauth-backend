@@ -16,18 +16,16 @@ const UserMenu = () => {
           </button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
-          <DropdownItem key="profile" className="h-12 gap-2">
+          <DropdownItem key="profile" textValue="profile" className="h-12 gap-2">
             <p className="font-semibold">{fullName.length > 1 ? fullName : userData.user.username}</p>
           </DropdownItem>
-          <DropdownItem key="settings">My Settings</DropdownItem>
-          <DropdownItem key="team_settings">Team Settings</DropdownItem>
-          <DropdownItem key="analytics">Analytics</DropdownItem>
-          <DropdownItem key="system">System</DropdownItem>
-          <DropdownItem key="configurations">Configurations</DropdownItem>
-          <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-          <DropdownItem key="logout" color="danger">
-            Log Out
-          </DropdownItem>
+          <DropdownItem key="settings" textValue="My Settings">My Settings</DropdownItem>
+          <DropdownItem key="team_settings" textValue="Team Settings">Team Settings</DropdownItem>
+          <DropdownItem key="analytics" textValue="Analytics">Analytics</DropdownItem>
+          <DropdownItem key="system" textValue="System">System</DropdownItem>
+          <DropdownItem key="configurations" textValue="Configurations">Configurations</DropdownItem>
+          <DropdownItem key="help_and_feedback" textValue="Help & Feedback">Help & Feedback</DropdownItem>
+          <DropdownItem key="logout" textValue="Log Out" color="danger">Log Out</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </NavbarItem>
