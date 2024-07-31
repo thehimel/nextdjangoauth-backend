@@ -1,5 +1,6 @@
 "use client";
 
+import AuthButtons from "@/components/navigation/navbar/AuthButtons.tsx";
 import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/components/navigation/navbar/UserMenu.tsx";
 import {useAppSelector} from "@/store/hooks.ts";
@@ -76,11 +77,11 @@ export default function NavBar() {
             </Button>
           </NavbarItem>
 
-          {/* Notifications */}
-          {showNotifications && <Notifications/>}
-
-          {/* User Menu */}
+          {!showNotifications && <Notifications/>}
+          <Divider orientation="vertical" className="h-6 ml-2" />
           {isLoggedIn && <UserMenu/>}
+          {!isLoggedIn && <AuthButtons/>}
+
         </NavbarContent>
 
         {/* Mobile Menu */}
