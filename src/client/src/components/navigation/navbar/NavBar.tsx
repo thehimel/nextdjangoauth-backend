@@ -23,8 +23,6 @@ import {
   Tooltip,
   ScrollShadow,
   Divider,
-  Breadcrumbs,
-  BreadcrumbItem,
   Input,
   Badge,
 } from "@nextui-org/react";
@@ -48,11 +46,6 @@ export default function NavBar() {
           <AcmeIcon />
           <p className="font-bold text-inherit">Client</p>
         </NavbarBrand>
-        <Breadcrumbs className="hidden lg:flex" radius="full">
-          <BreadcrumbItem>Apps</BreadcrumbItem>
-          <BreadcrumbItem>iOS App</BreadcrumbItem>
-          <BreadcrumbItem>TestFlight</BreadcrumbItem>
-        </Breadcrumbs>
 
         {/* Right Menu */}
         <NavbarContent className="ml-auto h-12 max-w-fit items-center gap-0" justify="end">
