@@ -1,5 +1,6 @@
 "use client";
 
+import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import {
   Navbar,
   NavbarBrand,
@@ -14,9 +15,6 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Tabs,
   Tab,
   AvatarGroup,
@@ -33,8 +31,6 @@ import {
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
-
-import NotificationsCard from "./notifications/notifications-card.tsx";
 
 export default function NavBar() {
   return (
@@ -87,26 +83,7 @@ export default function NavBar() {
             </Button>
           </NavbarItem>
           {/* Notifications */}
-          <NavbarItem className="flex">
-            <Popover offset={12} placement="bottom-end">
-              <PopoverTrigger>
-                <Button
-                  disableRipple
-                  isIconOnly
-                  className="overflow-visible"
-                  radius="full"
-                  variant="light"
-                >
-                  <Badge color="danger" content="5" showOutline={false} size="md">
-                    <Icon className="text-default-500" icon="solar:bell-linear" width={22} />
-                  </Badge>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="max-w-[90vw] p-0 sm:max-w-[380px]">
-                <NotificationsCard className="w-full shadow-none" />
-              </PopoverContent>
-            </Popover>
-          </NavbarItem>
+          <Notifications/>
           {/* User Menu */}
           <NavbarItem className="px-2">
             <Dropdown placement="bottom-end">
