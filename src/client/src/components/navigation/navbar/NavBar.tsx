@@ -29,6 +29,7 @@ import {AcmeIcon} from "@/components/icons/acme.tsx";
 
 export default function NavBar() {
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
+  const showNotifications = false;
 
   return (
     <div className="w-full">
@@ -74,8 +75,10 @@ export default function NavBar() {
               <Icon className="text-default-500" icon="solar:settings-linear" width={24} />
             </Button>
           </NavbarItem>
+
           {/* Notifications */}
-          <Notifications/>
+          {showNotifications && <Notifications/>}
+
           {/* User Menu */}
           {isLoggedIn && <UserMenu/>}
         </NavbarContent>
