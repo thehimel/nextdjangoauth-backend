@@ -2,6 +2,7 @@
 
 import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/components/navigation/navbar/UserMenu.tsx";
+import {useAppSelector} from "@/store/hooks.ts";
 import {
   Navbar,
   NavbarBrand,
@@ -27,6 +28,8 @@ import {Icon} from "@iconify/react";
 import {AcmeIcon} from "@/components/icons/acme.tsx";
 
 export default function NavBar() {
+  const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
+
   return (
     <div className="w-full">
       <Navbar
@@ -74,7 +77,7 @@ export default function NavBar() {
           {/* Notifications */}
           <Notifications/>
           {/* User Menu */}
-          <UserMenu/>
+          {isLoggedIn && <UserMenu/>}
         </NavbarContent>
 
         {/* Mobile Menu */}
