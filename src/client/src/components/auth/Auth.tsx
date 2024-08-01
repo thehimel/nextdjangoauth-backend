@@ -2,7 +2,7 @@
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
-import {FORGOT_PASSWORD_URL, LOGIN_URL, PROFILE_URL, SIGNUP_URL} from "@/constants/urls.ts";
+import {FORGOT_PASSWORD_URL, HOME_URL, LOGIN_URL, SIGNUP_URL} from "@/constants/urls.ts";
 import {InitialAuthResponse, auth, AuthResponseInterface} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -21,7 +21,7 @@ interface AuthProps {
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || PROFILE_URL; // Default to profile page if no specific redirect
+  const from = location.state?.from || HOME_URL; // Default to home page if no specific redirect
 
   const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
