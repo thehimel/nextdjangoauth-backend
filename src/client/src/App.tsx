@@ -17,7 +17,7 @@ const App = () => {
   return (
     <div className={`min-h-screen ${theme} text-foreground bg-background`}>
       <NavBar/>
-      <Toaster position="top-center" theme={darkMode ? "dark" : "light"} />
+      <Toaster position="top-center" expand={true} theme={darkMode ? "dark" : "light"} />
       <main className="mb-14 p-8 flex items-start justify-center">
         <Outlet/>
       </main>
