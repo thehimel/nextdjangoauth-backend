@@ -9,12 +9,13 @@ import Footer from "@/components/navigation/Footer.tsx";
 const App = () => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   const { setTheme } = useTheme();
+  const theme = darkMode ? 'dark' : 'light';
   useEffect(() => {
-    setTheme(darkMode ? 'dark' : 'light');
-  }, [darkMode, setTheme]);
+    setTheme(theme);
+  }, [darkMode, setTheme, theme]);
 
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen ${theme} text-foreground bg-background`}>
       <NavBar/>
       <Toaster position="top-center" theme={darkMode ? "dark" : "light"} />
       <main className="mb-14 p-8 flex items-start justify-center">
