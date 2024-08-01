@@ -66,7 +66,7 @@ export default function NavBar() {
               }
             />
           </NavbarItem>
-          <NavbarItem className="hidden sm:flex">
+          <NavbarItem className="sm:flex">
             <ThemeSwitcher/>
           </NavbarItem>
           {/* Settings */}
