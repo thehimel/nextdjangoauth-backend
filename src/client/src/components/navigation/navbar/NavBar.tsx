@@ -77,7 +77,7 @@ export default function NavBar() {
             </Button>
           </NavbarItem>
 
-          {!showNotifications && <Notifications/>}
+          {showNotifications && <Notifications/>}
           <Divider orientation="vertical" className="h-6 ml-2" />
           {isLoggedIn && <UserMenu/>}
           {!isLoggedIn && <AuthButtons/>}
