@@ -3,6 +3,7 @@
 import AuthButtons from "@/components/navigation/navbar/AuthMenu.tsx";
 import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/components/navigation/navbar/UserMenu.tsx";
+import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher.tsx";
 import {useAppSelector} from "@/store/hooks.ts";
 import {
   Navbar,
@@ -66,9 +67,7 @@ export default function NavBar() {
             />
           </NavbarItem>
           <NavbarItem className="hidden sm:flex">
-            <Button isIconOnly radius="full" variant="light">
-              <Icon className="text-default-500" icon="solar:sun-linear" width={24} />
-            </Button>
+            <ThemeSwitcher/>
           </NavbarItem>
           {/* Settings */}
           <NavbarItem className="hidden sm:flex">
