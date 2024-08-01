@@ -1,6 +1,6 @@
 "use client";
 
-import AuthButtons from "@/components/navigation/navbar/AuthButtons.tsx";
+import AuthButtons from "@/components/navigation/navbar/AuthMenu.tsx";
 import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/components/navigation/navbar/UserMenu.tsx";
 import {useAppSelector} from "@/store/hooks.ts";
