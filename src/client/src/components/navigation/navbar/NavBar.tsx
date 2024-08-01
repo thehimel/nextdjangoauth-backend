@@ -59,7 +59,7 @@ export default function NavBar() {
             <Input
               aria-label="Search"
               classNames={{
-                inputWrapper: "bg-content2 dark:bg-content1",
+                inputWrapper: "bg-default-400/20 dark:bg-default-500/20",
               }}
               labelPlacement="outside"
               placeholder="Search..."
