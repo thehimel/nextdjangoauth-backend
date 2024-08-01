@@ -31,12 +31,9 @@ const UserMenu = () => {
               <p className="font-semibold">{fullName.length > 1 ? fullName : userData.user.username}</p>
             </Link>
           </DropdownItem>
-          <DropdownItem key="settings" textValue="My Settings">My Settings</DropdownItem>
-          <DropdownItem key="team_settings" textValue="Team Settings">Team Settings</DropdownItem>
-          <DropdownItem key="analytics" textValue="Analytics">Analytics</DropdownItem>
-          <DropdownItem key="system" textValue="System">System</DropdownItem>
-          <DropdownItem key="configurations" textValue="Configurations">Configurations</DropdownItem>
-          <DropdownItem key="help_and_feedback" textValue="Help & Feedback">Help & Feedback</DropdownItem>
+          <DropdownItem key="settings" textValue="My Settings">Language Settings</DropdownItem>
+          <DropdownItem key="get_support" textValue="Get Support">Get Support</DropdownItem>
+          <DropdownItem key="feedback" textValue="Feedback">Feedback</DropdownItem>
           <DropdownItem key="logout" textValue="Log Out" color="danger">Log Out</DropdownItem>
         </DropdownMenu>
       </Dropdown>
