@@ -13,6 +13,7 @@ import {
 } from "@/store/auth/actions/updatePassword.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
+import {handleLogout} from "@/utils/logout.ts";
 import {isValidPassword, validateField} from "@/utils/validate.ts";
 
 import {Card, CardBody, CardHeader, Input, Link} from "@nextui-org/react";
@@ -106,6 +107,8 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
           setShowCard(false);
           setIsResetPasswordDone(true);
           setIsResetPasswordSuccessful(true);
+        } else {
+          await handleLogout(dispatch);
         }
       } else {
         const passwordError = response.errors.data.password || response.errors.data.confirmPassword;
