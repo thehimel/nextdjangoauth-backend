@@ -56,6 +56,10 @@ const authSlice = createSlice({
     setRememberMe(state, action): void {
       state.rememberMe = action.payload;
     },
+    logout(state): void {
+      state.userData = initialUserData;
+      state.loggedIn = false;
+    },
   },
 });
 
