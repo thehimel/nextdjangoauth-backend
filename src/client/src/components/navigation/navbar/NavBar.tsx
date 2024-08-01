@@ -23,7 +23,7 @@ import {
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
-import {useLocation} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 export default function NavBar() {
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
@@ -43,11 +43,13 @@ export default function NavBar() {
         }}
         height="60px"
       >
-        <NavbarBrand>
-          <NavbarMenuToggle className="mr-2 h-6 sm:hidden" />
-          <AcmeIcon />
-          <p className="font-bold text-inherit">Client</p>
-        </NavbarBrand>
+        <NavbarMenuToggle className="h-6 sm:hidden" />
+        <NavLink to={HOME_URL}>
+          <NavbarBrand>
+            <AcmeIcon />
+            <p className="font-bold text-inherit">Client</p>
+          </NavbarBrand>
+        </NavLink>
 
         {/* Right Menu */}
         <NavbarContent className="ml-auto h-12 max-w-fit items-center gap-0" justify="end">
