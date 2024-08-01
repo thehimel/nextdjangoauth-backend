@@ -5,6 +5,7 @@ import FeatureBar from "@/components/navigation/navbar/FeatureBar.tsx";
 import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/components/navigation/navbar/UserMenu.tsx";
 import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher.tsx";
+import {HOME_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {
   Navbar,
@@ -22,10 +23,15 @@ import {
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
+import {useLocation} from "react-router-dom";
 
 export default function NavBar() {
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const showNotifications = false;
+  const location = useLocation();
+  const pathList = [HOME_URL];
+  const currentPath = location.pathname;
+  const showFeatureBar = pathList.includes(currentPath);
 
   return (
     <div className="w-full">
@@ -106,7 +112,7 @@ export default function NavBar() {
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
-      <FeatureBar/>
+      {showFeatureBar && <FeatureBar/>}
     </div>
   );
 }
