@@ -1,7 +1,7 @@
 import {PROFILE_URL} from "@/constants/urls.ts";
-import {logout, LogoutResponseInterface} from "@/store/auth/actions/logout.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
+import {handleLogout} from "@/utils/logout.ts";
 import {
   Avatar,
   Button,
@@ -12,7 +12,6 @@ import {
   Link,
   NavbarItem, User,
 } from "@nextui-org/react";
-import {toast} from "sonner";
 
 const UserMenu = () => {
   const dispatch: AppDispatch = useAppDispatch();
@@ -21,18 +20,8 @@ const UserMenu = () => {
   const avatarTitle = fullName.length > 1 ? fullName : userData.user.username
   const avatarImage = "/static/avatar.svg"
 
-  const handleLogout = async () => {
-    try {
-      const response: LogoutResponseInterface = await dispatch(logout());
-
-      if (response.success) {
-        toast.success("Logged out successfully.");
-      } else {
-        toast.error(response.errors?.message || "An error occurred during logout.");
-      }
-    } catch (error) {
-      toast.error("An unexpected error occurred during logout.");
-    }
+  const handleLogoutClick = async () => {
+    await handleLogout(dispatch);
   };
 
   return (
@@ -67,7 +56,7 @@ const UserMenu = () => {
             <DropdownItem key="feedback" textValue="Feedback">Feedback</DropdownItem>
           </DropdownSection >
 
-          <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogout}>Log Out</DropdownItem>
+          <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogoutClick}>Log Out</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </NavbarItem>
