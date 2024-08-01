@@ -5,10 +5,10 @@ import {
   Badge,
   Dropdown,
   DropdownItem,
-  DropdownMenu,
+  DropdownMenu, DropdownSection,
   DropdownTrigger,
   Link,
-  NavbarItem,
+  NavbarItem, User,
 } from "@nextui-org/react";
 
 const UserMenu = () => {
@@ -26,15 +26,41 @@ const UserMenu = () => {
           </button>
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
-          <DropdownItem key="profile" textValue="profile" className="h-12 gap-2">
-            <Link href={PROFILE_URL} color="foreground">
-              <p className="font-semibold">{fullName.length > 1 ? fullName : userData.user.username}</p>
-            </Link>
-          </DropdownItem>
-          <DropdownItem key="settings" textValue="My Settings">Language Settings</DropdownItem>
-          <DropdownItem key="get_support" textValue="Get Support">Get Support</DropdownItem>
-          <DropdownItem key="feedback" textValue="Feedback">Feedback</DropdownItem>
-          <DropdownItem key="logout" textValue="Log Out" color="danger">Log Out</DropdownItem>
+          <DropdownSection showDivider aria-label="profile">
+            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2">
+              <Link href={PROFILE_URL} color="foreground">
+                <User
+                  avatarProps={{
+                    size: "sm",
+                    imgProps: {
+                      className: "transition-none",
+                    },
+                    src: "/static/avatar.svg",
+                  }}
+                  classNames={{
+                    name: "font-semibold",
+                    description: "text-default-500",
+                  }}
+                  name={fullName.length > 1 ? fullName : userData.user.username}
+                  description={userData.user.email}
+                />
+              </Link>
+
+            </DropdownItem>
+          </DropdownSection>
+
+          <DropdownSection showDivider aria-label="Preferences">
+            <DropdownItem key="settings" textValue="My Settings">Language Settings</DropdownItem>
+          </DropdownSection>
+
+          <DropdownSection showDivider aria-label="Get Support & Feedback">
+            <DropdownItem key="get_support" textValue="Get Support">Get Support</DropdownItem>
+            <DropdownItem key="feedback" textValue="Feedback">Feedback</DropdownItem>
+          </DropdownSection >
+
+          <DropdownSection aria-label="Logout">
+            <DropdownItem key="logout" textValue="Log Out" color="danger">Log Out</DropdownItem>
+          </DropdownSection>
         </DropdownMenu>
       </Dropdown>
     </NavbarItem>
