@@ -32,6 +32,7 @@ export default function NavBar() {
   const pathList = [HOME_URL];
   const currentPath = location.pathname;
   const showFeatureBar = pathList.includes(currentPath);
+  const hideFeatureBar = true;
 
   return (
     <div className="w-full">
@@ -114,7 +115,7 @@ export default function NavBar() {
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
-      {showFeatureBar && <FeatureBar/>}
+      {!hideFeatureBar && showFeatureBar && <FeatureBar/>}
     </div>
   );
 }
