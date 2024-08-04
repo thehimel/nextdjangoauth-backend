@@ -36,7 +36,8 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
   const location = useLocation();
   const redirectPath = location.pathname;  // Store the path to redirect to after login
 
-  const pageTitle = isChangePassword ? "Change Password" : isResetPassword ? "Reset Password" : "Welcome";
+  const pageTitle = isChangePassword ? t("profile.changePassword")
+    : isResetPassword ? t("auth.passwordReset.resetPassword") : t("common.welcome");
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const [isLoading, setIsLoading] = React.useState(false);
