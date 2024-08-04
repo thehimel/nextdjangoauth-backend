@@ -11,14 +11,16 @@ import {CardProps} from "@nextui-org/react";
 
 import {Card, CardBody, Input} from "@nextui-org/react";
 import React, {FormEvent, useEffect} from "react";
+import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
 
 const Profile = (props: CardProps) => {
   const dispatch: AppDispatch = useAppDispatch();
-
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
+
   const redirectPath = location.pathname;  // Store the path to redirect to after login
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
@@ -57,21 +59,21 @@ const Profile = (props: CardProps) => {
       isValid: isValidUsername(username),
       setIsFieldValid: setIsUsernameValid,
       setFieldErrorMessage: setUsernameErrorMessage,
-      errorMessage: "Username must be minimum 6 characters, letters & numbers only.",
+      errorMessage: t("errors.invalidUsername"),
     }) && isFormValid;
 
     isFormValid = validateField({
       isValid: firstName.length > 0,
       setIsFieldValid: setIsFirstNameValid,
       setFieldErrorMessage: setFirstNameErrorMessage,
-      errorMessage: "Enter a valid first name.",
+      errorMessage: t("errors.invalidFirstName"),
     }) && isFormValid;
 
     isFormValid = validateField({
       isValid: lastName.length > 0,
       setIsFieldValid: setIsLastNameValid,
       setFieldErrorMessage: setLastNameErrorMessage,
-      errorMessage: "Enter a valid last name.",
+      errorMessage: t("errors.invalidLastName"),
     }) && isFormValid;
 
     if (isFormValid) {
@@ -84,7 +86,7 @@ const Profile = (props: CardProps) => {
       }
 
       if (response.success) {
-        toast.success("Profile updated successfully.");
+        toast.success(t("profile.updateSuccess"));
       } else {
         const usernameError = response.errors.data.username;
         const firstNameError = response.errors.data.firstName;
@@ -112,24 +114,24 @@ const Profile = (props: CardProps) => {
   return isLoggedIn ? (
       <Card className="w-full max-w-xl p-6 mt-2" {...props}>
         <ProfileHeader
-          title={"Account Details"}
+          title={t("profile.accountDetails")}
           firstName={firstName}
           lastName={lastName}
           email={email}
-          navigationLink={{url: CHANGE_PASSWORD_URL, title: "Change Password"}}
+          navigationLink={{url: CHANGE_PASSWORD_URL, title: t("profile.changePassword")}}
         />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="col-span-1 md:col-span-2">
               <Input
                 isRequired
-                label="Username"
+                label={t("forms.username")}
                 name="username"
                 autoComplete="username"
                 labelPlacement="outside"
                 type="text"
                 variant="bordered"
-                placeholder="Enter username"
+                placeholder={t("placeholders.username")}
                 errorMessage={!isUsernameValid ? usernameErrorMessage : undefined}
                 isInvalid={!isUsernameValid}
                 isDisabled={isLoading}
@@ -143,12 +145,12 @@ const Profile = (props: CardProps) => {
             </div>
             <Input
               isRequired
-              label="First Name"
+              label={t("forms.firstName")}
               name="firstName"
               labelPlacement="outside"
               type="text"
               variant="bordered"
-              placeholder="Enter first name"
+              placeholder={t("placeholders.firstName")}
               errorMessage={!isFirstNameValid ? firstNameErrorMessage : undefined}
               isInvalid={!isFirstNameValid}
               isDisabled={isLoading}
@@ -161,12 +163,12 @@ const Profile = (props: CardProps) => {
             />
             <Input
               isRequired
-              label="Last Name"
+              label={t("forms.lastName")}
               name="lastName"
               labelPlacement="outside"
               type="text"
               variant="bordered"
-              placeholder="Enter last name"
+              placeholder={t("placeholders.lastName")}
               errorMessage={!isLastNameValid ? lastNameErrorMessage : undefined}
               isInvalid={!isLastNameValid}
               isDisabled={isLoading}
