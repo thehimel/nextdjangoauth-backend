@@ -12,12 +12,13 @@ import {useTranslation} from "react-i18next";
 import {toast} from "sonner";
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+
   const changeLanguage = async (languageCode: LanguageCode): Promise<void> => {
     try {
       await i18n.changeLanguage(languageCode);
     } catch {
-      toast.error('Failed to change website language.');
+      toast.error(t("errors.websiteLanguage"));
     }
   };
 
@@ -34,7 +35,7 @@ const LanguageSelector = () => {
         </Button>
       </DropdownTrigger>
       <DropdownMenu
-        aria-label="Website Language"
+        aria-label={t("forms.websiteLanguage")}
         variant="flat"
         disallowEmptySelection
         selectionMode="single"
