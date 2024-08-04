@@ -45,6 +45,7 @@
   "common": {
     "welcome": "Welcome",
     "loading": "Loading...",
+    "search": "Search...",
     "yes": "Yes",
     "no": "No",
     "and": "and",
