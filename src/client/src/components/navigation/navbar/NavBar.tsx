@@ -2,6 +2,7 @@
 
 import AuthButtons from "@/components/navigation/navbar/AuthMenu.tsx";
 import FeatureBar from "@/components/navigation/navbar/FeatureBar.tsx";
+import LanguageSelector from "@/components/navigation/navbar/LanguageSelector.tsx";
 import Notifications from "@/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/components/navigation/navbar/UserMenu.tsx";
 import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher.tsx";
@@ -77,6 +78,10 @@ export default function NavBar() {
             <Button isIconOnly radius="full" variant="light">
               <Icon className="text-default-500" icon="solar:settings-linear" width={24} />
             </Button>
+          </NavbarItem>
+
+          <NavbarItem className="sm:flex pr-1">
+            <LanguageSelector/>
           </NavbarItem>
 
           {showNotifications && <Notifications/>}
