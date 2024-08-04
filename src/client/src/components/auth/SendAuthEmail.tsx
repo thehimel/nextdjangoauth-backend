@@ -10,6 +10,7 @@ import {Button, Spinner} from "@nextui-org/react";
 
 import {Input} from "@nextui-org/react";
 import React, {FC, FormEvent} from "react";
+import {useTranslation} from "react-i18next";
 
 export type AuthEmailRequestType = "resend_email_verification" | "forgot_password";
 
@@ -19,17 +20,18 @@ interface SendEmailProps {
 
 const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
   const dispatch: AppDispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const isResendEmailVerificationPage = requestType === "resend_email_verification";
   const isForgotPasswordPage = requestType === "forgot_password";
 
-  const headerTitle= isResendEmailVerificationPage ? "Resend Verification Email"
-    : isForgotPasswordPage ? "Forgot Password?" : "Welcome"
+  const headerTitle= isResendEmailVerificationPage ? t("auth.emailVerification.resendEmail")
+    : isForgotPasswordPage ? t("auth.login.forgotPassword") : t("common.welcome")
 
   const initialHeadline: MessageInterface = {
     text: isResendEmailVerificationPage ?
-      "Email verification failed. However, you can resend the confirmation email."
-      : isForgotPasswordPage ? "Enter your email address and we'll send you a link to reset your password." : "Welcome",
+      t("auth.emailVerification.failed")
+      : isForgotPasswordPage ? t("auth.passwordReset.enterEmail") : t("common.welcome"),
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
@@ -50,7 +52,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
       isValid: isValidEmail(email),
       setIsFieldValid: setIsEmailValid,
       setFieldErrorMessage: setEmailErrorMessage,
-      errorMessage: "Enter a valid email.",
+      errorMessage: t("errors.invalidEmail"),
     }) && isFormValid;
 
     if (isFormValid) {
@@ -65,12 +67,12 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
         setIsEmailSent(true);
         if (isResendEmailVerificationPage) {
           setHeadline({
-            text: "Verification email sent successfully. Please check your inbox to verify the email.",
+            text: t("auth.emailVerification.emailSent"),
             color: "default",
           });
         } else {
           setHeadline({
-            text: "Password reset email is sent if you already have an account with this email address.",
+            text: t("auth.passwordReset.emailSent"),
             color: "default",
           });
         }
@@ -95,7 +97,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
             <Input
               autoFocus
               isRequired
-              label="Email Address"
+              label={t("forms.email")}
               name="email"
               autoComplete="email"
               type="email"
@@ -116,7 +118,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
               isDisabled={isLoading}
               endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
             >
-              Send
+              {t("forms.send")}
             </Button>
           </form>
         }
