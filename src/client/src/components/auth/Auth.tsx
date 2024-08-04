@@ -60,14 +60,14 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
       isValid: isValidEmail(email),
       setIsFieldValid: setIsEmailValid,
       setFieldErrorMessage: setEmailErrorMessage,
-      errorMessage: "Enter a valid email.",
+      errorMessage: t("errors.invalidEmail"),
     }) && isFormValid;
 
     isFormValid = validateField({
       isValid: isValidPassword(password),
       setIsFieldValid: setIsPasswordValid,
       setFieldErrorMessage: setPasswordErrorMessage,
-      errorMessage: "Enter a valid password.",
+      errorMessage: t("errors.invalidPassword"),
     }) && isFormValid;
 
     if (isSignupPage) {
