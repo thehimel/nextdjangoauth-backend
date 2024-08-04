@@ -32,7 +32,8 @@
     "confirmNewPassword": "Confirm New Password",
     "submit": "Submit",
     "save": "Save",
-    "send": "Send"
+    "send": "Send",
+    "cancel": "Cancel"
   },
   "placeholders": {
     "username": "Enter username",
@@ -42,8 +43,6 @@
   "common": {
     "welcome": "Welcome",
     "loading": "Loading...",
-    "save": "Save",
-    "cancel": "Cancel",
     "yes": "Yes",
     "no": "No",
     "and": "and",

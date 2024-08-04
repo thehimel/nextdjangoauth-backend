@@ -32,7 +32,8 @@
     "confirmNewPassword": "Neues Passwort bestätigen",
     "submit": "Absenden",
     "save": "Speichern",
-    "send": "Senden"
+    "send": "Senden",
+    "cancel": "Abbrechen"
   },
   "placeholders": {
     "username": "Benutzernamen eingeben",
@@ -42,8 +43,6 @@
   "common": {
     "welcome": "Willkommen",
     "loading": "Lädt...",
-    "save": "Speichern",
-    "cancel": "Abbrechen",
     "yes": "Ja",
     "no": "Nein",
     "and": "und",
