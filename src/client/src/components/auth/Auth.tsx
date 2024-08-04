@@ -10,6 +10,7 @@ import {isValidEmail, isValidPassword, validateField} from "@/utils/validate.ts"
 import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
+import {useTranslation} from "react-i18next";
 
 import {useLocation, useNavigate} from "react-router-dom";
 
@@ -21,18 +22,18 @@ interface AuthProps {
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch: AppDispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   const from = location.state?.from === CHANGE_PASSWORD_URL ? HOME_URL : (location.state?.from || HOME_URL);
 
-  const dispatch: AppDispatch = useAppDispatch();
   const isSignupPage = pageType === "signup";
   const isLoginPage = pageType === "login";
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRememberMe, setIsRememberMe] = React.useState(true);
   const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
-
   const [isAgree, setIsAgree] = React.useState(true);
-  const isAgreeErrorMessage = "You must agree to the Terms and Privacy Policy to continue.";
 
   const [email, setEmail] = React.useState("");
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
@@ -74,7 +75,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
         isValid: isValidPassword(confirmPassword) && confirmPassword === password,
         setIsFieldValid: setIsConfirmPasswordValid,
         setFieldErrorMessage: setConfirmPasswordErrorMessage,
-        errorMessage: confirmPassword !== password ? "Passwords do not match." : "Enter a valid password."
+        errorMessage: confirmPassword !== password ? t("errors.passwordMismatch") : t("errors.invalidPassword")
       }) && isFormValid;
     }
 
@@ -121,7 +122,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
           setEmailErrorMessage("");
 
           setIsPasswordValid(false);
-          setPasswordErrorMessage("Unable to log in with provided credentials.");
+          setPasswordErrorMessage(t("errors.invalidEmailOrPassword"));
         }
       }
       setIsLoading(false);
@@ -137,7 +138,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
             <Input
               autoFocus
               isRequired
-              label="Email Address"
+              label={t("forms.email")}
               name="email"
               autoComplete="email"
               type="email"
@@ -158,7 +159,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                   {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                 </button>
               }
-              label="Password"
+              label={t("forms.password")}
               name="password"
               autoComplete="new-password"
               variant="bordered"
@@ -180,7 +181,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                     {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                   </button>
                 }
-                label="Confirm Password"
+                label={t("forms.confirmPassword")}
                 name="confirmPassword"
                 autoComplete="new-password"
                 variant="bordered"
@@ -206,10 +207,12 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                   defaultSelected={isAgree}
                   onValueChange={(value) => setIsAgree(value)}
                 >
-                  I agree with the&nbsp;
-                  <Link href="#" size="sm">Terms</Link>&nbsp;and&nbsp;<Link href="#" size="sm">Privacy Policy</Link>
+                  {t("privacy.agreeWithThe")}&nbsp;
+                  <Link href="#" size="sm">{t("privacy.terms")}</Link>&nbsp;
+                  {t("common.and").toLowerCase()}&nbsp;
+                  <Link href="#" size="sm">{t("privacy.privacyPolicy")}</Link>
                 </Checkbox>
-                {!isAgree ? <p className="text-small text-danger pb-2">{isAgreeErrorMessage}</p> : null}
+                {!isAgree ? <p className="text-small text-danger pb-2">{t("privacy.agreeToContinue")}</p> : null}
               </>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
@@ -221,9 +224,11 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
                   defaultSelected={isRememberMe}
                   onValueChange={(value) => setIsRememberMe(value)}
                 >
-                  Remember me
+                  {t("auth.login.rememberMe")}
                 </Checkbox>
-                <Link className="text-default-500" href={FORGOT_PASSWORD_URL} size="sm">Forgot password?</Link>
+                <Link className="text-default-500" href={FORGOT_PASSWORD_URL} size="sm">
+                  {t("auth.login.forgotPassword")}
+                </Link>
               </div>
             )}
             <Button
@@ -231,7 +236,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               type="submit"
               isDisabled={isLoading}
               endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}>
-              {isSignupPage ? "Sign Up" : "Log in"}
+              {isSignupPage ? t("navigation.signup") : t("navigation.login")}
             </Button>
           </form>
           <div className="flex items-center gap-4">
@@ -241,20 +246,20 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
           </div>
           <div className="flex flex-col gap-2">
             <Button isDisabled={isLoading} startContent={<Icon icon="flat-color-icons:google" width={24} />}>
-              Continue with Google
+              {t("auth.login.continueWithGoogle")}
             </Button>
           </div>
           <p className="text-center text-small">
             {isSignupPage ? (
-              <>Already have an account?&nbsp;<Link href={LOGIN_URL} size="sm">Log In</Link></>
+              <>{t("auth.login.alreadyHaveAccount")}&nbsp;<Link href={LOGIN_URL} size="sm">{t("navigation.login")}</Link></>
             ) : (
-              <>Need to create an account?&nbsp;<Link href={SIGNUP_URL} size="sm">Sign Up</Link></>
+              <>{t("auth.signup.needToCreateAccount")}&nbsp;<Link href={SIGNUP_URL} size="sm">{t("navigation.signup")}</Link></>
             )}
           </p>
         </div>
         ) : (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-          <p>Thanks for signing up. Please check your inbox to verify the email.</p>
+          <p>{t("auth.signup.thanksForSigningUp")}</p>
         </div>
       )}
     </div>
