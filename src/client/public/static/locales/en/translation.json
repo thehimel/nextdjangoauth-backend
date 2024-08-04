@@ -12,6 +12,8 @@
     "required": "This field is required.",
     "invalidEmail": "Please enter a valid email address.",
     "invalidPassword": "Please enter a valid password.",
+    "passwordMismatch": "Passwords do not match.",
+    "invalidEmailOrPassword": "Invalid email or password.",
     "minLength": "Minimum length is {min} characters.",
     "maxLength": "Maximum length is {max} characters."
   },
@@ -20,6 +22,8 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
+    "newPassword": "New Password",
+    "confirmNewPassword": "Confirm New Password",
     "submit": "Submit"
   },
   "common": {
@@ -28,6 +32,55 @@
     "save": "Save",
     "cancel": "Cancel",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "and": "and",
+    "or": "or"
+  },
+  "auth": {
+    "login": {
+      "loginToAccount": "Log in to your account to continue.",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "continueWithGoogle": "Continue with Google",
+      "alreadyHaveAccount": "Already have an account?"
+    },
+    "signup": {
+      "createAccount": "Create your account to get started.",
+      "needToCreateAccount": "Need to create an account?",
+      "thanksForSigningUp": "Thanks for signing up. Please check your inbox to verify the email."
+    },
+    "emailVerification": {
+      "emailVerifiedSuccessfully": "Email verified successfully.",
+      "verifyingEmail": "Verifying email.",
+      "emailVerifiedLogIn": "Email verified. Log in to your account to continue.",
+      "resendVerificationEmail": "Resend Verification Email",
+      "emailVerificationFailed": "Email verification failed. However, you can resend the confirmation email.",
+      "verificationEmailSentSuccessfully": "Verification email sent successfully. Please check your inbox to verify the email."
+    },
+    "passwordReset": {
+      "resetPassword": "Reset Password",
+      "enterEmailToResetPassword": "Enter your email address and we'll send you a link to reset your password.",
+      "passwordResetEmailSent": "Password reset email is sent if you already have an account with this email address.",
+      "resendPasswordResetLink": "Resend password reset link?",
+      "passwordResetSuccessful": "Password reset successful. Log in to your account to continue.",
+      "passwordUpdatedSuccessfully": "Password updated successfully.",
+      "invalidPasswordResetLink": "Invalid password reset link",
+      "requestNewLink": "Request a new link?"
+    }
+  },
+  "badges": {
+    "basicMember": "Basic Member",
+    "proMember": "Pro Member"
+  },
+  "profile": {
+    "accountDetails": "Account Details",
+    "updateProfile": "Update Profile",
+    "updateSuccess": "Profile updated successfully.",
+    "changePassword": "Change Password"
+  },
+  "privacy": {
+    "agreeWithThe": "I agree with the",
+    "terms": "Terms",
+    "privacyPolicy": "Privacy Policy"
   }
 }

@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Startseite",
     "about": "Über uns",
-    "support": "Support erhalten",
+    "support": "Hilfe",
     "feedback": "Feedback",
     "contact": "Kontakt",
     "login": "Anmelden",
@@ -12,22 +12,75 @@
     "required": "Dieses Feld ist erforderlich.",
     "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
     "invalidPassword": "Bitte geben Sie ein gültiges Passwort ein.",
-    "minLength": "Die Mindestlänge beträgt {min} Zeichen.",
-    "maxLength": "Die Maximallänge beträgt {max} Zeichen."
+    "passwordMismatch": "Die Passwörter stimmen nicht überein.",
+    "invalidEmailOrPassword": "Ungültige E-Mail-Adresse oder Passwort.",
+    "minLength": "Minimale Länge ist {min} Zeichen.",
+    "maxLength": "Maximale Länge ist {max} Zeichen."
   },
   "forms": {
     "name": "Name",
     "email": "E-Mail",
     "password": "Passwort",
     "confirmPassword": "Passwort bestätigen",
+    "newPassword": "Neues Passwort",
+    "confirmNewPassword": "Neues Passwort bestätigen",
     "submit": "Absenden"
   },
   "common": {
     "welcome": "Willkommen",
-    "loading": "Laden...",
+    "loading": "Lädt...",
     "save": "Speichern",
     "cancel": "Abbrechen",
     "yes": "Ja",
-    "no": "Nein"
+    "no": "Nein",
+    "and": "und",
+    "or": "oder"
+  },
+  "auth": {
+    "login": {
+      "loginToAccount": "Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
+      "rememberMe": "Erinnere dich an mich",
+      "forgotPassword": "Passwort vergessen?",
+      "continueWithGoogle": "Mit Google fortfahren",
+      "alreadyHaveAccount": "Haben Sie bereits ein Konto?"
+    },
+    "signup": {
+      "createAccount": "Erstellen Sie Ihr Konto, um loszulegen.",
+      "needToCreateAccount": "Müssen Sie ein Konto erstellen?",
+      "thanksForSigningUp": "Danke für die Registrierung. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
+    },
+    "emailVerification": {
+      "emailVerifiedSuccessfully": "E-Mail erfolgreich verifiziert.",
+      "verifyingEmail": "E-Mail wird überprüft.",
+      "emailVerifiedLogIn": "E-Mail verifiziert. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
+      "resendVerificationEmail": "Bestätigungs-E-Mail erneut senden",
+      "emailVerificationFailed": "E-Mail-Verifizierung fehlgeschlagen. Sie können jedoch die Bestätigungs-E-Mail erneut senden.",
+      "verificationEmailSentSuccessfully": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
+    },
+    "passwordReset": {
+      "resetPassword": "Passwort zurücksetzen",
+      "enterEmailToResetPassword": "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+      "passwordResetEmailSent": "E-Mail zum Zurücksetzen des Passworts wurde gesendet, wenn Sie bereits ein Konto mit dieser E-Mail-Adresse haben.",
+      "resendPasswordResetLink": "Passwort-Zurücksetzungslink erneut senden?",
+      "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
+      "passwordUpdatedSuccessfully": "Passwort erfolgreich aktualisiert.",
+      "invalidPasswordResetLink": "Ungültiger Passwort-Zurücksetzungslink",
+      "requestNewLink": "Neuen Link anfordern?"
+    }
+  },
+  "badges": {
+    "basicMember": "Basis-Mitglied",
+    "proMember": "Pro-Mitglied"
+  },
+  "profile": {
+    "accountDetails": "Kontodaten",
+    "updateProfile": "Profil aktualisieren",
+    "updateSuccess": "Profil erfolgreich aktualisiert.",
+    "changePassword": "Passwort ändern"
+  },
+  "privacy": {
+    "agreeWithThe": "Ich stimme den",
+    "terms": "Bedingungen",
+    "privacyPolicy": "Datenschutzrichtlinien"
   }
 }
