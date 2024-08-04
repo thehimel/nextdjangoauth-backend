@@ -24,7 +24,8 @@
     "confirmPassword": "Passwort bestätigen",
     "newPassword": "Neues Passwort",
     "confirmNewPassword": "Neues Passwort bestätigen",
-    "submit": "Absenden"
+    "submit": "Absenden",
+    "send": "Senden"
   },
   "common": {
     "welcome": "Willkommen",
@@ -55,7 +56,7 @@
       "successLogin": "E-Mail verifiziert. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
       "resendEmail": "Bestätigungs-E-Mail erneut senden",
       "failed": "E-Mail-Verifizierung fehlgeschlagen. Sie können jedoch die Bestätigungs-E-Mail erneut senden.",
-      "EmailSentSuccessfully": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
+      "emailSent": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
     },
     "passwordReset": {
       "resetPassword": "Passwort zurücksetzen",
