@@ -50,21 +50,21 @@
       "thanksForSigningUp": "Thanks for signing up. Please check your inbox to verify the email."
     },
     "emailVerification": {
-      "emailVerifiedSuccessfully": "Email verified successfully.",
+      "success": "Email verified successfully.",
       "verifyingEmail": "Verifying email.",
       "emailVerifiedLogIn": "Email verified. Log in to your account to continue.",
-      "resendVerificationEmail": "Resend Verification Email",
-      "emailVerificationFailed": "Email verification failed. However, you can resend the confirmation email.",
-      "verificationEmailSentSuccessfully": "Verification email sent successfully. Please check your inbox to verify the email."
+      "resendEmail": "Resend Verification Email",
+      "failed": "Email verification failed. However, you can resend the confirmation email.",
+      "EmailSentSuccessfully": "Verification email sent successfully. Please check your inbox to verify the email."
     },
     "passwordReset": {
       "resetPassword": "Reset Password",
-      "enterEmailToResetPassword": "Enter your email address and we'll send you a link to reset your password.",
-      "passwordResetEmailSent": "Password reset email is sent if you already have an account with this email address.",
-      "resendPasswordResetLink": "Resend password reset link?",
-      "passwordResetSuccessful": "Password reset successful. Log in to your account to continue.",
-      "passwordUpdatedSuccessfully": "Password updated successfully.",
-      "invalidPasswordResetLink": "Invalid password reset link",
+      "enterEmail": "Enter your email address and we'll send you a link to reset your password.",
+      "emailSent": "Password reset email is sent if you already have an account with this email address.",
+      "resendLink": "Resend password reset link?",
+      "success": "Password reset successful. Log in to your account to continue.",
+      "updateSuccess": "Password updated successfully.",
+      "invalidLink": "Invalid password reset link",
       "requestNewLink": "Request a new link?"
     }
   },

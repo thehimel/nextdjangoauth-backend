@@ -50,21 +50,21 @@
       "thanksForSigningUp": "Danke für die Registrierung. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
     },
     "emailVerification": {
-      "emailVerifiedSuccessfully": "E-Mail erfolgreich verifiziert.",
+      "success": "E-Mail erfolgreich verifiziert.",
       "verifyingEmail": "E-Mail wird überprüft.",
       "emailVerifiedLogIn": "E-Mail verifiziert. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
-      "resendVerificationEmail": "Bestätigungs-E-Mail erneut senden",
-      "emailVerificationFailed": "E-Mail-Verifizierung fehlgeschlagen. Sie können jedoch die Bestätigungs-E-Mail erneut senden.",
-      "verificationEmailSentSuccessfully": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
+      "resendEmail": "Bestätigungs-E-Mail erneut senden",
+      "failed": "E-Mail-Verifizierung fehlgeschlagen. Sie können jedoch die Bestätigungs-E-Mail erneut senden.",
+      "EmailSentSuccessfully": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
     },
     "passwordReset": {
       "resetPassword": "Passwort zurücksetzen",
-      "enterEmailToResetPassword": "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
-      "passwordResetEmailSent": "E-Mail zum Zurücksetzen des Passworts wurde gesendet, wenn Sie bereits ein Konto mit dieser E-Mail-Adresse haben.",
-      "resendPasswordResetLink": "Passwort-Zurücksetzungslink erneut senden?",
-      "passwordResetSuccessful": "Passwort erfolgreich zurückgesetzt. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
-      "passwordUpdatedSuccessfully": "Passwort erfolgreich aktualisiert.",
-      "invalidPasswordResetLink": "Ungültiger Passwort-Zurücksetzungslink",
+      "enterEmail": "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts.",
+      "emailSent": "E-Mail zum Zurücksetzen des Passworts wurde gesendet, wenn Sie bereits ein Konto mit dieser E-Mail-Adresse haben.",
+      "resendLink": "Passwort-Zurücksetzungslink erneut senden?",
+      "success": "Passwort erfolgreich zurückgesetzt. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
+      "updateSuccess": "Passwort erfolgreich aktualisiert.",
+      "invalidLink": "Ungültiger Passwort-Zurücksetzungslink",
       "requestNewLink": "Neuen Link anfordern?"
     }
   },
