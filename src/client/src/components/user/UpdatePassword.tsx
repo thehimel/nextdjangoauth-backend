@@ -18,6 +18,7 @@ import {isValidPassword, validateField} from "@/utils/validate.ts";
 
 import {Card, CardBody, CardHeader, Input, Link} from "@nextui-org/react";
 import React, {FC, FormEvent, useEffect} from "react";
+import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {toast} from "sonner";
 
@@ -29,6 +30,7 @@ interface UpdatePasswordProps {
 const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isResetPassword = false}) => {
   const dispatch: AppDispatch = useAppDispatch();
   const { uid, token } = useParams();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,14 +78,14 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
       isValid: isValidPassword(password),
       setIsFieldValid: setIsPasswordValid,
       setFieldErrorMessage: setPasswordErrorMessage,
-      errorMessage: "Enter a valid password.",
+      errorMessage: t("errors.invalidPassword"),
     }) && isFormValid;
 
     isFormValid = validateField({
       isValid: isValidPassword(confirmPassword) && confirmPassword === password,
       setIsFieldValid: setIsConfirmPasswordValid,
       setFieldErrorMessage: setConfirmPasswordErrorMessage,
-      errorMessage: confirmPassword !== password ? "Passwords do not match." : "Enter a valid password."
+      errorMessage: confirmPassword !== password ? t("errors.passwordMismatch") : t("errors.invalidPassword")
     }) && isFormValid;
 
     if (isFormValid) {
@@ -102,7 +104,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
       }
 
       if (response.success) {
-        toast.success("Password updated successfully.")
+        toast.success(t("auth.passwordReset.updateSuccess"))
         if (isResetPassword) {
           setShowCard(false);
           setIsResetPasswordDone(true);
@@ -135,7 +137,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
     <>
       {showCard && (
         <div className={`w-full flex flex-col ${isResetPassword ? 'max-w-sm' : 'max-w-xl'}`}>
-          {isResetPassword && <AuthHeader headerTitle={"Reset Password"}/>}
+          {isResetPassword && <AuthHeader headerTitle={t("auth.passwordReset.resetPassword")}/>}
           <Card className="p-6 mt-2">
             {isChangePassword && (
               <ProfileHeader
@@ -143,13 +145,14 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
                 firstName={firstName}
                 lastName={lastName}
                 email={email}
-                navigationLink={{url: PROFILE_URL, title: "Update Profile"}}
+                navigationLink={{url: PROFILE_URL, title: t("profile.updateProfile")}}
               />
             )}
             {isResetPasswordDone && !isResetPasswordSuccessful && (
               <CardHeader className="flex flex-col pt-0 pb-0">
                 <p className="text-center text-danger">
-                  {"Invalid password reset link."} <Link href={FORGOT_PASSWORD_URL} >Resend password resend link?</Link>
+                  {t("auth.passwordReset.invalidLink")}&nbsp;
+                  <Link href={FORGOT_PASSWORD_URL}>{t("auth.passwordReset.resendLink")}</Link>
                 </p>
               </CardHeader>
             )}
@@ -163,7 +166,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
                         {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                       </button>
                     }
-                    label="New Password"
+                    label={t("forms.newPassword")}
                     name="password"
                     autoComplete="new-password"
                     variant="bordered"
@@ -185,7 +188,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
                         {isConfirmPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
                       </button>
                     }
-                    label="Confirm New Password"
+                    label={t("forms.confirmNewPassword")}
                     name="confirmPassword"
                     autoComplete="new-password"
                     variant="bordered"
@@ -201,14 +204,14 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
                     }}
                   />
                 </CardBody>
-                <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled}/>
+                <ProfileFooter title={t("forms.save")} isLoading={isLoading} isDisabled={isSubmitDisabled}/>
               </form>
             )}
           </Card>
         </div>
       )}
       {isResetPasswordSuccessful && (
-        <Auth pageType={"login"} headline={"Password reset successful. Log in to your to continue."}/>
+        <Auth pageType={"login"} headline={t("auth.passwordReset.success")}/>
       )}
     </>
   );
