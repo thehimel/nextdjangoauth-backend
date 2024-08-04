@@ -24,12 +24,15 @@ import {
 import {Icon} from "@iconify/react";
 
 import {AcmeIcon} from "@/components/icons/acme.tsx";
+import {useTranslation} from "react-i18next";
 import {NavLink, useLocation} from "react-router-dom";
 
 export default function NavBar() {
+  const location = useLocation();
+  const { t } = useTranslation();
+
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const showNotifications = false;
-  const location = useLocation();
   const pathList = [HOME_URL];
   const currentPath = location.pathname;
   const showFeatureBar = pathList.includes(currentPath);
@@ -58,12 +61,12 @@ export default function NavBar() {
           {/* Search */}
           <NavbarItem className="mr-2 hidden sm:flex">
             <Input
-              aria-label="Search"
+              aria-label={t("common.search")}
               classNames={{
                 inputWrapper: "bg-default-400/20 dark:bg-default-500/20",
               }}
               labelPlacement="outside"
-              placeholder="Search..."
+              placeholder={`${t("common.search")}...`}
               radius="full"
               startContent={
                 <Icon className="text-default-500" icon="solar:magnifer-linear" width={20} />
