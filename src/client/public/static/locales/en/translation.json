@@ -19,9 +19,10 @@
     "invalidLastName": "Please enter a valid last name.",
     "minLength": "Minimum length is {min} characters.",
     "maxLength": "Maximum length is {max} characters.",
-    "changeLanguageFailed": "Failed to change website language."
+    "websiteLanguage": "Failed to change website language."
   },
   "forms": {
+    "websiteLanguage": "Website Language",
     "name": "Name",
     "username": "Username",
     "firstName": "First Name",
