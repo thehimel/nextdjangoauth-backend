@@ -81,6 +81,7 @@
   "privacy": {
     "agreeWithThe": "Ich stimme den",
     "terms": "Bedingungen",
-    "privacyPolicy": "Datenschutzrichtlinien"
+    "privacyPolicy": "Datenschutzrichtlinien",
+    "agreeToContinue": "Um fortzufahren, müssen Sie den Bedingungen und der Datenschutzrichtlinie zustimmen."
   }
 }
