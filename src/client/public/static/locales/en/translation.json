@@ -22,6 +22,9 @@
   },
   "forms": {
     "name": "Name",
+    "username": "Username",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
@@ -30,6 +33,11 @@
     "submit": "Submit",
     "save": "Save",
     "send": "Send"
+  },
+  "placeholders": {
+    "username": "Enter username",
+    "firstName": "Enter first name",
+    "lastName": "Enter last name"
   },
   "common": {
     "welcome": "Welcome",
