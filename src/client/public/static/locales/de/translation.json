@@ -14,6 +14,7 @@
     "invalidPassword": "Bitte geben Sie ein gültiges Passwort ein.",
     "passwordMismatch": "Die Passwörter stimmen nicht überein.",
     "invalidEmailOrPassword": "Ungültige E-Mail-Adresse oder Passwort.",
+    "invalidUsername": "Der Benutzername muss mindestens 6 Zeichen lang sein und darf nur Buchstaben und Zahlen enthalten.",
     "minLength": "Minimale Länge ist {min} Zeichen.",
     "maxLength": "Maximale Länge ist {max} Zeichen."
   },
