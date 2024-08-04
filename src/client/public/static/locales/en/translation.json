@@ -18,7 +18,8 @@
     "invalidFirstName": "Please enter a valid first name.",
     "invalidLastName": "Please enter a valid last name.",
     "minLength": "Minimum length is {min} characters.",
-    "maxLength": "Maximum length is {max} characters."
+    "maxLength": "Maximum length is {max} characters.",
+    "changeLanguageFailed": "Failed to change website language."
   },
   "forms": {
     "name": "Name",

@@ -18,7 +18,8 @@
     "invalidFirstName": "Bitte geben Sie einen gültigen Vornamen ein.",
     "invalidLastName": "Bitte geben Sie einen gültigen Nachnamen ein.",
     "minLength": "Minimale Länge ist {min} Zeichen.",
-    "maxLength": "Maximale Länge ist {max} Zeichen."
+    "maxLength": "Maximale Länge ist {max} Zeichen.",
+    "changeLanguageFailed": "Fehler beim Ändern der Website-Sprache."
   },
   "forms": {
     "name": "Name",
