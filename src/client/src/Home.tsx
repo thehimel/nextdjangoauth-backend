@@ -1,8 +1,12 @@
+import {useTranslation} from "react-i18next";
+
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="p-2">
       <div className="flex flex-wrap gap-2 justify-center">
-        <p>Hello, World!</p>
+        <p>{t('welcome_message')}</p>
       </div>
     </div>
   );
