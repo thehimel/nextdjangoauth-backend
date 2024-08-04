@@ -1,4 +1,5 @@
 import NavBar from "@/components/navigation/navbar/NavBar.tsx";
+import {quantum} from "ldrs";
 import {useTheme} from "next-themes";
 import {useEffect} from "react";
 import {Outlet} from "react-router-dom";
@@ -12,6 +13,7 @@ const App = () => {
   const theme = darkMode ? 'dark' : 'light';
   useEffect(() => {
     setTheme(theme);
+    quantum.register(); // Register quantum once when App mounts
   }, [darkMode, setTheme, theme]);
 
   return (

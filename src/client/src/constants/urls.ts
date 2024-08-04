@@ -1,4 +1,5 @@
 export const HOME_URL = "/";
+export const LOADER_URL = "/loader/"
 export const SIGNUP_URL = "/signup/";
 export const LOGIN_URL = "/login/";
 export const PROFILE_URL = "/profile/";
