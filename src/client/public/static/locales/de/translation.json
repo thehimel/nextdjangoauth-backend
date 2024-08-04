@@ -1,3 +1,33 @@
 {
-  "welcome_message": "Hallo!"
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "support": "Support erhalten",
+    "feedback": "Feedback",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "signup": "Registrieren"
+  },
+  "errors": {
+    "required": "Dieses Feld ist erforderlich.",
+    "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "invalidPassword": "Bitte geben Sie ein gültiges Passwort ein.",
+    "minLength": "Die Mindestlänge beträgt {min} Zeichen.",
+    "maxLength": "Die Maximallänge beträgt {max} Zeichen."
+  },
+  "forms": {
+    "name": "Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "submit": "Absenden"
+  },
+  "common": {
+    "welcome": "Willkommen",
+    "loading": "Laden...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "yes": "Ja",
+    "no": "Nein"
+  }
 }
