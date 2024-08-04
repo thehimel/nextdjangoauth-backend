@@ -16,7 +16,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 
 interface AuthProps {
   pageType: "signup" | "login" | "reset_password";
-  headline: string;
+  headline?: string;
 }
 
 const Auth: FC<AuthProps> = ({pageType, headline}) => {
@@ -29,6 +29,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
   const isSignupPage = pageType === "signup";
   const isLoginPage = pageType === "login";
+  const authHeadline = headline || (isSignupPage ? t("auth.signup.createAccount") : t("auth.login.loginToAccount"));
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRememberMe, setIsRememberMe] = React.useState(true);
@@ -131,7 +132,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <AuthHeader headerTitle={"Welcome"} headline={{text: headline, color: "default"}}/>
+      <AuthHeader headerTitle={t("common.welcome")} headline={{text: authHeadline, color: "default"}}/>
       {!isSignupSuccessful ? (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
