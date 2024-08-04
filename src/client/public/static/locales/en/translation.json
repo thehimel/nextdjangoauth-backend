@@ -15,6 +15,8 @@
     "passwordMismatch": "Passwords do not match.",
     "invalidEmailOrPassword": "Invalid email or password.",
     "invalidUsername": "Username must be minimum 6 characters, letters & numbers only.",
+    "invalidFirstName": "Please enter a valid first name.",
+    "invalidLastName": "Please enter a valid last name.",
     "minLength": "Minimum length is {min} characters.",
     "maxLength": "Maximum length is {max} characters."
   },
