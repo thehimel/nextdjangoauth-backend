@@ -2,11 +2,13 @@
   "navigation": {
     "home": "Startseite",
     "about": "Über uns",
+    "languageSettings": "Spracheinstellungen",
     "support": "Hilfe",
     "feedback": "Feedback",
     "contact": "Kontakt",
     "login": "Anmelden",
-    "signup": "Registrieren"
+    "signup": "Registrieren",
+    "logout": "Abmelden"
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",

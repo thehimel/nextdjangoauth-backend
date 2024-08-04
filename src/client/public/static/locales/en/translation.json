@@ -2,11 +2,13 @@
   "navigation": {
     "home": "Home",
     "about": "About Us",
+    "languageSettings": "Language Settings",
     "support": "Get Support",
     "feedback": "Feedback",
     "contact": "Contact",
     "login": "Login",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "logout": "Logout"
   },
   "errors": {
     "required": "This field is required.",
