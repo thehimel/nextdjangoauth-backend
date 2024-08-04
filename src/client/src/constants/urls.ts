@@ -6,7 +6,7 @@ export const PROFILE_URL = "/profile/";
 export const CHANGE_PASSWORD_URL = "/profile/change-password/";
 export const CONFIRM_EMAIL_URL = "/signup/confirm-email/:key/";
 export const FORGOT_PASSWORD_URL = "/recovery/forgot-password/";
-export const RESET_PASSWORD_URL = "recovery/reset-password/:uid/:token/"
+export const RESET_PASSWORD_URL = "/recovery/reset-password/:uid/:token/"
 
 export const SIGNUP_API_URL = "/api/auth/registration/";
 export const LOGIN_API_URL = "/api/auth/login/";
