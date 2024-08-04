@@ -12,9 +12,12 @@ import {
   Link,
   NavbarItem, User,
 } from "@nextui-org/react";
+import {useTranslation} from "react-i18next";
 
 const UserMenu = () => {
   const dispatch: AppDispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   const userData = useAppSelector((state) => state.auth.userData);
   const fullName = `${userData.user.first_name} ${userData.user.last_name}`
   const avatarTitle = fullName.length > 1 ? fullName : userData.user.username
@@ -40,7 +43,7 @@ const UserMenu = () => {
                   avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
                   classNames={{name: "font-semibold", description: "text-default-500"}}
                   name={avatarTitle}
-                  description="General User"
+                  description={t("badges.basicMember")}
                 />
               </Link>
 
@@ -48,15 +51,17 @@ const UserMenu = () => {
           </DropdownSection>
 
           <DropdownSection showDivider aria-label="Preferences">
-            <DropdownItem key="settings" textValue="My Settings">Language Settings</DropdownItem>
+            <DropdownItem key="settings" textValue="My Settings">{t("navigation.languageSettings")}</DropdownItem>
           </DropdownSection>
 
           <DropdownSection showDivider aria-label="Get Support & Feedback">
-            <DropdownItem key="get_support" textValue="Get Support">Get Support</DropdownItem>
-            <DropdownItem key="feedback" textValue="Feedback">Feedback</DropdownItem>
+            <DropdownItem key="get_support" textValue="Get Support">{t("navigation.support")}</DropdownItem>
+            <DropdownItem key="feedback" textValue="Feedback">{t("navigation.feedback")}</DropdownItem>
           </DropdownSection >
 
-          <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogoutClick}>Log Out</DropdownItem>
+          <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogoutClick}>
+            {t("navigation.logout")}
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </NavbarItem>
