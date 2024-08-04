@@ -180,7 +180,7 @@ const Profile = (props: CardProps) => {
               }}
             />
           </CardBody>
-          <ProfileFooter title={"Save"} isLoading={isLoading} isDisabled={isSubmitDisabled} />
+          <ProfileFooter title={t("forms.save")} isLoading={isLoading} isDisabled={isSubmitDisabled} />
         </form>
     </Card>
   ) : null;
