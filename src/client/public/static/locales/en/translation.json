@@ -52,7 +52,7 @@
     "emailVerification": {
       "success": "Email verified successfully.",
       "verifyingEmail": "Verifying email.",
-      "emailVerifiedLogIn": "Email verified. Log in to your account to continue.",
+      "successLogin": "Email verified. Log in to your account to continue.",
       "resendEmail": "Resend Verification Email",
       "failed": "Email verification failed. However, you can resend the confirmation email.",
       "EmailSentSuccessfully": "Verification email sent successfully. Please check your inbox to verify the email."

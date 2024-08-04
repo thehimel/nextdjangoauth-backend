@@ -52,7 +52,7 @@
     "emailVerification": {
       "success": "E-Mail erfolgreich verifiziert.",
       "verifyingEmail": "E-Mail wird überprüft.",
-      "emailVerifiedLogIn": "E-Mail verifiziert. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
+      "successLogin": "E-Mail verifiziert. Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
       "resendEmail": "Bestätigungs-E-Mail erneut senden",
       "failed": "E-Mail-Verifizierung fehlgeschlagen. Sie können jedoch die Bestätigungs-E-Mail erneut senden.",
       "EmailSentSuccessfully": "Bestätigungs-E-Mail erfolgreich gesendet. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
