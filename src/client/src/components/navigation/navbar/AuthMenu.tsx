@@ -14,7 +14,7 @@ const UserMenu = () => {
         </Button>
         </Link>
       </NavbarItem>
-      <NavbarItem className="sm:flex">
+      <NavbarItem className="hidden sm:flex">
         <Link href={SIGNUP_URL}>
           <Button radius="full" variant="shadow" color="primary" >
           <p>{t("navigation.signup")}</p>
