@@ -1,6 +1,7 @@
 from django.urls import path, re_path
 
 from apps.base.views.client import ClientView
+from apps.base.views.google_login import GoogleLogin
 
 app_name = 'base'
 
@@ -14,4 +15,5 @@ urlpatterns = [
     re_path('recovery/reset-password/', ClientView.as_view(), name='reset_password'),
     re_path('profile/', ClientView.as_view(), name='profile'),
     re_path('profile/change-password', ClientView.as_view(), name='change_password'),
+    path('api/auth/google/', GoogleLogin.as_view(), name='google_auth'),
 ]

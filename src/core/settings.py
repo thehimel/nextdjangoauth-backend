@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     # --- Utilities
     'django_extensions',  # Generate graph model.
     # --- Storage
