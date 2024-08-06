@@ -55,8 +55,8 @@ def create_social_app(sender, **kwargs):
     client_id = GOOGLE_CLIENT_ID
     secret_key = GOOGLE_CLIENT_SECRET
 
-    # Check if the social app already exists
-    social_app, created = SocialApp.objects.get_or_create(
+    # Update or create the social app
+    social_app, created = SocialApp.objects.update_or_create(
         provider=provider,
         defaults={'name': name, 'client_id': client_id, 'secret': secret_key}
     )
@@ -64,7 +64,7 @@ def create_social_app(sender, **kwargs):
     if created:
         logger.info(f"Created new social app: {name}")
     else:
-        logger.info(f"Social app {name} already exists")
+        logger.info(f"Updated existing social app: {name}")
 
     # Add all available sites to this social app
     available_sites = Site.objects.all()
