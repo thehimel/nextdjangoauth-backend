@@ -16,4 +16,5 @@ urlpatterns = [
     re_path('profile/', ClientView.as_view(), name='profile'),
     re_path('profile/change-password', ClientView.as_view(), name='change_password'),
     path('api/auth/google/', GoogleLogin.as_view(), name='google_auth'),
+    path('auth/google/callback/', ClientView.as_view(), name='google_callback'),
 ]

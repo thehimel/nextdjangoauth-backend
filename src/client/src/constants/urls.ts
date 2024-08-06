@@ -7,6 +7,7 @@ export const CHANGE_PASSWORD_URL = "/profile/change-password/";
 export const CONFIRM_EMAIL_URL = "/signup/confirm-email/:key/";
 export const FORGOT_PASSWORD_URL = "/recovery/forgot-password/";
 export const RESET_PASSWORD_URL = "/recovery/reset-password/:uid/:token/"
+export const GOOGLE_REDIRECT_URL = "auth/google/callback/";
 
 export const SIGNUP_API_URL = "/api/auth/registration/";
 export const LOGIN_API_URL = "/api/auth/login/";
@@ -17,3 +18,4 @@ export const CHANGE_PASSWORD_API_URL = "/api/auth/password/change/";
 export const FORGOT_PASSWORD_API_URL = "/api/auth/password/reset/";
 export const RESET_PASSWORD_API_URL = "/api/auth/password/reset/confirm/";
 export const LOGOUT_API_URL = "/api/auth/logout/"
+export const GOOGLE_AUTH_API_URL = "/api/auth/google/"
