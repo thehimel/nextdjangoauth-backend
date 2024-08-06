@@ -2,6 +2,7 @@
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
+import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {CHANGE_PASSWORD_URL, FORGOT_PASSWORD_URL, HOME_URL, LOGIN_URL, SIGNUP_URL} from "@/constants/urls.ts";
 import {InitialAuthResponse, auth, AuthResponseInterface} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
@@ -94,10 +95,18 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
       response = await dispatch(auth(params));
 
+      const emailRegisteredWithSocialLogin = response.errors.data.code === EMAIL_REGISTERED_WITH_SOCIAL_LOGIN;
+
+      if (emailRegisteredWithSocialLogin) {
+        const provider = response.provider;
+        setIsEmailValid(false);
+        setEmailErrorMessage(t("errors.emailRegisteredWithSocialLogin", { provider }));
+      }
+
       if (isSignupPage) {
         if (response.success) {
           setIsSignupSuccessful(true);
-        } else {
+        } else if (!emailRegisteredWithSocialLogin) {
           const emailError = response.errors.data.email;
           const passwordError = response.errors.data.password;
 
@@ -119,7 +128,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
       if (isLoginPage) {
         if (response.success) {
           navigate(from, { replace: true });
-        } else {
+        } else if (!emailRegisteredWithSocialLogin){
           setIsEmailValid(false);
           setEmailErrorMessage("");
 

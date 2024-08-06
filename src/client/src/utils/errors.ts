@@ -2,7 +2,11 @@ import {AxiosError} from "axios";
 
 interface ErrorsInterface {
   isTokenValid: boolean;
-  data: Record<string, string[]> | undefined;
+  data: {
+    code?: string;
+    provider?: string;
+    [key: string]: string[] | string | undefined; // allows other keys with string[] values
+  } | undefined;
   message: string | undefined;
 }
 

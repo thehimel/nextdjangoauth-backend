@@ -15,8 +15,10 @@ export interface AuthInterface {
 export interface AuthResponseInterface {
   success: boolean;
   message: string;
+  provider: string;
   errors: {
     data: {
+      code: string;
       email: string;
       password: string;
     };
@@ -28,8 +30,10 @@ export interface AuthResponseInterface {
 export const InitialAuthResponse: AuthResponseInterface = {
   success: false,
   message: "",
+  provider: "email",
   errors: {
     data: {
+      code: "",
       email: "",
       password: "",
     },
@@ -72,6 +76,8 @@ export const auth = ({email, password, confirmPassword, isRememberMe}: AuthInter
       response.success = false;
       response.isTokenValid = errors.isTokenValid;
 
+      response.errors.data.code = errors.data?.code ?? "";
+      response.provider = errors.data?.provider ?? response.provider;
       response.errors.data.email = errors.data?.email?.[0] ?? "";
       response.errors.data.password = errors.data?.password1?.[0] ?? "";
 
