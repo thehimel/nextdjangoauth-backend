@@ -21,7 +21,8 @@
     "invalidLastName": "Bitte geben Sie einen gültigen Nachnamen ein.",
     "minLength": "Minimale Länge ist {min} Zeichen.",
     "maxLength": "Maximale Länge ist {max} Zeichen.",
-    "websiteLanguage": "Fehler beim Ändern der Website-Sprache."
+    "websiteLanguage": "Fehler beim Ändern der Website-Sprache.",
+    "authenticationFailed": "Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut."
   },
   "forms": {
     "websiteLanguage": "Website-Sprache",
