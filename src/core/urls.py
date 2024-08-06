@@ -21,13 +21,17 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 
 from apps.base.views.registration import ResendEmailVerificationView
+from apps.base.views.auth import SignupView, LoginView
 from core.views import schema_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('api/auth/login/', LoginView.as_view(), name='rest_login'),
+    path('api/auth/registration/', SignupView.as_view(), name='rest_register'),
     path('api/auth/', include('dj_rest_auth.urls')),
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+
     re_path(
         'api/auth/registration/resend-email-verification/',
         ResendEmailVerificationView.as_view(),
