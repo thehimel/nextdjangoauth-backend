@@ -1,4 +1,5 @@
 import Loader from "@/components/screens/Loader.tsx";
+import {HOME_URL} from "@/constants/urls.ts";
 import {googleAuth} from "@/store/auth/actions/googleAuth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -21,8 +22,10 @@ const GoogleAuthCallback: React.FC = () => {
       if (access_token) {
         const response = await dispatch(googleAuth({access_token}));
         if (response) {
-          navigate('/');
+          navigate(HOME_URL);
         } else {
+          const from = location.state?.from?.pathname || HOME_URL;
+          navigate(from);
           toast.error(t("errors.authenticationFailed"))
         }
       }
