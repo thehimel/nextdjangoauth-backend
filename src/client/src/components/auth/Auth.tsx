@@ -6,6 +6,7 @@ import {CHANGE_PASSWORD_URL, FORGOT_PASSWORD_URL, HOME_URL, LOGIN_URL, SIGNUP_UR
 import {InitialAuthResponse, auth, AuthResponseInterface} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
+import {googleLoginUrl} from "@/utils/oauth.ts";
 import {isValidEmail, isValidPassword, validateField} from "@/utils/validate.ts";
 import React, {FC, FormEvent} from "react";
 import {Button, Input, Checkbox, Link, Divider, Spinner} from "@nextui-org/react";
@@ -247,7 +248,9 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
           </div>
           <div className="flex flex-col gap-2">
             <Button isDisabled={isLoading} startContent={<Icon icon="flat-color-icons:google" width={24} />}>
-              {t("auth.login.continueWithGoogle")}
+              <Link className="text-default-800 text-small" href={googleLoginUrl}>
+                {t("auth.login.continueWithGoogle")}
+              </Link>
             </Button>
           </div>
           <p className="text-center text-small">
