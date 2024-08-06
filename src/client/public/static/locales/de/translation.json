@@ -22,7 +22,8 @@
     "minLength": "Minimale Länge ist {min} Zeichen.",
     "maxLength": "Maximale Länge ist {max} Zeichen.",
     "websiteLanguage": "Fehler beim Ändern der Website-Sprache.",
-    "authenticationFailed": "Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+    "authenticationFailed": "Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "emailRegisteredWithSocialLogin": "Diese E-Mail-Adresse ist bereits mit {{provider}}-Anmeldung registriert. Bitte verwenden Sie {{provider}}, um sich anzumelden, oder nutzen Sie eine andere E-Mail-Adresse."
   },
   "forms": {
     "websiteLanguage": "Website-Sprache",

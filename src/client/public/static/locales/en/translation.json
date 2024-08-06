@@ -22,7 +22,8 @@
     "minLength": "Minimum length is {min} characters.",
     "maxLength": "Maximum length is {max} characters.",
     "websiteLanguage": "Failed to change website language.",
-    "authenticationFailed": "Authentication failed. Please try again."
+    "authenticationFailed": "Authentication failed. Please try again.",
+    "emailRegisteredWithSocialLogin": "This email is already registered with {{provider}} sign-in. Please use {{provider}} to log in or use a different email."
   },
   "forms": {
     "websiteLanguage": "Website Language",
