@@ -23,7 +23,8 @@
     "maxLength": "Maximum length is {max} characters.",
     "websiteLanguage": "Failed to change website language.",
     "authenticationFailed": "Authentication failed. Please try again.",
-    "emailRegisteredWithSocialLogin": "This email is already registered with {{provider}} sign-in. Please use {{provider}} to log in or use a different email."
+    "emailRegisteredWithSocialLogin": "This email is already registered with {{provider}} sign-in. Please use {{provider}} to log in or use a different email.",
+    "emailRegisteredWithEmailLogin": "This email is already registered with an email and password. Please use your email and password to log in or use a different email."
   },
   "forms": {
     "websiteLanguage": "Website Language",
