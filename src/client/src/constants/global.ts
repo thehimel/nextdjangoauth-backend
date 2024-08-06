@@ -1,7 +1,12 @@
-import {PROD} from "@/constants/words.ts";
+import {GOOGLE_REDIRECT_URL} from "@/constants/urls.ts";
+import urlJoin from "url-join";
 
-export const ENVIRONMENT: string = import.meta.env.VITE_ENVIRONMENT || PROD;
-export const DEBUG: boolean = ENVIRONMENT !== PROD;
+export const ENVIRONMENT: string = process.env.ENVIRONMENT as string;
+export const DEBUG: boolean = process.env.DEBUG === 'True';
 
-export const GOOGLE_CLIENT_ID: string = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
-export const GOOGLE_REDIRECT_URI: string = import.meta.env.VITE_GOOGLE_REDIRECT_URI || 'http://127.0.0.1:8000/auth/google/callback/'
+export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID as string;
+
+export const API_URL: string = process.env.API_URL as string;
+
+// Example: http://127.0.0.1:8000/auth/google/callback/
+export const GOOGLE_REDIRECT_URI: string = urlJoin(API_URL, GOOGLE_REDIRECT_URL)
