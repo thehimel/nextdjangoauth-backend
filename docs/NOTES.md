@@ -142,8 +142,10 @@ INSTALLED_APPS = [
   * http://127.0.0.1:8000
   * https://brandname.vercel.app
 * Authorized redirect URIs
-  * http://127.0.0.1:8000/
-  * https://brandname.vercel.app/
+  * http://127.0.0.1:8000/auth/google/callback/
+  * https://brandname.vercel.app/auth/google/callback/
+
+![google_oauth.png](images/google_oauth.png)
 
 > `Authorized JavaScript origins` is just the domain name. No slash at the end.
 > `Authorized redirect URI` is the URI where the redirection should take place after authentication. Must end with '/'.
