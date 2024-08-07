@@ -1,6 +1,6 @@
 import Loader from "@/components/screens/Loader.tsx";
 import {EMAIL_REGISTERED_WITH_EMAIL_LOGIN} from "@/constants/errorCodes.ts";
-import {HOME_URL} from "@/constants/urls.ts";
+import {HOME_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {googleAuth} from "@/store/auth/actions/googleAuth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -27,6 +27,7 @@ const GoogleAuthCallback: React.FC = () => {
         if (response.success) {
           navigate(HOME_URL);
         } else if (emailRegisteredWithEmailLogin) {
+          navigate(LOGIN_URL);
           toast.error(t("errors.emailRegisteredWithEmailLogin"))
         } else {
           const from = location.state?.from?.pathname || HOME_URL;
