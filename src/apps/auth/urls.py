@@ -1,9 +1,9 @@
 from django.urls import path, re_path
 
-from apps.base.views.client import ClientView
-from apps.base.views.google_login import GoogleLogin
+from apps.auth.views.client import ClientView
+from apps.auth.views.google_login import GoogleLogin
 
-app_name = 'base'
+app_name = 'auth'
 
 urlpatterns = [
     path('', ClientView.as_view(), name='client'),

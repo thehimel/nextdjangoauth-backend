@@ -4,7 +4,7 @@ from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 from allauth.socialaccount.models import SocialApp
 
-from apps.base.utils.utils import logger
+from apps.auth.utils.utils import logger
 from core.constants import BRAND_NAME, DOMAIN_NAME, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
 
 # Module-level flag to track if the signal has already executed

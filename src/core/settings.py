@@ -17,7 +17,7 @@ import dj_database_url
 from decouple import config
 from django.core.management.utils import get_random_secret_key
 
-from apps.base.utils.cloudinary import parse_cloudinary_url
+from apps.auth.utils.cloudinary import parse_cloudinary_url
 from core.constants import BRAND_NAME, DEVELOPMENT, PRODUCTION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     # ---
     'django.contrib.sites',  # Required by django-allauth
     # ---
-    'apps.base',
+    'apps.auth.apps.AuthConfig',
     'apps.users',
     # --- REST APIs and authentication
     'drf_yasg',
@@ -175,7 +175,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_ADAPTER = 'apps.base.adapters.AccountAdapter'  # Custom URLs
+ACCOUNT_ADAPTER = 'apps.auth.adapters.AccountAdapter'  # Custom URLs
 
 # Use username or email as the primary identifier
 ACCOUNT_AUTHENTICATION_METHOD = 'email'

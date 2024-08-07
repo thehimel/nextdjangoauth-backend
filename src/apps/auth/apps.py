@@ -1,9 +1,10 @@
 from django.apps import AppConfig
 
 
-class BaseConfig(AppConfig):
+class AuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.base'
+    name = 'apps.auth'
+    label = 'auth_root'
 
     def ready(self):
-        import apps.base.signals
+        import apps.auth.signals

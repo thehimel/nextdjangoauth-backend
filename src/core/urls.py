@@ -20,8 +20,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
 
-from apps.base.views.registration import ResendEmailVerificationView
-from apps.base.views.auth import SignupView, LoginView
+from apps.auth.views.registration import ResendEmailVerificationView
+from apps.auth.views.auth import SignupView, LoginView
 from core.views import schema_view
 
 urlpatterns = [
@@ -38,7 +38,7 @@ urlpatterns = [
         name='resend_verification_email'
     ),
 
-    path('', include('apps.base.urls', namespace='base')),
+    path('', include('apps.auth.urls', namespace='auth')),
 
     # To support password reset email with dj_rest_auth.
     path('', include('django.contrib.auth.urls')),
