@@ -255,13 +255,11 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
             <p className="shrink-0 text-tiny text-default-500">OR</p>
             <Divider className="flex-1" />
           </div>
-          <div className="flex flex-col gap-2">
-            <Button isDisabled={isLoading} startContent={<Icon icon="flat-color-icons:google" width={24} />}>
-              <Link className="text-default-800 text-small" href={googleLoginUrl}>
-                {t("auth.login.continueWithGoogle")}
-              </Link>
+          <Link className="flex flex-col gap-2" href={googleLoginUrl}>
+            <Button className="w-full" isDisabled={isLoading} startContent={<Icon icon="flat-color-icons:google" width={24} />}>
+              {t("auth.login.continueWithGoogle")}
             </Button>
-          </div>
+          </Link>
           <p className="text-center text-small">
             {isSignupPage ? (
               <>{t("auth.login.alreadyHaveAccount")}&nbsp;<Link href={LOGIN_URL} size="sm">{t("navigation.login")}</Link></>
