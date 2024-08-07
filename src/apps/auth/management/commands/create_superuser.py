@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class Command(BaseCommand):
-    help = 'Create a superuser and send an email verification link'
+    help = 'Create a superuser and send an email verification link.'
 
     def handle(self, *args, **options):
         username = input("Username: ")
