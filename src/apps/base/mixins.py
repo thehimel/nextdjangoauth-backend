@@ -56,6 +56,10 @@ class EmailCheckMixin:
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
+            social_account = SocialAccount.objects.filter(user__email=email).first()
+            if social_account:
+                return None
+
             # Check if the email is registered with a traditional user account
             user_models = get_user_model()
             if user_models.objects.filter(email=email).exists():
