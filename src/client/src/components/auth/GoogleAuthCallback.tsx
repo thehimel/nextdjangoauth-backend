@@ -1,4 +1,5 @@
 import Loader from "@/components/screens/Loader.tsx";
+import {EMAIL_REGISTERED_WITH_EMAIL_LOGIN} from "@/constants/errorCodes.ts";
 import {HOME_URL} from "@/constants/urls.ts";
 import {googleAuth} from "@/store/auth/actions/googleAuth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
@@ -21,8 +22,12 @@ const GoogleAuthCallback: React.FC = () => {
     const verifyToken = async  () => {
       if (access_token) {
         const response = await dispatch(googleAuth({access_token}));
-        if (response) {
+        const emailRegisteredWithEmailLogin = response.errors.data.code === EMAIL_REGISTERED_WITH_EMAIL_LOGIN;
+
+        if (response.success) {
           navigate(HOME_URL);
+        } else if (emailRegisteredWithEmailLogin) {
+          toast.error(t("errors.emailRegisteredWithEmailLogin"))
         } else {
           const from = location.state?.from?.pathname || HOME_URL;
           navigate(from);
@@ -32,7 +37,7 @@ const GoogleAuthCallback: React.FC = () => {
     };
 
     verifyToken().then(() => null);
-  }, [access_token, dispatch, location.hash, navigate, t]);
+  }, [access_token, dispatch, location, navigate, t]);
 
   return <Loader/>; // Show a loading indicator while processing
 };

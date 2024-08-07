@@ -9,14 +9,34 @@ export interface GoogleAuthInterface {
   access_token: string;
 }
 
+export interface GoogleAuthResponseInterface {
+  success: boolean;
+  errors: {
+    data: {
+      code: string;
+      email: string;
+    };
+  };
+}
+
+export const InitialGoogleAuthResponse: GoogleAuthResponseInterface = {
+  success: false,
+  errors: {
+    data: {
+      code: "",
+      email: "",
+    }
+  }
+}
+
 export const googleAuth = ({access_token}: GoogleAuthInterface) => {
-  return async (dispatch: AppDispatch) => {
+  return async (dispatch: AppDispatch): Promise<GoogleAuthResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
     }
 
-    let response: boolean = true;
+    const response: GoogleAuthResponseInterface = InitialGoogleAuthResponse;
 
     try {
       dispatch(authActions.setAuthLoading(true));
@@ -27,12 +47,18 @@ export const googleAuth = ({access_token}: GoogleAuthInterface) => {
       const result = await axios.post(GOOGLE_AUTH_API_URL, params,{headers: headers});
       dispatch(authActions.setUserData(result.data));
       dispatch(authActions.setRememberMe(true));
+
+      response.success = true;
     } catch (error) {
-      getErrors({error: error as AxiosError});
-      response = false;
+      const errors = getErrors({error: error as AxiosError});
+      console.log(error);
+      response.success = false;
+      response.errors.data.code = errors.data?.code ?? "";
+      response.errors.data.email = errors.data?.email?.[0] ?? "";
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }
+    console.log(response);
     return response;
   };
 };
