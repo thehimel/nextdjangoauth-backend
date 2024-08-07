@@ -15,6 +15,8 @@ const GoogleAuthCallback: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const from = location.state?.from?.pathname || HOME_URL;
+
   const hash = location.hash;
   const access_token = new URLSearchParams(hash.replace('#', '?')).get('access_token');
 
@@ -30,15 +32,17 @@ const GoogleAuthCallback: React.FC = () => {
           navigate(LOGIN_URL);
           toast.error(t("errors.emailRegisteredWithEmailLogin"))
         } else {
-          const from = location.state?.from?.pathname || HOME_URL;
           navigate(from);
           toast.error(t("errors.authenticationFailed"))
         }
+      } else {
+        navigate(from);
+        toast.error(t("errors.authenticationFailed"))
       }
     };
 
     verifyToken().then(() => null);
-  }, [access_token, dispatch, location, navigate, t]);
+  }, [access_token, dispatch, location, navigate, from, t]);
 
   return <Loader/>; // Show a loading indicator while processing
 };
