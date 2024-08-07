@@ -9,7 +9,6 @@ import {
   DropdownItem,
   DropdownMenu, DropdownSection,
   DropdownTrigger,
-  Link,
   NavbarItem, User,
 } from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
@@ -37,16 +36,13 @@ const UserMenu = () => {
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownSection showDivider aria-label="profile">
-            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2">
-              <Link href={PROFILE_URL} color="foreground">
-                <User
-                  avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
-                  classNames={{name: "font-semibold", description: "text-default-500"}}
-                  name={avatarTitle}
-                  description={t("badges.basicMember")}
-                />
-              </Link>
-
+            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2" href={PROFILE_URL}>
+              <User
+                avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
+                classNames={{name: "font-semibold", description: "text-default-500"}}
+                name={avatarTitle}
+                description={t("badges.basicMember")}
+              />
             </DropdownItem>
           </DropdownSection>
 
