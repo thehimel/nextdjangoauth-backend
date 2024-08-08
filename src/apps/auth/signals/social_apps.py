@@ -4,7 +4,8 @@ from django.dispatch import receiver
 from allauth.socialaccount.models import SocialApp
 
 from apps.auth.utils.utils import logger
-from core.constants import BRAND_NAME, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+from apps.auth.constants import GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
+from core.constants import BRAND_NAME
 
 
 # Module-level flag to track if the signal has already executed
@@ -19,7 +20,7 @@ def create_social_app(sender, **kwargs):
 
     # Define social app parameters
     provider = 'google'
-    name = BRAND_NAME
+    name = BRAND_NAME.lower()
     client_id = GOOGLE_CLIENT_ID
     secret_key = GOOGLE_CLIENT_SECRET
 
@@ -30,9 +31,9 @@ def create_social_app(sender, **kwargs):
     )
 
     if created:
-        logger.info(f"Created new social app: {name}")
+        logger.info(f"Created new social app: {name}.")
     else:
-        logger.info(f"Updated existing social app: {name}")
+        logger.info(f"Updated existing social app: {name}.")
 
     # Add all available sites to this social app
     available_sites = Site.objects.all()
