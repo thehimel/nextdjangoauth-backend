@@ -24,7 +24,8 @@
     "websiteLanguage": "Fehler beim Ändern der Website-Sprache.",
     "authenticationFailed": "Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "emailRegisteredWithSocialLogin": "Diese E-Mail-Adresse ist bereits mit {{provider}}-Anmeldung registriert. Bitte verwenden Sie {{provider}}, um sich anzumelden, oder nutzen Sie eine andere E-Mail-Adresse.",
-    "emailRegisteredWithEmailLogin": "Diese E-Mail-Adresse ist bereits mit einem E-Mail- und Passwort-Konto registriert. Bitte verwenden Sie Ihre E-Mail-Adresse und Ihr Passwort, um sich anzumelden, oder nutzen Sie eine andere E-Mail-Adresse."
+    "emailRegisteredWithEmailLogin": "Diese E-Mail-Adresse ist bereits mit einem E-Mail- und Passwort-Konto registriert. Bitte verwenden Sie Ihre E-Mail-Adresse und Ihr Passwort, um sich anzumelden, oder nutzen Sie eine andere E-Mail-Adresse.",
+    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten."
   },
   "forms": {
     "websiteLanguage": "Website-Sprache",
@@ -68,6 +69,10 @@
       "createAccount": "Erstellen Sie Ihr Konto, um loszulegen.",
       "needToCreateAccount": "Müssen Sie ein Konto erstellen?",
       "thanksForSigningUp": "Danke für die Registrierung. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."
+    },
+    "logout": {
+      "success": "Erfolgreich abgemeldet.",
+      "error": "Beim Abmelden ist ein Fehler aufgetreten."
     },
     "emailVerification": {
       "success": "E-Mail erfolgreich verifiziert.",
