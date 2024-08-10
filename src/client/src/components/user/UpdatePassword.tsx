@@ -138,7 +138,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
     <>
       {showCard && (
         <div className={`w-full flex flex-col ${isResetPassword ? 'max-w-sm' : 'max-w-xl'}`}>
-          {isResetPassword && <AuthHeader headerTitle={t("auth.passwordReset.resetPassword")}/>}
+          {isResetPassword && <AuthHeader title={t("auth.passwordReset.resetPassword")}/>}
           <Card className="p-6 mt-2">
             {isChangePassword && (
               <ProfileHeader

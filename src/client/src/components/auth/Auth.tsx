@@ -142,7 +142,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <AuthHeader headerTitle={t("common.welcome")} headline={{text: authHeadline, color: "default"}}/>
+      <AuthHeader title={t("common.welcome")} message={{text: authHeadline, color: "default"}}/>
       {!isSignupSuccessful ? (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
