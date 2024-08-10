@@ -13,7 +13,10 @@
   "errors": {
     "required": "This field is required.",
     "invalidEmail": "Please enter a valid email address.",
+    "emailRequired": "Email is required.",
     "invalidPassword": "Please enter a valid password.",
+    "passwordRequired": "Password is required.",
+    "confirmPasswordRequired": "Please confirm your password.",
     "passwordMismatch": "Passwords do not match.",
     "passwordMinLength": "Password must be at least 8 characters long.",
     "invalidEmailOrPassword": "Invalid email or password.",
