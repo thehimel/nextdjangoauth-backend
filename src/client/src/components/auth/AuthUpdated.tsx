@@ -1,6 +1,6 @@
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
-import EmailInput from "@/components/auth/emailInput.tsx";
-import PasswordInput from "@/components/auth/passwordInput.tsx";
+import EmailInput from "@/components/auth/EmailInput.tsx";
+import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {signUpSchema, TSignUpSchema} from "@/constants/interfaces.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
