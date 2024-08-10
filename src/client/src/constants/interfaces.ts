@@ -10,7 +10,7 @@ export type languageType = {
 
 export interface MessageInterface {
   text: string;
-  color: ColorType;
+  color?: ColorType;
 }
 
 export interface AlertProps {

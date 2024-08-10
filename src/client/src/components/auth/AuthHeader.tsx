@@ -15,7 +15,7 @@ const AuthHeader: FC<AuthHeaderProps> = ({headerTitle, headline}) => {
     <div className="flex flex-col items-center pb-2">
       <AcmeIcon size={60}/>
       <p className="text-xl font-medium">{headerTitle}</p>
-      {headline && <p className={`text-small text-${headline.color}`}>{headline.text}</p>}
+      {headline && <p className={`text-small text-${headline?.color || "default"}`}>{headline.text}</p>}
     </div>
   );
 }
