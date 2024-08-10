@@ -15,6 +15,7 @@
     "invalidEmail": "Please enter a valid email address.",
     "invalidPassword": "Please enter a valid password.",
     "passwordMismatch": "Passwords do not match.",
+    "passwordMinLength": "Password must be at least 8 characters long.",
     "invalidEmailOrPassword": "Invalid email or password.",
     "invalidUsername": "Username must be minimum 6 characters, letters & numbers only.",
     "invalidFirstName": "Please enter a valid first name.",
