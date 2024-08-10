@@ -1,6 +1,7 @@
 export const HOME_URL = "/";
 export const LOADER_URL = "/loader/"
 export const SIGNUP_URL = "/signup/";
+export const SIGNUP_V2_URL = "/signup-v2/";
 export const LOGIN_URL = "/login/";
 export const PROFILE_URL = "/profile/";
 export const CHANGE_PASSWORD_URL = "/profile/change-password/";
