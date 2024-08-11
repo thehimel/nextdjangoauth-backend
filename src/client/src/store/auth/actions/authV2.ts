@@ -14,7 +14,7 @@ export interface AuthV2Interface {
   password: string;
   confirmPassword?: string;
   isRememberMe: boolean;
-  type: typeof signup | typeof login
+  type: typeof signup | typeof login;
 }
 
 export interface AuthV2ResponseInterface {
@@ -34,31 +34,30 @@ export const InitialAuthV2Response: AuthV2ResponseInterface = {
   success: false,
   provider: "email",
   isTokenValid: false,
-}
+};
 
-export const auth = ({email, password, confirmPassword, isRememberMe, type}: AuthV2Interface) => {
+export const auth = (authData: AuthV2Interface) => {
   return async (dispatch: AppDispatch): Promise<AuthV2ResponseInterface> => {
+    const { email, password, confirmPassword, isRememberMe, type } = authData;
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
-    }
+    };
 
-    // Ensuring the initial response object stays unchanged.
     const response: AuthV2ResponseInterface = { ...InitialAuthV2Response };
 
     try {
       dispatch(authActions.setAuthLoading(true));
-      const params: Record<string, string> = {
-        email: email,
-        ...(type === login && { password: password }),
-        ...(type === signup && { password1: password, password2: confirmPassword }),
+
+      const params = {
+        email,
+        ...(type === login ? { password } : { password1: password, password2: confirmPassword }),
       };
 
-      const apiUrl: string = signup ? SIGNUP_API_URL : LOGIN_API_URL;
-      const result = await axios.post(apiUrl, params,{headers: headers});
+      const apiUrl = type === signup ? SIGNUP_API_URL : LOGIN_API_URL;
+      const result = await axios.post(apiUrl, params, { headers });
 
-      // Save the user data after login.
-      if (login) {
+      if (type === login) {
         dispatch(authActions.setUserData(result.data));
         dispatch(authActions.setRememberMe(isRememberMe));
       }
@@ -66,7 +65,7 @@ export const auth = ({email, password, confirmPassword, isRememberMe, type}: Aut
       response.success = true;
       response.isTokenValid = true;
     } catch (error) {
-      const errors = getErrorsV2({error: error as AxiosError});
+      const errors = getErrorsV2(error as AxiosError);
       response.success = false;
 
       response.errors = {
@@ -85,6 +84,7 @@ export const auth = ({email, password, confirmPassword, isRememberMe, type}: Aut
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }
+
     return response;
   };
 };
