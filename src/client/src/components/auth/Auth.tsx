@@ -1,6 +1,7 @@
 "use client";
 
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
+import TermsAndPrivacyPolicy from "@/components/auth/TermsAndPrivacyPolicy.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {CHANGE_PASSWORD_URL, FORGOT_PASSWORD_URL, HOME_URL, LOGIN_URL, SIGNUP_URL} from "@/constants/urls.ts";
@@ -36,7 +37,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isRememberMe, setIsRememberMe] = React.useState(true);
   const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
-  const [isAgree, setIsAgree] = React.useState(true);
 
   const [email, setEmail] = React.useState("");
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
@@ -73,7 +73,6 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
     }) && isFormValid;
 
     if (isSignupPage) {
-      isFormValid = isAgree && isFormValid;
       isFormValid = validateField({
         isValid: isValidPassword(confirmPassword) && confirmPassword === password,
         setIsFieldValid: setIsConfirmPasswordValid,
@@ -208,23 +207,7 @@ const Auth: FC<AuthProps> = ({pageType, headline}) => {
               />
             ) : null}
             {isSignupPage ? (
-              <>
-                <Checkbox
-                  isRequired
-                  name="agree"
-                  size="sm"
-                  isInvalid={!isAgree}
-                  isDisabled={isLoading}
-                  defaultSelected={isAgree}
-                  onValueChange={(value) => setIsAgree(value)}
-                >
-                  {t("privacy.agreeWithThe")}&nbsp;
-                  <Link href="#" size="sm">{t("privacy.terms")}</Link>&nbsp;
-                  {t("common.and").toLowerCase()}&nbsp;
-                  <Link href="#" size="sm">{t("privacy.privacyPolicy")}</Link>
-                </Checkbox>
-                {!isAgree ? <p className="text-small text-danger pb-2">{t("privacy.agreeToContinue")}</p> : null}
-              </>
+              <TermsAndPrivacyPolicy/>
             ) : (
               <div className="flex items-center justify-between px-1 py-2">
                 <Checkbox
