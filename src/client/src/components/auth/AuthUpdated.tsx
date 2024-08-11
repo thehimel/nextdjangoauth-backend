@@ -33,7 +33,6 @@ const AuthUpdated = () => {
       email: data.email,
       password: data.password,
       confirmPassword: data.confirmPassword,
-      isRememberMe: false, // Assuming no "Remember Me" option in this case
       type: "signup" as typeof signup,
     }
     const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
@@ -46,17 +45,14 @@ const AuthUpdated = () => {
         return;
       }
 
-      if (errors.email) {
-        setError("email", {type: "server", message: errors.email});
-      }
-
-      if (errors.password) {
-        setError("password", {type: "server", message: errors.password});
-      }
-
-      if (errors.confirmPassword) {
-        setError("confirmPassword", {type: "server", message: errors.confirmPassword});
-      }
+      (Object.keys(errors) as Array<keyof TSignUpSchema>).forEach((key) => {
+        if (errors[key]) {
+          setError(key, {
+            type: "server",
+            message: errors[key] || t("errors.unexpectedError"),
+          });
+        }
+      });
     }
   };
 

@@ -13,7 +13,7 @@ export interface AuthV2Interface {
   email: string;
   password: string;
   confirmPassword?: string;
-  isRememberMe: boolean;
+  isRememberMe?: boolean;
   type: typeof signup | typeof login;
 }
 
