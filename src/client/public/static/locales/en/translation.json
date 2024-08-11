@@ -70,6 +70,7 @@
       "alreadyHaveAccount": "Already have an account?"
     },
     "signup": {
+      "withEmail": "Sign Up with Email",
       "createAccount": "Create your account to get started.",
       "needToCreateAccount": "Need to create an account?",
       "thanksForSigningUp": "Thanks for signing up. Please check your inbox to verify the email."
