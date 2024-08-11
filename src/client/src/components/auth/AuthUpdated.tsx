@@ -1,5 +1,6 @@
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import EmailInput from "@/components/auth/EmailInput.tsx";
+import IsAgree from "@/components/auth/IsAgree.tsx";
 import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {signUpSchema, TSignUpSchema} from "@/constants/interfaces.ts";
@@ -69,6 +70,7 @@ const AuthUpdated = () => {
             <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
             <SubmitButton isSubmitting={isSubmitting} title={t("navigation.signup")}/>
           </form>
+          <IsAgree isSubmitting={isSubmitting}/>
         </div>
       ) : (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
