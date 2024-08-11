@@ -6,6 +6,8 @@ import {authV2, AuthV2ResponseInterface, signup} from "@/store/auth/actions/auth
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {Icon} from "@iconify/react";
+import {Button} from "@nextui-org/react";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
@@ -19,6 +21,8 @@ interface EmailSignupProps {
 const EmailSignup: React.FC<EmailSignupProps> = ({isAgree, onSignupSuccessChange}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
+
+  const [isEmailSignup, setIsEmailSignup] = React.useState(false);
 
   const {
     register,
@@ -60,12 +64,23 @@ const EmailSignup: React.FC<EmailSignupProps> = ({isAgree, onSignupSuccessChange
   };
 
   return (
-    <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-      <EmailInput register={register} errors={errors} isSubmitting={isSubmitting}/>
-      <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password"/>
-      <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
-      <SubmitButton isDisabled={!isAgree || isSubmitting} title={t("navigation.signup")}/>
-    </form>
+    isEmailSignup ? (
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+        <EmailInput register={register} errors={errors} isSubmitting={isSubmitting}/>
+        <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password"/>
+        <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
+        <SubmitButton isDisabled={!isAgree || isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
+      </form>
+    ) : (
+      <Button
+        className="w-full"
+        startContent={<Icon icon="ic:baseline-email" width={24}/>}
+        isDisabled={!isAgree}
+        onClick={() => setIsEmailSignup(true)}
+      >
+        {t("auth.signup.withEmail")}
+      </Button>
+    )
   );
 }
 
