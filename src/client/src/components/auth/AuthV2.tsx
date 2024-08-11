@@ -18,6 +18,9 @@ const AuthV2 = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
 
+  const [isAgree, setIsAgree] = React.useState(true);
+  const onAgreeChange = (value: boolean) => setIsAgree(value);
+
   const {
     register,
     handleSubmit,
@@ -68,9 +71,9 @@ const AuthV2 = () => {
             <EmailInput register={register} errors={errors} isSubmitting={isSubmitting}/>
             <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password"/>
             <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
-            <SubmitButton isSubmitting={isSubmitting} title={t("navigation.signup")}/>
+            <SubmitButton isDisabled={!isAgree || isSubmitting} title={t("navigation.signup")}/>
           </form>
-          <IsAgree isSubmitting={isSubmitting}/>
+          <IsAgree isDisabled={isSubmitting} isAgree={isAgree} onAgreeChange={onAgreeChange}/>
         </div>
       ) : (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">

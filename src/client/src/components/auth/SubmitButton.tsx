@@ -5,18 +5,15 @@ import React from 'react';
 interface SubmitButtonProps {
   color?: ColorType;
   type?: "submit";
-  isSubmitting: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
   title: string;
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({color, isSubmitting, title}) => {
+const SubmitButton: React.FC<SubmitButtonProps> = ({color, isDisabled, isLoading, title}) => {
   return (
-    <Button
-      color={color || "primary"}
-      type="submit"
-      isDisabled={isSubmitting}
-    >
-      {isSubmitting ? <Spinner size="sm" color="default" /> : title}
+    <Button type="submit" color={color || "primary"} isDisabled={isDisabled || isLoading}>
+      {isLoading ? <Spinner size="sm" color="default" /> : title}
     </Button>
   );
 };

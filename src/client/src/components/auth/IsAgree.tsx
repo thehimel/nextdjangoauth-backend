@@ -3,12 +3,13 @@ import {Checkbox, Link} from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 
 interface IsAgreeProps {
-  isSubmitting: boolean;
+  isDisabled: boolean;
+  isAgree: boolean;
+  onAgreeChange: (value: boolean) => void;
 }
 
-const IsAgree: React.FC<IsAgreeProps> = ({ isSubmitting }) => {
+const IsAgree: React.FC<IsAgreeProps> = ({ isDisabled, isAgree, onAgreeChange }) => {
   const { t } = useTranslation();
-  const [isAgree, setIsAgree] = React.useState(true);
 
   return (
     <>
@@ -17,16 +18,16 @@ const IsAgree: React.FC<IsAgreeProps> = ({ isSubmitting }) => {
         name="agree"
         size="sm"
         isInvalid={!isAgree}
-        isDisabled={isSubmitting}
+        isDisabled={isDisabled}
         defaultSelected={isAgree}
-        onValueChange={(value) => setIsAgree(value)}
+        onValueChange={(value) => onAgreeChange(value)}
       >
         {t("privacy.agreeWithThe")}&nbsp;
         <Link href="#" size="sm">{t("privacy.terms")}</Link>&nbsp;
         {t("common.and").toLowerCase()}&nbsp;
         <Link href="#" size="sm">{t("privacy.privacyPolicy")}</Link>
       </Checkbox>
-      {!isAgree ? <p className="text-small text-danger pb-2">{t("privacy.agreeToContinue")}</p> : null}
+      {!isAgree ? <p className="text-small text-danger">{t("privacy.agreeToContinue")}</p> : null}
     </>
   );
 };
