@@ -1,5 +1,6 @@
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import EmailInput from "@/components/auth/EmailInput.tsx";
+import GoogleAuth from "@/components/auth/GoogleAuth.tsx";
 import IsAgree from "@/components/auth/IsAgree.tsx";
 import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
@@ -73,6 +74,7 @@ const AuthV2 = () => {
             <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
             <SubmitButton isDisabled={!isAgree || isSubmitting} title={t("navigation.signup")}/>
           </form>
+          <GoogleAuth isDisabled={!isAgree || isSubmitting}/>
           <IsAgree isDisabled={isSubmitting} isAgree={isAgree} onAgreeChange={onAgreeChange}/>
         </div>
       ) : (
