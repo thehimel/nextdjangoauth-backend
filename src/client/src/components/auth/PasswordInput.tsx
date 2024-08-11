@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
-import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { TSignUpSchema } from "@/constants/interfaces.ts";
+import { UseFormRegister } from "react-hook-form";
+import {TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
 import { EyeClosedIcon, EyeOpenIcon } from "@/components/icons/eyes.tsx";
 
 interface PasswordInputProps {
-  register: UseFormRegister<TSignUpSchema>;
-  errors: FieldErrors<TSignUpSchema>;
+  register: UseFormRegister<TSignUpSchema | TLoginSchema>;
+  errorMessage?: string;
   isSubmitting: boolean;
   type: "password" | "confirmPassword";
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ register, errors, isSubmitting, type }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({ register, errorMessage, isSubmitting, type }) => {
   const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
@@ -31,8 +31,8 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ register, errors, isSubmi
       autoComplete="new-password"
       variant="bordered"
       type={isPasswordVisible ? "text" : "password"}
-      errorMessage={errors[type]?.message}
-      isInvalid={!!errors[type]}
+      errorMessage={errorMessage}
+      isInvalid={!!errorMessage}
       isDisabled={isSubmitting}
     />
   );

@@ -1,16 +1,16 @@
 import React from "react";
 import { Input } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
-import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { TSignUpSchema } from "@/constants/interfaces.ts";
+import { UseFormRegister } from "react-hook-form";
+import {TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
 
 interface EmailInputProps {
-  register: UseFormRegister<TSignUpSchema>;
-  errors: FieldErrors<TSignUpSchema>;
+  register: UseFormRegister<TSignUpSchema | TLoginSchema>;
+  errorMessage?: string;
   isSubmitting: boolean;
 }
 
-const EmailInputField: React.FC<EmailInputProps> = ({ register, errors, isSubmitting }) => {
+const EmailInputField: React.FC<EmailInputProps> = ({ register, errorMessage, isSubmitting }) => {
   const { t } = useTranslation();
 
   return (
@@ -23,8 +23,8 @@ const EmailInputField: React.FC<EmailInputProps> = ({ register, errors, isSubmit
       autoComplete="email"
       type="email"
       variant="bordered"
-      errorMessage={errors.email?.message}
-      isInvalid={!!errors.email}
+      errorMessage={errorMessage}
+      isInvalid={!!errorMessage}
       isDisabled={isSubmitting}
     />
   );

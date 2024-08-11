@@ -1,49 +1,48 @@
 import EmailInputField from "@/components/auth/EmailInputField.tsx";
 import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
-import {signUpSchema, TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
-import {authV2, AuthV2ResponseInterface, signup} from "@/store/auth/actions/authV2.ts";
+import {loginSchema, TLoginSchema} from "@/constants/interfaces.ts";
+import {HOME_URL} from "@/constants/urls.ts";
+import {authV2, AuthV2ResponseInterface, login} from "@/store/auth/actions/authV2.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Icon} from "@iconify/react";
 import {Button} from "@nextui-org/react";
 import React from "react";
-import {useForm, UseFormRegister} from "react-hook-form";
+import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
+import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
 
-interface EmailSignupProps {
-  onSignupSuccessChange: (value: boolean) => void;
-}
-
-const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
+const EmailLogin = () => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
-  const [isEmailSignup, setIsEmailSignup] = React.useState(false);
+  const location = useLocation();
+  const from = location.state?.from || HOME_URL;
+  const navigate = useNavigate();
+
+  const [isEmailLogin, setIsEmailLogin] = React.useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    // reset,
     setError,
-    // clearErrors,
-  } = useForm<TSignUpSchema>({
-    resolver: zodResolver(signUpSchema(t)),
+  } = useForm<TLoginSchema>({
+    resolver: zodResolver(loginSchema(t)),
   });
 
-  const onSubmit = async (data: TSignUpSchema) => {
+  const onSubmit = async (data: TLoginSchema) => {
     const authData = {
       email: data.email,
       password: data.password,
-      confirmPassword: data.confirmPassword,
-      type: "signup" as typeof signup,
+      type: "login" as typeof login,
     }
     const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
     if (response.success) {
-      onSignupSuccessChange(true);
+      navigate(from, { replace: true });
     } else {
       const errors = response.errors;
       if (!errors) {
@@ -51,7 +50,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
         return;
       }
 
-      (Object.keys(errors) as Array<keyof TSignUpSchema>).forEach((key) => {
+      (Object.keys(errors) as Array<keyof TLoginSchema>).forEach((key) => {
         if (errors[key]) {
           setError(key, {
             type: "server",
@@ -63,25 +62,10 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   };
 
   return (
-    isEmailSignup ? (
+    isEmailLogin ? (
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInputField
-          register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
-          errorMessage={errors["email"]?.message}
-          isSubmitting={isSubmitting}
-        />
-        <PasswordInput
-          register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
-          errorMessage={errors["password"]?.message}
-          isSubmitting={isSubmitting}
-          type="password"
-        />
-        <PasswordInput
-          register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
-          errorMessage={errors["confirmPassword"]?.message}
-          isSubmitting={isSubmitting}
-          type="confirmPassword"
-        />
+        <EmailInputField register={register} errorMessage={errors["email"]?.message} isSubmitting={isSubmitting}/>
+        <PasswordInput register={register} errorMessage={errors["password"]?.message} isSubmitting={isSubmitting} type="password"/>
         <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
       </form>
     ) : (
@@ -89,7 +73,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
         className="w-full"
         color="primary"
         startContent={<Icon icon="ic:baseline-email" width={24}/>}
-        onClick={() => setIsEmailSignup(true)}
+        onClick={() => setIsEmailLogin(true)}
       >
         {t("auth.signup.withEmail")}
       </Button>
@@ -97,4 +81,4 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   );
 }
 
-export default EmailSignUp;
+export default EmailLogin;

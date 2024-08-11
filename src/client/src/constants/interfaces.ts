@@ -21,6 +21,17 @@ export interface AlertProps {
 
 type TranslationFunctionType = TFunction<"translation", undefined>
 
+export const loginSchema = (t: TranslationFunctionType ) => z
+  .object({
+    email: z.string().min(1, { message: t("errors.emailRequired") })
+      .email(t("errors.invalidEmail")),
+    password: z.string()
+      .min(1, t("errors.passwordRequired"))
+      .min(8, t("errors.passwordMinLength")),
+  });
+
+export type TLoginSchema = z.infer<ReturnType<typeof loginSchema>>;
+
 export const signUpSchema = (t: TranslationFunctionType ) => z
   .object({
     email: z.string().min(1, { message: t("errors.emailRequired") })
