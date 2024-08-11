@@ -1,5 +1,5 @@
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
-import EmailSignup from "@/components/auth/EmailSignup.tsx";
+import EmailSignUp from "@/components/auth/EmailSignUp.tsx";
 import GoogleAuth from "@/components/auth/GoogleAuth.tsx";
 import TermsAndPrivacyPolicy from "@/components/auth/TermsAndPrivacyPolicy.tsx";
 import {LOGIN_URL} from "@/constants/urls.ts";
@@ -22,7 +22,7 @@ const AuthV2 = () => {
           <p>{t("auth.signup.thanksForSigningUp")}</p>
         ) : (
           <>
-            <EmailSignup onSignupSuccessChange={onSignupSuccessChange}/>
+            <EmailSignUp onSignupSuccessChange={onSignupSuccessChange}/>
             <GoogleAuth/>
             <TermsAndPrivacyPolicy/>
           </>

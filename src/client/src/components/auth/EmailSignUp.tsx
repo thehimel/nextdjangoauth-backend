@@ -17,7 +17,7 @@ interface EmailSignupProps {
   onSignupSuccessChange: (value: boolean) => void;
 }
 
-const EmailSignup: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
+const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
@@ -83,4 +83,4 @@ const EmailSignup: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   );
 }
 
-export default EmailSignup;
+export default EmailSignUp;
