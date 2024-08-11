@@ -3,26 +3,61 @@ import EmailInput from "@/components/auth/EmailInput.tsx";
 import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {signUpSchema, TSignUpSchema} from "@/constants/interfaces.ts";
+import {authV2, AuthV2ResponseInterface, signup} from "@/store/auth/actions/authV2.ts";
+import {useAppDispatch} from "@/store/hooks.ts";
+import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
+import React from "react";
 import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
+import {toast} from "sonner";
 
 const AuthUpdated = () => {
   const { t } = useTranslation();
+  const dispatch: AppDispatch = useAppDispatch();
+  const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     // reset,
-    // setError,
+    setError,
     // clearErrors,
   } = useForm<TSignUpSchema>({
     resolver: zodResolver(signUpSchema(t)),
   });
 
-  const onSubmitHandler = (data: TSignUpSchema) => {
-    console.log(data);
+  const onSubmit = async (data: TSignUpSchema) => {
+    const authData = {
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+      isRememberMe: false, // Assuming no "Remember Me" option in this case
+      type: "signup" as typeof signup,
+    }
+    const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
+    if (response.success) {
+      setIsSignupSuccessful(true);
+    } else {
+      const errors = response.errors;
+      if (!errors) {
+        toast.error(t("errors.unexpectedError"));
+        return;
+      }
+
+      if (errors.email) {
+        setError("email", {type: "server", message: errors.email});
+      }
+
+      if (errors.password) {
+        setError("password", {type: "server", message: errors.password});
+      }
+
+      if (errors.confirmPassword) {
+        setError("confirmPassword", {type: "server", message: errors.confirmPassword});
+      }
+    }
   };
 
   const header = <AuthHeader title={t("common.welcome")} message={{text: t("auth.signup.createAccount")}}/>
@@ -30,14 +65,20 @@ const AuthUpdated = () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       {header}
-      <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-        <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmitHandler)}>
-          <EmailInput register={register} errors={errors} isSubmitting={isSubmitting} />
-          <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password" />
-          <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword" />
-          <SubmitButton isSubmitting={isSubmitting} title={t("navigation.signup")}/>
-        </form>
-      </div>
+      {!isSignupSuccessful ? (
+        <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
+          <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+            <EmailInput register={register} errors={errors} isSubmitting={isSubmitting}/>
+            <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password"/>
+            <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
+            <SubmitButton isSubmitting={isSubmitting} title={t("navigation.signup")}/>
+          </form>
+        </div>
+      ) : (
+        <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
+          <p>{t("auth.signup.thanksForSigningUp")}</p>
+        </div>
+      )}
     </div>
   );
 }

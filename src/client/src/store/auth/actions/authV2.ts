@@ -36,7 +36,7 @@ export const InitialAuthV2Response: AuthV2ResponseInterface = {
   isTokenValid: false,
 };
 
-export const auth = (authData: AuthV2Interface) => {
+export const authV2 = (authData: AuthV2Interface) => {
   return async (dispatch: AppDispatch): Promise<AuthV2ResponseInterface> => {
     const { email, password, confirmPassword, isRememberMe, type } = authData;
     const headers = {
