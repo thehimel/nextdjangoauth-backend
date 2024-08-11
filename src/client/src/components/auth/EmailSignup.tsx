@@ -73,6 +73,7 @@ const EmailSignup: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
     ) : (
       <Button
         className="w-full"
+        color="primary"
         startContent={<Icon icon="ic:baseline-email" width={24}/>}
         onClick={() => setIsEmailSignup(true)}
       >
