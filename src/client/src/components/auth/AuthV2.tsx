@@ -13,7 +13,7 @@ import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
 import {toast} from "sonner";
 
-const AuthUpdated = () => {
+const AuthV2 = () => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
   const [isSignupSuccessful, setIsSignupSuccessful] = React.useState(false);
@@ -81,4 +81,4 @@ const AuthUpdated = () => {
   );
 }
 
-export default AuthUpdated;
+export default AuthV2;
