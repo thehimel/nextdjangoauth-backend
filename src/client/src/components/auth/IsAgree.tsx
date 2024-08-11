@@ -3,12 +3,11 @@ import {Checkbox, Link} from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 
 interface IsAgreeProps {
-  isDisabled: boolean;
   isAgree: boolean;
   onAgreeChange: (value: boolean) => void;
 }
 
-const IsAgree: React.FC<IsAgreeProps> = ({ isDisabled, isAgree, onAgreeChange }) => {
+const IsAgree: React.FC<IsAgreeProps> = ({ isAgree, onAgreeChange }) => {
   const { t } = useTranslation();
 
   return (
@@ -18,7 +17,6 @@ const IsAgree: React.FC<IsAgreeProps> = ({ isDisabled, isAgree, onAgreeChange })
         name="agree"
         size="sm"
         isInvalid={!isAgree}
-        isDisabled={isDisabled}
         defaultSelected={isAgree}
         onValueChange={(value) => onAgreeChange(value)}
       >
