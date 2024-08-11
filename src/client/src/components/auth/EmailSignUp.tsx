@@ -1,4 +1,4 @@
-import EmailInput from "@/components/auth/EmailInput.tsx";
+import EmailInputField from "@/components/auth/EmailInputField.tsx";
 import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {signUpSchema, TSignUpSchema} from "@/constants/interfaces.ts";
@@ -65,7 +65,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   return (
     isEmailSignup ? (
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInput register={register} errors={errors} isSubmitting={isSubmitting}/>
+        <EmailInputField register={register} errors={errors} isSubmitting={isSubmitting}/>
         <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password"/>
         <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
         <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
