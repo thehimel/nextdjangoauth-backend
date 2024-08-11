@@ -5,7 +5,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 interface GoogleAuthProps {
-  isDisabled: boolean;
+  isDisabled?: boolean;
 }
 
 const GoogleAuth: React.FC<GoogleAuthProps> = ({ isDisabled }) => {

@@ -14,11 +14,10 @@ import {useTranslation} from "react-i18next";
 import {toast} from "sonner";
 
 interface EmailSignupProps {
-  isAgree: boolean;
   onSignupSuccessChange: (value: boolean) => void;
 }
 
-const EmailSignup: React.FC<EmailSignupProps> = ({isAgree, onSignupSuccessChange}) => {
+const EmailSignup: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
@@ -69,13 +68,12 @@ const EmailSignup: React.FC<EmailSignupProps> = ({isAgree, onSignupSuccessChange
         <EmailInput register={register} errors={errors} isSubmitting={isSubmitting}/>
         <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="password"/>
         <PasswordInput register={register} errors={errors} isSubmitting={isSubmitting} type="confirmPassword"/>
-        <SubmitButton isDisabled={!isAgree || isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
+        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
       </form>
     ) : (
       <Button
         className="w-full"
         startContent={<Icon icon="ic:baseline-email" width={24}/>}
-        isDisabled={!isAgree}
         onClick={() => setIsEmailSignup(true)}
       >
         {t("auth.signup.withEmail")}

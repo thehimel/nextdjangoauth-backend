@@ -109,7 +109,7 @@
     "changePassword": "Passwort ändern"
   },
   "privacy": {
-    "agreeWithThe": "Ich stimme den",
+    "agreeToOur": "Mit der Anmeldung stimmen Sie unseren",
     "terms": "Bedingungen",
     "privacyPolicy": "Datenschutzrichtlinien",
     "agreeToContinue": "Um fortzufahren, müssen Sie den Bedingungen und der Datenschutzrichtlinie zustimmen."

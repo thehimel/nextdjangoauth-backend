@@ -109,7 +109,7 @@
     "changePassword": "Change Password"
   },
   "privacy": {
-    "agreeWithThe": "I agree with the",
+    "agreeToOur": "By signing up, you agree to our",
     "terms": "Terms",
     "privacyPolicy": "Privacy Policy",
     "agreeToContinue": "To proceed, you must agree to the Terms and Privacy Policy."
