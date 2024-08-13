@@ -20,6 +20,15 @@ export interface AlertProps {
 
 type TranslationFunctionType = TFunction<"translation", undefined>
 
+export const profileUpdateSchema = (t: TranslationFunctionType) =>
+  z.object({
+    username: z.string().min(1, { message: t("errors.invalidUsername") }),
+    firstName: z.string().min(1, { message: t("errors.invalidFirstName") }),
+    lastName: z.string().min(1, { message: t("errors.invalidLastName") }),
+  });
+
+export type TProfileUpdateSchema = z.infer<ReturnType<typeof profileUpdateSchema>>;
+
 const emailSchema = (t: TranslationFunctionType) =>
   z.string().min(1, { message: t("errors.emailRequired") })
     .email(t("errors.invalidEmail"));
