@@ -21,19 +21,17 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ register, error
     <Input
       {...register(type)}
       isRequired
+      label={t(`forms.${type}`)}
+      variant="bordered"
+      type={isPasswordVisible ? "text" : "password"}
+      isInvalid={!!errorMessage}
+      errorMessage={errorMessage}
+      isDisabled={isSubmitting}
       endContent={
         <button type="button" onClick={togglePasswordVisibility}>
           {isPasswordVisible ? EyeClosedIcon : EyeOpenIcon}
         </button>
       }
-      label={t(`forms.${type}`)}
-      name={type}
-      autoComplete="new-password"
-      variant="bordered"
-      type={isPasswordVisible ? "text" : "password"}
-      errorMessage={errorMessage}
-      isInvalid={!!errorMessage}
-      isDisabled={isSubmitting}
     />
   );
 };
