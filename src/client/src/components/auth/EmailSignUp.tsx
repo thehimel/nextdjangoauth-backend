@@ -1,6 +1,7 @@
 import EmailInputField from "@/components/auth/EmailInputField.tsx";
 import PasswordInput from "@/components/auth/PasswordInput.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
+import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {signUpSchema, TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
 import {authV2, AuthV2ResponseInterface, signup} from "@/store/auth/actions/authV2.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
@@ -48,6 +49,16 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
       const errors = response.errors;
       if (!errors) {
         toast.error(t("errors.unexpectedError"));
+        return;
+      }
+
+      const emailRegisteredWithSocialLogin = errors.code === EMAIL_REGISTERED_WITH_SOCIAL_LOGIN;
+      if (emailRegisteredWithSocialLogin) {
+        const provider = response.provider
+        setError("email", {
+          type: "server",
+          message: t("errors.emailRegisteredWithSocialLogin", { provider }),
+        })
         return;
       }
 
