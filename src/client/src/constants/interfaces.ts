@@ -21,27 +21,28 @@ export interface AlertProps {
 
 type TranslationFunctionType = TFunction<"translation", undefined>
 
-export const loginSchema = (t: TranslationFunctionType ) => z
+const emailSchema = (t: TranslationFunctionType) =>
+  z.string().min(1, { message: t("errors.emailRequired") })
+    .email(t("errors.invalidEmail"));
+
+const passwordSchema = (t: TranslationFunctionType) =>
+  z.string()
+    .min(1, t("errors.passwordRequired"))
+    .min(8, t("errors.passwordMinLength"));
+
+export const loginSchema = (t: TranslationFunctionType) => z
   .object({
-    email: z.string().min(1, { message: t("errors.emailRequired") })
-      .email(t("errors.invalidEmail")),
-    password: z.string()
-      .min(1, t("errors.passwordRequired"))
-      .min(8, t("errors.passwordMinLength")),
+    email: emailSchema(t),
+    password: passwordSchema(t),
   });
 
 export type TLoginSchema = z.infer<ReturnType<typeof loginSchema>>;
 
-export const signUpSchema = (t: TranslationFunctionType ) => z
+export const signUpSchema = (t: TranslationFunctionType) => z
   .object({
-    email: z.string().min(1, { message: t("errors.emailRequired") })
-      .email(t("errors.invalidEmail")),
-    password: z.string()
-      .min(1, t("errors.passwordRequired"))
-      .min(8, t("errors.passwordMinLength")),
-    confirmPassword: z.string()
-      .min(1, t("errors.confirmPasswordRequired"))
-      .min(8, t("errors.passwordMinLength")),
+    email: emailSchema(t),
+    password: passwordSchema(t),
+    confirmPassword: passwordSchema(t),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: t("errors.passwordMismatch"),
