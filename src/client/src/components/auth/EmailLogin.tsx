@@ -16,7 +16,11 @@ import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
 
-const EmailLogin = () => {
+interface EmailLoginProps {
+  isEmailLoginSelected?: boolean;
+}
+
+const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
@@ -24,7 +28,7 @@ const EmailLogin = () => {
   const from = location.state?.from || HOME_URL;
   const navigate = useNavigate();
 
-  const [isEmailLogin, setIsEmailLogin] = React.useState(false);
+  const [isEmailLogin, setIsEmailLogin] = React.useState(!!isEmailLoginSelected);
   const [isRememberMe, setIsRememberMe] = React.useState(true);
 
   const {
