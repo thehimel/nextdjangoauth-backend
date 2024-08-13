@@ -1,5 +1,4 @@
 import App from "@/App.tsx";
-import Auth from "@/components/auth/Auth.tsx";
 import Signup from "@/components/auth/Signup.tsx";
 import ConfirmEmail from "@/components/auth/ConfirmEmail.tsx";
 import GoogleAuthCallback from "@/components/auth/GoogleAuthCallback.tsx";
@@ -14,7 +13,7 @@ import {
   HOME_URL, LOADER_URL,
   LOGIN_URL,
   PROFILE_URL, RESET_PASSWORD_URL,
-  SIGNUP_URL, SIGNUP_V2_URL,
+  SIGNUP_URL,
 } from "@/constants/urls.ts";
 import Home from "@/Home.tsx";
 import {createBrowserRouter, Route, createRoutesFromElements} from "react-router-dom";
@@ -24,7 +23,6 @@ export const router = createBrowserRouter(
     <Route path={HOME_URL} element={<App/>}>
       <Route index={true} path={HOME_URL} element={<Home/>}/>
       <Route path={SIGNUP_URL} element={<Signup />}/>
-      <Route path={SIGNUP_V2_URL} element={<Auth pageType="signup"/>}/>
       <Route path={LOGIN_URL} element={<Login/>}/>
       <Route path={CONFIRM_EMAIL_URL} element={<ConfirmEmail />}/>
       <Route path={PROFILE_URL} element={<Profile />}/>
