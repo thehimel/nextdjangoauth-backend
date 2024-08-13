@@ -66,13 +66,14 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
         return;
       }
 
-      (Object.keys(errors) as Array<keyof TLoginSchema>).forEach((key) => {
-        if (errors[key]) {
-          setError(key, {
-            type: "server",
-            message: errors[key] || t("errors.unexpectedError"),
-          });
-        }
+      setError("email", {
+        type: "server",
+        message: " ",
+      });
+
+      setError("password", {
+        type: "server",
+        message: t("errors.invalidEmailOrPassword"),
       });
     }
   };
