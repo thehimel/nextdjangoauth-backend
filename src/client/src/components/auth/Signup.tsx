@@ -1,13 +1,15 @@
+import AuthDivider from "@/components/auth/AuthDivider.tsx";
 import AuthHeader from "@/components/auth/AuthHeader.tsx";
 import EmailSignUp from "@/components/auth/EmailSignUp.tsx";
 import GoogleAuth from "@/components/auth/GoogleAuth.tsx";
 import TermsAndPrivacyPolicy from "@/components/auth/TermsAndPrivacyPolicy.tsx";
 import {LOGIN_URL} from "@/constants/urls.ts";
+import {signup} from "@/store/auth/actions/authV2.ts";
 import {Link} from "@nextui-org/react";
 import React from "react";
 import {useTranslation} from "react-i18next";
 
-const AuthV2 = () => {
+const Signup = () => {
   const { t } = useTranslation();
   const [isSignupSuccess, setIsSignupSuccess] = React.useState(false);
   const onSignupSuccessChange = (value: boolean) => setIsSignupSuccess(value);
@@ -22,8 +24,9 @@ const AuthV2 = () => {
           <p>{t("auth.signup.thanksForSigningUp")}</p>
         ) : (
           <>
+            <GoogleAuth type={signup}/>
+            <AuthDivider/>
             <EmailSignUp onSignupSuccessChange={onSignupSuccessChange}/>
-            <GoogleAuth/>
             <TermsAndPrivacyPolicy/>
           </>
         )}
@@ -39,4 +42,4 @@ const AuthV2 = () => {
   );
 }
 
-export default AuthV2;
+export default Signup;

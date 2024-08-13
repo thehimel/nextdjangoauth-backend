@@ -63,14 +63,17 @@
   },
   "auth": {
     "login": {
+      "withEmail": "Mit E-Mail anmelden",
+      "withGoogle": "Login with Google",
+      "continueWithGoogle": "Mit Google fortfahren",
       "loginToAccount": "Melden Sie sich bei Ihrem Konto an, um fortzufahren.",
       "rememberMe": "Erinnere dich an mich",
       "forgotPassword": "Passwort vergessen?",
-      "continueWithGoogle": "Mit Google fortfahren",
       "alreadyHaveAccount": "Haben Sie bereits ein Konto?"
     },
     "signup": {
       "withEmail": "Mit E-Mail registrieren",
+      "withGoogle": "Mit Google registrieren",
       "createAccount": "Erstellen Sie Ihr Konto, um loszulegen.",
       "needToCreateAccount": "Müssen Sie ein Konto erstellen?",
       "thanksForSigningUp": "Danke für die Registrierung. Bitte überprüfen Sie Ihr Postfach, um die E-Mail zu bestätigen."

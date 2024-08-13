@@ -1,8 +1,9 @@
 import App from "@/App.tsx";
 import Auth from "@/components/auth/Auth.tsx";
-import AuthV2 from "@/components/auth/AuthV2.tsx";
+import Signup from "@/components/auth/Signup.tsx";
 import ConfirmEmail from "@/components/auth/ConfirmEmail.tsx";
 import GoogleAuthCallback from "@/components/auth/GoogleAuthCallback.tsx";
+import Login from "@/components/auth/Login.tsx";
 import Loader from "@/components/screens/Loader.tsx";
 import UpdatePassword from "@/components/user/UpdatePassword.tsx";
 import Profile from "@/components/user/Profile.tsx";
@@ -22,9 +23,9 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={HOME_URL} element={<App/>}>
       <Route index={true} path={HOME_URL} element={<Home/>}/>
-      <Route path={SIGNUP_URL} element={<AuthV2 />}/>
+      <Route path={SIGNUP_URL} element={<Signup />}/>
       <Route path={SIGNUP_V2_URL} element={<Auth pageType="signup"/>}/>
-      <Route path={LOGIN_URL} element={<Auth pageType="login"/>}/>
+      <Route path={LOGIN_URL} element={<Login/>}/>
       <Route path={CONFIRM_EMAIL_URL} element={<ConfirmEmail />}/>
       <Route path={PROFILE_URL} element={<Profile />}/>
       <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmail requestType={"forgot_password"}/>}/>

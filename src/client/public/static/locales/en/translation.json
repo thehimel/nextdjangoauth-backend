@@ -63,14 +63,17 @@
   },
   "auth": {
     "login": {
+      "withEmail": "Login with Email",
+      "withGoogle": "Login with Google",
+      "continueWithGoogle": "Continue with Google",
       "loginToAccount": "Log in to your account to continue.",
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot password?",
-      "continueWithGoogle": "Continue with Google",
       "alreadyHaveAccount": "Already have an account?"
     },
     "signup": {
       "withEmail": "Sign Up with Email",
+      "withGoogle": "Sign Up with Google",
       "createAccount": "Create your account to get started.",
       "needToCreateAccount": "Need to create an account?",
       "thanksForSigningUp": "Thanks for signing up. Please check your inbox to verify the email."
