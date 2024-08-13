@@ -5,7 +5,7 @@ import { UseFormRegister } from "react-hook-form";
 import {TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
 import { EyeClosedIcon, EyeOpenIcon } from "@/components/icons/eyes.tsx";
 
-interface PasswordInputProps {
+interface PasswordInputFieldProps {
   register: UseFormRegister<TSignUpSchema | TLoginSchema>;
   errorMessage?: string;
   isSubmitting: boolean;
@@ -13,7 +13,7 @@ interface PasswordInputProps {
   id: string;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ register, errorMessage, isSubmitting, type, id }) => {
+const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ register, errorMessage, isSubmitting, type, id }) => {
   const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
@@ -40,4 +40,4 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ register, errorMessage, i
   );
 };
 
-export default PasswordInput;
+export default PasswordInputField;

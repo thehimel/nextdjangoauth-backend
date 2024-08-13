@@ -1,6 +1,6 @@
 "use client";
 
-import AuthHeader from "@/components/auth/AuthHeader.tsx";
+import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import TermsAndPrivacyPolicy from "@/components/auth/TermsAndPrivacyPolicy.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";

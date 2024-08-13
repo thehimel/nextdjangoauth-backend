@@ -1,5 +1,5 @@
-import EmailInputField from "@/components/auth/EmailInputField.tsx";
-import PasswordInput from "@/components/auth/PasswordInput.tsx";
+import EmailInputField from "@/components/auth/email/fields/EmailInputField.tsx";
+import PasswordInputField from "@/components/auth/email/fields/PasswordInputField.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {loginSchema, TLoginSchema} from "@/constants/interfaces.ts";
@@ -81,8 +81,8 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
     isEmailLogin ? (
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <EmailInputField register={register} errorMessage={errors["email"]?.message} isSubmitting={isSubmitting} id={"loginEmail"}/>
-        <PasswordInput register={register} errorMessage={errors["password"]?.message} isSubmitting={isSubmitting}
-                       type="password" id={"loginPassword"}/>
+        <PasswordInputField register={register} errorMessage={errors["password"]?.message} isSubmitting={isSubmitting}
+                            type="password" id={"loginPassword"}/>
         <div className="flex items-center justify-between px-1 py-2">
           <Checkbox
             name="remember"

@@ -1,5 +1,5 @@
-import EmailInputField from "@/components/auth/EmailInputField.tsx";
-import PasswordInput from "@/components/auth/PasswordInput.tsx";
+import EmailInputField from "@/components/auth/email/fields/EmailInputField.tsx";
+import PasswordInputField from "@/components/auth/email/fields/PasswordInputField.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {signUpSchema, TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
@@ -82,14 +82,14 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
           isSubmitting={isSubmitting}
           id={"signupEmail"}
         />
-        <PasswordInput
+        <PasswordInputField
           register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
           errorMessage={errors["password"]?.message}
           isSubmitting={isSubmitting}
           type="password"
           id={"signupPassword"}
         />
-        <PasswordInput
+        <PasswordInputField
           register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
           errorMessage={errors["confirmPassword"]?.message}
           isSubmitting={isSubmitting}

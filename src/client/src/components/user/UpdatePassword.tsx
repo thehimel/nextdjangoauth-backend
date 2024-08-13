@@ -1,7 +1,7 @@
 "use client";
 
 import Auth from "@/components/auth/Auth.tsx";
-import AuthHeader from "@/components/auth/AuthHeader.tsx";
+import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";

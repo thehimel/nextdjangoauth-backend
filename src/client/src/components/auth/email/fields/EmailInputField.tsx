@@ -4,14 +4,14 @@ import {useTranslation} from "react-i18next";
 import {UseFormRegister} from "react-hook-form";
 import {TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
 
-interface EmailInputProps {
+interface EmailInputFieldProps {
   register: UseFormRegister<TSignUpSchema | TLoginSchema>;
   errorMessage?: string;
   isSubmitting: boolean;
   id: string;
 }
 
-const EmailInputField: React.FC<EmailInputProps> = ({register, errorMessage, isSubmitting, id}) => {
+const EmailInputField: React.FC<EmailInputFieldProps> = ({register, errorMessage, isSubmitting, id}) => {
   const {t} = useTranslation();
 
   return (

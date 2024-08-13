@@ -1,4 +1,4 @@
-import {AuthEmailRequestType} from "@/components/auth/SendAuthEmail.tsx";
+import {AuthEmailRequestType} from "@/components/auth/email/SendAuthEmail.tsx";
 import {FORGOT_PASSWORD_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";

@@ -1,6 +1,6 @@
 "use client";
 
-import AuthHeader from "@/components/auth/AuthHeader.tsx";
+import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import {MessageInterface} from "@/constants/interfaces.ts";
 import {AuthEmailInterface, sendAuthEmail} from "@/store/auth/actions/sendAuthEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
