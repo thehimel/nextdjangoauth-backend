@@ -8,6 +8,7 @@ import axios, {AxiosError} from "axios";
 
 export const signup = "signup";
 export const login = "login";
+export const EMAIL = "email"
 
 export interface AuthV2Interface {
   email: string;
@@ -58,7 +59,10 @@ export const authV2 = (authData: AuthV2Interface) => {
       const result = await axios.post(apiUrl, params, { headers });
 
       if (type === login) {
-        dispatch(authActions.setUserData(result.data));
+        dispatch(authActions.setUserData({
+          ...result.data,
+          provider: EMAIL,
+        }));
         dispatch(authActions.setRememberMe(isRememberMe));
       }
 

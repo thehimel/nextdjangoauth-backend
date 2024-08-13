@@ -3,6 +3,7 @@
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
+import {EMAIL} from "@/store/auth/actions/authV2.ts";
 import {UpdateProfileResponseInterface, updateProfile, UpdateProfileInterface} from "@/store/auth/actions/updateProfile.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -34,6 +35,7 @@ const Profile = (props: CardProps) => {
 
   const [firstName, setFirstName] = React.useState(useAppSelector((state) => state.auth.userData.user.first_name));
   const [lastName, setLastName] = React.useState(useAppSelector((state) => state.auth.userData.user.last_name));
+  const [provider] = React.useState(useAppSelector((state) => state.auth.userData.provider));
 
   const [usernameErrorMessage, setUsernameErrorMessage] = React.useState("");
   const [firstNameErrorMessage, setFirstNameErrorMessage] = React.useState("");
@@ -118,7 +120,7 @@ const Profile = (props: CardProps) => {
           firstName={firstName}
           lastName={lastName}
           email={email}
-          navigationLink={{url: CHANGE_PASSWORD_URL, title: t("profile.changePassword")}}
+          navigationLink={provider === EMAIL ? { url: CHANGE_PASSWORD_URL, title: t("profile.changePassword") } : undefined}
         />
         <form onSubmit={handleSubmit}>
           <CardBody className="grid grid-cols-1 gap-4 md:grid-cols-2">

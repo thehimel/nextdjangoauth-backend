@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 export interface UserDataProps {
   access: string;
   refresh: string;
+  provider: string;
   user: {
     pk: number;
     username: string;
@@ -21,15 +22,16 @@ export interface AuthStateProps {
 }
 
 const initialUserData = {
-    "access": "",
-    "refresh": "",
-    "user": {
-        "pk": 0,
-        "username": "",
-        "email": "",
-        "first_name": "",
-        "last_name": ""
-    }
+  "access": "",
+  "refresh": "",
+  "provider": "",
+  "user": {
+    "pk": 0,
+    "username": "",
+    "email": "",
+    "first_name": "",
+    "last_name": "",
+  }
 }
 
 const initialState: AuthStateProps = {

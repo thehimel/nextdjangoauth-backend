@@ -45,7 +45,10 @@ export const googleAuth = ({access_token}: GoogleAuthInterface) => {
       };
 
       const result = await axios.post(GOOGLE_AUTH_API_URL, params,{headers: headers});
-      dispatch(authActions.setUserData(result.data));
+      dispatch(authActions.setUserData({
+        ...result.data,
+          provider: "google",
+      }));
       dispatch(authActions.setRememberMe(true));
 
       response.success = true;
