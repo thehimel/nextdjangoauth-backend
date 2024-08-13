@@ -1,7 +1,7 @@
 "use client";
 
-import Auth from "@/components/auth/Auth.tsx";
 import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
+import Login from "@/components/auth/Login.tsx";
 import {EyeClosedIcon, EyeOpenIcon} from "@/components/icons/eyes.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
@@ -212,7 +212,7 @@ const UpdatePassword: FC<UpdatePasswordProps> = ({isChangePassword = false, isRe
         </div>
       )}
       {isResetPasswordSuccessful && (
-        <Auth pageType={"login"} headline={t("auth.passwordReset.success")}/>
+        <Login isEmailLoginSelected headerMessageText={t("auth.passwordReset.success")}/>
       )}
     </>
   );

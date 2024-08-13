@@ -1,8 +1,7 @@
 "use client";
 
-import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
-import EmailLogin from "@/components/auth/email/EmailLogin.tsx";
 import SendAuthEmail from "@/components/auth/email/SendAuthEmail.tsx";
+import Login from "@/components/auth/Login.tsx";
 import {verifyEmail} from "@/store/auth/actions/verifyEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -45,12 +44,7 @@ const ConfirmEmail = () => {
         </div>
       )}
       {!isLoading && isEmailVerified && (
-        <div className="flex h-full w-full flex-col items-center justify-center">
-          <AuthHeader title={t("common.welcome")} message={{text: t("auth.emailVerification.successLogin")}}/>
-          <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-            <EmailLogin isEmailLoginSelected/>
-          </div>
-        </div>
+        <Login isEmailLoginSelected headerMessageText={t("auth.emailVerification.successLogin")}/>
       )}
       {!isLoading && !isEmailVerified && (<SendAuthEmail requestType={"resend_email_verification"}/>)}
     </>
