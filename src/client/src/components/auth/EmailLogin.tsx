@@ -65,9 +65,9 @@ const EmailLogin = () => {
   return (
     isEmailLogin ? (
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInputField register={register} errorMessage={errors["email"]?.message} isSubmitting={isSubmitting}/>
+        <EmailInputField register={register} errorMessage={errors["email"]?.message} isSubmitting={isSubmitting} id={"loginEmail"}/>
         <PasswordInput register={register} errorMessage={errors["password"]?.message} isSubmitting={isSubmitting}
-                       type="password"/>
+                       type="password" id={"loginPassword"}/>
         <div className="flex items-center justify-between px-1 py-2">
           <Checkbox
             name="remember"

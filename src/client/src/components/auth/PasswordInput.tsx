@@ -10,9 +10,10 @@ interface PasswordInputProps {
   errorMessage?: string;
   isSubmitting: boolean;
   type: "password" | "confirmPassword";
+  id: string;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({ register, errorMessage, isSubmitting, type }) => {
+const PasswordInput: React.FC<PasswordInputProps> = ({ register, errorMessage, isSubmitting, type, id }) => {
   const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
@@ -20,6 +21,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ register, errorMessage, i
   return (
     <Input
       {...register(type)}
+      id={id}
       isRequired
       endContent={
         <button type="button" onClick={togglePasswordVisibility}>
