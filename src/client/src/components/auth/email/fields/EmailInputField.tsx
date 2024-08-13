@@ -8,16 +8,14 @@ interface EmailInputFieldProps {
   register: UseFormRegister<TSignUpSchema | TLoginSchema>;
   errorMessage?: string;
   isSubmitting: boolean;
-  id: string;
 }
 
-const EmailInputField: React.FC<EmailInputFieldProps> = ({register, errorMessage, isSubmitting, id}) => {
+const EmailInputField: React.FC<EmailInputFieldProps> = ({register, errorMessage, isSubmitting}) => {
   const {t} = useTranslation();
 
   return (
     <Input
       {...register("email")}
-      id={id}
       autoFocus
       isRequired
       label={t("forms.email")}

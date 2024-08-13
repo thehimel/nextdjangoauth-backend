@@ -80,21 +80,18 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
           register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
           errorMessage={errors["email"]?.message}
           isSubmitting={isSubmitting}
-          id={"signupEmail"}
         />
         <PasswordInputField
           register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
           errorMessage={errors["password"]?.message}
           isSubmitting={isSubmitting}
           type="password"
-          id={"signupPassword"}
         />
         <PasswordInputField
           register={register as UseFormRegister<TSignUpSchema | TLoginSchema>}
           errorMessage={errors["confirmPassword"]?.message}
           isSubmitting={isSubmitting}
           type="confirmPassword"
-          id={"signupConfirmPassword"}
         />
         <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
       </form>

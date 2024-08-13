@@ -81,9 +81,17 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
   return (
     isEmailLogin ? (
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-        <EmailInputField register={register} errorMessage={errors["email"]?.message} isSubmitting={isSubmitting} id={"loginEmail"}/>
-        <PasswordInputField register={register} errorMessage={errors["password"]?.message} isSubmitting={isSubmitting}
-                            type="password" id={"loginPassword"}/>
+        <EmailInputField
+          register={register}
+          errorMessage={errors["email"]?.message}
+          isSubmitting={isSubmitting}
+        />
+        <PasswordInputField
+          register={register}
+          errorMessage={errors["password"]?.message}
+          isSubmitting={isSubmitting}
+          type="password"
+        />
         <div className="flex items-center justify-between px-1 py-2">
           <Checkbox
             name="remember"
