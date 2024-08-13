@@ -18,7 +18,6 @@ export interface AlertProps {
   color?: "success" | "warning" | "error";
 }
 
-
 type TranslationFunctionType = TFunction<"translation", undefined>
 
 const emailSchema = (t: TranslationFunctionType) =>
