@@ -64,22 +64,23 @@ const UpdateProfile = (props: CardProps) => {
 
     if (response.success) {
       toast.success(t("profile.updateSuccess"));
-    } else {
-      const errors = response.errors;
-      if (!errors) {
-        toast.error(t("errors.unexpectedError"));
-        return;
-      }
-
-      (Object.keys(errors) as Array<keyof TUpdateProfileSchema>).forEach((key) => {
-        if (errors[key]) {
-          setError(key, {
-            type: "server",
-            message: errors[key] || t("errors.unexpectedError"),
-          });
-        }
-      });
+      return;
     }
+
+    const errors = response.errors;
+    if (!errors) {
+      toast.error(t("errors.unexpectedError"));
+      return;
+    }
+
+    (Object.keys(errors) as Array<keyof TUpdateProfileSchema>).forEach((key) => {
+      if (errors[key]) {
+        setError(key, {
+          type: "server",
+          message: errors[key] || t("errors.unexpectedError"),
+        });
+      }
+    });
   }
 
   return isLoggedIn ? (

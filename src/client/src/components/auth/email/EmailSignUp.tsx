@@ -45,32 +45,33 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
     const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
     if (response.success) {
       onSignupSuccessChange(true);
-    } else {
-      const errors = response.errors;
-      if (!errors) {
-        toast.error(t("errors.unexpectedError"));
-        return;
-      }
-
-      const emailRegisteredWithSocialLogin = errors.code === EMAIL_REGISTERED_WITH_SOCIAL_LOGIN;
-      if (emailRegisteredWithSocialLogin) {
-        const provider = response.provider
-        setError("email", {
-          type: "server",
-          message: t("errors.emailRegisteredWithSocialLogin", { provider }),
-        })
-        return;
-      }
-
-      (Object.keys(errors) as Array<keyof TSignUpSchema>).forEach((key) => {
-        if (errors[key]) {
-          setError(key, {
-            type: "server",
-            message: errors[key] || t("errors.unexpectedError"),
-          });
-        }
-      });
+      return;
     }
+
+    const errors = response.errors;
+    if (!errors) {
+      toast.error(t("errors.unexpectedError"));
+      return;
+    }
+
+    const emailRegisteredWithSocialLogin = errors.code === EMAIL_REGISTERED_WITH_SOCIAL_LOGIN;
+    if (emailRegisteredWithSocialLogin) {
+      const provider = response.provider
+      setError("email", {
+        type: "server",
+        message: t("errors.emailRegisteredWithSocialLogin", { provider }),
+      })
+      return;
+    }
+
+    (Object.keys(errors) as Array<keyof TSignUpSchema>).forEach((key) => {
+      if (errors[key]) {
+        setError(key, {
+          type: "server",
+          message: errors[key] || t("errors.unexpectedError"),
+        });
+      }
+    });
   };
 
   return (

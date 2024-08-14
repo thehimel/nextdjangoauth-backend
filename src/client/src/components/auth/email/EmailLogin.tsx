@@ -46,36 +46,37 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
       password: data.password,
       type: "login" as typeof login,
     }
+
     const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
     if (response.success) {
       navigate(from, { replace: true });
-    } else {
-      const errors = response.errors;
-      if (!errors) {
-        toast.error(t("errors.unexpectedError"));
-        return;
-      }
+    }
 
-      const emailRegisteredWithSocialLogin = errors.code === EMAIL_REGISTERED_WITH_SOCIAL_LOGIN;
-      if (emailRegisteredWithSocialLogin) {
-        const provider = response.provider
-        setError("email", {
-          type: "server",
-          message: t("errors.emailRegisteredWithSocialLogin", { provider }),
-        })
-        return;
-      }
+    const errors = response.errors;
+    if (!errors) {
+      toast.error(t("errors.unexpectedError"));
+      return;
+    }
 
+    const emailRegisteredWithSocialLogin = errors.code === EMAIL_REGISTERED_WITH_SOCIAL_LOGIN;
+    if (emailRegisteredWithSocialLogin) {
+      const provider = response.provider
       setError("email", {
         type: "server",
-        message: " ",
-      });
-
-      setError("password", {
-        type: "server",
-        message: t("errors.invalidEmailOrPassword"),
-      });
+        message: t("errors.emailRegisteredWithSocialLogin", { provider }),
+      })
+      return;
     }
+
+    setError("email", {
+      type: "server",
+      message: " ",
+    });
+
+    setError("password", {
+      type: "server",
+      message: t("errors.invalidEmailOrPassword"),
+    });
   };
 
   return (
