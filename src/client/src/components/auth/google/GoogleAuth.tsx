@@ -1,4 +1,4 @@
-import {login, signup} from "@/store/auth/actions/authV2.ts";
+import {login, signup} from "@/store/auth/actions/auth.ts";
 import {googleLoginUrl} from "@/utils/oauth.ts";
 import {Icon} from "@iconify/react";
 import {Button, Link} from "@nextui-org/react";

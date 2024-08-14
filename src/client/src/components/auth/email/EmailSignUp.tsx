@@ -3,7 +3,7 @@ import PasswordInputField from "@/components/auth/email/fields/PasswordInputFiel
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {signUpSchema, TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
-import {authV2, AuthV2ResponseInterface, signup} from "@/store/auth/actions/authV2.ts";
+import {auth, AuthResponseInterface, signup} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -42,7 +42,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
       confirmPassword: data.confirmPassword,
       type: "signup" as typeof signup,
     }
-    const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
+    const response: AuthResponseInterface = await dispatch(auth(authData));
     if (response.success) {
       onSignupSuccessChange(true);
       return;

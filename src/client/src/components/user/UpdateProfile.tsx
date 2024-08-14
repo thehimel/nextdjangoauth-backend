@@ -3,12 +3,12 @@ import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import {TUpdateProfileSchema, updateProfileSchema} from "@/constants/interfaces.ts";
 import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
-import {EMAIL} from "@/store/auth/actions/authV2.ts";
+import {EMAIL} from "@/store/auth/actions/auth.ts";
 import {
-  updateProfileV2,
-  UpdateProfileV2Interface,
-  UpdateProfileV2ResponseInterface,
-} from "@/store/auth/actions/updateProfileV2.ts";
+  updateProfile,
+  UpdateProfileInterface,
+  UpdateProfileResponseInterface,
+} from "@/store/auth/actions/updateProfile.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -50,14 +50,14 @@ const UpdateProfile = (props: CardProps) => {
   const watchedLastName = watch("lastName");
 
   const onSubmit = async (data: TUpdateProfileSchema) => {
-    const params: UpdateProfileV2Interface = {
+    const params: UpdateProfileInterface = {
       access: access,
       firstName: data.firstName,
       lastName: data.lastName,
       ...(userData.user.username !== data.username && { username: data.username })  // Include username only if it's updated.
     }
 
-    const response: UpdateProfileV2ResponseInterface = await dispatch(updateProfileV2(params));
+    const response: UpdateProfileResponseInterface = await dispatch(updateProfile(params));
     if (!response.isTokenValid) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
     }

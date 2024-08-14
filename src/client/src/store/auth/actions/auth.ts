@@ -10,7 +10,7 @@ export const signup = "signup";
 export const login = "login";
 export const EMAIL = "email"
 
-export interface AuthV2Interface {
+export interface AuthInterface {
   email: string;
   password: string;
   confirmPassword?: string;
@@ -18,7 +18,7 @@ export interface AuthV2Interface {
   type: typeof signup | typeof login;
 }
 
-export interface AuthV2ResponseInterface {
+export interface AuthResponseInterface {
   success: boolean;
   provider: string;
   errors?: {
@@ -31,21 +31,21 @@ export interface AuthV2ResponseInterface {
   isTokenValid: boolean;
 }
 
-export const InitialAuthV2Response: AuthV2ResponseInterface = {
+export const InitialAuthResponse: AuthResponseInterface = {
   success: false,
   provider: "email",
   isTokenValid: false,
 };
 
-export const authV2 = (authData: AuthV2Interface) => {
-  return async (dispatch: AppDispatch): Promise<AuthV2ResponseInterface> => {
+export const auth = (authData: AuthInterface) => {
+  return async (dispatch: AppDispatch): Promise<AuthResponseInterface> => {
     const { email, password, confirmPassword, isRememberMe, type } = authData;
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
     };
 
-    const response: AuthV2ResponseInterface = { ...InitialAuthV2Response };
+    const response: AuthResponseInterface = { ...InitialAuthResponse };
 
     try {
       dispatch(authActions.setAuthLoading(true));

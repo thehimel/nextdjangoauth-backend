@@ -4,7 +4,7 @@ import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {loginSchema, TLoginSchema} from "@/constants/interfaces.ts";
 import {FORGOT_PASSWORD_URL, HOME_URL} from "@/constants/urls.ts";
-import {authV2, AuthV2ResponseInterface, login} from "@/store/auth/actions/authV2.ts";
+import {auth, AuthResponseInterface, login} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -47,7 +47,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
       type: "login" as typeof login,
     }
 
-    const response: AuthV2ResponseInterface = await dispatch(authV2(authData));
+    const response: AuthResponseInterface = await dispatch(auth(authData));
     if (response.success) {
       navigate(from, { replace: true });
     }

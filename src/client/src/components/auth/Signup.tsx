@@ -4,7 +4,7 @@ import EmailSignUp from "@/components/auth/email/EmailSignUp.tsx";
 import GoogleAuth from "@/components/auth/google/GoogleAuth.tsx";
 import TermsAndPrivacyPolicy from "@/components/auth/TermsAndPrivacyPolicy.tsx";
 import {LOGIN_URL} from "@/constants/urls.ts";
-import {signup} from "@/store/auth/actions/authV2.ts";
+import {signup} from "@/store/auth/actions/auth.ts";
 import {Link} from "@nextui-org/react";
 import React from "react";
 import {useTranslation} from "react-i18next";
