@@ -18,9 +18,8 @@ const ProfileFooter: FC<submitButtonProps> = ({title, isLoading, isDisabled}) =>
         color="primary"
         type="submit"
         isDisabled={isLoading || isDisabled}
-        endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
       >
-        {title}
+        {isLoading ? (<Spinner size="sm" color="default"/>) : title}
       </Button>
     </CardFooter>
   );

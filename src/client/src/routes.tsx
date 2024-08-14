@@ -5,8 +5,8 @@ import GoogleAuthCallback from "@/components/auth/google/GoogleAuthCallback.tsx"
 import Login from "@/components/auth/Login.tsx";
 import Loader from "@/components/screens/Loader.tsx";
 import UpdatePassword from "@/components/user/UpdatePassword.tsx";
-import Profile from "@/components/user/Profile.tsx";
 import SendAuthEmail from "@/components/auth/email/SendAuthEmail.tsx";
+import UpdateProfile from "@/components/user/UpdateProfile.tsx";
 import {
   CHANGE_PASSWORD_URL,
   CONFIRM_EMAIL_URL, FORGOT_PASSWORD_URL, GOOGLE_REDIRECT_URL,
@@ -25,7 +25,7 @@ export const router = createBrowserRouter(
       <Route path={SIGNUP_URL} element={<Signup />}/>
       <Route path={LOGIN_URL} element={<Login/>}/>
       <Route path={CONFIRM_EMAIL_URL} element={<ConfirmEmail />}/>
-      <Route path={PROFILE_URL} element={<Profile />}/>
+      <Route path={PROFILE_URL} element={<UpdateProfile />}/>
       <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmail requestType={"forgot_password"}/>}/>
       <Route path={CHANGE_PASSWORD_URL} element={<UpdatePassword isChangePassword/>}/>
       <Route path={RESET_PASSWORD_URL} element={<UpdatePassword isResetPassword/>}/>
