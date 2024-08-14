@@ -46,7 +46,7 @@ const ConfirmEmail = () => {
       {!isLoading && isEmailVerified && (
         <Login isEmailLoginSelected headerMessageText={t("auth.emailVerification.successLogin")}/>
       )}
-      {!isLoading && !isEmailVerified && (<SendAuthEmail requestType={"resend_email_verification"}/>)}
+      {!isLoading && !isEmailVerified && (<SendAuthEmail type={"resend_email_verification"}/>)}
     </>
   );
 }

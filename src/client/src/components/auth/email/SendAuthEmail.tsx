@@ -15,15 +15,15 @@ import {useTranslation} from "react-i18next";
 export type AuthEmailRequestType = "resend_email_verification" | "forgot_password";
 
 interface SendEmailProps {
-  requestType: AuthEmailRequestType;
+  type: AuthEmailRequestType;
 }
 
-const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
+const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
   const dispatch: AppDispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const isResendEmailVerificationPage = requestType === "resend_email_verification";
-  const isForgotPasswordPage = requestType === "forgot_password";
+  const isResendEmailVerificationPage = type === "resend_email_verification";
+  const isForgotPasswordPage = type === "forgot_password";
 
   const headerTitle= isResendEmailVerificationPage ? t("auth.emailVerification.resendEmail")
     : isForgotPasswordPage ? t("auth.login.forgotPassword") : t("common.welcome")
@@ -59,7 +59,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
       setIsSubmitting(true);
       const params: AuthEmailInterface = {
         email: email,
-        requestType: requestType
+        type: type
       }
       const response = await dispatch(sendAuthEmail(params));
 

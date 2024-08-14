@@ -8,7 +8,7 @@ import axios, {AxiosError} from "axios";
 
 export interface AuthEmailInterface {
   email: string;
-  requestType: AuthEmailRequestType;
+  type: AuthEmailRequestType;
 }
 
 export interface AuthEmailResponseInterface {
@@ -33,7 +33,7 @@ export const InitialAuthEmailResponse: AuthEmailResponseInterface = {
   },
 }
 
-export const sendAuthEmail = ({email, requestType}: AuthEmailInterface) => {
+export const sendAuthEmail = ({email, type}: AuthEmailInterface) => {
   return async (dispatch: AppDispatch): Promise<AuthEmailResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
@@ -45,8 +45,8 @@ export const sendAuthEmail = ({email, requestType}: AuthEmailInterface) => {
     try {
       dispatch(authActions.setAuthLoading(true));
       const params = {email: email};
-      const apiUrl = requestType === "resend_email_verification" ? RESEND_EMAIL_VERIFICATION_API_URL
-        : requestType === "forgot_password" ? FORGOT_PASSWORD_API_URL : "";
+      const apiUrl = type === "resend_email_verification" ? RESEND_EMAIL_VERIFICATION_API_URL
+        : type === "forgot_password" ? FORGOT_PASSWORD_API_URL : "";
 
       await axios.post(apiUrl, params,{headers: headers});
       response.success = true;
