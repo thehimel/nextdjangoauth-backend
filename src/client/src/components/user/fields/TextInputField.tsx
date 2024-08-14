@@ -1,8 +1,8 @@
+import {TUpdateProfileSchema} from "@/schemas/user.ts";
 import React from "react";
 import {Input} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
 import {UseFormRegister} from "react-hook-form";
-import {TUpdateProfileSchema} from "@/constants/interfaces.ts";
 
 interface TextInputFieldProps {
   register: UseFormRegister<TUpdateProfileSchema>;

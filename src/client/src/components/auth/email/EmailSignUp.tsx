@@ -2,7 +2,7 @@ import EmailInputField from "@/components/auth/email/fields/EmailInputField.tsx"
 import PasswordInputField from "@/components/auth/email/fields/PasswordInputField.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
-import {signUpSchema, TLoginSchema, TSignUpSchema} from "@/constants/interfaces.ts";
+import {signUpSchema, TLoginSchema, TSignUpSchema} from "@/schemas/auth.ts";
 import {auth, AuthResponseInterface, signup} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
