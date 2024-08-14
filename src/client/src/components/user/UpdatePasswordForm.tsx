@@ -2,10 +2,10 @@ import PasswordInputField, {TPasswordInputRegister} from "@/components/auth/emai
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {TUpdatePasswordSchema, updatePasswordSchema} from "@/schemas/auth.ts";
 import {
-  updatePasswordV2,
-  UpdatePasswordV2Interface,
-  UpdatePasswordV2ResponseInterface,
-} from "@/store/auth/actions/updatePasswordV2.ts";
+  updatePassword,
+  UpdatePasswordInterface,
+  UpdatePasswordResponseInterface,
+} from "@/store/auth/actions/updatePassword.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {handleLogout} from "@/utils/logout.ts";
@@ -40,7 +40,7 @@ const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, 
   });
 
   const onSubmit = async (data: TUpdatePasswordSchema) => {
-    const params: UpdatePasswordV2Interface = {
+    const params: UpdatePasswordInterface = {
       access: userData.access,
       password: data.password,
       confirmPassword: data.confirmPassword,
@@ -49,7 +49,7 @@ const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, 
       type: type
     }
 
-    const response: UpdatePasswordV2ResponseInterface = await dispatch(updatePasswordV2(params));
+    const response: UpdatePasswordResponseInterface = await dispatch(updatePassword(params));
 
     if (!response.isTokenValid) {
       setShowForm(false);

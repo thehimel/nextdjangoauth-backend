@@ -9,11 +9,11 @@ import React, {useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
-interface UpdatePasswordV2Props {
+interface UpdatePasswordProps {
   type: "change" | "reset"
 }
 
-const UpdatePasswordV2: React.FC<UpdatePasswordV2Props> = ({type}) => {
+const UpdatePassword: React.FC<UpdatePasswordProps> = ({type}) => {
   const { t } = useTranslation();
   const { uid, token } = useParams<{ uid?: string; token?: string }>();
 
@@ -70,4 +70,4 @@ const UpdatePasswordV2: React.FC<UpdatePasswordV2Props> = ({type}) => {
   );
 }
 
-export default UpdatePasswordV2;
+export default UpdatePassword;
