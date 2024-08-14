@@ -57,6 +57,7 @@ export const updatePasswordV2 = (data: UpdatePasswordV2Interface) => {
       response.isTokenValid = true;
     } catch (error) {
       const errors = getErrorsV2(error as AxiosError);
+      console.log(errors);
       response.success = false;
 
       response.errors = {
@@ -66,12 +67,13 @@ export const updatePasswordV2 = (data: UpdatePasswordV2Interface) => {
         confirmPassword: Array.isArray(errors.new_password2) ? errors.new_password2[0] : undefined,
       };
 
-      if (response.errors.code === TOKEN_NOT_VALID) {
+      if (errors.uid || errors.token || response.errors.code === TOKEN_NOT_VALID) {
         response.isTokenValid = false;
       }
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }
+    console.log(response);
     return response;
   };
 };
