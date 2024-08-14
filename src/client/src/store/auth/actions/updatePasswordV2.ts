@@ -5,6 +5,7 @@ import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrorsV2} from "@/utils/errorsV2.ts";
 import axios, {AxiosError} from "axios";
+import i18n from "i18next";
 
 export interface UpdatePasswordV2Interface {
   access?: string,
@@ -57,7 +58,6 @@ export const updatePasswordV2 = (data: UpdatePasswordV2Interface) => {
       response.isTokenValid = true;
     } catch (error) {
       const errors = getErrorsV2(error as AxiosError);
-      console.log(errors);
       response.success = false;
 
       response.errors = {
@@ -70,10 +70,14 @@ export const updatePasswordV2 = (data: UpdatePasswordV2Interface) => {
       if (errors.uid || errors.token || response.errors.code === TOKEN_NOT_VALID) {
         response.isTokenValid = false;
       }
+
+      if (response.errors.confirmPassword?.toLowerCase().includes("too common")) {
+        response.errors.password = " ";  // Mark the password field as invalid
+        response.errors.confirmPassword = i18n.t("errors.passwordTooCommon");
+      }
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }
-    console.log(response);
     return response;
   };
 };

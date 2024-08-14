@@ -19,6 +19,7 @@
     "confirmPasswordRequired": "Please confirm your password.",
     "passwordMismatch": "Passwords do not match.",
     "passwordMinLength": "Password must be at least 8 characters long.",
+    "passwordTooCommon": "Password is too common. Please choose a more secure one.",
     "invalidEmailOrPassword": "Invalid email or password.",
     "invalidUsername": "Username must be minimum 6 characters, letters & numbers only.",
     "usernameTooShort": "Username must be at least 6 characters long.",
