@@ -35,7 +35,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isEmailSent, setIsEmailSent] = React.useState(false);
 
   const [headline, setHeadline] = React.useState(initialHeadline);
@@ -56,7 +56,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
     }) && isFormValid;
 
     if (isFormValid) {
-      setIsLoading(true);
+      setIsSubmitting(true);
       const params: AuthEmailInterface = {
         email: email,
         requestType: requestType
@@ -66,15 +66,9 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
       if (response.success) {
         setIsEmailSent(true);
         if (isResendEmailVerificationPage) {
-          setHeadline({
-            text: t("auth.emailVerification.emailSent"),
-            color: "default",
-          });
+          setHeadline({ text: t("auth.emailVerification.emailSent"), color: "default" });
         } else {
-          setHeadline({
-            text: t("auth.passwordReset.emailSent"),
-            color: "default",
-          });
+          setHeadline({ text: t("auth.passwordReset.emailSent"), color: "default" });
         }
       } else {
         const emailError = response.errors.data.email;
@@ -83,7 +77,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
           setEmailErrorMessage(response.errors.data.email);
         }
       }
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -104,7 +98,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
               variant="bordered"
               errorMessage={!isEmailValid ? emailErrorMessage : undefined}
               isInvalid={!isEmailValid}
-              isDisabled={isLoading}
+              isDisabled={isSubmitting}
               value={email}
               onValueChange={(value) => {
                 setIsEmailValid(true);
@@ -115,10 +109,9 @@ const SendAuthEmail: FC<SendEmailProps> = ({requestType}) => {
             <Button
               color="primary"
               type="submit"
-              isDisabled={isLoading}
-              endContent={isLoading ? (<Spinner size="sm" color="default"/>) : null}
+              isDisabled={isSubmitting}
             >
-              {t("forms.send")}
+              {isSubmitting ? (<Spinner size="sm" color="default"/>) : t("forms.send")}
             </Button>
           </form>
         }
