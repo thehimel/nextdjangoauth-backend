@@ -1,5 +1,5 @@
 import EmailInputField from "@/components/auth/email/fields/EmailInputField.tsx";
-import PasswordInputField from "@/components/auth/email/fields/PasswordInputField.tsx";
+import PasswordInputField, {TPasswordInputRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {loginSchema, TLoginSchema} from "@/schemas/auth.ts";
@@ -50,6 +50,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
     const response: AuthResponseInterface = await dispatch(auth(authData));
     if (response.success) {
       navigate(from, { replace: true });
+      return;
     }
 
     const errors = response.errors;
@@ -88,7 +89,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
           isSubmitting={isSubmitting}
         />
         <PasswordInputField
-          register={register}
+          register={register as TPasswordInputRegister}
           errorMessage={errors["password"]?.message}
           isSubmitting={isSubmitting}
           type="password"

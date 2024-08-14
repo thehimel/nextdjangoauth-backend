@@ -11,6 +11,7 @@ const passwordSchema = (t: TranslationFunctionType) =>
     .min(1, t("errors.passwordRequired"))
     .min(8, t("errors.passwordMinLength"));
 
+
 export const loginSchema = (t: TranslationFunctionType) => z
   .object({
     email: emailSchema(t),
@@ -18,6 +19,7 @@ export const loginSchema = (t: TranslationFunctionType) => z
   });
 
 export type TLoginSchema = z.infer<ReturnType<typeof loginSchema>>;
+
 
 export const signUpSchema = (t: TranslationFunctionType) => z
   .object({
@@ -31,3 +33,16 @@ export const signUpSchema = (t: TranslationFunctionType) => z
   });
 
 export type TSignUpSchema = z.infer<ReturnType<typeof signUpSchema>>;
+
+
+export const updatePasswordSchema = (t: TranslationFunctionType) => z
+  .object({
+    password: passwordSchema(t),
+    confirmPassword: passwordSchema(t),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: t("errors.passwordMismatch"),
+    path: ["confirmPassword"],
+  });
+
+export type TUpdatePasswordSchema = z.infer<ReturnType<typeof updatePasswordSchema>>;

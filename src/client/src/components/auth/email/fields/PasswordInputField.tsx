@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 import { UseFormRegister } from "react-hook-form";
-import {TLoginSchema, TSignUpSchema} from "@/schemas/auth.ts";
+import {TLoginSchema, TSignUpSchema, TUpdatePasswordSchema} from "@/schemas/auth.ts";
 import { EyeClosedIcon, EyeOpenIcon } from "@/components/icons/eyes.tsx";
 
+export type TPasswordInputRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TUpdatePasswordSchema>;
 interface PasswordInputFieldProps {
-  register: UseFormRegister<TSignUpSchema | TLoginSchema>;
+  register: TPasswordInputRegister;
   errorMessage?: string;
   isSubmitting: boolean;
   type: "password" | "confirmPassword";
+  label?: string;
 }
 
-const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ register, errorMessage, isSubmitting, type }) => {
+const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ register, errorMessage, isSubmitting, type, label }) => {
   const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
@@ -21,7 +23,7 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ register, error
     <Input
       {...register(type)}
       isRequired
-      label={t(`forms.${type}`)}
+      label={label || t(`forms.${type}`)}
       variant="bordered"
       type={isPasswordVisible ? "text" : "password"}
       isInvalid={!!errorMessage}
