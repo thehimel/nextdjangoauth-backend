@@ -1,13 +1,13 @@
 export const HOME_URL = "/";
 export const LOADER_URL = "/loader/"
-export const SIGNUP_URL = "/signup/";
-export const LOGIN_URL = "/login/";
+export const SIGNUP_URL = "/auth/signup/";
+export const LOGIN_URL = "/auth/login/";
 export const PROFILE_URL = "/profile/";
 export const CHANGE_PASSWORD_URL = "/profile/change-password/";
-export const CONFIRM_EMAIL_URL = "/signup/confirm-email/:key/";
-export const FORGOT_PASSWORD_URL = "/recovery/forgot-password/";
-export const RESET_PASSWORD_URL = "/recovery/reset-password/:uid/:token/"
-export const GOOGLE_REDIRECT_URL = "auth/google/callback/";
+export const CONFIRM_EMAIL_URL = "/auth/confirm-email/:key/";
+export const FORGOT_PASSWORD_URL = "/auth/forgot-password/";
+export const RESET_PASSWORD_URL = "/auth/reset-password/:uid/:token/"
+export const GOOGLE_REDIRECT_URL = "/auth/google/callback/";
 
 export const SIGNUP_API_URL = "/api/auth/registration/";
 export const LOGIN_API_URL = "/api/auth/login/";

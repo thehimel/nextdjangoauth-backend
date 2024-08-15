@@ -43,12 +43,8 @@ urlpatterns = [
     # To support password reset email with dj_rest_auth.
     path('', include('django.contrib.auth.urls')),
 
-    # Must be at the end.
-    path(
-        "recovery/reset-password/<uidb64>/<token>/",
-        PasswordResetConfirmView.as_view(),
-        name="password_reset_confirm"
-    ),
+    # Define url to be used in the verification email to reset password. Must be at the end.
+    path("auth/reset-password/<uidb64>/<token>/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
 
 oas_urls = [
