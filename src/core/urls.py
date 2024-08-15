@@ -28,10 +28,10 @@ urlpatterns = [
 
     path('', include('apps.auth.urls', namespace='auth')),
 
-    # To support password reset email with dj_rest_auth.
+    # To support password reset email with dj_rest_auth. Must be at top level.
     path('', include('django.contrib.auth.urls')),
 
-    # Define url to be used in the verification email to reset password. Must be at the end.
+    # Define url to be used in reset email with dj_rest_auth. Must be at top level. Must be at the end.
     path("auth/reset-password/<uidb64>/<token>/", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]
 
