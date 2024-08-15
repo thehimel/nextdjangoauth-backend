@@ -1,9 +1,9 @@
 from django.urls import include, path, re_path
 
+from apps.auth.views.auth import LoginView, SignupView
 from apps.auth.views.client import ClientView
-from apps.auth.views.google_login import GoogleLogin
-from apps.auth.views.auth import SignupView, LoginView
 from apps.auth.views.emails import ResendEmailVerificationView
+from apps.auth.views.google_login import GoogleLogin
 
 app_name = 'auth'
 

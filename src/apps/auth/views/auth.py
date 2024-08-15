@@ -1,5 +1,6 @@
-from dj_rest_auth.views import LoginView as MainLoginView
 from dj_rest_auth.registration.views import RegisterView as MainRegisterView
+from dj_rest_auth.views import LoginView as MainLoginView
+
 from apps.auth.mixins.social_accounts import SocialAccountCheckMixin
 
 

@@ -3,8 +3,8 @@ from django.contrib.sites.models import Site
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 
-from apps.auth.utils.utils import logger
 from apps.auth.constants import DOMAIN_NAME
+from apps.auth.utils.utils import logger
 from core.constants import BRAND_NAME
 
 # Module-level flag to track if the signal has already executed
