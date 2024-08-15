@@ -1,5 +1,5 @@
 import {TOKEN_NOT_VALID} from "@/constants/errorCodes.ts";
-import {CHANGE_PASSWORD_API_URL, RESET_PASSWORD_API_URL} from "@/constants/urls.ts";
+import {PASSWORD_CHANGE_API_URL, PASSWORD_RESET_CONFIRM_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
@@ -51,7 +51,7 @@ export const updatePassword = (data: UpdatePasswordInterface) => {
         new_password2: confirmPassword,
         ...(type === "reset" && { uid: uid, token: token }),
       };
-      const apiUrl = type === "reset" ? RESET_PASSWORD_API_URL : CHANGE_PASSWORD_API_URL;
+      const apiUrl = type === "reset" ? PASSWORD_RESET_CONFIRM_API_URL : PASSWORD_CHANGE_API_URL;
       await axios.post(apiUrl, params,{headers: headers});
 
       response.success = true;

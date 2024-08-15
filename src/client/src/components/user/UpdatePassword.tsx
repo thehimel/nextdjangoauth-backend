@@ -2,7 +2,7 @@ import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import Login from "@/components/auth/Login.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
 import UpdatePasswordForm from "@/components/user/UpdatePasswordForm.tsx";
-import {FORGOT_PASSWORD_URL, LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
+import {PASSWORD_RESET_URL, LOGIN_URL, USER_PROFILE_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {Card, CardHeader, Link} from "@nextui-org/react";
 import React, {useEffect} from "react";
@@ -48,7 +48,7 @@ const UpdatePassword: React.FC<UpdatePasswordProps> = ({type}) => {
                 firstName={userData.user.first_name}
                 lastName={userData.user.last_name}
                 email={userData.user.email}
-                navigationLink={{url: PROFILE_URL, title: t("profile.updateProfile")}}
+                navigationLink={{url: USER_PROFILE_URL, title: t("profile.updateProfile")}}
               />
             )}
 
@@ -58,7 +58,7 @@ const UpdatePassword: React.FC<UpdatePasswordProps> = ({type}) => {
               <CardHeader className="flex flex-col pt-0 pb-0">
                 <p className="text-center text-danger">
                   {t("auth.passwordReset.invalidLink")}&nbsp;
-                  <Link href={FORGOT_PASSWORD_URL}>{t("auth.passwordReset.resendLink")}</Link>
+                  <Link href={PASSWORD_RESET_URL}>{t("auth.passwordReset.resendLink")}</Link>
                 </p>
               </CardHeader>
             )}

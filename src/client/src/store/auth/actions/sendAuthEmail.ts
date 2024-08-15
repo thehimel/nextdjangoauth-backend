@@ -1,5 +1,5 @@
 import {SendAuthEmailRequestType} from "@/components/auth/email/SendAuthEmail.tsx";
-import {FORGOT_PASSWORD_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/constants/urls.ts";
+import {PASSWORD_RESET_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
@@ -38,7 +38,7 @@ export const sendAuthEmail = (data: SendAuthEmailInterface) => {
       dispatch(authActions.setAuthLoading(true));
       const params = {email: email};
       const apiUrl = type === "resend_email_verification" ? RESEND_EMAIL_VERIFICATION_API_URL
-        : type === "forgot_password" ? FORGOT_PASSWORD_API_URL : "";
+        : type === "forgot_password" ? PASSWORD_RESET_API_URL : "";
 
       await axios.post(apiUrl, params,{headers: headers});
       response.success = true;

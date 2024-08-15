@@ -1,4 +1,4 @@
-import {PROFILE_URL} from "@/constants/urls.ts";
+import {USER_PROFILE_URL} from "@/constants/urls.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {handleLogout} from "@/utils/logout.ts";
@@ -36,7 +36,7 @@ const UserMenu = () => {
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownSection showDivider aria-label="profile">
-            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2" href={PROFILE_URL}>
+            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2" href={USER_PROFILE_URL}>
               <User
                 avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
                 classNames={{name: "font-semibold", description: "text-default-500"}}

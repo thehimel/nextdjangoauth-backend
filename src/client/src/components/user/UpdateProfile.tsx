@@ -1,7 +1,7 @@
 import TextInputField from "@/components/user/fields/TextInputField.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
-import {CHANGE_PASSWORD_URL, LOGIN_URL} from "@/constants/urls.ts";
+import {PASSWORD_CHANGE_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {TUpdateProfileSchema, updateProfileSchema} from "@/schemas/user.ts";
 import {EMAIL} from "@/store/auth/actions/auth.ts";
 import {
@@ -91,7 +91,7 @@ const UpdateProfile = (props: CardProps) => {
         lastName={watchedLastName}
         email={userData.user.email}
         navigationLink={userData.provider === EMAIL ? {
-          url: CHANGE_PASSWORD_URL,
+          url: PASSWORD_CHANGE_URL,
           title: t("profile.changePassword"),
         } : undefined}
       />

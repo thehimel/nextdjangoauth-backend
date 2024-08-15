@@ -3,7 +3,7 @@ import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {loginSchema, TLoginSchema} from "@/schemas/auth.ts";
-import {FORGOT_PASSWORD_URL, HOME_URL} from "@/constants/urls.ts";
+import {PASSWORD_RESET_URL, HOME_URL} from "@/constants/urls.ts";
 import {auth, AuthResponseInterface, login} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -105,7 +105,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
           >
             {t("auth.login.rememberMe")}
           </Checkbox>
-          <Link className="text-default-500" href={FORGOT_PASSWORD_URL} size="sm">
+          <Link className="text-default-500" href={PASSWORD_RESET_URL} size="sm">
             {t("auth.login.forgotPassword")}
           </Link>
         </div>

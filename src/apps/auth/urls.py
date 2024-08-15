@@ -7,17 +7,22 @@ from apps.auth.views.emails import ResendEmailVerificationView
 
 app_name = 'auth'
 
+verify_email_path = 'auth/signup/verify-email/'
+
 urlpatterns = [
     path('', ClientView.as_view(), name='client'),
     path('loader/', ClientView.as_view(), name='loader'),
+
     path('auth/google/callback/', ClientView.as_view(), name='google_callback'),
-    path('auth/signup/', ClientView.as_view(), name='signup'),
     path('auth/login/', ClientView.as_view(), name='login'),
-    re_path('auth/confirm-email/(?P<key>.+)/', ClientView.as_view(), name='confirm_email'),
-    path('auth/forgot-password/', ClientView.as_view(), name='forgot_password'),
-    re_path('auth/reset-password/', ClientView.as_view(), name='reset_password'),
-    path('profile/', ClientView.as_view(), name='profile'),
-    path('profile/change-password/', ClientView.as_view(), name='change_password'),
+    path('auth/signup/', ClientView.as_view(), name='signup'),
+    re_path(f'{verify_email_path}(?P<key>.+)/', ClientView.as_view(), name='verify_email'),
+
+    path('user/profile/', ClientView.as_view(), name='profile'),
+
+    path('auth/password/reset/', ClientView.as_view(), name='password_reset'),
+    path('auth/password/reset/confirm/<uidb64>/<token>/', ClientView.as_view(), name='password_reset_confirm'),
+    path('auth/password/change/', ClientView.as_view(), name='password_change'),
 
     path('api/auth/google/', GoogleLogin.as_view(), name='google_auth'),
     path('api/auth/login/', LoginView.as_view(), name='rest_login'),
