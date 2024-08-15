@@ -6,10 +6,10 @@ import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {MessageInterface} from "@/constants/interfaces.ts";
 import {sendAuthEmailSchema, TSendAuthEmailSchema} from "@/schemas/auth.ts";
 import {
-  SendAuthEmailResponseV2Interface,
-  sendAuthEmailV2,
-  SendAuthEmailV2Interface,
-} from "@/store/auth/actions/sendAuthEmailV2.ts";
+  SendAuthEmailResponseInterface,
+  sendAuthEmail,
+  SendAuthEmailInterface,
+} from "@/store/auth/actions/sendAuthEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -18,13 +18,13 @@ import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
 import {toast} from "sonner";
 
-export type AuthEmailRequestType = "resend_email_verification" | "forgot_password";
+export type SendAuthEmailRequestType = "resend_email_verification" | "forgot_password";
 
 interface SendEmailProps {
-  type: AuthEmailRequestType;
+  type: SendAuthEmailRequestType;
 }
 
-const SendAuthEmailV2: FC<SendEmailProps> = ({type}) => {
+const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
   const dispatch: AppDispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -54,9 +54,9 @@ const SendAuthEmailV2: FC<SendEmailProps> = ({type}) => {
   });
 
   const onSubmit = async (data: TSendAuthEmailSchema) => {
-    const params: SendAuthEmailV2Interface = { email: data.email, type: type }
+    const params: SendAuthEmailInterface = { email: data.email, type: type }
 
-    const response: SendAuthEmailResponseV2Interface = await dispatch(sendAuthEmailV2(params))
+    const response: SendAuthEmailResponseInterface = await dispatch(sendAuthEmail(params))
 
     if (response.success) {
       setIsEmailSent(true);
@@ -101,4 +101,4 @@ const SendAuthEmailV2: FC<SendEmailProps> = ({type}) => {
   );
 }
 
-export default SendAuthEmailV2;
+export default SendAuthEmail;

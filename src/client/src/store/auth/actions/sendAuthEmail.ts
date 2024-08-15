@@ -1,4 +1,4 @@
-import {AuthEmailRequestType} from "@/components/auth/email/SendAuthEmailV2.tsx";
+import {SendAuthEmailRequestType} from "@/components/auth/email/SendAuthEmail.tsx";
 import {FORGOT_PASSWORD_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
@@ -6,32 +6,32 @@ import {getCookie} from "@/utils/cookies.ts";
 import {getErrorsV2} from "@/utils/errorsV2.ts";
 import axios, {AxiosError} from "axios";
 
-export interface SendAuthEmailV2Interface {
+export interface SendAuthEmailInterface {
   email: string;
-  type: AuthEmailRequestType;
+  type: SendAuthEmailRequestType;
 }
 
-export interface SendAuthEmailResponseV2Interface {
+export interface SendAuthEmailResponseInterface {
   success: boolean;
   errors?: {
     email?: string;
   };
 }
 
-export const InitialSendAuthEmailV2Response: SendAuthEmailResponseV2Interface = {
+export const InitialSendAuthEmailResponse: SendAuthEmailResponseInterface = {
   success: false,
 }
 
-export const sendAuthEmailV2 = (data: SendAuthEmailV2Interface) => {
+export const sendAuthEmail = (data: SendAuthEmailInterface) => {
   const {email, type} = data;
 
-  return async (dispatch: AppDispatch): Promise<SendAuthEmailResponseV2Interface> => {
+  return async (dispatch: AppDispatch): Promise<SendAuthEmailResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
     }
 
-    const response: SendAuthEmailResponseV2Interface = { ...InitialSendAuthEmailV2Response };
+    const response: SendAuthEmailResponseInterface = { ...InitialSendAuthEmailResponse };
 
     try {
       dispatch(authActions.setAuthLoading(true));
