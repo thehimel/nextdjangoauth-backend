@@ -22,15 +22,18 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={HOME_URL} element={<App/>}>
       <Route index={true} path={HOME_URL} element={<Home/>}/>
-      <Route path={SIGNUP_URL} element={<Signup />}/>
-      <Route path={LOGIN_URL} element={<Login/>}/>
-      <Route path={VERIFY_EMAIL_URL} element={<ConfirmEmail />}/>
-      <Route path={USER_PROFILE_URL} element={<ProfileUpdate />}/>
-      <Route path={PASSWORD_RESET_URL} element={<SendAuthEmail type={"forgot_password"}/>}/>
-      <Route path={PASSWORD_CHANGE_URL} element={<PasswordUpdate type={"change"}/>}/>
-      <Route path={PASSWORD_RESET_CONFIRM_URL} element={<PasswordUpdate type={"reset"}/>}/>
       <Route path={LOADER_URL} element={<Loader/>}/>
+
       <Route path={GOOGLE_REDIRECT_URL} element={<GoogleAuthCallback/>}/>
+      <Route path={LOGIN_URL} element={<Login/>}/>
+      <Route path={SIGNUP_URL} element={<Signup />}/>
+      <Route path={VERIFY_EMAIL_URL} element={<ConfirmEmail />}/>
+
+      <Route path={USER_PROFILE_URL} element={<ProfileUpdate />}/>
+
+      <Route path={PASSWORD_RESET_URL} element={<SendAuthEmail type={"forgot_password"}/>}/>
+      <Route path={PASSWORD_RESET_CONFIRM_URL} element={<PasswordUpdate type={"reset"}/>}/>
+      <Route path={PASSWORD_CHANGE_URL} element={<PasswordUpdate type={"change"}/>}/>
     </Route>
   )
 )
