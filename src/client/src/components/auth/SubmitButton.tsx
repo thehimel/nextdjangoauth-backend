@@ -1,18 +1,22 @@
-import {ColorType} from "@/constants/interfaces.ts";
-import {Button, Spinner} from "@nextui-org/react";
-import React from 'react';
+import { Button, ButtonProps, Spinner } from "@nextui-org/react";
+import React from "react";
+import { ColorType } from "@/constants/interfaces.ts";
 
-interface SubmitButtonProps {
+interface SubmitButtonProps extends ButtonProps {
   color?: ColorType;
-  type?: "submit";
   isDisabled?: boolean;
   isLoading?: boolean;
   title: string;
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({color, isDisabled, isLoading, title}) => {
+const SubmitButton: React.FC<SubmitButtonProps> = ({ color, isDisabled, isLoading, title, ...props }) => {
   return (
-    <Button type="submit" color={color || "default"} isDisabled={isDisabled || isLoading}>
+    <Button
+      {...props}
+      type="submit"
+      color={color || "default"}
+      isDisabled={isDisabled || isLoading}
+    >
       {isLoading ? <Spinner size="sm" color="white" /> : title}
     </Button>
   );

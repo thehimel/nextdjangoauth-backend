@@ -1,6 +1,7 @@
 "use client";
 
-import {Button, CardFooter, Spinner} from "@nextui-org/react";
+import SubmitButton from "@/components/auth/SubmitButton.tsx";
+import {CardFooter} from "@nextui-org/react";
 
 import {FC} from "react";
 
@@ -13,14 +14,13 @@ interface submitButtonProps {
 const ProfileFooter: FC<submitButtonProps> = ({title, isLoading, isDisabled}) => {
   return (
     <CardFooter className="justify-end gap-2">
-      <Button
-        className="w-full"
-        color="default"
-        type="submit"
-        isDisabled={isLoading || isDisabled}
-      >
-        {isLoading ? (<Spinner size="sm" color="white"/>) : title}
-      </Button>
+      <SubmitButton
+        className={"w-full"}
+        title={title}
+        color={"default"}
+        isLoading={isLoading}
+        isDisabled={isDisabled}
+      />
     </CardFooter>
   );
 }
