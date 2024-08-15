@@ -5,6 +5,7 @@ import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
 import {getErrorsV2} from "@/utils/errorsV2.ts";
 import axios, {AxiosError} from "axios";
+import i18n from "i18next";
 
 export interface SendAuthEmailInterface {
   email: string;
@@ -48,6 +49,10 @@ export const sendAuthEmail = (data: SendAuthEmailInterface) => {
       response.errors = {
         email: Array.isArray(errors.email) ? errors.email[0] : undefined,
       };
+
+      if (response.errors.email?.toLowerCase().includes("not found")) {
+        response.errors.email = i18n.t("errors.emailNotFound");
+      }
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }

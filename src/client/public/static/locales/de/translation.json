@@ -33,6 +33,7 @@
     "authenticationFailed": "Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
     "emailRegisteredWithSocialLogin": "Diese E-Mail-Adresse ist bereits mit {{provider}}-Anmeldung registriert. Bitte verwenden Sie {{provider}}, um sich anzumelden, oder nutzen Sie eine andere E-Mail-Adresse.",
     "emailRegisteredWithEmailLogin": "Diese E-Mail-Adresse ist bereits mit einem E-Mail- und Passwort-Konto registriert. Bitte verwenden Sie Ihre E-Mail-Adresse und Ihr Passwort, um sich anzumelden, oder nutzen Sie eine andere E-Mail-Adresse.",
+    "emailNotFound": "Kein Konto für diese E-Mail gefunden. Bitte überprüfen Sie die E-Mail und versuchen Sie es erneut oder erstellen Sie ein neues Konto.",
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten."
   },
   "forms": {
