@@ -14,11 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from dj_rest_auth.views import PasswordResetConfirmView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
+from django.contrib.auth.views import PasswordResetConfirmView
 
 from core.views import schema_view
 
@@ -28,12 +28,9 @@ urlpatterns = [
 
     path('', include('apps.auth.urls', namespace='auth')),
 
-    # To support password reset email with dj_rest_auth. Must be at top level.
-    path('', include('django.contrib.auth.urls')),
-
-    # Define url to be used in reset email with dj_rest_auth. Must be at top level. Must be at the end.
+    # Define url to be used in password reset email with dj_rest_auth. Must be at the top level. Must be at the end.
     path(
-        "auth/password/reset/confirm/<uidb64>/<token>/",
+        'auth/password/reset/confirm/<uidb64>/<token>/',
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm"
     ),
