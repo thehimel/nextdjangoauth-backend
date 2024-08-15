@@ -22,6 +22,7 @@ const EmailInputField: React.FC<EmailInputFieldProps> = ({register, errorMessage
       isRequired
       label={t("forms.email")}
       variant="bordered"
+      autoComplete={"email"}
       isInvalid={!!errorMessage}
       errorMessage={errorMessage}
       isDisabled={isSubmitting}
