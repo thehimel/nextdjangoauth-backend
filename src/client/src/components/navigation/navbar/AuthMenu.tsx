@@ -1,6 +1,7 @@
 import {LOGIN_URL, SIGNUP_URL} from "@/constants/urls.ts";
-import {Button, Link, NavbarItem} from "@nextui-org/react";
+import {Button, NavbarItem} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
+import {NavLink} from "react-router-dom";
 
 const UserMenu = () => {
   const { t } = useTranslation();
@@ -8,18 +9,14 @@ const UserMenu = () => {
   return (
     <div className="flex ml-2 gap-2">
       <NavbarItem className="sm:flex">
-        <Link href={LOGIN_URL}>
-          <Button radius="full" variant="bordered" color="default" >
-            <p>{t("navigation.login")}</p>
-          </Button>
-        </Link>
+        <Button to={LOGIN_URL} as={NavLink} radius="full" variant="bordered" color="default"  >
+          <p>{t("navigation.login")}</p>
+        </Button>
       </NavbarItem>
       <NavbarItem className="hidden sm:flex">
-        <Link href={SIGNUP_URL}>
-          <Button radius="full" variant="shadow" color="default" >
-            <p>{t("navigation.signup")}</p>
-          </Button>
-        </Link>
+        <Button to={SIGNUP_URL} as={NavLink} radius="full" variant="shadow" color="default" >
+          <p>{t("navigation.signup")}</p>
+        </Button>
       </NavbarItem>
     </div>
   );
