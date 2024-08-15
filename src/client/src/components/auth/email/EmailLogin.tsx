@@ -109,12 +109,12 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
             {t("auth.login.forgotPassword")}
           </Link>
         </div>
-        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.login")}/>
+        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.login")} color={"default"}/>
       </form>
     ) : (
       <Button
         className="w-full"
-        color="primary"
+        color="default"
         startContent={<Icon icon="ic:baseline-email" width={24}/>}
         onClick={() => setIsEmailLogin(true)}
       >

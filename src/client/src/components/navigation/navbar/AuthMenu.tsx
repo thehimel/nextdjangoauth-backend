@@ -9,14 +9,14 @@ const UserMenu = () => {
     <div className="flex ml-2 gap-2">
       <NavbarItem className="sm:flex">
         <Link href={LOGIN_URL}>
-          <Button radius="full" variant="bordered" color="primary" >
+          <Button radius="full" variant="bordered" color="default" >
           <p>{t("navigation.login")}</p>
         </Button>
         </Link>
       </NavbarItem>
       <NavbarItem className="hidden sm:flex">
         <Link href={SIGNUP_URL}>
-          <Button radius="full" variant="shadow" color="primary" >
+          <Button radius="full" variant="shadow" color="default" >
           <p>{t("navigation.signup")}</p>
         </Button>
         </Link>

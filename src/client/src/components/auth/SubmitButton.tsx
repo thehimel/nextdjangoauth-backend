@@ -12,7 +12,7 @@ interface SubmitButtonProps {
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({color, isDisabled, isLoading, title}) => {
   return (
-    <Button type="submit" color={color || "primary"} isDisabled={isDisabled || isLoading}>
+    <Button type="submit" color={color || "default"} isDisabled={isDisabled || isLoading}>
       {isLoading ? <Spinner size="sm" color="default" /> : title}
     </Button>
   );
