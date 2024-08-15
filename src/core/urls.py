@@ -26,8 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
 
-    path('api/auth/', include('dj_rest_auth.urls')),
-
     path('', include('apps.auth.urls', namespace='auth')),
 
     # To support password reset email with dj_rest_auth.

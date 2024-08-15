@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/auth/google/', GoogleLogin.as_view(), name='google_auth'),
     path('api/auth/login/', LoginView.as_view(), name='rest_login'),
     path('api/auth/registration/', SignupView.as_view(), name='rest_register'),
+    path('api/auth/', include('dj_rest_auth.urls')),
 
     path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
 
