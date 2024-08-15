@@ -2,10 +2,10 @@ import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {TUpdatePasswordSchema, updatePasswordSchema} from "@/schemas/auth.ts";
 import {
-  updatePassword,
-  UpdatePasswordInterface,
-  UpdatePasswordResponseInterface,
-} from "@/store/auth/actions/updatePassword.ts";
+  passwordUpdate,
+  PasswordUpdateInterface,
+  PasswordUpdateResponseInterface,
+} from "@/store/auth/actions/passwordUpdate.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {handleLogout} from "@/utils/logout.ts";
@@ -16,7 +16,7 @@ import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
 import {toast} from "sonner";
 
-interface UpdatePasswordV2Props {
+interface PasswordUpdateFormProps {
   type: "change" | "reset",
   uid?: string;
   token?: string;
@@ -24,7 +24,7 @@ interface UpdatePasswordV2Props {
   setIsSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, setShowForm, setIsSuccess}) => {
+const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token, setShowForm, setIsSuccess}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
@@ -40,7 +40,7 @@ const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, 
   });
 
   const onSubmit = async (data: TUpdatePasswordSchema) => {
-    const params: UpdatePasswordInterface = {
+    const params: PasswordUpdateInterface = {
       access: userData.access,
       password: data.password,
       confirmPassword: data.confirmPassword,
@@ -49,7 +49,7 @@ const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, 
       type: type
     }
 
-    const response: UpdatePasswordResponseInterface = await dispatch(updatePassword(params));
+    const response: PasswordUpdateResponseInterface = await dispatch(passwordUpdate(params));
 
     if (!response.isTokenValid) {
       setShowForm(false);
@@ -105,4 +105,4 @@ const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, 
   );
 }
 
-export default UpdatePasswordForm;
+export default PasswordUpdateForm;

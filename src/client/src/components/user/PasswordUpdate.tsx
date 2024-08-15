@@ -1,7 +1,7 @@
 import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import Login from "@/components/auth/Login.tsx";
 import ProfileHeader from "@/components/user/ProfileHeader.tsx";
-import UpdatePasswordForm from "@/components/user/UpdatePasswordForm.tsx";
+import PasswordUpdateForm from "@/components/user/PasswordUpdateForm.tsx";
 import {PASSWORD_RESET_URL, LOGIN_URL, USER_PROFILE_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {Card, CardHeader, Link} from "@nextui-org/react";
@@ -9,11 +9,11 @@ import React, {useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
-interface UpdatePasswordProps {
+interface PasswordUpdateProps {
   type: "change" | "reset"
 }
 
-const UpdatePassword: React.FC<UpdatePasswordProps> = ({type}) => {
+const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
   const { t } = useTranslation();
   const { uid, token } = useParams<{ uid?: string; token?: string }>();
 
@@ -52,7 +52,7 @@ const UpdatePassword: React.FC<UpdatePasswordProps> = ({type}) => {
               />
             )}
 
-            {showForm && <UpdatePasswordForm type={type} uid={uid} token={token} setShowForm={setShowForm} setIsSuccess={setIsSuccess}/>}
+            {showForm && <PasswordUpdateForm type={type} uid={uid} token={token} setShowForm={setShowForm} setIsSuccess={setIsSuccess}/>}
 
             {!showForm && type === "reset" && (
               <CardHeader className="flex flex-col pt-0 pb-0">
@@ -70,4 +70,4 @@ const UpdatePassword: React.FC<UpdatePasswordProps> = ({type}) => {
   );
 }
 
-export default UpdatePassword;
+export default PasswordUpdate;

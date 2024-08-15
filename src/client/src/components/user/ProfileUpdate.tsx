@@ -5,10 +5,10 @@ import {PASSWORD_CHANGE_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {TUpdateProfileSchema, updateProfileSchema} from "@/schemas/user.ts";
 import {EMAIL} from "@/store/auth/actions/auth.ts";
 import {
-  updateProfile,
-  UpdateProfileInterface,
-  UpdateProfileResponseInterface,
-} from "@/store/auth/actions/updateProfile.ts";
+  profileUpdate,
+  ProfileUpdateInterface,
+  ProfileUpdateResponseInterface,
+} from "@/store/auth/actions/profileUpdate.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -18,7 +18,7 @@ import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "sonner";
 
-const UpdateProfile = (props: CardProps) => {
+const ProfileUpdate = (props: CardProps) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
@@ -50,14 +50,14 @@ const UpdateProfile = (props: CardProps) => {
   const watchedLastName = watch("lastName");
 
   const onSubmit = async (data: TUpdateProfileSchema) => {
-    const params: UpdateProfileInterface = {
+    const params: ProfileUpdateInterface = {
       access: access,
       firstName: data.firstName,
       lastName: data.lastName,
       ...(userData.user.username !== data.username && { username: data.username })  // Include username only if it's updated.
     }
 
-    const response: UpdateProfileResponseInterface = await dispatch(updateProfile(params));
+    const response: ProfileUpdateResponseInterface = await dispatch(profileUpdate(params));
     if (!response.isTokenValid) {
       navigate(LOGIN_URL, { state: { from: redirectPath } });
     }
@@ -127,4 +127,4 @@ const UpdateProfile = (props: CardProps) => {
   ) : null;
 }
 
-export default UpdateProfile;
+export default ProfileUpdate;

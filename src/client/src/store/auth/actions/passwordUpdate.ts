@@ -7,7 +7,7 @@ import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 import i18n from "i18next";
 
-export interface UpdatePasswordInterface {
+export interface PasswordUpdateInterface {
   access?: string,
   password: string;
   confirmPassword: string;
@@ -16,7 +16,7 @@ export interface UpdatePasswordInterface {
   type: "change" | "reset";
 }
 
-export interface UpdatePasswordResponseInterface {
+export interface PasswordUpdateResponseInterface {
   success: boolean;
   isTokenValid: boolean;
   errors?: {
@@ -27,21 +27,21 @@ export interface UpdatePasswordResponseInterface {
   };
 }
 
-export const UpdateChangePasswordResponse: UpdatePasswordResponseInterface = {
+export const InitialPasswordUpdateResponse: PasswordUpdateResponseInterface = {
   success: false,
   isTokenValid: true,
 }
 
-export const updatePassword = (data: UpdatePasswordInterface) => {
+export const passwordUpdate = (data: PasswordUpdateInterface) => {
   const {access, password, confirmPassword, uid, token, type} = data
-  return async (dispatch: AppDispatch): Promise<UpdatePasswordResponseInterface> => {
+  return async (dispatch: AppDispatch): Promise<PasswordUpdateResponseInterface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
       ...(type === "change" && { 'Authorization': `Bearer ${access}` }),
     }
 
-    const response: UpdatePasswordResponseInterface = { ...UpdateChangePasswordResponse };
+    const response: PasswordUpdateResponseInterface = { ...InitialPasswordUpdateResponse };
 
     try {
       dispatch(authActions.setAuthLoading(true));

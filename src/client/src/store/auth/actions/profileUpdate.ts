@@ -7,14 +7,14 @@ import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 import i18n from "i18next";
 
-export interface UpdateProfileInterface {
+export interface ProfileUpdateInterface {
   access: string,
   username?: string,
   firstName: string,
   lastName: string,
 }
 
-export interface UpdateProfileResponseInterface {
+export interface ProfileUpdateResponseInterface {
   success: boolean;
   isTokenValid: boolean;
   errors?: {
@@ -26,13 +26,13 @@ export interface UpdateProfileResponseInterface {
   };
 }
 
-export const InitialUpdateProfileResponse: UpdateProfileResponseInterface = {
+export const InitialProfileUpdateResponse: ProfileUpdateResponseInterface = {
   success: false,
   isTokenValid: true,
 }
 
-export const updateProfile = (userData: UpdateProfileInterface) => {
-  return async (dispatch: AppDispatch): Promise<UpdateProfileResponseInterface> => {
+export const profileUpdate = (userData: ProfileUpdateInterface) => {
+  return async (dispatch: AppDispatch): Promise<ProfileUpdateResponseInterface> => {
     const {access, username, firstName, lastName} = userData;
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
@@ -40,7 +40,7 @@ export const updateProfile = (userData: UpdateProfileInterface) => {
       'Authorization': `Bearer ${access}`,
     }
 
-    const response: UpdateProfileResponseInterface = { ...InitialUpdateProfileResponse };
+    const response: ProfileUpdateResponseInterface = { ...InitialProfileUpdateResponse };
 
     try {
       dispatch(authActions.setAuthLoading(true));
