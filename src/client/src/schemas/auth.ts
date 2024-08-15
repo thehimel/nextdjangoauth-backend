@@ -42,7 +42,7 @@ export const signUpSchema = (t: TranslationFunctionType) => z
 export type TSignUpSchema = z.infer<ReturnType<typeof signUpSchema>>;
 
 
-export const updatePasswordSchema = (t: TranslationFunctionType) => z
+export const passwordUpdateSchema = (t: TranslationFunctionType) => z
   .object({
     password: passwordSchema(t),
     confirmPassword: passwordSchema(t),
@@ -52,4 +52,4 @@ export const updatePasswordSchema = (t: TranslationFunctionType) => z
     path: ["confirmPassword"],
   });
 
-export type TUpdatePasswordSchema = z.infer<ReturnType<typeof updatePasswordSchema>>;
+export type TPasswordUpdateSchema = z.infer<ReturnType<typeof passwordUpdateSchema>>;

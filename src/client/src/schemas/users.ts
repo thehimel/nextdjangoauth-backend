@@ -1,7 +1,7 @@
 import {TranslationFunctionType} from "@/constants/interfaces.ts";
 import {z} from "zod";
 
-export const updateProfileSchema = (t: TranslationFunctionType) =>
+export const profileUpdateSchema = (t: TranslationFunctionType) =>
   z.object({
     username: z.string()
       .min(6, { message: t("errors.usernameTooShort") })
@@ -10,4 +10,4 @@ export const updateProfileSchema = (t: TranslationFunctionType) =>
     lastName: z.string().min(1, { message: t("errors.invalidLastName") }),
   });
 
-export type TUpdateProfileSchema = z.infer<ReturnType<typeof updateProfileSchema>>;
+export type TProfileUpdateSchema = z.infer<ReturnType<typeof profileUpdateSchema>>;

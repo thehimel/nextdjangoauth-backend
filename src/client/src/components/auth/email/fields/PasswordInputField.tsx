@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 import { UseFormRegister } from "react-hook-form";
-import {TLoginSchema, TSignUpSchema, TUpdatePasswordSchema} from "@/schemas/auth.ts";
+import {TLoginSchema, TSignUpSchema, TPasswordUpdateSchema} from "@/schemas/auth.ts";
 import { EyeClosedIcon, EyeOpenIcon } from "@/components/icons/eyes.tsx";
 
-export type TPasswordInputFieldRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TUpdatePasswordSchema>;
+export type TPasswordInputFieldRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TPasswordUpdateSchema>;
 
 interface PasswordInputFieldProps {
   register: TPasswordInputFieldRegister;

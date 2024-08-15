@@ -1,6 +1,6 @@
 import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
 import ProfileFooter from "@/components/users/ProfileFooter.tsx";
-import {TUpdatePasswordSchema, updatePasswordSchema} from "@/schemas/auth.ts";
+import {TPasswordUpdateSchema, passwordUpdateSchema} from "@/schemas/auth.ts";
 import {
   passwordUpdate,
   PasswordUpdateInterface,
@@ -35,11 +35,11 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
-  } = useForm<TUpdatePasswordSchema>({
-    resolver: zodResolver(updatePasswordSchema(t)),
+  } = useForm<TPasswordUpdateSchema>({
+    resolver: zodResolver(passwordUpdateSchema(t)),
   });
 
-  const onSubmit = async (data: TUpdatePasswordSchema) => {
+  const onSubmit = async (data: TPasswordUpdateSchema) => {
     const params: PasswordUpdateInterface = {
       access: userData.access,
       password: data.password,
@@ -72,7 +72,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
       return;
     }
 
-    (Object.keys(errors) as Array<keyof TUpdatePasswordSchema>).forEach((key) => {
+    (Object.keys(errors) as Array<keyof TPasswordUpdateSchema>).forEach((key) => {
       if (errors[key]) {
         setError(key, {
           type: "server",

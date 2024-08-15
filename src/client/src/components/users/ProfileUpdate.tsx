@@ -2,7 +2,7 @@ import TextInputField from "@/components/users/fields/TextInputField.tsx";
 import ProfileFooter from "@/components/users/ProfileFooter.tsx";
 import ProfileHeader from "@/components/users/ProfileHeader.tsx";
 import {PASSWORD_CHANGE_URL, LOGIN_URL} from "@/constants/urls.ts";
-import {TUpdateProfileSchema, updateProfileSchema} from "@/schemas/user.ts";
+import {TProfileUpdateSchema, profileUpdateSchema} from "@/schemas/users.ts";
 import {EMAIL} from "@/store/auth/actions/auth.ts";
 import {
   profileUpdate,
@@ -37,8 +37,8 @@ const ProfileUpdate = (props: CardProps) => {
     formState: { errors, isSubmitting },
     setError,
     watch
-  } = useForm<TUpdateProfileSchema>({
-    resolver: zodResolver(updateProfileSchema(t)),
+  } = useForm<TProfileUpdateSchema>({
+    resolver: zodResolver(profileUpdateSchema(t)),
     defaultValues: {
       username: userData.user.username,
       firstName: userData.user.first_name,
@@ -49,7 +49,7 @@ const ProfileUpdate = (props: CardProps) => {
   const watchedFirstName = watch("firstName");
   const watchedLastName = watch("lastName");
 
-  const onSubmit = async (data: TUpdateProfileSchema) => {
+  const onSubmit = async (data: TProfileUpdateSchema) => {
     const params: ProfileUpdateInterface = {
       access: access,
       firstName: data.firstName,
@@ -73,7 +73,7 @@ const ProfileUpdate = (props: CardProps) => {
       return;
     }
 
-    (Object.keys(errors) as Array<keyof TUpdateProfileSchema>).forEach((key) => {
+    (Object.keys(errors) as Array<keyof TProfileUpdateSchema>).forEach((key) => {
       if (errors[key]) {
         setError(key, {
           type: "server",
