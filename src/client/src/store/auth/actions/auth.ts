@@ -3,7 +3,7 @@ import {LOGIN_API_URL, SIGNUP_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrorsV2} from "@/utils/errorsV2.ts";
+import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
 export const signup = "signup";
@@ -69,7 +69,7 @@ export const auth = (authData: AuthInterface) => {
       response.success = true;
       response.isTokenValid = true;
     } catch (error) {
-      const errors = getErrorsV2(error as AxiosError);
+      const errors = getErrors(error as AxiosError);
       response.success = false;
 
       response.errors = {

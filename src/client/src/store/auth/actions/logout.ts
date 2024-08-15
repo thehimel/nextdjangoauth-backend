@@ -2,7 +2,7 @@ import {LOGOUT_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrorsV2} from "@/utils/errorsV2.ts";
+import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
 export interface LogoutResponseInterface {
@@ -32,7 +32,7 @@ export const logout = () => {
       dispatch(authActions.logout());
       response.success = true;
     } catch (error) {
-      const errors = getErrorsV2(error as AxiosError);
+      const errors = getErrors(error as AxiosError);
       response.success = false;
       response.errors = { message: errors.message };
     } finally {

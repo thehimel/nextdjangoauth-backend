@@ -2,7 +2,7 @@ import {VERIFY_EMAIL_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrorsV2} from "@/utils/errorsV2.ts";
+import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
 interface VerifyEmailInterface {
@@ -24,7 +24,7 @@ export const verifyEmail = ({key}: VerifyEmailInterface) => {
       await axios.post(VERIFY_EMAIL_API_URL, params,{headers: headers});
       response = true;
     } catch (error) {
-      getErrorsV2(error as AxiosError);
+      getErrors(error as AxiosError);
       response = false;
     } finally {
       dispatch(authActions.setAuthLoading(false));

@@ -3,7 +3,7 @@ import {CHANGE_PASSWORD_API_URL, RESET_PASSWORD_API_URL} from "@/constants/urls.
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrorsV2} from "@/utils/errorsV2.ts";
+import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 import i18n from "i18next";
 
@@ -57,7 +57,7 @@ export const updatePassword = (data: UpdatePasswordInterface) => {
       response.success = true;
       response.isTokenValid = true;
     } catch (error) {
-      const errors = getErrorsV2(error as AxiosError);
+      const errors = getErrors(error as AxiosError);
       response.success = false;
 
       response.errors = {

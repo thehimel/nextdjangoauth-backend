@@ -5,7 +5,7 @@ interface ErrorsV2Interface {
   [key: string]: string[] | string | boolean | undefined;
 }
 
-export const getErrorsV2 = (error: AxiosError): ErrorsV2Interface => {
+export const getErrors = (error: AxiosError): ErrorsV2Interface => {
   const { message, response } = error;
   const errors: ErrorsV2Interface = { message };
 

@@ -2,7 +2,7 @@ import {GOOGLE_AUTH_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrorsV2} from "@/utils/errorsV2.ts";
+import {getErrors} from "@/utils/errors.ts";
 import axios, {AxiosError} from "axios";
 
 export interface GoogleAuthInterface {
@@ -45,7 +45,7 @@ export const googleAuth = ({access_token}: GoogleAuthInterface) => {
 
       response.success = true;
     } catch (error) {
-      const errors = getErrorsV2(error as AxiosError);
+      const errors = getErrors(error as AxiosError);
       response.success = false;
 
       response.errors = {
