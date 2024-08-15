@@ -1,7 +1,9 @@
-from django.urls import path, re_path
+from django.urls import include, path, re_path
 
 from apps.auth.views.client import ClientView
 from apps.auth.views.google_login import GoogleLogin
+from apps.auth.views.auth import SignupView, LoginView
+from apps.auth.views.emails import ResendEmailVerificationView
 
 app_name = 'auth'
 
@@ -18,4 +20,14 @@ urlpatterns = [
     path('profile/change-password/', ClientView.as_view(), name='change_password'),
 
     path('api/auth/google/', GoogleLogin.as_view(), name='google_auth'),
+    path('api/auth/login/', LoginView.as_view(), name='rest_login'),
+    path('api/auth/registration/', SignupView.as_view(), name='rest_register'),
+
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+
+    re_path(
+        'api/auth/registration/resend-email-verification/',
+        ResendEmailVerificationView.as_view(),
+        name='resend_verification_email'
+    ),
 ]
