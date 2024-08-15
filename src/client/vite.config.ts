@@ -18,7 +18,8 @@ export default defineConfig({
     EnvironmentPlugin(CLIENT_ENV)
   ],
   build: {
-    assetsDir: 'static'
+    assetsDir: 'static',
+    chunkSizeWarningLimit: 1000,
   },
   resolve: {
     alias: {
