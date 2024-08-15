@@ -18,7 +18,7 @@ urlpatterns = [
     path('auth/signup/', ClientView.as_view(), name='signup'),
     re_path(f'{verify_email_path}(?P<key>.+)/', ClientView.as_view(), name='verify_email'),
 
-    path('user/profile/', ClientView.as_view(), name='profile'),
+    path('users/profile/', ClientView.as_view(), name='profile'),
 
     path('auth/password/reset/', ClientView.as_view(), name='password_reset'),
     path('auth/password/reset/confirm/<uidb64>/<token>/', ClientView.as_view(), name='password_reset_confirm'),

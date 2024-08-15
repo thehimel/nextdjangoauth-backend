@@ -1,5 +1,5 @@
 import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
-import ProfileFooter from "@/components/user/ProfileFooter.tsx";
+import ProfileFooter from "@/components/users/ProfileFooter.tsx";
 import {TUpdatePasswordSchema, updatePasswordSchema} from "@/schemas/auth.ts";
 import {
   passwordUpdate,

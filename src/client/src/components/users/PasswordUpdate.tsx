@@ -1,8 +1,8 @@
 import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import Login from "@/components/auth/Login.tsx";
-import ProfileHeader from "@/components/user/ProfileHeader.tsx";
-import PasswordUpdateForm from "@/components/user/PasswordUpdateForm.tsx";
-import {PASSWORD_RESET_URL, LOGIN_URL, USER_PROFILE_URL} from "@/constants/urls.ts";
+import ProfileHeader from "@/components/users/ProfileHeader.tsx";
+import PasswordUpdateForm from "@/components/users/PasswordUpdateForm.tsx";
+import {PASSWORD_RESET_URL, LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {Card, CardHeader, Link} from "@nextui-org/react";
 import React, {useEffect} from "react";
@@ -48,7 +48,7 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
                 firstName={userData.user.first_name}
                 lastName={userData.user.last_name}
                 email={userData.user.email}
-                navigationLink={{url: USER_PROFILE_URL, title: t("profile.updateProfile")}}
+                navigationLink={{url: PROFILE_URL, title: t("profile.updateProfile")}}
               />
             )}
 
