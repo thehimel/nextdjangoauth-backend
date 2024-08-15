@@ -1,5 +1,5 @@
-import EmailInputField from "@/components/auth/email/fields/EmailInputField.tsx";
-import PasswordInputField, {TPasswordInputRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
+import EmailInputField, {TEmailInputFieldRegister} from "@/components/auth/email/fields/EmailInputField.tsx";
+import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {loginSchema, TLoginSchema} from "@/schemas/auth.ts";
@@ -84,12 +84,12 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
     isEmailLogin ? (
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <EmailInputField
-          register={register}
+          register={register as TEmailInputFieldRegister}
           errorMessage={errors["email"]?.message}
           isSubmitting={isSubmitting}
         />
         <PasswordInputField
-          register={register as TPasswordInputRegister}
+          register={register as TPasswordInputFieldRegister}
           errorMessage={errors["password"]?.message}
           isSubmitting={isSubmitting}
           type="password"

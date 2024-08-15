@@ -1,10 +1,10 @@
 import App from "@/App.tsx";
+import SendAuthEmailV2 from "@/components/auth/email/SendAuthEmailV2.tsx";
 import Signup from "@/components/auth/Signup.tsx";
 import ConfirmEmail from "@/components/auth/email/ConfirmEmail.tsx";
 import GoogleAuthCallback from "@/components/auth/google/GoogleAuthCallback.tsx";
 import Login from "@/components/auth/Login.tsx";
 import Loader from "@/components/screens/Loader.tsx";
-import SendAuthEmail from "@/components/auth/email/SendAuthEmail.tsx";
 import UpdatePassword from "@/components/user/UpdatePassword.tsx";
 import UpdateProfile from "@/components/user/UpdateProfile.tsx";
 import {
@@ -26,7 +26,7 @@ export const router = createBrowserRouter(
       <Route path={LOGIN_URL} element={<Login/>}/>
       <Route path={CONFIRM_EMAIL_URL} element={<ConfirmEmail />}/>
       <Route path={PROFILE_URL} element={<UpdateProfile />}/>
-      <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmail type={"forgot_password"}/>}/>
+      <Route path={FORGOT_PASSWORD_URL} element={<SendAuthEmailV2 type={"forgot_password"}/>}/>
       <Route path={CHANGE_PASSWORD_URL} element={<UpdatePassword type={"change"}/>}/>
       <Route path={RESET_PASSWORD_URL} element={<UpdatePassword type={"reset"}/>}/>
       <Route path={LOADER_URL} element={<Loader/>}/>

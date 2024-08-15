@@ -20,6 +20,13 @@ export const loginSchema = (t: TranslationFunctionType) => z
 
 export type TLoginSchema = z.infer<ReturnType<typeof loginSchema>>;
 
+export const sendAuthEmailSchema = (t: TranslationFunctionType) => z
+  .object({
+    email: emailSchema(t),
+  });
+
+export type TSendAuthEmailSchema = z.infer<ReturnType<typeof sendAuthEmailSchema>>;
+
 
 export const signUpSchema = (t: TranslationFunctionType) => z
   .object({

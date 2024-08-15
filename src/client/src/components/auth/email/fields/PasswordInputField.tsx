@@ -5,9 +5,10 @@ import { UseFormRegister } from "react-hook-form";
 import {TLoginSchema, TSignUpSchema, TUpdatePasswordSchema} from "@/schemas/auth.ts";
 import { EyeClosedIcon, EyeOpenIcon } from "@/components/icons/eyes.tsx";
 
-export type TPasswordInputRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TUpdatePasswordSchema>;
+export type TPasswordInputFieldRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TUpdatePasswordSchema>;
+
 interface PasswordInputFieldProps {
-  register: TPasswordInputRegister;
+  register: TPasswordInputFieldRegister;
   errorMessage?: string;
   isSubmitting: boolean;
   type: "password" | "confirmPassword";

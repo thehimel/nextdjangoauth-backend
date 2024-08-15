@@ -2,10 +2,12 @@ import React from "react";
 import {Input} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
 import {UseFormRegister} from "react-hook-form";
-import {TLoginSchema, TSignUpSchema} from "@/schemas/auth.ts";
+import {TLoginSchema, TSendAuthEmailSchema, TSignUpSchema} from "@/schemas/auth.ts";
+
+export type TEmailInputFieldRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TSendAuthEmailSchema>;
 
 interface EmailInputFieldProps {
-  register: UseFormRegister<TSignUpSchema | TLoginSchema>;
+  register: TEmailInputFieldRegister
   errorMessage?: string;
   isSubmitting: boolean;
 }

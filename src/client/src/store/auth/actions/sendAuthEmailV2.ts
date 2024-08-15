@@ -1,46 +1,37 @@
-import {AuthEmailRequestType} from "@/components/auth/email/SendAuthEmail.tsx";
+import {AuthEmailRequestType} from "@/components/auth/email/SendAuthEmailV2.tsx";
 import {FORGOT_PASSWORD_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrors} from "@/utils/errors.ts";
+import {getErrorsV2} from "@/utils/errorsV2.ts";
 import axios, {AxiosError} from "axios";
 
-export interface AuthEmailInterface {
+export interface SendAuthEmailV2Interface {
   email: string;
   type: AuthEmailRequestType;
 }
 
-export interface AuthEmailResponseInterface {
+export interface SendAuthEmailResponseV2Interface {
   success: boolean;
-  message: string;
-  errors: {
-    data: {
-      email: string;
-    };
-    message: string;
+  errors?: {
+    email?: string;
   };
 }
 
-export const InitialAuthEmailResponse: AuthEmailResponseInterface = {
+export const InitialSendAuthEmailV2Response: SendAuthEmailResponseV2Interface = {
   success: false,
-  message: "",
-  errors: {
-    data: {
-      email: "",
-    },
-    message: "",
-  },
 }
 
-export const sendAuthEmail = ({email, type}: AuthEmailInterface) => {
-  return async (dispatch: AppDispatch): Promise<AuthEmailResponseInterface> => {
+export const sendAuthEmailV2 = (data: SendAuthEmailV2Interface) => {
+  const {email, type} = data;
+
+  return async (dispatch: AppDispatch): Promise<SendAuthEmailResponseV2Interface> => {
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
     }
 
-    const response = InitialAuthEmailResponse;
+    const response: SendAuthEmailResponseV2Interface = { ...InitialSendAuthEmailV2Response };
 
     try {
       dispatch(authActions.setAuthLoading(true));
@@ -51,11 +42,12 @@ export const sendAuthEmail = ({email, type}: AuthEmailInterface) => {
       await axios.post(apiUrl, params,{headers: headers});
       response.success = true;
     } catch (error) {
-      const errors = getErrors({error: error as AxiosError});
-
+      const errors = getErrorsV2(error as AxiosError);
       response.success = false;
-      response.errors.data.email = errors.data?.email?.[0] ?? "";
-      response.errors.message = errors.message ?? "";
+
+      response.errors = {
+        email: Array.isArray(errors.email) ? errors.email[0] : undefined,
+      };
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }

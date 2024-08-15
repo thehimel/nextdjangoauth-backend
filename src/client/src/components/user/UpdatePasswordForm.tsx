@@ -1,4 +1,4 @@
-import PasswordInputField, {TPasswordInputRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
+import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
 import ProfileFooter from "@/components/user/ProfileFooter.tsx";
 import {TUpdatePasswordSchema, updatePasswordSchema} from "@/schemas/auth.ts";
 import {
@@ -86,14 +86,14 @@ const UpdatePasswordForm: React.FC<UpdatePasswordV2Props> = ({type, uid, token, 
     <form onSubmit={handleSubmit(onSubmit)}>
       <CardBody className="grid grid-cols-1 gap-4">
         <PasswordInputField
-          register={register as TPasswordInputRegister}
+          register={register as TPasswordInputFieldRegister}
           errorMessage={errors["password"]?.message}
           isSubmitting={isSubmitting}
           type={"password"}
           label={t("forms.newPassword")}
         />
         <PasswordInputField
-          register={register as TPasswordInputRegister}
+          register={register as TPasswordInputFieldRegister}
           errorMessage={errors["confirmPassword"]?.message}
           isSubmitting={isSubmitting}
           type={"confirmPassword"}
