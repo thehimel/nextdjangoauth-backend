@@ -9,9 +9,10 @@ interface TextInputFieldProps {
   errorMessage?: string;
   isSubmitting: boolean;
   type: "username" | "firstName" | "lastName";
+  autoComplete?: string;
 }
 
-const TextInputField: React.FC<TextInputFieldProps> = ({register, errorMessage, isSubmitting, type}) => {
+const TextInputField: React.FC<TextInputFieldProps> = ({register, errorMessage, isSubmitting, type, autoComplete}) => {
   const {t} = useTranslation();
 
   return (
@@ -22,6 +23,7 @@ const TextInputField: React.FC<TextInputFieldProps> = ({register, errorMessage, 
       labelPlacement="outside"
       label={t(`forms.${type}`)}
       placeholder={t(`placeholders.${type}`)}
+      autoComplete={autoComplete}
       isInvalid={!!errorMessage}
       errorMessage={errorMessage}
       isDisabled={isSubmitting}

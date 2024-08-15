@@ -103,6 +103,7 @@ const UpdateProfile = (props: CardProps) => {
               errorMessage={errors["username"]?.message}
               isSubmitting={isSubmitting}
               type={"username"}
+              autoComplete={"username"}
             />
           </div>
           <TextInputField
@@ -110,12 +111,14 @@ const UpdateProfile = (props: CardProps) => {
             errorMessage={errors["firstName"]?.message}
             isSubmitting={isSubmitting}
             type={"firstName"}
+            autoComplete={"name"}
           />
           <TextInputField
             register={register}
             errorMessage={errors["lastName"]?.message}
             isSubmitting={isSubmitting}
             type={"lastName"}
+            autoComplete={"family-name"}
           />
         </CardBody>
         <ProfileFooter title={t("forms.save")} isLoading={isSubmitting} isDisabled={isSubmitting} />
