@@ -24,7 +24,7 @@ const GoogleAuthCallback: React.FC = () => {
     const verifyToken = async  () => {
       if (access_token) {
         const response = await dispatch(googleAuth({access_token}));
-        const emailRegisteredWithEmailLogin = response.errors.data.code === EMAIL_REGISTERED_WITH_EMAIL_LOGIN;
+        const emailRegisteredWithEmailLogin = response.errors?.code === EMAIL_REGISTERED_WITH_EMAIL_LOGIN;
 
         if (response.success) {
           navigate(HOME_URL);

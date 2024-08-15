@@ -2,7 +2,7 @@ import {GOOGLE_AUTH_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
-import {getErrors} from "@/utils/errors.ts";
+import {getErrorsV2} from "@/utils/errorsV2.ts";
 import axios, {AxiosError} from "axios";
 
 export interface GoogleAuthInterface {
@@ -11,22 +11,14 @@ export interface GoogleAuthInterface {
 
 export interface GoogleAuthResponseInterface {
   success: boolean;
-  errors: {
-    data: {
-      code: string;
-      email: string;
-    };
+  errors?: {
+    code?: string;
+    email?: string;
   };
 }
 
 export const InitialGoogleAuthResponse: GoogleAuthResponseInterface = {
   success: false,
-  errors: {
-    data: {
-      code: "",
-      email: "",
-    }
-  }
 }
 
 export const googleAuth = ({access_token}: GoogleAuthInterface) => {
@@ -36,7 +28,7 @@ export const googleAuth = ({access_token}: GoogleAuthInterface) => {
       'Content-Type': 'application/json',
     }
 
-    const response: GoogleAuthResponseInterface = InitialGoogleAuthResponse;
+    const response: GoogleAuthResponseInterface = { ...InitialGoogleAuthResponse };
 
     try {
       dispatch(authActions.setAuthLoading(true));
@@ -53,15 +45,16 @@ export const googleAuth = ({access_token}: GoogleAuthInterface) => {
 
       response.success = true;
     } catch (error) {
-      const errors = getErrors({error: error as AxiosError});
-      console.log(error);
+      const errors = getErrorsV2(error as AxiosError);
       response.success = false;
-      response.errors.data.code = errors.data?.code ?? "";
-      response.errors.data.email = errors.data?.email?.[0] ?? "";
+
+      response.errors = {
+        code: errors.code as string,
+        email: Array.isArray(errors.email) ? errors.email[0] : undefined,
+      };
     } finally {
       dispatch(authActions.setAuthLoading(false));
     }
-    console.log(response);
     return response;
   };
 };
