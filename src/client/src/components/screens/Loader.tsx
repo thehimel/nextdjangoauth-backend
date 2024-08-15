@@ -1,5 +1,3 @@
-"use client";
-
 import 'ldrs/quantum'
 import {useAppSelector} from "@/store/hooks.ts";
 

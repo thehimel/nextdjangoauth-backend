@@ -1,5 +1,3 @@
-"use client";
-
 import {Link} from "@nextui-org/react";
 
 import {CardHeader, Avatar, Badge} from "@nextui-org/react";

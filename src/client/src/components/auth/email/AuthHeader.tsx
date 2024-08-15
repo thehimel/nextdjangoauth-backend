@@ -1,5 +1,3 @@
-"use client";
-
 import {AcmeIcon} from "@/components/icons/acme.tsx";
 import {MessageInterface} from "@/constants/interfaces.ts";
 import {FC} from "react";

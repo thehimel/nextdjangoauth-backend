@@ -1,5 +1,3 @@
-"use client";
-
 import type {CardProps} from "@nextui-org/react";
 
 import React from "react";

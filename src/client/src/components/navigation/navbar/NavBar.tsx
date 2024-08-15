@@ -1,5 +1,3 @@
-"use client";
-
 import AuthButtons from "@/components/navigation/navbar/AuthMenu.tsx";
 import FeatureBar from "@/components/navigation/navbar/FeatureBar.tsx";
 import LanguageSelector from "@/components/navigation/navbar/LanguageSelector.tsx";

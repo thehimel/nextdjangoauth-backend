@@ -1,5 +1,3 @@
-"use client";
-
 import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
 import EmailInputField, {TEmailInputFieldRegister} from "@/components/auth/email/fields/EmailInputField.tsx";
 import SubmitButton from "@/components/auth/SubmitButton.tsx";

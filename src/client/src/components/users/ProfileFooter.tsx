@@ -1,5 +1,3 @@
-"use client";
-
 import SubmitButton from "@/components/auth/SubmitButton.tsx";
 import {CardFooter} from "@nextui-org/react";
 

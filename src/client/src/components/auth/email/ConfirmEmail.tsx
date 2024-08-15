@@ -1,5 +1,3 @@
-"use client";
-
 import SendAuthEmail from "@/components/auth/email/SendAuthEmail.tsx";
 import Login from "@/components/auth/Login.tsx";
 import {verifyEmail} from "@/store/auth/actions/verifyEmail.ts";
