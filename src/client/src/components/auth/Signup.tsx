@@ -5,9 +5,9 @@ import GoogleAuth from "@/components/auth/google/GoogleAuth.tsx";
 import TermsAndPrivacyPolicy from "@/components/auth/TermsAndPrivacyPolicy.tsx";
 import {LOGIN_URL} from "@/constants/urls.ts";
 import {signup} from "@/store/auth/actions/auth.ts";
-import {Link} from "@nextui-org/react";
 import React from "react";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const Signup = () => {
   const { t } = useTranslation();
@@ -34,7 +34,10 @@ const Signup = () => {
       {!isSignupSuccess && (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <p className="text-center">
-            {t("auth.login.alreadyHaveAccount")}&nbsp;<Link href={LOGIN_URL} size="md">{t("navigation.login")}</Link>
+            {t("auth.login.alreadyHaveAccount")}&nbsp;
+            <Link to={LOGIN_URL} className="text-primary">
+              {t("navigation.login")}
+            </Link>
           </p>
         </div>
       )}

@@ -4,9 +4,9 @@ import EmailLogin from "@/components/auth/email/EmailLogin.tsx";
 import GoogleAuth from "@/components/auth/google/GoogleAuth.tsx";
 import {SIGNUP_URL} from "@/constants/urls.ts";
 import {login} from "@/store/auth/actions/auth.ts";
-import {Link} from "@nextui-org/react";
 import React from "react";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 interface LoginProps {
   isEmailLoginSelected?: boolean;
@@ -35,7 +35,9 @@ const Login: React.FC<LoginProps> = ({isEmailLoginSelected= false, headerMessage
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <p className="text-center">
             {t("auth.signup.needToCreateAccount")}&nbsp;
-            <Link href={SIGNUP_URL} size="md">{t("navigation.signup")}</Link>
+            <Link to={SIGNUP_URL} className="text-primary">
+              {t("navigation.signup")}
+            </Link>
           </p>
         </div>
       )}

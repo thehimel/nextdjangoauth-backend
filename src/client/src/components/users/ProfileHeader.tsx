@@ -1,7 +1,6 @@
-import {Link} from "@nextui-org/react";
-
 import {CardHeader, Avatar, Badge} from "@nextui-org/react";
 import {FC} from "react";
+import {Link} from "react-router-dom";
 
 interface ProfileHeaderProps {
   title: string;
@@ -27,7 +26,7 @@ const ProfileHeader: FC<ProfileHeaderProps> = ({title, firstName, lastName, emai
         <div className="flex flex-col items-start justify-center">
           <p className="font-medium">{firstName} {lastName}</p>
           <span className="text-small text-default-500">{email}</span>
-          {navigationLink && <Link href={navigationLink.url} size="sm">{navigationLink.title}</Link>}
+          {navigationLink && <Link to={navigationLink.url} className="text-primary">{navigationLink.title}</Link>}
         </div>
       </div>
     </CardHeader>

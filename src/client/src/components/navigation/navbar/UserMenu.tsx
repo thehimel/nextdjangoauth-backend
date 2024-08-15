@@ -12,6 +12,7 @@ import {
   NavbarItem, User,
 } from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const UserMenu = () => {
   const dispatch: AppDispatch = useAppDispatch();
@@ -36,13 +37,15 @@ const UserMenu = () => {
         </DropdownTrigger>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownSection showDivider aria-label="profile">
-            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2" href={PROFILE_URL}>
-              <User
-                avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
-                classNames={{name: "font-semibold", description: "text-default-500"}}
-                name={avatarTitle}
-                description={t("badges.basicMember")}
-              />
+            <DropdownItem key="profile" textValue="profile" className="h-12 gap-2">
+              <Link to={PROFILE_URL}>
+                <User
+                  avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
+                  classNames={{name: "font-semibold", description: "text-default-500"}}
+                  name={avatarTitle}
+                  description={t("badges.basicMember")}
+                />
+              </Link>
             </DropdownItem>
           </DropdownSection>
 
