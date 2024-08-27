@@ -8,13 +8,14 @@ import axios, {AxiosError} from "axios";
 
 export const signup = "signup";
 export const login = "login";
-export const EMAIL = "email"
+export const EMAIL = "email";
+export const GOOGLE = "google";
 
 export interface AuthInterface {
   email: string;
   password: string;
   confirmPassword?: string;
-  isRememberMe?: boolean;
+  rememberMe?: boolean;
   type: typeof signup | typeof login;
 }
 
@@ -39,7 +40,7 @@ export const InitialAuthResponse: AuthResponseInterface = {
 
 export const auth = (authData: AuthInterface) => {
   return async (dispatch: AppDispatch): Promise<AuthResponseInterface> => {
-    const { email, password, confirmPassword, isRememberMe, type } = authData;
+    const { email, password, confirmPassword, rememberMe, type } = authData;
     const headers = {
       'X-CSRFTOKEN': getCookie('csrftoken'),
       'Content-Type': 'application/json',
@@ -62,8 +63,8 @@ export const auth = (authData: AuthInterface) => {
         dispatch(authActions.setUserData({
           ...result.data,
           provider: EMAIL,
+          rememberMe: rememberMe,
         }));
-        dispatch(authActions.setRememberMe(isRememberMe));
       }
 
       response.success = true;

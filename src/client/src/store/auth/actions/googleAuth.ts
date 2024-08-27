@@ -1,4 +1,5 @@
 import {GOOGLE_AUTH_API_URL} from "@/constants/urls.ts";
+import {GOOGLE} from "@/store/auth/actions/auth.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/utils/cookies.ts";
@@ -36,13 +37,12 @@ export const googleAuth = ({access_token}: GoogleAuthInterface) => {
         access_token: access_token,
       };
 
-      const result = await axios.post(GOOGLE_AUTH_API_URL, params,{headers: headers});
+      const result = await axios.post(GOOGLE_AUTH_API_URL, params, {headers: headers});
       dispatch(authActions.setUserData({
         ...result.data,
-          provider: "google",
+        provider: GOOGLE,
+        rememberMe: true,
       }));
-      dispatch(authActions.setRememberMe(true));
-
       response.success = true;
     } catch (error) {
       const errors = getErrors(error as AxiosError);

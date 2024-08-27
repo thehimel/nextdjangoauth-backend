@@ -1,9 +1,8 @@
 import {slices} from "@/store/constants.ts";
+import {clearAuthToken, setAuthToken} from "@/utils/auth.ts";
 import {createSlice} from "@reduxjs/toolkit";
 
 export interface UserDataProps {
-  access: string;
-  refresh: string;
   provider: string;
   user: {
     pk: number;
@@ -22,8 +21,6 @@ export interface AuthStateProps {
 }
 
 const initialUserData = {
-  "access": "",
-  "refresh": "",
   "provider": "",
   "user": {
     "pk": 0,
@@ -37,7 +34,7 @@ const initialUserData = {
 const initialState: AuthStateProps = {
   loading: false,
   userData: initialUserData,
-  rememberMe: true,
+  rememberMe: false,
   loggedIn: false,
 }
 
@@ -49,17 +46,19 @@ const authSlice = createSlice({
       state.loading = action.payload;
     },
     setUserData(state, action): void {
-      state.userData = action.payload;
+      setAuthToken({token: action.payload.access, rememberMe: action.payload.rememberMe});
+      state.userData.provider = action.payload.provider;
+      state.userData.user = action.payload.user;
+      state.rememberMe = action.payload.rememberMe;
       state.loggedIn = true;
     },
     setUserDetails(state, action): void {
       state.userData.user = action.payload;
     },
-    setRememberMe(state, action): void {
-      state.rememberMe = action.payload;
-    },
     logout(state): void {
+      clearAuthToken();
       state.userData = initialUserData;
+      state.rememberMe = false;
       state.loggedIn = false;
     },
   },

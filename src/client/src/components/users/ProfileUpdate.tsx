@@ -11,6 +11,7 @@ import {
 } from "@/store/auth/actions/profileUpdate.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
+import {getAuthToken} from "@/utils/auth.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Card, CardBody, CardProps} from "@nextui-org/react";
 import {useForm} from "react-hook-form";
@@ -28,7 +29,7 @@ const ProfileUpdate = (props: CardProps) => {
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
 
-  const access = useAppSelector((state) => state.auth.userData.access);
+  const access = getAuthToken() || "";
   const userData = useAppSelector((state) => state.auth.userData);
 
   const {

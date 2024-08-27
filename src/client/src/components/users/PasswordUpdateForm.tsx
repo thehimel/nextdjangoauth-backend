@@ -6,8 +6,9 @@ import {
   PasswordUpdateInterface,
   PasswordUpdateResponseInterface,
 } from "@/store/auth/actions/passwordUpdate.ts";
-import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
+import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
+import {getAuthToken} from "@/utils/auth.ts";
 import {handleLogout} from "@/utils/logout.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CardBody} from "@nextui-org/react";
@@ -28,8 +29,6 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
-  const userData = useAppSelector((state) => state.auth.userData);
-
   const {
     register,
     handleSubmit,
@@ -41,7 +40,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
 
   const onSubmit = async (data: TPasswordUpdateSchema) => {
     const params: PasswordUpdateInterface = {
-      access: userData.access,
+      access: getAuthToken() || "",
       password: data.password,
       confirmPassword: data.confirmPassword,
       uid: uid,

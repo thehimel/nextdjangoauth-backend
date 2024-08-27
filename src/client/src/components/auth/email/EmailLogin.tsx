@@ -29,7 +29,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
   const navigate = useNavigate();
 
   const [isEmailLogin, setIsEmailLogin] = React.useState(!!isEmailLoginSelected);
-  const [isRememberMe, setIsRememberMe] = React.useState(true);
+  const [rememberMe, setRememberMe] = React.useState(true);
 
   const {
     register,
@@ -44,6 +44,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
     const authData = {
       email: data.email,
       password: data.password,
+      rememberMe: rememberMe,
       type: "login" as typeof login,
     }
 
@@ -98,10 +99,10 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
           <Checkbox
             name="remember"
             size="sm"
-            isInvalid={!isRememberMe}
+            isInvalid={!rememberMe}
             isDisabled={isSubmitting}
-            defaultSelected={isRememberMe}
-            onValueChange={(value) => setIsRememberMe(value)}
+            defaultSelected={rememberMe}
+            onValueChange={(value) => setRememberMe(value)}
           >
             {t("auth.login.rememberMe")}
           </Checkbox>
