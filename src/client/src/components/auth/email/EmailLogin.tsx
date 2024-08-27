@@ -97,9 +97,8 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
         />
         <div className="flex items-center justify-between px-1 py-2">
           <Checkbox
-            name="remember"
+            name="rememberMe"
             size="sm"
-            isInvalid={!rememberMe}
             isDisabled={isSubmitting}
             defaultSelected={rememberMe}
             onValueChange={(value) => setRememberMe(value)}
