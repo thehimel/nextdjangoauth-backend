@@ -6,7 +6,7 @@ import i18n from "i18next";
 import secureSessionStorage from "react-secure-storage";
 import {toast} from "sonner";
 
-const useClearSessionToken = () => {
+export const useClearSessionToken = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const rememberMe = useAppSelector((state) => state.auth.rememberMe);
 
@@ -24,5 +24,3 @@ const useClearSessionToken = () => {
     }
   };
 };
-
-export default useClearSessionToken;
