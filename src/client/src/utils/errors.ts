@@ -7,14 +7,14 @@ interface ErrorsInterface {
 
 export const getErrors = (error: AxiosError): ErrorsInterface => {
   const { message, response } = error;
-  const errors: ErrorsInterface = { message };
 
-  if (response?.data && typeof response.data === "object") {
-    return {
-      ...response.data,
-      message,
-    };
-  }
+  // Check if response.data is an object and merge it with the message
+  const responseErrors = response?.data && typeof response.data === "object"
+    ? response.data
+    : {};
 
-  return errors;
+  return {
+    ...responseErrors,
+    message,
+  };
 };
