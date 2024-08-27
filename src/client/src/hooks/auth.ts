@@ -24,3 +24,19 @@ export const useClearSessionToken = () => {
     }
   };
 };
+
+export const useLogout = () => {
+  const dispatch: AppDispatch = useAppDispatch();
+  return async () => {
+    try {
+      const response = await dispatch(logout());
+      if (response.success) {
+        toast.success(i18n.t("auth.logout.success"));
+      } else {
+        toast.error(response.errors?.message || i18n.t("auth.logout.error"));
+      }
+    } catch (error) {
+      toast.error(i18n.t("errors.unexpectedError"));
+    }
+  };
+};

@@ -1,5 +1,6 @@
 import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
 import ProfileFooter from "@/components/users/ProfileFooter.tsx";
+import {useLogout} from "@/hooks/auth.ts";
 import {TPasswordUpdateSchema, passwordUpdateSchema} from "@/schemas/auth.ts";
 import {
   passwordUpdate,
@@ -9,7 +10,6 @@ import {
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getAuthToken} from "@/utils/auth.ts";
-import {handleLogout} from "@/utils/logout.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CardBody} from "@nextui-org/react";
 import React from "react";
@@ -28,6 +28,7 @@ interface PasswordUpdateFormProps {
 const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token, setShowForm, setIsSuccess}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
+  const logout = useLogout();
 
   const {
     register,
@@ -58,7 +59,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
     if (response.success) {
       toast.success(t("auth.passwordReset.updateSuccess"))
       if (type === "change") {
-        await handleLogout(dispatch);
+        await logout();
       } else {
         setIsSuccess(true);
       }

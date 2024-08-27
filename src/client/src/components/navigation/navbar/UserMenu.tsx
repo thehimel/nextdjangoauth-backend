@@ -1,7 +1,6 @@
 import {PROFILE_URL} from "@/constants/urls.ts";
-import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
-import {handleLogout} from "@/utils/logout.ts";
+import {useLogout} from "@/hooks/auth.ts";
+import {useAppSelector} from "@/store/hooks.ts";
 import {
   Avatar,
   Button,
@@ -15,16 +14,16 @@ import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 
 const UserMenu = () => {
-  const dispatch: AppDispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const userData = useAppSelector((state) => state.auth.userData);
   const fullName = `${userData.user.first_name} ${userData.user.last_name}`
   const avatarTitle = fullName.length > 1 ? fullName : userData.user.username
   const avatarImage = "/static/avatar.svg"
+  const logout = useLogout();
 
-  const handleLogoutClick = async () => {
-    await handleLogout(dispatch);
+  const handleLogout = async () => {
+    await logout();
   };
 
   return (
@@ -58,7 +57,7 @@ const UserMenu = () => {
             <DropdownItem key="feedback" textValue="Feedback">{t("navigation.feedback")}</DropdownItem>
           </DropdownSection >
 
-          <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogoutClick}>
+          <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogout}>
             {t("navigation.logout")}
           </DropdownItem>
         </DropdownMenu>
