@@ -1,13 +1,13 @@
 import { AxiosError } from "axios";
 
-interface ErrorsV2Interface {
+interface ErrorsInterface {
   message?: string;
   [key: string]: string[] | string | boolean | undefined;
 }
 
-export const getErrors = (error: AxiosError): ErrorsV2Interface => {
+export const getErrors = (error: AxiosError): ErrorsInterface => {
   const { message, response } = error;
-  const errors: ErrorsV2Interface = { message };
+  const errors: ErrorsInterface = { message };
 
   if (response?.data && typeof response.data === "object") {
     return {
