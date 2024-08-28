@@ -1,8 +1,8 @@
 import SendAuthEmail from "@/apps/auth/components/auth/email/SendAuthEmail.tsx";
 import Login from "@/apps/auth/components/auth/Login.tsx";
 import {verifyEmail} from "@/apps/auth/store/actions/verifyEmail.ts";
-import {useAppDispatch} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {useAppDispatch} from "@/core/store/hooks.ts";
+import {AppDispatch} from "@/core/store/store.ts";
 import React, {useEffect} from "react";
 import {Spinner} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";

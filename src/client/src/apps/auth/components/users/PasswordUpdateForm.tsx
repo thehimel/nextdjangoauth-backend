@@ -7,8 +7,8 @@ import {
   PasswordUpdateInterface,
   PasswordUpdateResponseInterface,
 } from "@/apps/auth/store/actions/passwordUpdate.ts";
-import {useAppDispatch} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {useAppDispatch} from "@/core/store/hooks.ts";
+import {AppDispatch} from "@/core/store/store.ts";
 import {getAuthToken} from "@/apps/auth/utils/auth/token.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CardBody} from "@nextui-org/react";

@@ -5,7 +5,7 @@ import {useTheme} from "next-themes";
 import {useEffect} from "react";
 import {Outlet} from "react-router-dom";
 import {Toaster} from "sonner";
-import {useAppSelector} from "./store/hooks.ts";
+import {useAppSelector} from "@/core/store/hooks.ts";
 import Footer from "@/apps/base/components/navigation/Footer.tsx";
 
 const App = () => {

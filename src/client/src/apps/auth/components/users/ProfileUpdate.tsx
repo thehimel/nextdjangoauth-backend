@@ -9,8 +9,8 @@ import {
   ProfileUpdateInterface,
   ProfileUpdateResponseInterface,
 } from "@/apps/auth/store/actions/profileUpdate.ts";
-import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {useAppDispatch, useAppSelector} from "@/core/store/hooks.ts";
+import {AppDispatch} from "@/core/store/store.ts";
 import {getAuthToken} from "@/apps/auth/utils/auth/token.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Card, CardBody, CardProps} from "@nextui-org/react";

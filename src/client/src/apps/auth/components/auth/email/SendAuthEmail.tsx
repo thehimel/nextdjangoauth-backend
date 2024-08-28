@@ -8,8 +8,8 @@ import {
   sendAuthEmail,
   SendAuthEmailInterface,
 } from "@/apps/auth/store/actions/sendAuthEmail.ts";
-import {useAppDispatch} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {useAppDispatch} from "@/core/store/hooks.ts";
+import {AppDispatch} from "@/core/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import React, {FC} from "react";
 import {useForm} from "react-hook-form";

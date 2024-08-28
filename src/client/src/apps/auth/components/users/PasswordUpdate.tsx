@@ -3,7 +3,7 @@ import Login from "@/apps/auth/components/auth/Login.tsx";
 import ProfileHeader from "@/apps/auth/components/users/ProfileHeader.tsx";
 import PasswordUpdateForm from "@/apps/auth/components/users/PasswordUpdateForm.tsx";
 import {PASSWORD_RESET_URL, LOGIN_URL, PROFILE_URL} from "@/apps/auth/urls/client.ts";
-import {useAppSelector} from "@/store/hooks.ts";
+import {useAppSelector} from "@/core/store/hooks.ts";
 import {Card, CardHeader, Link} from "@nextui-org/react";
 import React, {useEffect} from "react";
 import {useTranslation} from "react-i18next";

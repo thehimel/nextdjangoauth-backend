@@ -1,6 +1,6 @@
 import {VERIFY_EMAIL_API_URL} from "@/apps/auth/urls/server.ts";
 import {authActions} from "@/apps/auth/store/authSlice.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {AppDispatch} from "@/core/store/store.ts";
 import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";
 import {getErrors} from "@/apps/auth/utils/api/errors.ts";
 import axios, {AxiosError} from "axios";

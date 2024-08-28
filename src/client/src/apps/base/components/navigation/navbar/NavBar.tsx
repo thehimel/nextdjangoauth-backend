@@ -5,7 +5,7 @@ import Notifications from "@/apps/base/components/navigation/navbar/notification
 import UserMenu from "@/apps/base/components/navigation/navbar/UserMenu.tsx";
 import {ThemeSwitcher} from "@/apps/base/components/ui/ThemeSwitcher.tsx";
 import {HOME_URL} from "@/apps/base/urls/client.ts";
-import {useAppSelector} from "@/store/hooks.ts";
+import {useAppSelector} from "@/core/store/hooks.ts";
 import {
   Navbar,
   NavbarBrand,

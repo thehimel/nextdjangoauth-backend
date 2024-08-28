@@ -1,4 +1,4 @@
-import App from "@/App.tsx";
+import App from "@/core/App.tsx";
 import SendAuthEmail from "@/apps/auth/components/auth/email/SendAuthEmail.tsx";
 import Signup from "@/apps/auth/components/auth/Signup.tsx";
 import ConfirmEmail from "@/apps/auth/components/auth/email/ConfirmEmail.tsx";

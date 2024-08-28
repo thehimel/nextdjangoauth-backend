@@ -1,5 +1,5 @@
 import 'ldrs/quantum'
-import {useAppSelector} from "@/store/hooks.ts";
+import {useAppSelector} from "@/core/store/hooks.ts";
 
 
 const Loader = () => {

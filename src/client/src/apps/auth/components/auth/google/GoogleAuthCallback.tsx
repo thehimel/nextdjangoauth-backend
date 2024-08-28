@@ -3,8 +3,8 @@ import {EMAIL_REGISTERED_WITH_EMAIL_LOGIN} from "@/apps/auth/constants/errorCode
 import {LOGIN_URL} from "@/apps/auth/urls/client.ts";
 import {HOME_URL} from "@/apps/base/urls/client.ts";
 import {googleAuth} from "@/apps/auth/store/actions/googleAuth.ts";
-import {useAppDispatch} from "@/store/hooks.ts";
-import {AppDispatch} from "@/store/store.ts";
+import {useAppDispatch} from "@/core/store/hooks.ts";
+import {AppDispatch} from "@/core/store/store.ts";
 import React, {useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {useLocation, useNavigate} from "react-router-dom";

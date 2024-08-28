@@ -1,6 +1,6 @@
 import {PROFILE_URL} from "@/apps/auth/urls/client.ts";
 import {useLogout} from "@/apps/auth/hooks/useAuth.ts";
-import {useAppSelector} from "@/store/hooks.ts";
+import {useAppSelector} from "@/core/store/hooks.ts";
 import {
   Avatar,
   Button,
