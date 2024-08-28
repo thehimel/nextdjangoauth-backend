@@ -1,4 +1,4 @@
-import {TranslationFunctionType} from "@/constants/interfaces.ts";
+import {TranslationFunctionType} from "@/apps/base/types/common.ts";
 import {z} from "zod";
 
 

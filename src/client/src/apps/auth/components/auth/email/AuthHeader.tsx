@@ -1,5 +1,5 @@
 import {AcmeIcon} from "@/apps/base/assets/icons/acme.tsx";
-import {MessageInterface} from "@/constants/interfaces.ts";
+import {MessageInterface} from "@/apps/base/types/common.ts";
 import {FC} from "react";
 
 interface AuthHeaderProps {

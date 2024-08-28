@@ -1,4 +1,4 @@
-import {GOOGLE_AUTH_API_URL} from "@/constants/urls.ts";
+import {GOOGLE_AUTH_API_URL} from "@/apps/base/constants/urls.ts";
 import {GOOGLE} from "@/store/auth/actions/auth.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";

@@ -1,4 +1,4 @@
-import {LanguageCode} from "@/constants/languages.ts";
+import {LanguageCode} from "@/apps/base/constants/languages.ts";
 
 export const countryCodes: Record<LanguageCode, string> = {
   en: 'gb',

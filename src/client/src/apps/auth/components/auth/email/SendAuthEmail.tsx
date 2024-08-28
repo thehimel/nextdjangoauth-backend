@@ -1,7 +1,7 @@
 import AuthHeader from "@/apps/auth/components/auth/email/AuthHeader.tsx";
 import EmailInputField, {TEmailInputFieldRegister} from "@/apps/auth/components/auth/email/fields/EmailInputField.tsx";
 import SubmitButton from "@/apps/auth/components/auth/SubmitButton.tsx";
-import {MessageInterface} from "@/constants/interfaces.ts";
+import {MessageInterface} from "@/apps/base/types/common.ts";
 import {sendAuthEmailSchema, TSendAuthEmailSchema} from "@/schemas/auth.ts";
 import {
   SendAuthEmailResponseInterface,

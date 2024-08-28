@@ -1,5 +1,5 @@
-import {DEBUG} from "@/constants/global.ts";
-import {supportedLanguage} from "@/constants/languages.ts";
+import {DEBUG} from "@/apps/base/constants/global.ts";
+import {supportedLanguage} from "@/apps/base/constants/languages.ts";
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 

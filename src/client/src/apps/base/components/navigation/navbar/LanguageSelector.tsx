@@ -1,5 +1,5 @@
-import {countryFlag} from "@/constants/countries.ts";
-import {LanguageCode, languages} from "@/constants/languages.ts";
+import {countryFlag} from "@/apps/base/constants/countries.ts";
+import {LanguageCode, languages} from "@/apps/base/constants/languages.ts";
 import {
   Avatar,
   Button,

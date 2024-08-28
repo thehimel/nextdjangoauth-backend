@@ -1,6 +1,6 @@
 import Loader from "@/apps/base/components/ui/Loader.tsx";
-import {EMAIL_REGISTERED_WITH_EMAIL_LOGIN} from "@/constants/errorCodes.ts";
-import {HOME_URL, LOGIN_URL} from "@/constants/urls.ts";
+import {EMAIL_REGISTERED_WITH_EMAIL_LOGIN} from "@/apps/base/constants/errorCodes.ts";
+import {HOME_URL, LOGIN_URL} from "@/apps/base/constants/urls.ts";
 import {googleAuth} from "@/store/auth/actions/googleAuth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";

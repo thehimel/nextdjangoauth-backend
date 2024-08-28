@@ -1,6 +1,6 @@
 import { Button, ButtonProps, Spinner } from "@nextui-org/react";
 import React from "react";
-import { ColorType } from "@/constants/interfaces.ts";
+import { ColorType } from "@/apps/base/types/common.ts";
 
 interface SubmitButtonProps extends ButtonProps {
   color?: ColorType;

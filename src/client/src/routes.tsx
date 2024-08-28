@@ -14,7 +14,7 @@ import {
   LOGIN_URL,
   PROFILE_URL, PASSWORD_RESET_CONFIRM_URL,
   SIGNUP_URL,
-} from "@/constants/urls.ts";
+} from "@/apps/base/constants/urls.ts";
 import Home from "@/apps/base/pages/Home.tsx";
 import {createBrowserRouter, Route, createRoutesFromElements} from "react-router-dom";
 
