@@ -2,8 +2,8 @@ import {GOOGLE_AUTH_API_URL} from "@/constants/urls.ts";
 import {GOOGLE} from "@/store/auth/actions/auth.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getCookie} from "@/utils/browser/cookies.ts";
-import {getErrors} from "@/utils/api/errors.ts";
+import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";
+import {getErrors} from "@/apps/auth/utils/api/errors.ts";
 import axios, {AxiosError} from "axios";
 
 export interface GoogleAuthInterface {

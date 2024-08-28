@@ -1,5 +1,5 @@
 import {slices} from "@/store/constants.ts";
-import {clearAuthToken, setAuthToken} from "@/utils/auth/token.ts";
+import {clearAuthToken, setAuthToken} from "@/apps/auth/utils/auth/token.ts";
 import {createSlice} from "@reduxjs/toolkit";
 
 export interface UserDataProps {

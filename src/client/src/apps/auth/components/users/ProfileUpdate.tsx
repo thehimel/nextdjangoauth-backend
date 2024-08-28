@@ -11,7 +11,7 @@ import {
 } from "@/store/auth/actions/profileUpdate.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getAuthToken} from "@/utils/auth/token.ts";
+import {getAuthToken} from "@/apps/auth/utils/auth/token.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Card, CardBody, CardProps} from "@nextui-org/react";
 import {useForm} from "react-hook-form";

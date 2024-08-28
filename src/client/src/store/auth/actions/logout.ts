@@ -1,8 +1,8 @@
 import {LOGOUT_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getCookie} from "@/utils/browser/cookies.ts";
-import {getErrors} from "@/utils/api/errors.ts";
+import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";
+import {getErrors} from "@/apps/auth/utils/api/errors.ts";
 import axios, {AxiosError} from "axios";
 
 export interface LogoutResponseInterface {
