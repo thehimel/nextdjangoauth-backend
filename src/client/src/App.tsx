@@ -1,4 +1,4 @@
-import NavBar from "@/components/navigation/navbar/NavBar.tsx";
+import NavBar from "@/apps/base/components/navigation/navbar/NavBar.tsx";
 import {useClearSessionToken} from "@/hooks/auth.ts";
 import {quantum} from "ldrs";
 import {useTheme} from "next-themes";
@@ -6,7 +6,7 @@ import {useEffect} from "react";
 import {Outlet} from "react-router-dom";
 import {Toaster} from "sonner";
 import {useAppSelector} from "./store/hooks.ts";
-import Footer from "@/components/navigation/Footer.tsx";
+import Footer from "@/apps/base/components/navigation/Footer.tsx";
 
 const App = () => {
   const darkMode = useAppSelector((state) => state.base.darkMode);

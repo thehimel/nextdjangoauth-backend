@@ -1,4 +1,4 @@
-import NotificationsCard from "@/components/navigation/navbar/notifications/notifications-card.tsx";
+import NotificationsCard from "@/apps/base/components/navigation/navbar/notifications/notifications-card.tsx";
 import {Icon} from "@iconify/react";
 import {Badge, Button, NavbarItem, Popover, PopoverContent, PopoverTrigger} from "@nextui-org/react";
 
