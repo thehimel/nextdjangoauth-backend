@@ -1,4 +1,4 @@
-import {slices} from "@/store/constants.ts";
+import {AUTH} from "@/apps/auth/store/constants.ts";
 import {clearAuthToken, setAuthToken} from "@/apps/auth/utils/auth/token.ts";
 import {createSlice} from "@reduxjs/toolkit";
 
@@ -39,7 +39,7 @@ const initialState: AuthStateProps = {
 }
 
 const authSlice = createSlice({
-  name: slices.auth,
+  name: AUTH,
   initialState,
   reducers: {
     setAuthLoading(state, action): void {

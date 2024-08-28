@@ -1,5 +1,5 @@
+import {BASE} from "@/apps/base/store/constants.ts";
 import {createSlice} from "@reduxjs/toolkit";
-import {slices} from "@/store/constants.ts";
 
 export interface BaseState {
   darkMode: boolean;
@@ -10,7 +10,7 @@ const initialState: BaseState = {
 }
 
 const baseSlice = createSlice({
-  name: slices.base,
+  name: BASE,
   initialState,
   reducers: {
     toggleDarkMode(state): void {
