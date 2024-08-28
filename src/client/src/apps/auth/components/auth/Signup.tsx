@@ -4,7 +4,7 @@ import EmailSignUp from "@/apps/auth/components/auth/email/EmailSignUp.tsx";
 import GoogleAuth from "@/apps/auth/components/auth/google/GoogleAuth.tsx";
 import TermsAndPrivacyPolicy from "@/apps/auth/components/auth/TermsAndPrivacyPolicy.tsx";
 import {LOGIN_URL} from "@/apps/auth/urls/client.ts";
-import {signup} from "@/store/auth/actions/auth.ts";
+import {signup} from "@/apps/auth/store/actions/auth.ts";
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";

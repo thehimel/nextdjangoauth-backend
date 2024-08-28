@@ -3,12 +3,12 @@ import ProfileFooter from "@/apps/auth/components/users/ProfileFooter.tsx";
 import ProfileHeader from "@/apps/auth/components/users/ProfileHeader.tsx";
 import {PASSWORD_CHANGE_URL, LOGIN_URL} from "@/apps/auth/urls/client.ts";
 import {TProfileUpdateSchema, profileUpdateSchema} from "@/apps/auth/schemas/users.ts";
-import {EMAIL} from "@/store/auth/actions/auth.ts";
+import {EMAIL} from "@/apps/auth/store/actions/auth.ts";
 import {
   profileUpdate,
   ProfileUpdateInterface,
   ProfileUpdateResponseInterface,
-} from "@/store/auth/actions/profileUpdate.ts";
+} from "@/apps/auth/store/actions/profileUpdate.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getAuthToken} from "@/apps/auth/utils/auth/token.ts";

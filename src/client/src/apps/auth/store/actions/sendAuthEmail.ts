@@ -1,6 +1,6 @@
 import {SendAuthEmailRequestType} from "@/apps/auth/components/auth/email/SendAuthEmail.tsx";
 import {PASSWORD_RESET_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/apps/auth/urls/server.ts";
-import {authActions} from "@/store/auth/authSlice.ts";
+import {authActions} from "@/apps/auth/store/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";
 import {getErrors} from "@/apps/auth/utils/api/errors.ts";

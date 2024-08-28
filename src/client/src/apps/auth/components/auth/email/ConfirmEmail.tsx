@@ -1,6 +1,6 @@
 import SendAuthEmail from "@/apps/auth/components/auth/email/SendAuthEmail.tsx";
 import Login from "@/apps/auth/components/auth/Login.tsx";
-import {verifyEmail} from "@/store/auth/actions/verifyEmail.ts";
+import {verifyEmail} from "@/apps/auth/store/actions/verifyEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import React, {useEffect} from "react";

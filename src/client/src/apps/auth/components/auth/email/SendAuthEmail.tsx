@@ -7,7 +7,7 @@ import {
   SendAuthEmailResponseInterface,
   sendAuthEmail,
   SendAuthEmailInterface,
-} from "@/store/auth/actions/sendAuthEmail.ts";
+} from "@/apps/auth/store/actions/sendAuthEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {zodResolver} from "@hookform/resolvers/zod";

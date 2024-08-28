@@ -1,8 +1,8 @@
-import {authReducer} from "@/store/auth/authSlice.ts";
+import {authReducer} from "@/apps/auth/store/authSlice.ts";
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {persistReducer, persistStore} from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import {baseReducer} from "./base/baseSlice.ts";
+import {baseReducer} from "@/apps/base/store/baseSlice.ts";
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
 
 const persistConfig = {

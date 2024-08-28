@@ -1,4 +1,4 @@
-import {logout} from "@/store/auth/actions/logout.ts";
+import {logout} from "@/apps/auth/store/actions/logout.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {AUTH_TOKEN} from "@/apps/auth/utils/auth/token.ts";

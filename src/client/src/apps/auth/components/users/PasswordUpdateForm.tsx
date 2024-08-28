@@ -6,7 +6,7 @@ import {
   passwordUpdate,
   PasswordUpdateInterface,
   PasswordUpdateResponseInterface,
-} from "@/store/auth/actions/passwordUpdate.ts";
+} from "@/apps/auth/store/actions/passwordUpdate.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getAuthToken} from "@/apps/auth/utils/auth/token.ts";

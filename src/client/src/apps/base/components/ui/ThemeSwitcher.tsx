@@ -2,7 +2,7 @@ import {Icon} from "@iconify/react";
 import {Button} from "@nextui-org/react";
 import {AppDispatch} from "@/store/store.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
-import {toggleDarkMode} from "@/store/base/baseActions.ts";
+import {toggleDarkMode} from "@/apps/base/store/baseActions.ts";
 
 export const ThemeSwitcher = () => {
   const dispatch: AppDispatch = useAppDispatch();
