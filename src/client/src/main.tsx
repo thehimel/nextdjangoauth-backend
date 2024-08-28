@@ -1,4 +1,4 @@
-import Loader from "@/components/screens/Loader.tsx";
+import Loader from "@/apps/base/components/ui/Loader.tsx";
 import {router} from "@/routes.tsx";
 import {ThemeProvider} from "next-themes";
 import ReactDOM from 'react-dom/client'

@@ -4,7 +4,7 @@ import Signup from "@/components/auth/Signup.tsx";
 import ConfirmEmail from "@/components/auth/email/ConfirmEmail.tsx";
 import GoogleAuthCallback from "@/components/auth/google/GoogleAuthCallback.tsx";
 import Login from "@/components/auth/Login.tsx";
-import Loader from "@/components/screens/Loader.tsx";
+import Loader from "@/apps/base/components/ui/Loader.tsx";
 import PasswordUpdate from "@/components/users/PasswordUpdate.tsx";
 import ProfileUpdate from "@/components/users/ProfileUpdate.tsx";
 import {

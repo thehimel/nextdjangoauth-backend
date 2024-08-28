@@ -1,4 +1,4 @@
-import Loader from "@/components/screens/Loader.tsx";
+import Loader from "@/apps/base/components/ui/Loader.tsx";
 import {EMAIL_REGISTERED_WITH_EMAIL_LOGIN} from "@/constants/errorCodes.ts";
 import {HOME_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {googleAuth} from "@/store/auth/actions/googleAuth.ts";
