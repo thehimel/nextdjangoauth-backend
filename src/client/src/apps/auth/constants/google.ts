@@ -1,4 +1,4 @@
-import {GOOGLE_REDIRECT_URL} from "@/apps/auth/constants/urls.ts";
+import {GOOGLE_REDIRECT_URL} from "@/apps/auth/urls/client.ts";
 import {API_URL} from "@/apps/base/constants/global.ts";
 import urlJoin from "url-join";
 

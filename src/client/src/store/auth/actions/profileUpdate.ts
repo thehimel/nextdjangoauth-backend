@@ -1,6 +1,6 @@
 import {TOKEN_NOT_VALID} from "@/apps/auth/constants/errorCodes.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
-import {USER_API_URL} from "@/apps/auth/constants/urls.ts";
+import {USER_API_URL} from "@/apps/auth/urls/server.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";
 import {getErrors} from "@/apps/auth/utils/api/errors.ts";

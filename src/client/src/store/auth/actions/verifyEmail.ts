@@ -1,4 +1,4 @@
-import {VERIFY_EMAIL_API_URL} from "@/apps/auth/constants/urls.ts";
+import {VERIFY_EMAIL_API_URL} from "@/apps/auth/urls/server.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";

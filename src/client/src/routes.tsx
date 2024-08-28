@@ -13,7 +13,7 @@ import {
   LOGIN_URL,
   PROFILE_URL, PASSWORD_RESET_CONFIRM_URL,
   SIGNUP_URL,
-} from "@/apps/auth/constants/urls.ts";
+} from "@/apps/auth/urls/client.ts";
 import Home from "@/apps/base/pages/Home.tsx";
 import {HOME_URL, LOADER_URL} from "@/apps/base/urls/client.ts";
 import {createBrowserRouter, Route, createRoutesFromElements} from "react-router-dom";

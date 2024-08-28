@@ -2,7 +2,7 @@ import AuthDivider from "@/apps/auth/components/auth/email/AuthDivider.tsx";
 import AuthHeader from "@/apps/auth/components/auth/email/AuthHeader.tsx";
 import EmailLogin from "@/apps/auth/components/auth/email/EmailLogin.tsx";
 import GoogleAuth from "@/apps/auth/components/auth/google/GoogleAuth.tsx";
-import {SIGNUP_URL} from "@/apps/auth/constants/urls.ts";
+import {SIGNUP_URL} from "@/apps/auth/urls/client.ts";
 import {login} from "@/store/auth/actions/auth.ts";
 import React from "react";
 import {useTranslation} from "react-i18next";

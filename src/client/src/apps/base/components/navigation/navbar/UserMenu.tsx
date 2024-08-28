@@ -1,4 +1,4 @@
-import {PROFILE_URL} from "@/apps/auth/constants/urls.ts";
+import {PROFILE_URL} from "@/apps/auth/urls/client.ts";
 import {useLogout} from "@/hooks/auth.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {

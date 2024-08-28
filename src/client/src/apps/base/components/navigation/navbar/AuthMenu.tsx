@@ -1,4 +1,4 @@
-import {LOGIN_URL, SIGNUP_URL} from "@/apps/auth/constants/urls.ts";
+import {LOGIN_URL, SIGNUP_URL} from "@/apps/auth/urls/client.ts";
 import {Button, NavbarItem} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
 import {NavLink} from "react-router-dom";
