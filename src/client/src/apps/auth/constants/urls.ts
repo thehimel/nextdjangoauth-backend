@@ -1,6 +1,3 @@
-export const HOME_URL = "/";
-export const LOADER_URL = "/loader/"
-
 export const GOOGLE_REDIRECT_URL = "/auth/google/callback/";
 export const LOGIN_URL = "/auth/login/";
 export const SIGNUP_URL = "/auth/signup/";

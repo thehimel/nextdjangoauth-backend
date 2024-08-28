@@ -4,7 +4,7 @@ import LanguageSelector from "@/apps/base/components/navigation/navbar/LanguageS
 import Notifications from "@/apps/base/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/apps/base/components/navigation/navbar/UserMenu.tsx";
 import {ThemeSwitcher} from "@/apps/base/components/ui/ThemeSwitcher.tsx";
-import {HOME_URL} from "@/apps/auth/constants/urls.ts";
+import {HOME_URL} from "@/apps/base/urls/client.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {
   Navbar,

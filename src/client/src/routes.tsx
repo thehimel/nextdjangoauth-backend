@@ -10,12 +10,12 @@ import ProfileUpdate from "@/apps/auth/components/users/ProfileUpdate.tsx";
 import {
   PASSWORD_CHANGE_URL,
   VERIFY_EMAIL_URL, PASSWORD_RESET_URL, GOOGLE_REDIRECT_URL,
-  HOME_URL, LOADER_URL,
   LOGIN_URL,
   PROFILE_URL, PASSWORD_RESET_CONFIRM_URL,
   SIGNUP_URL,
 } from "@/apps/auth/constants/urls.ts";
 import Home from "@/apps/base/pages/Home.tsx";
+import {HOME_URL, LOADER_URL} from "@/apps/base/urls/client.ts";
 import {createBrowserRouter, Route, createRoutesFromElements} from "react-router-dom";
 
 export const router = createBrowserRouter(
