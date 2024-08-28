@@ -6,7 +6,7 @@ import {NextUIProvider} from "@nextui-org/react";
 import {Provider} from "react-redux";
 import {RouterProvider} from "react-router-dom";
 import './index.css'
-import '@/lib/i18n.ts'
+import '@/apps/base/lib/i18n.ts'
 import store, {persistor} from "./store/store.ts";
 import { PersistGate } from 'redux-persist/integration/react';
 import React, {Suspense} from "react";

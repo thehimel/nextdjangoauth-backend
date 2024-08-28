@@ -2,7 +2,7 @@ import React from "react";
 import {Avatar, Badge, Button} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import {cn} from "@/lib/nextui/cn.ts";
+import {cn} from "@/apps/base/lib/nextui/cn.ts";
 
 export type NotificationType = "default" | "request" | "file";
 
