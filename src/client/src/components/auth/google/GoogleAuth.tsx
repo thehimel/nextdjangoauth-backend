@@ -1,5 +1,5 @@
 import {login, signup} from "@/store/auth/actions/auth.ts";
-import {googleLoginUrl} from "@/utils/oauth.ts";
+import {googleLoginUrl} from "@/utils/auth/google.ts";
 import {Icon} from "@iconify/react";
 import {Button, Link} from "@nextui-org/react";
 import React from "react";

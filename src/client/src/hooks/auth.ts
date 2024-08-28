@@ -1,7 +1,7 @@
 import {logout} from "@/store/auth/actions/logout.ts";
 import {useAppDispatch, useAppSelector} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {AUTH_TOKEN} from "@/utils/auth.ts";
+import {AUTH_TOKEN} from "@/utils/auth/token.ts";
 import i18n from "i18next";
 import secureSessionStorage from "react-secure-storage";
 import {toast} from "sonner";

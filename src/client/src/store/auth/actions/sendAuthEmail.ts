@@ -2,8 +2,8 @@ import {SendAuthEmailRequestType} from "@/components/auth/email/SendAuthEmail.ts
 import {PASSWORD_RESET_API_URL, RESEND_EMAIL_VERIFICATION_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getCookie} from "@/utils/cookies.ts";
-import {getErrors} from "@/utils/errors.ts";
+import {getCookie} from "@/utils/browser/cookies.ts";
+import {getErrors} from "@/utils/api/errors.ts";
 import axios, {AxiosError} from "axios";
 import i18n from "i18next";
 

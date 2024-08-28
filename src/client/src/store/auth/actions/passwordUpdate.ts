@@ -2,8 +2,8 @@ import {TOKEN_NOT_VALID} from "@/constants/errorCodes.ts";
 import {PASSWORD_CHANGE_API_URL, PASSWORD_RESET_CONFIRM_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getCookie} from "@/utils/cookies.ts";
-import {getErrors} from "@/utils/errors.ts";
+import {getCookie} from "@/utils/browser/cookies.ts";
+import {getErrors} from "@/utils/api/errors.ts";
 import axios, {AxiosError} from "axios";
 import i18n from "i18next";
 

@@ -2,8 +2,8 @@ import {TOKEN_NOT_VALID} from "@/constants/errorCodes.ts";
 import {LOGIN_API_URL, SIGNUP_API_URL} from "@/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getCookie} from "@/utils/cookies.ts";
-import {getErrors} from "@/utils/errors.ts";
+import {getCookie} from "@/utils/browser/cookies.ts";
+import {getErrors} from "@/utils/api/errors.ts";
 import axios, {AxiosError} from "axios";
 
 export const signup = "signup";

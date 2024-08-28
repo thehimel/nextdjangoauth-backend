@@ -9,7 +9,7 @@ import {
 } from "@/store/auth/actions/passwordUpdate.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";
-import {getAuthToken} from "@/utils/auth.ts";
+import {getAuthToken} from "@/utils/auth/token.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {CardBody} from "@nextui-org/react";
 import React from "react";
