@@ -1,4 +1,4 @@
-import translation from '../../public/static/locales/en/translation.json';
+import translation from '../../../../public/static/locales/en/translation.json';
 
 type Translation = typeof translation;
 
