@@ -1,4 +1,4 @@
-import {AcmeIcon} from "@/components/icons/acme.tsx";
+import {AcmeIcon} from "@/apps/base/assets/icons/acme.tsx";
 import {MessageInterface} from "@/constants/interfaces.ts";
 import {FC} from "react";
 

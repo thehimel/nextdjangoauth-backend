@@ -21,7 +21,7 @@ import {
 } from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-import {AcmeIcon} from "@/components/icons/acme.tsx";
+import {AcmeIcon} from "@/apps/base/assets/icons/acme.tsx";
 import {useTranslation} from "react-i18next";
 import {NavLink, useLocation} from "react-router-dom";
 
