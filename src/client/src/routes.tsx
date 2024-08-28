@@ -1,12 +1,12 @@
 import App from "@/App.tsx";
-import SendAuthEmail from "@/components/auth/email/SendAuthEmail.tsx";
-import Signup from "@/components/auth/Signup.tsx";
-import ConfirmEmail from "@/components/auth/email/ConfirmEmail.tsx";
-import GoogleAuthCallback from "@/components/auth/google/GoogleAuthCallback.tsx";
-import Login from "@/components/auth/Login.tsx";
+import SendAuthEmail from "@/apps/auth/components/auth/email/SendAuthEmail.tsx";
+import Signup from "@/apps/auth/components/auth/Signup.tsx";
+import ConfirmEmail from "@/apps/auth/components/auth/email/ConfirmEmail.tsx";
+import GoogleAuthCallback from "@/apps/auth/components/auth/google/GoogleAuthCallback.tsx";
+import Login from "@/apps/auth/components/auth/Login.tsx";
 import Loader from "@/apps/base/components/ui/Loader.tsx";
-import PasswordUpdate from "@/components/users/PasswordUpdate.tsx";
-import ProfileUpdate from "@/components/users/ProfileUpdate.tsx";
+import PasswordUpdate from "@/apps/auth/components/users/PasswordUpdate.tsx";
+import ProfileUpdate from "@/apps/auth/components/users/ProfileUpdate.tsx";
 import {
   PASSWORD_CHANGE_URL,
   VERIFY_EMAIL_URL, PASSWORD_RESET_URL, GOOGLE_REDIRECT_URL,

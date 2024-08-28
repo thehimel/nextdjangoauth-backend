@@ -1,6 +1,6 @@
-import EmailInputField, {TEmailInputFieldRegister} from "@/components/auth/email/fields/EmailInputField.tsx";
-import PasswordInputField, {TPasswordInputFieldRegister} from "@/components/auth/email/fields/PasswordInputField.tsx";
-import SubmitButton from "@/components/auth/SubmitButton.tsx";
+import EmailInputField, {TEmailInputFieldRegister} from "@/apps/auth/components/auth/email/fields/EmailInputField.tsx";
+import PasswordInputField, {TPasswordInputFieldRegister} from "@/apps/auth/components/auth/email/fields/PasswordInputField.tsx";
+import SubmitButton from "@/apps/auth/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/constants/errorCodes.ts";
 import {signUpSchema, TSignUpSchema} from "@/schemas/auth.ts";
 import {auth, AuthResponseInterface, signup} from "@/store/auth/actions/auth.ts";

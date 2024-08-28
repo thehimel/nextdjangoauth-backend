@@ -1,5 +1,5 @@
-import SendAuthEmail from "@/components/auth/email/SendAuthEmail.tsx";
-import Login from "@/components/auth/Login.tsx";
+import SendAuthEmail from "@/apps/auth/components/auth/email/SendAuthEmail.tsx";
+import Login from "@/apps/auth/components/auth/Login.tsx";
 import {verifyEmail} from "@/store/auth/actions/verifyEmail.ts";
 import {useAppDispatch} from "@/store/hooks.ts";
 import {AppDispatch} from "@/store/store.ts";

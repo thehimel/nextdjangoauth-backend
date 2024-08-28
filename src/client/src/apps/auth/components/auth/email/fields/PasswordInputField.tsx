@@ -3,7 +3,7 @@ import { Input } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
 import { UseFormRegister } from "react-hook-form";
 import {TLoginSchema, TSignUpSchema, TPasswordUpdateSchema} from "@/schemas/auth.ts";
-import { EyeClosedIcon, EyeOpenIcon } from "@/components/icons/eyes.tsx";
+import { EyeClosedIcon, EyeOpenIcon } from "@/apps/auth/components/icons/eyes.tsx";
 
 export type TPasswordInputFieldRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TPasswordUpdateSchema>;
 

@@ -1,6 +1,6 @@
-import TextInputField from "@/components/users/fields/TextInputField.tsx";
-import ProfileFooter from "@/components/users/ProfileFooter.tsx";
-import ProfileHeader from "@/components/users/ProfileHeader.tsx";
+import TextInputField from "@/apps/auth/components/users/fields/TextInputField.tsx";
+import ProfileFooter from "@/apps/auth/components/users/ProfileFooter.tsx";
+import ProfileHeader from "@/apps/auth/components/users/ProfileHeader.tsx";
 import {PASSWORD_CHANGE_URL, LOGIN_URL} from "@/constants/urls.ts";
 import {TProfileUpdateSchema, profileUpdateSchema} from "@/schemas/users.ts";
 import {EMAIL} from "@/store/auth/actions/auth.ts";

@@ -1,7 +1,7 @@
-import AuthHeader from "@/components/auth/email/AuthHeader.tsx";
-import Login from "@/components/auth/Login.tsx";
-import ProfileHeader from "@/components/users/ProfileHeader.tsx";
-import PasswordUpdateForm from "@/components/users/PasswordUpdateForm.tsx";
+import AuthHeader from "@/apps/auth/components/auth/email/AuthHeader.tsx";
+import Login from "@/apps/auth/components/auth/Login.tsx";
+import ProfileHeader from "@/apps/auth/components/users/ProfileHeader.tsx";
+import PasswordUpdateForm from "@/apps/auth/components/users/PasswordUpdateForm.tsx";
 import {PASSWORD_RESET_URL, LOGIN_URL, PROFILE_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {Card, CardHeader, Link} from "@nextui-org/react";

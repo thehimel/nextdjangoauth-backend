@@ -1,4 +1,4 @@
-import SubmitButton from "@/components/auth/SubmitButton.tsx";
+import SubmitButton from "@/apps/auth/components/auth/SubmitButton.tsx";
 import {CardFooter} from "@nextui-org/react";
 
 import {FC} from "react";
