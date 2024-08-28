@@ -1,5 +1,5 @@
 import NavBar from "@/apps/base/components/navigation/navbar/NavBar.tsx";
-import {useClearSessionToken} from "@/hooks/auth.ts";
+import {useClearSessionToken} from "@/apps/auth/hooks/useAuth.ts";
 import {quantum} from "ldrs";
 import {useTheme} from "next-themes";
 import {useEffect} from "react";
