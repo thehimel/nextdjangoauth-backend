@@ -3,7 +3,7 @@ import FeatureBar from "@/apps/base/components/navigation/navbar/FeatureBar.tsx"
 import LanguageSelector from "@/apps/base/components/navigation/navbar/LanguageSelector.tsx";
 import Notifications from "@/apps/base/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/apps/base/components/navigation/navbar/UserMenu.tsx";
-import {ThemeSwitcher} from "@/components/ui/ThemeSwitcher.tsx";
+import {ThemeSwitcher} from "@/apps/base/components/ui/ThemeSwitcher.tsx";
 import {HOME_URL} from "@/constants/urls.ts";
 import {useAppSelector} from "@/store/hooks.ts";
 import {
