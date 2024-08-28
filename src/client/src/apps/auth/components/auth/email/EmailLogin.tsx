@@ -3,7 +3,7 @@ import PasswordInputField, {TPasswordInputFieldRegister} from "@/apps/auth/compo
 import SubmitButton from "@/apps/auth/components/auth/SubmitButton.tsx";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/apps/auth/constants/errorCodes.ts";
 import {HOME_URL} from "@/apps/base/urls/client.ts";
-import {loginSchema, TLoginSchema} from "@/schemas/auth.ts";
+import {loginSchema, TLoginSchema} from "@/apps/auth/schemas/auth.ts";
 import {PASSWORD_RESET_URL} from "@/apps/auth/urls/client.ts";
 import {auth, AuthResponseInterface, login} from "@/store/auth/actions/auth.ts";
 import {useAppDispatch} from "@/store/hooks.ts";

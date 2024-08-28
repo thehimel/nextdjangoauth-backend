@@ -1,4 +1,4 @@
-import {TProfileUpdateSchema} from "@/schemas/users.ts";
+import {TProfileUpdateSchema} from "@/apps/auth/schemas/users.ts";
 import React from "react";
 import {Input} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";

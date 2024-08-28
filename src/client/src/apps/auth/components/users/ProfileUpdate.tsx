@@ -2,7 +2,7 @@ import TextInputField from "@/apps/auth/components/users/fields/TextInputField.t
 import ProfileFooter from "@/apps/auth/components/users/ProfileFooter.tsx";
 import ProfileHeader from "@/apps/auth/components/users/ProfileHeader.tsx";
 import {PASSWORD_CHANGE_URL, LOGIN_URL} from "@/apps/auth/urls/client.ts";
-import {TProfileUpdateSchema, profileUpdateSchema} from "@/schemas/users.ts";
+import {TProfileUpdateSchema, profileUpdateSchema} from "@/apps/auth/schemas/users.ts";
 import {EMAIL} from "@/store/auth/actions/auth.ts";
 import {
   profileUpdate,

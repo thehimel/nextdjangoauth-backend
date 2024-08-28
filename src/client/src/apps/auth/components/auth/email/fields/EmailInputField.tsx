@@ -2,7 +2,7 @@ import React from "react";
 import {Input} from "@nextui-org/react";
 import {useTranslation} from "react-i18next";
 import {UseFormRegister} from "react-hook-form";
-import {TLoginSchema, TSendAuthEmailSchema, TSignUpSchema} from "@/schemas/auth.ts";
+import {TLoginSchema, TSendAuthEmailSchema, TSignUpSchema} from "@/apps/auth/schemas/auth.ts";
 
 export type TEmailInputFieldRegister = UseFormRegister<TSignUpSchema | TLoginSchema | TSendAuthEmailSchema>;
 
