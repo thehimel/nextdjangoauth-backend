@@ -1,5 +1,5 @@
-import {TOKEN_NOT_VALID} from "@/apps/base/constants/errorCodes.ts";
-import {PASSWORD_CHANGE_API_URL, PASSWORD_RESET_CONFIRM_API_URL} from "@/apps/base/constants/urls.ts";
+import {TOKEN_NOT_VALID} from "@/apps/auth/constants/errorCodes.ts";
+import {PASSWORD_CHANGE_API_URL, PASSWORD_RESET_CONFIRM_API_URL} from "@/apps/auth/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";

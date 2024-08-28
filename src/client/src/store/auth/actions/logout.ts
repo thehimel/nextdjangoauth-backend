@@ -1,4 +1,4 @@
-import {LOGOUT_API_URL} from "@/apps/base/constants/urls.ts";
+import {LOGOUT_API_URL} from "@/apps/auth/constants/urls.ts";
 import {authActions} from "@/store/auth/authSlice.ts";
 import {AppDispatch} from "@/store/store.ts";
 import {getCookie} from "@/apps/auth/utils/browser/cookies.ts";

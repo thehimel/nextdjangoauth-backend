@@ -1,4 +1,4 @@
-import {GOOGLE_REDIRECT_URL} from "@/apps/base/constants/urls.ts";
+import {GOOGLE_REDIRECT_URL} from "@/apps/auth/constants/urls.ts";
 import urlJoin from "url-join";
 
 export const ENVIRONMENT: string = process.env.ENVIRONMENT as string;
