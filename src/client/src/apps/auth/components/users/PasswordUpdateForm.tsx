@@ -90,14 +90,14 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
           errorMessage={errors["password"]?.message}
           isSubmitting={isSubmitting}
           type={"password"}
-          label={t("auth.forms.newPassword")}
+          label={t("auth.forms.labels.newPassword")}
         />
         <PasswordInputField
           register={register as TPasswordInputFieldRegister}
           errorMessage={errors["confirmPassword"]?.message}
           isSubmitting={isSubmitting}
           type={"confirmPassword"}
-          label={t("auth.forms.confirmNewPassword")}
+          label={t("auth.forms.labels.confirmNewPassword")}
         />
       </CardBody>
       <ProfileFooter title={t("base.forms.labels.save")} isLoading={isSubmitting} isDisabled={isSubmitting}/>

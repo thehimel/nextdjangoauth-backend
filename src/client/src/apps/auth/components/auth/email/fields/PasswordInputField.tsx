@@ -24,7 +24,7 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ register, error
     <Input
       {...register(type)}
       isRequired
-      label={label || t(`auth.forms.${type}`)}
+      label={label || t(`auth.forms.labels.${type}`)}
       variant="bordered"
       type={isPasswordVisible ? "text" : "password"}
       autoComplete={"new-password"}

@@ -63,11 +63,13 @@
       "logout": "Logout"
     },
     "forms": {
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "newPassword": "New Password",
-      "confirmNewPassword": "Confirm New Password"
+      "labels": {
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "newPassword": "New Password",
+        "confirmNewPassword": "Confirm New Password"
+      }
     },
     "login": {
       "withEmail": "Login with Email",
