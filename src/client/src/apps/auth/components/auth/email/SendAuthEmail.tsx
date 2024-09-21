@@ -29,13 +29,13 @@ const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
   const isResendEmailVerificationPage = type === "resend_email_verification";
   const isForgotPasswordPage = type === "forgot_password";
 
-  const headerTitle= isResendEmailVerificationPage ? t("auth.emailVerification.resendEmail")
+  const headerTitle= isResendEmailVerificationPage ? t("auth.emailVerification.navigation.resendEmail")
     : isForgotPasswordPage ? t("auth.login.labels.forgotPassword") : t("base.general.welcome")
 
   const initialHeadline: MessageInterface = {
     text: isResendEmailVerificationPage ?
-      t("auth.emailVerification.failed")
-      : isForgotPasswordPage ? t("auth.passwordReset.enterEmail") : t("base.general.welcome"),
+      t("auth.emailVerification.errors.default")
+      : isForgotPasswordPage ? t("auth.passwordReset.messages.enterEmail") : t("base.general.welcome"),
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
@@ -60,8 +60,8 @@ const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
       setIsEmailSent(true);
       setHeadline({
         text: t(isResendEmailVerificationPage
-          ? "auth.emailVerification.emailSent"
-          : "auth.passwordReset.emailSent"),
+          ? "auth.emailVerification.messages.emailSent"
+          : "auth.passwordReset.messages.emailSent"),
         color: "default",
       });
       return;

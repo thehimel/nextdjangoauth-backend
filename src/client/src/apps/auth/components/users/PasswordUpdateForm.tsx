@@ -57,7 +57,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
     }
 
     if (response.success) {
-      toast.success(t("auth.passwordReset.updateSuccess"))
+      toast.success(t("auth.passwordReset.messages.updateSuccess"))
       if (type === "change") {
         await logout();
       } else {
