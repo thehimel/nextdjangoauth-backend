@@ -1,34 +1,36 @@
 {
-  "labels": {
-    "accountDetails": "Account Details",
-    "updateProfile": "Update Profile",
-    "changePassword": "Change Password"
-  },
-  "badges": {
-    "basicMember": "Basic Member",
-    "proMember": "Pro Member"
-  },
-  "forms": {
-    "labels":{
-      "username": "Username",
-      "firstName": "First Name",
-      "lastName": "Last Name"
+  "profile": {
+    "labels": {
+      "accountDetails": "Account Details",
+      "updateProfile": "Update Profile",
+      "changePassword": "Change Password"
     },
-    "placeholders": {
-      "username": "Enter username",
-      "firstName": "Enter first name",
-      "lastName": "Enter last name"
+    "badges": {
+      "basicMember": "Basic Member",
+      "proMember": "Pro Member"
+    },
+    "forms": {
+      "labels":{
+        "username": "Username",
+        "firstName": "First Name",
+        "lastName": "Last Name"
+      },
+      "placeholders": {
+        "username": "Enter username",
+        "firstName": "Enter first name",
+        "lastName": "Enter last name"
+      }
+    },
+    "messages": {
+      "updateSuccess": "Profile updated successfully."
+    },
+    "errors": {
+      "invalidUsername": "Username must be minimum 6 characters, letters & numbers only.",
+      "usernameTooShort": "Username must be at least 6 characters long.",
+      "usernameInvalidCharacters": "Username can only contain letters and numbers.",
+      "usernameAlreadyExists": "This username is already taken.",
+      "invalidFirstName": "Please enter a valid first name.",
+      "invalidLastName": "Please enter a valid last name."
     }
-  },
-  "messages": {
-    "updateSuccess": "Profile updated successfully."
-  },
-  "errors": {
-    "invalidUsername": "Username must be minimum 6 characters, letters & numbers only.",
-    "usernameTooShort": "Username must be at least 6 characters long.",
-    "usernameInvalidCharacters": "Username can only contain letters and numbers.",
-    "usernameAlreadyExists": "This username is already taken.",
-    "invalidFirstName": "Please enter a valid first name.",
-    "invalidLastName": "Please enter a valid last name."
   }
 }

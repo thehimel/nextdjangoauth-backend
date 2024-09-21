@@ -1,37 +1,39 @@
 {
-  "navigation": {
-    "home": "Startseite",
-    "about": "Über uns",
-    "languageSettings": "Spracheinstellungen",
-    "support": "Hilfe",
-    "feedback": "Feedback",
-    "contact": "Kontakt"
-  },
-  "forms": {
-    "labels": {
-      "websiteLanguage": "Website-Sprache",
-      "submit": "Absenden",
-      "save": "Speichern",
-      "send": "Senden",
-      "cancel": "Abbrechen"
+  "base": {
+    "navigation": {
+      "home": "Startseite",
+      "about": "Über uns",
+      "languageSettings": "Spracheinstellungen",
+      "support": "Hilfe",
+      "feedback": "Feedback",
+      "contact": "Kontakt"
     },
-    "placeholders": {
-      "search": "Suchen"
+    "forms": {
+      "labels": {
+        "websiteLanguage": "Website-Sprache",
+        "submit": "Absenden",
+        "save": "Speichern",
+        "send": "Senden",
+        "cancel": "Abbrechen"
+      },
+      "placeholders": {
+        "search": "Suchen"
+      }
+    },
+    "errors": {
+      "required": "Dieses Feld ist erforderlich.",
+      "minLength": "Minimale Länge ist {min} Zeichen.",
+      "maxLength": "Maximale Länge ist {max} Zeichen.",
+      "websiteLanguage": "Fehler beim Ändern der Website-Sprache.",
+      "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten."
+    },
+    "general": {
+      "welcome": "Willkommen",
+      "loading": "Lädt...",
+      "yes": "Ja",
+      "no": "Nein",
+      "and": "und",
+      "or": "oder"
     }
-  },
-  "errors": {
-    "required": "Dieses Feld ist erforderlich.",
-    "minLength": "Minimale Länge ist {min} Zeichen.",
-    "maxLength": "Maximale Länge ist {max} Zeichen.",
-    "websiteLanguage": "Fehler beim Ändern der Website-Sprache.",
-    "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten."
-  },
-  "general": {
-    "welcome": "Willkommen",
-    "loading": "Lädt...",
-    "yes": "Ja",
-    "no": "Nein",
-    "and": "und",
-    "or": "oder"
   }
 }
