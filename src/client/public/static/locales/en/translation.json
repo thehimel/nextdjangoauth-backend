@@ -53,11 +53,6 @@
     "send": "Send",
     "cancel": "Cancel"
   },
-  "placeholders": {
-    "username": "Enter username",
-    "firstName": "Enter first name",
-    "lastName": "Enter last name"
-  },
   "common": {
     "welcome": "Welcome",
     "loading": "Loading...",
@@ -116,6 +111,11 @@
       "accountDetails": "Account Details",
       "updateProfile": "Update Profile",
       "changePassword": "Change Password"
+    },
+    "placeholders": {
+      "username": "Enter username",
+      "firstName": "Enter first name",
+      "lastName": "Enter last name"
     },
     "messages": {
       "updateSuccess": "Profile updated successfully."
