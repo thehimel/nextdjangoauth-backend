@@ -43,11 +43,6 @@
     "username": "Username",
     "firstName": "First Name",
     "lastName": "Last Name",
-    "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "newPassword": "New Password",
-    "confirmNewPassword": "Confirm New Password",
     "submit": "Submit",
     "save": "Save",
     "send": "Send",
@@ -63,6 +58,13 @@
     "or": "or"
   },
   "auth": {
+    "forms": {
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password"
+    },
     "login": {
       "withEmail": "Login with Email",
       "withGoogle": "Login with Google",
