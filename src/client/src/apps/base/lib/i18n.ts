@@ -21,7 +21,7 @@ i18n
   .init({
     fallbackLng: 'en',
     ns: ['base', 'auth', 'profile'],
-    fallbackNS: ['base'],  // Use this to load all namespaces automatically
+    fallbackNS: ['base', 'auth', 'profile'],  // Use this to load all namespaces automatically
     supportedLngs: supportedLanguage,
     debug: DEBUG,
     detection: {
