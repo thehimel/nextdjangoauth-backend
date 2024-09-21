@@ -21,8 +21,8 @@ const TextInputField: React.FC<TextInputFieldProps> = ({register, errorMessage, 
       isRequired
       variant="bordered"
       labelPlacement="outside"
-      label={t(`forms.${type}`)}
-      placeholder={t(`profile.placeholders.${type}`)}
+      label={t(`profile.forms.labels.${type}`)}
+      placeholder={t(`profile.forms.placeholders.${type}`)}
       autoComplete={autoComplete}
       isInvalid={!!errorMessage}
       errorMessage={errorMessage}

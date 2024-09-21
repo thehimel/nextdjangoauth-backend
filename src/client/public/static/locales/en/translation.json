@@ -39,10 +39,6 @@
   },
   "forms": {
     "websiteLanguage": "Website Language",
-    "name": "Name",
-    "username": "Username",
-    "firstName": "First Name",
-    "lastName": "Last Name",
     "submit": "Submit",
     "save": "Save",
     "send": "Send",
@@ -114,10 +110,17 @@
       "updateProfile": "Update Profile",
       "changePassword": "Change Password"
     },
-    "placeholders": {
-      "username": "Enter username",
-      "firstName": "Enter first name",
-      "lastName": "Enter last name"
+    "forms": {
+      "labels":{
+        "username": "Username",
+        "firstName": "First Name",
+        "lastName": "Last Name"
+      },
+      "placeholders": {
+        "username": "Enter username",
+        "firstName": "Enter first name",
+        "lastName": "Enter last name"
+      }
     },
     "messages": {
       "updateSuccess": "Profile updated successfully."
