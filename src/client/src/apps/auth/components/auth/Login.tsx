@@ -36,7 +36,7 @@ const Login: React.FC<LoginProps> = ({isEmailLoginSelected = EMAIL_AUTH_PRESELEC
         <p className="text-center">
           {t("auth.signup.needToCreateAccount")}&nbsp;
           <Link to={SIGNUP_URL} className="text-primary">
-            {t("navigation.signup")}
+            {t("auth.navigation.signup")}
           </Link>
         </p>
       </div>

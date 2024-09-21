@@ -95,7 +95,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
           isSubmitting={isSubmitting}
           type="confirmPassword"
         />
-        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.signup")}/>
+        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("auth.navigation.signup")}/>
       </form>
     ) : (
       <Button

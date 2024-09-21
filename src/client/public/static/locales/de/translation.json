@@ -5,10 +5,7 @@
     "languageSettings": "Spracheinstellungen",
     "support": "Hilfe",
     "feedback": "Feedback",
-    "contact": "Kontakt",
-    "login": "Anmelden",
-    "signup": "Registrieren",
-    "logout": "Abmelden"
+    "contact": "Kontakt"
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -54,6 +51,11 @@
     "or": "oder"
   },
   "auth": {
+    "navigation": {
+      "login": "Anmelden",
+      "signup": "Registrieren",
+      "logout": "Abmelden"
+    },
     "forms": {
       "email": "E-Mail",
       "password": "Passwort",

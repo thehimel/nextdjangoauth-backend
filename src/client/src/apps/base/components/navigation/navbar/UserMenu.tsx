@@ -58,7 +58,7 @@ const UserMenu = () => {
           </DropdownSection >
 
           <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogout}>
-            {t("navigation.logout")}
+            {t("auth.navigation.logout")}
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

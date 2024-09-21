@@ -5,10 +5,7 @@
     "languageSettings": "Language Settings",
     "support": "Get Support",
     "feedback": "Feedback",
-    "contact": "Contact",
-    "login": "Login",
-    "signup": "Sign Up",
-    "logout": "Logout"
+    "contact": "Contact"
   },
   "errors": {
     "required": "This field is required.",
@@ -54,6 +51,11 @@
     "or": "or"
   },
   "auth": {
+    "navigation": {
+      "login": "Login",
+      "signup": "Sign Up",
+      "logout": "Logout"
+    },
     "forms": {
       "email": "Email",
       "password": "Password",

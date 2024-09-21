@@ -37,7 +37,7 @@ const Signup = () => {
           <p className="text-center">
             {t("auth.login.alreadyHaveAccount")}&nbsp;
             <Link to={LOGIN_URL} className="text-primary">
-              {t("navigation.login")}
+              {t("auth.navigation.login")}
             </Link>
           </p>
         </div>

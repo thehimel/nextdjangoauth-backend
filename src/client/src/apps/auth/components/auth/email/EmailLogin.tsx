@@ -110,7 +110,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
             {t("auth.login.forgotPassword")}
           </Link>
         </div>
-        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("navigation.login")} color={"default"}/>
+        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("auth.navigation.login")} color={"default"}/>
       </form>
     ) : (
       <Button
