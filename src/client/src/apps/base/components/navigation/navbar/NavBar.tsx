@@ -4,6 +4,7 @@ import LanguageSelector from "@/apps/base/components/navigation/navbar/LanguageS
 import Notifications from "@/apps/base/components/navigation/navbar/notifications/Notifications.tsx";
 import UserMenu from "@/apps/base/components/navigation/navbar/UserMenu.tsx";
 import {ThemeSwitcher} from "@/apps/base/components/ui/ThemeSwitcher.tsx";
+import {BRAND_NAME} from "@/apps/base/constants/global.ts";
 import {HOME_URL} from "@/apps/base/urls/client.ts";
 import {useAppSelector} from "@/core/store/hooks.ts";
 import {
@@ -50,7 +51,7 @@ export default function NavBar() {
         <NavLink to={HOME_URL}>
           <NavbarBrand>
             <AcmeIcon />
-            <p className="font-bold text-inherit">Client</p>
+            <p className="font-bold text-inherit">{BRAND_NAME}</p>
           </NavbarBrand>
         </NavLink>
 

@@ -6,6 +6,7 @@ import EnvironmentPlugin from "vite-plugin-environment";
 const API_URL = process.env.API_URL || 'http://127.0.0.1:8000';
 const CLIENT_ENV = {
   API_URL: API_URL,
+  BRAND_NAME: process.env.BRAND_NAME || 'Client',
   ENVIRONMENT: process.env.ENVIRONMENT || 'prod',
   DEBUG: process.env.DEBUG || 'False',
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
