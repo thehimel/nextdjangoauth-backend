@@ -2,7 +2,6 @@
   "common": {
     "welcome": "Willkommen",
     "loading": "Lädt...",
-    "search": "Suchen",
     "yes": "Ja",
     "no": "Nein",
     "and": "und",
@@ -24,6 +23,9 @@
         "save": "Speichern",
         "send": "Senden",
         "cancel": "Abbrechen"
+      },
+      "placeholders": {
+        "search": "Suchen"
       }
     }
   },

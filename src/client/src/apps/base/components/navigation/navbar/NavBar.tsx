@@ -60,12 +60,12 @@ export default function NavBar() {
           {/* Search */}
           <NavbarItem className="mr-2 hidden sm:flex">
             <Input
-              aria-label={t("common.search")}
+              aria-label={t("base.forms.placeholders.search")}
               classNames={{
                 inputWrapper: "bg-default-400/20 dark:bg-default-500/20",
               }}
               labelPlacement="outside"
-              placeholder={`${t("common.search")}...`}
+              placeholder={`${t("base.forms.placeholders.search")}...`}
               radius="full"
               startContent={
                 <Icon className="text-default-500" icon="solar:magnifer-linear" width={20} />
