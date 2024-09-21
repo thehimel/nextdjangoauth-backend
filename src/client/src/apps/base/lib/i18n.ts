@@ -20,6 +20,8 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     fallbackLng: 'en',
+    ns: ['base', 'auth', 'profile'],
+    fallbackNS: ['base'],  // Use this to load all namespaces automatically
     supportedLngs: supportedLanguage,
     debug: DEBUG,
     detection: {
@@ -30,8 +32,8 @@ i18n
       loadPath: '/static/locales/{{lng}}/{{ns}}.json',  // Path to translation files
     },
     interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
-    }
+      escapeValue: false, // Not needed for react as it escapes by default
+    },
   });
 
 
