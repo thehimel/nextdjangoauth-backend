@@ -21,7 +21,7 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
   const location = useLocation();
   const redirectPath = location.pathname;  // Store the path to redirect to after login
 
-  const pageTitle = type === "change" ? t("profile.changePassword")
+  const pageTitle = type === "change" ? t("profile.labels.changePassword")
     : t("auth.passwordReset.resetPassword");
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
@@ -48,7 +48,7 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
                 firstName={userData.user.first_name}
                 lastName={userData.user.last_name}
                 email={userData.user.email}
-                navigationLink={{url: PROFILE_URL, title: t("profile.updateProfile")}}
+                navigationLink={{url: PROFILE_URL, title: t("profile.labels.updateProfile")}}
               />
             )}
 

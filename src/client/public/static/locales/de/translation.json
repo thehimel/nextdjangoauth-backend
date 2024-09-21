@@ -112,10 +112,14 @@
     "proMember": "Pro-Mitglied"
   },
   "profile": {
-    "accountDetails": "Kontodaten",
-    "updateProfile": "Profil aktualisieren",
-    "updateSuccess": "Profil erfolgreich aktualisiert.",
-    "changePassword": "Passwort ändern"
+    "labels": {
+      "accountDetails": "Kontodaten",
+      "updateProfile": "Profil aktualisieren",
+      "changePassword": "Passwort ändern"
+    },
+    "messages": {
+      "updateSuccess": "Profil erfolgreich aktualisiert."
+    }
   },
   "privacy": {
     "agreeToOur": "Mit der Anmeldung stimmen Sie unseren",

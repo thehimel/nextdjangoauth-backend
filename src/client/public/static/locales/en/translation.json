@@ -112,10 +112,14 @@
     "proMember": "Pro Member"
   },
   "profile": {
-    "accountDetails": "Account Details",
-    "updateProfile": "Update Profile",
-    "updateSuccess": "Profile updated successfully.",
-    "changePassword": "Change Password"
+    "labels": {
+      "accountDetails": "Account Details",
+      "updateProfile": "Update Profile",
+      "changePassword": "Change Password"
+    },
+    "messages": {
+      "updateSuccess": "Profile updated successfully."
+    }
   },
   "privacy": {
     "agreeToOur": "By signing up, you agree to our",

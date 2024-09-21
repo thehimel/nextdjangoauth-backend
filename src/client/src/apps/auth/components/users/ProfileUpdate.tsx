@@ -64,7 +64,7 @@ const ProfileUpdate = (props: CardProps) => {
     }
 
     if (response.success) {
-      toast.success(t("profile.updateSuccess"));
+      toast.success(t("profile.messages.updateSuccess"));
       return;
     }
 
@@ -87,13 +87,13 @@ const ProfileUpdate = (props: CardProps) => {
   return isLoggedIn ? (
     <Card className="w-full max-w-xl p-6 mt-2" {...props}>
       <ProfileHeader
-        title={t("profile.accountDetails")}
+        title={t("profile.labels.accountDetails")}
         firstName={watchedFirstName}
         lastName={watchedLastName}
         email={userData.user.email}
         navigationLink={userData.provider === EMAIL ? {
           url: PASSWORD_CHANGE_URL,
-          title: t("profile.changePassword"),
+          title: t("profile.labels.changePassword"),
         } : undefined}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
