@@ -104,6 +104,12 @@
       "updateSuccess": "Password updated successfully.",
       "invalidLink": "Invalid password reset link",
       "requestNewLink": "Request a new link?"
+    },
+    "privacy": {
+      "agreeToOur": "By signing up, you agree to our",
+      "terms": "Terms",
+      "privacyPolicy": "Privacy Policy",
+      "agreeToContinue": "To proceed, you must agree to the Terms and Privacy Policy."
     }
   },
   "profile": {
@@ -131,11 +137,5 @@
       "basicMember": "Basic Member",
       "proMember": "Pro Member"
     }
-  },
-  "privacy": {
-    "agreeToOur": "By signing up, you agree to our",
-    "terms": "Terms",
-    "privacyPolicy": "Privacy Policy",
-    "agreeToContinue": "To proceed, you must agree to the Terms and Privacy Policy."
   }
 }

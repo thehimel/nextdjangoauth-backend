@@ -6,10 +6,10 @@ const TermsAndPrivacyPolicy = () => {
 
   return (
     <p className="text-center text-small">
-      {t("privacy.agreeToOur")}&nbsp;
-      <Link href="#" size="sm">{t("privacy.terms")}</Link>&nbsp;
+      {t("auth.privacy.agreeToOur")}&nbsp;
+      <Link href="#" size="sm">{t("auth.privacy.terms")}</Link>&nbsp;
       {t("common.and").toLowerCase()}&nbsp;
-      <Link href="#" size="sm">{t("privacy.privacyPolicy")}</Link>
+      <Link href="#" size="sm">{t("auth.privacy.privacyPolicy")}</Link>
     </p>
   );
 };

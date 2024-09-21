@@ -104,6 +104,12 @@
       "updateSuccess": "Passwort erfolgreich aktualisiert.",
       "invalidLink": "Ungültiger Passwort-Zurücksetzungslink",
       "requestNewLink": "Neuen Link anfordern?"
+    },
+    "privacy": {
+      "agreeToOur": "Mit der Anmeldung stimmen Sie unseren",
+      "terms": "Bedingungen",
+      "privacyPolicy": "Datenschutzrichtlinien",
+      "agreeToContinue": "Um fortzufahren, müssen Sie den Bedingungen und der Datenschutzrichtlinie zustimmen."
     }
   },
   "profile": {
@@ -131,11 +137,5 @@
       "basicMember": "Basis-Mitglied",
       "proMember": "Pro-Mitglied"
     }
-  },
-  "privacy": {
-    "agreeToOur": "Mit der Anmeldung stimmen Sie unseren",
-    "terms": "Bedingungen",
-    "privacyPolicy": "Datenschutzrichtlinien",
-    "agreeToContinue": "Um fortzufahren, müssen Sie den Bedingungen und der Datenschutzrichtlinie zustimmen."
   }
 }
