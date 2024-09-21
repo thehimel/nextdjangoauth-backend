@@ -100,10 +100,6 @@
       "requestNewLink": "Neuen Link anfordern?"
     }
   },
-  "badges": {
-    "basicMember": "Basis-Mitglied",
-    "proMember": "Pro-Mitglied"
-  },
   "profile": {
     "labels": {
       "accountDetails": "Kontodaten",
@@ -124,6 +120,10 @@
     },
     "messages": {
       "updateSuccess": "Profil erfolgreich aktualisiert."
+    },
+    "badges": {
+      "basicMember": "Basis-Mitglied",
+      "proMember": "Pro-Mitglied"
     }
   },
   "privacy": {

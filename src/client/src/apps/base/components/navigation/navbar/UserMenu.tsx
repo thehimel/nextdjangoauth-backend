@@ -42,7 +42,7 @@ const UserMenu = () => {
                   avatarProps={{size: "sm", imgProps: {className: "transition-none"}, src: avatarImage}}
                   classNames={{name: "font-semibold", description: "text-default-500"}}
                   name={avatarTitle}
-                  description={t("badges.basicMember")}
+                  description={t("profile.badges.basicMember")}
                 />
               </Link>
             </DropdownItem>
