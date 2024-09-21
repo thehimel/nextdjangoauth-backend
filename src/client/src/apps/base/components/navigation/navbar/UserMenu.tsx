@@ -49,12 +49,12 @@ const UserMenu = () => {
           </DropdownSection>
 
           <DropdownSection showDivider aria-label="Preferences">
-            <DropdownItem key="settings" textValue="My Settings">{t("navigation.languageSettings")}</DropdownItem>
+            <DropdownItem key="settings" textValue="My Settings">{t("base.navigation.languageSettings")}</DropdownItem>
           </DropdownSection>
 
           <DropdownSection showDivider aria-label="Get Support & Feedback">
-            <DropdownItem key="get_support" textValue="Get Support">{t("navigation.support")}</DropdownItem>
-            <DropdownItem key="feedback" textValue="Feedback">{t("navigation.feedback")}</DropdownItem>
+            <DropdownItem key="get_support" textValue="Get Support">{t("base.navigation.support")}</DropdownItem>
+            <DropdownItem key="feedback" textValue="Feedback">{t("base.navigation.feedback")}</DropdownItem>
           </DropdownSection >
 
           <DropdownItem key="logout" textValue="Log Out" color="danger" onClick={handleLogout}>

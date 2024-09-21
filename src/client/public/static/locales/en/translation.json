@@ -1,5 +1,13 @@
 {
   "base": {
+    "navigation": {
+      "home": "Home",
+      "about": "About Us",
+      "languageSettings": "Language Settings",
+      "support": "Get Support",
+      "feedback": "Feedback",
+      "contact": "Contact"
+    },
     "forms": {
       "labels": {
         "websiteLanguage": "Website Language",
@@ -9,14 +17,6 @@
         "cancel": "Cancel"
       }
     }
-  },
-  "navigation": {
-    "home": "Home",
-    "about": "About Us",
-    "languageSettings": "Language Settings",
-    "support": "Get Support",
-    "feedback": "Feedback",
-    "contact": "Contact"
   },
   "errors": {
     "required": "This field is required.",
