@@ -73,7 +73,7 @@ export const passwordUpdate = (data: PasswordUpdateInterface) => {
 
       if (response.errors.confirmPassword?.toLowerCase().includes("too common")) {
         response.errors.password = " ";  // Mark the password field as invalid
-        response.errors.confirmPassword = i18n.t("errors.passwordTooCommon");
+        response.errors.confirmPassword = i18n.t("auth.general.errors.passwordTooCommon");
       }
     } finally {
       dispatch(authActions.setAuthLoading(false));

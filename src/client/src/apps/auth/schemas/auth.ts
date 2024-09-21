@@ -3,13 +3,13 @@ import {z} from "zod";
 
 
 const emailSchema = (t: TranslationFunctionType) =>
-  z.string().min(1, { message: t("errors.emailRequired") })
-    .email(t("errors.invalidEmail"));
+  z.string().min(1, { message: t("auth.general.errors.emailRequired") })
+    .email(t("auth.general.errors.invalidEmail"));
 
 const passwordSchema = (t: TranslationFunctionType) =>
   z.string()
-    .min(1, t("errors.passwordRequired"))
-    .min(8, t("errors.passwordMinLength"));
+    .min(1, t("auth.general.errors.passwordRequired"))
+    .min(8, t("auth.general.errors.passwordMinLength"));
 
 
 export const loginSchema = (t: TranslationFunctionType) => z
@@ -35,7 +35,7 @@ export const signUpSchema = (t: TranslationFunctionType) => z
     confirmPassword: passwordSchema(t),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: t("errors.passwordMismatch"),
+    message: t("auth.general.errors.passwordMismatch"),
     path: ["confirmPassword"],
   });
 
@@ -48,7 +48,7 @@ export const passwordUpdateSchema = (t: TranslationFunctionType) => z
     confirmPassword: passwordSchema(t),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: t("errors.passwordMismatch"),
+    message: t("auth.general.errors.passwordMismatch"),
     path: ["confirmPassword"],
   });
 

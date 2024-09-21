@@ -30,12 +30,12 @@ const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
   const isForgotPasswordPage = type === "forgot_password";
 
   const headerTitle= isResendEmailVerificationPage ? t("auth.emailVerification.resendEmail")
-    : isForgotPasswordPage ? t("auth.login.forgotPassword") : t("common.welcome")
+    : isForgotPasswordPage ? t("auth.login.labels.forgotPassword") : t("base.general.welcome")
 
   const initialHeadline: MessageInterface = {
     text: isResendEmailVerificationPage ?
       t("auth.emailVerification.failed")
-      : isForgotPasswordPage ? t("auth.passwordReset.enterEmail") : t("common.welcome"),
+      : isForgotPasswordPage ? t("auth.passwordReset.enterEmail") : t("base.general.welcome"),
     color: isResendEmailVerificationPage ? "danger" : "default",
   }
 
@@ -69,13 +69,13 @@ const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
 
     const errors = response.errors;
     if (!errors) {
-      toast.error(t("errors.unexpectedError"));
+      toast.error(t("base.errors.unexpectedError"));
       return;
     }
 
     setError("email", {
       type: "server",
-      message: errors["email"] || t("errors.unexpectedError"),
+      message: errors["email"] || t("base.errors.unexpectedError"),
     });
   };
 

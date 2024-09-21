@@ -18,7 +18,7 @@ const LanguageSelector = () => {
     try {
       await i18n.changeLanguage(languageCode);
     } catch {
-      toast.error(t("errors.websiteLanguage"));
+      toast.error(t("base.errors.websiteLanguage"));
     }
   };
 

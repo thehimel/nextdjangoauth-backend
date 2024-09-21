@@ -15,14 +15,14 @@ const Signup = () => {
   const [isSignupSuccess, setIsSignupSuccess] = React.useState(false);
   const onSignupSuccessChange = (value: boolean) => setIsSignupSuccess(value);
 
-  const header = <AuthHeader title={t("common.welcome")} message={{text: t("auth.signup.createAccount")}}/>
+  const header = <AuthHeader title={t("base.general.welcome")} message={{text: t("auth.signup.info.createAccount")}}/>
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       {header}
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
         {isSignupSuccess ? (
-          <p>{t("auth.signup.thanksForSigningUp")}</p>
+          <p>{t("auth.signup.messages.thanksForSigningUp")}</p>
         ) : (
           <>
             {GOOGLE_AUTH && <GoogleAuth type={signup}/>}
@@ -35,9 +35,9 @@ const Signup = () => {
       {!isSignupSuccess && (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
           <p className="text-center">
-            {t("auth.login.alreadyHaveAccount")}&nbsp;
+            {t("auth.login.labels.alreadyHaveAccount")}&nbsp;
             <Link to={LOGIN_URL} className="text-primary">
-              {t("auth.navigation.login")}
+              {t("auth.login.navigation.base")}
             </Link>
           </p>
         </div>

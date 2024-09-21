@@ -31,14 +31,14 @@ const GoogleAuthCallback: React.FC = () => {
           navigate(HOME_URL);
         } else if (emailRegisteredWithEmailLogin) {
           navigate(LOGIN_URL);
-          toast.error(t("errors.emailRegisteredWithEmailLogin"))
+          toast.error(t("auth.signup.errors.emailRegisteredWithEmailLogin"))
         } else {
           navigate(from);
-          toast.error(t("errors.authenticationFailed"))
+          toast.error(t("auth.general.errors.authenticationFailed"))
         }
       } else {
         navigate(from);
-        toast.error(t("errors.authenticationFailed"))
+        toast.error(t("auth.general.errors.authenticationFailed"))
       }
     };
 

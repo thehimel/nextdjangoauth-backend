@@ -16,8 +16,8 @@ const GoogleAuth: React.FC<GoogleAuthProps> = ({ isDisabled, type }) => {
   return (
     <Link className="flex flex-col gap-2" href={googleLoginUrl} isDisabled={isDisabled}>
       <Button className="w-full" isDisabled={isDisabled} startContent={<Icon icon="flat-color-icons:google" width={24}/>}>
-        {type === signup && t("auth.signup.withGoogle")}
-        {type === login && t("auth.login.withGoogle")}
+        {type === signup && t("auth.signup.navigation.withGoogle")}
+        {type === login && t("auth.login.navigation.withGoogle")}
       </Button>
     </Link>
   );

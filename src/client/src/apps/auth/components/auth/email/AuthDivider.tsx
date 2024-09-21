@@ -7,7 +7,7 @@ const AuthDivider = () => {
   return (
     <div className="flex items-center gap-4">
       <Divider className="flex-1"/>
-      <p className="shrink-0 text-tiny text-default-500">{t("common.or").toUpperCase()}</p>
+      <p className="shrink-0 text-tiny text-default-500">{(t("base.general.or") as string).toUpperCase()}</p>
       <Divider className="flex-1"/>
     </div>
   );

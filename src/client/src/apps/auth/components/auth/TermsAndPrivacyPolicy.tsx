@@ -8,7 +8,7 @@ const TermsAndPrivacyPolicy = () => {
     <p className="text-center text-small">
       {t("auth.privacy.agreeToOur")}&nbsp;
       <Link href="#" size="sm">{t("auth.privacy.terms")}</Link>&nbsp;
-      {t("common.and").toLowerCase()}&nbsp;
+      {(t("base.general.and") as string).toLowerCase()}&nbsp;
       <Link href="#" size="sm">{t("auth.privacy.privacyPolicy")}</Link>
     </p>
   );

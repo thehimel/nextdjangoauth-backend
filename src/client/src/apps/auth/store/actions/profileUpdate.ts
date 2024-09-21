@@ -71,7 +71,7 @@ export const profileUpdate = (userData: ProfileUpdateInterface) => {
       };
 
       if (response.errors.username && response.errors.username.toLowerCase().includes("already exists")) {
-        response.errors.username = i18n.t("errors.usernameAlreadyExists");
+        response.errors.username = i18n.t("profile.errors.usernameAlreadyExists");
       }
 
       if (response.errors.code === TOKEN_NOT_VALID) {

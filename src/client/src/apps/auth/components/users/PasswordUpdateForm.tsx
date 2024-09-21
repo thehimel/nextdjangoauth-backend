@@ -68,7 +68,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
 
     const errors = response.errors;
     if (!errors) {
-      toast.error(t("errors.unexpectedError"));
+      toast.error(t("base.errors.unexpectedError"));
       return;
     }
 
@@ -76,7 +76,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
       if (errors[key]) {
         setError(key, {
           type: "server",
-          message: errors[key] || t("errors.unexpectedError"),
+          message: errors[key] || t("base.errors.unexpectedError"),
         });
       }
     });

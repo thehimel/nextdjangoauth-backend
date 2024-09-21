@@ -10,12 +10,12 @@ const UserMenu = () => {
     <div className="flex ml-2 gap-2">
       <NavbarItem className="sm:flex">
         <Button to={LOGIN_URL} as={NavLink} radius="full" variant="bordered" color="default"  >
-          <p>{t("auth.navigation.login")}</p>
+          <p>{t("auth.login.navigation.base")}</p>
         </Button>
       </NavbarItem>
       <NavbarItem className="hidden sm:flex">
         <Button to={SIGNUP_URL} as={NavLink} radius="full" variant="shadow" color="default" >
-          <p>{t("auth.navigation.signup")}</p>
+          <p>{t("auth.signup.navigation.base")}</p>
         </Button>
       </NavbarItem>
     </div>

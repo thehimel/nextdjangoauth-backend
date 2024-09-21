@@ -57,7 +57,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
 
     const errors = response.errors;
     if (!errors) {
-      toast.error(t("errors.unexpectedError"));
+      toast.error(t("base.errors.unexpectedError"));
       return;
     }
 
@@ -66,7 +66,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
       const provider = response.provider
       setError("email", {
         type: "server",
-        message: t("errors.emailRegisteredWithSocialLogin", { provider }),
+        message: t("auth.signup.errors.emailRegisteredWithSocialLogin", { provider }),
       })
       return;
     }
@@ -78,7 +78,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
 
     setError("password", {
       type: "server",
-      message: t("errors.invalidEmailOrPassword"),
+      message: t("auth.login.errors.invalidEmailOrPassword"),
     });
   };
 
@@ -104,13 +104,13 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
             defaultSelected={rememberMe}
             onValueChange={(value) => setRememberMe(value)}
           >
-            {t("auth.login.rememberMe")}
+            {t("auth.login.labels.rememberMe")}
           </Checkbox>
           <Link className="text-default-500" href={PASSWORD_RESET_URL} size="sm">
-            {t("auth.login.forgotPassword")}
+            {t("auth.login.labels.forgotPassword")}
           </Link>
         </div>
-        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("auth.navigation.login")} color={"default"}/>
+        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("auth.login.navigation.base")} color={"default"}/>
       </form>
     ) : (
       <Button
@@ -119,7 +119,7 @@ const EmailLogin: React.FC<EmailLoginProps> = ({isEmailLoginSelected}) => {
         startContent={<Icon icon="ic:baseline-email" width={24}/>}
         onClick={() => setIsEmailLogin(true)}
       >
-        {t("auth.login.withEmail")}
+        {t("auth.login.navigation.withEmail")}
       </Button>
     )
   );

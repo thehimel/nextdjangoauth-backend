@@ -16,10 +16,10 @@ export const useClearSessionToken = () => {
       try {
         const response = await dispatch(logout());
         if (!response.success) {
-          toast.error(response.errors?.message || i18n.t("errors.authToken"));
+          toast.error(response.errors?.message || i18n.t("auth.general.errors.authToken"));
         }
       } catch (error) {
-        toast.error(i18n.t("errors.unexpectedError"));
+        toast.error(i18n.t("base.errors.unexpectedError"));
       }
     }
   };
@@ -31,12 +31,12 @@ export const useLogout = () => {
     try {
       const response = await dispatch(logout());
       if (response.success) {
-        toast.success(i18n.t("auth.logout.success"));
+        toast.success(i18n.t("auth:auth.logout.messages.success"));
       } else {
-        toast.error(response.errors?.message || i18n.t("auth.logout.error"));
+        toast.error(response.errors?.message || i18n.t("auth.logout.errors.default"));
       }
     } catch (error) {
-      toast.error(i18n.t("errors.unexpectedError"));
+      toast.error(i18n.t("base.errors.unexpectedError"));
     }
   };
 };

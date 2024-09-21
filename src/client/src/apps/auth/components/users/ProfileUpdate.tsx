@@ -70,7 +70,7 @@ const ProfileUpdate = (props: CardProps) => {
 
     const errors = response.errors;
     if (!errors) {
-      toast.error(t("errors.unexpectedError"));
+      toast.error(t("base.errors.unexpectedError"));
       return;
     }
 
@@ -78,7 +78,7 @@ const ProfileUpdate = (props: CardProps) => {
       if (errors[key]) {
         setError(key, {
           type: "server",
-          message: errors[key] || t("errors.unexpectedError"),
+          message: errors[key] || t("base.errors.unexpectedError"),
         });
       }
     });

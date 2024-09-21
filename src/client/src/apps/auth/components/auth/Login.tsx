@@ -20,8 +20,8 @@ const Login: React.FC<LoginProps> = ({isEmailLoginSelected = EMAIL_AUTH_PRESELEC
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
      <AuthHeader
-       title={t("common.welcome")}
-       message={{text: headerMessageText || t("auth.login.loginToAccount")}}
+       title={t("base.general.welcome")}
+       message={{text: headerMessageText || t("auth.login.info.loginToAccount")}}
      />
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
         {!isEmailLoginSelected && (
@@ -34,9 +34,9 @@ const Login: React.FC<LoginProps> = ({isEmailLoginSelected = EMAIL_AUTH_PRESELEC
       </div>
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
         <p className="text-center">
-          {t("auth.signup.needToCreateAccount")}&nbsp;
+          {t("auth.signup.labels.needToCreateAccount")}&nbsp;
           <Link to={SIGNUP_URL} className="text-primary">
-            {t("auth.navigation.signup")}
+            {t("auth.signup.navigation.base")}
           </Link>
         </p>
       </div>

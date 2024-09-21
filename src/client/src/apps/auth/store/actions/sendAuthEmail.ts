@@ -51,7 +51,7 @@ export const sendAuthEmail = (data: SendAuthEmailInterface) => {
       };
 
       if (response.errors.email?.toLowerCase().includes("not found")) {
-        response.errors.email = i18n.t("errors.emailNotFound");
+        response.errors.email = i18n.t("auth.login.errors.emailNotFound");
       }
     } finally {
       dispatch(authActions.setAuthLoading(false));

@@ -51,7 +51,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
 
     const errors = response.errors;
     if (!errors) {
-      toast.error(t("errors.unexpectedError"));
+      toast.error(t("base.errors.unexpectedError"));
       return;
     }
 
@@ -60,7 +60,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
       const provider = response.provider
       setError("email", {
         type: "server",
-        message: t("errors.emailRegisteredWithSocialLogin", { provider }),
+        message: t("auth.signup.errors.emailRegisteredWithSocialLogin", { provider }),
       })
       return;
     }
@@ -69,7 +69,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
       if (errors[key]) {
         setError(key, {
           type: "server",
-          message: errors[key] || t("errors.unexpectedError"),
+          message: errors[key] || t("base.errors.unexpectedError"),
         });
       }
     });
@@ -95,7 +95,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
           isSubmitting={isSubmitting}
           type="confirmPassword"
         />
-        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("auth.navigation.signup")}/>
+        <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("auth.signup.navigation.base")}/>
       </form>
     ) : (
       <Button
@@ -104,7 +104,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
         startContent={<Icon icon="ic:baseline-email" width={24}/>}
         onClick={() => setIsEmailSignup(true)}
       >
-        {t("auth.signup.withEmail")}
+        {t("auth.signup.navigation.withEmail")}
       </Button>
     )
   );
