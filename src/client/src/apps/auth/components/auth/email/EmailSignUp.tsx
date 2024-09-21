@@ -1,6 +1,7 @@
 import EmailInputField, {TEmailInputFieldRegister} from "@/apps/auth/components/auth/email/fields/EmailInputField.tsx";
 import PasswordInputField, {TPasswordInputFieldRegister} from "@/apps/auth/components/auth/email/fields/PasswordInputField.tsx";
 import SubmitButton from "@/apps/auth/components/auth/SubmitButton.tsx";
+import {EMAIL_AUTH_PRESELECTED} from "@/apps/auth/config/settings.ts";
 import {EMAIL_REGISTERED_WITH_SOCIAL_LOGIN} from "@/apps/auth/constants/errorCodes.ts";
 import {signUpSchema, TSignUpSchema} from "@/apps/auth/schemas/auth.ts";
 import {auth, AuthResponseInterface, signup} from "@/apps/auth/store/actions/auth.ts";
@@ -22,7 +23,7 @@ const EmailSignUp: React.FC<EmailSignupProps> = ({onSignupSuccessChange}) => {
   const { t } = useTranslation();
   const dispatch: AppDispatch = useAppDispatch();
 
-  const [isEmailSignup, setIsEmailSignup] = React.useState(false);
+  const [isEmailSignup, setIsEmailSignup] = React.useState(EMAIL_AUTH_PRESELECTED);
 
   const {
     register,

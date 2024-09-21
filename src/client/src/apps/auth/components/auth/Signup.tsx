@@ -3,6 +3,7 @@ import AuthHeader from "@/apps/auth/components/auth/email/AuthHeader.tsx";
 import EmailSignUp from "@/apps/auth/components/auth/email/EmailSignUp.tsx";
 import GoogleAuth from "@/apps/auth/components/auth/google/GoogleAuth.tsx";
 import TermsAndPrivacyPolicy from "@/apps/auth/components/auth/TermsAndPrivacyPolicy.tsx";
+import {EMAIL_AUTH, GOOGLE_AUTH} from "@/apps/auth/config/settings.ts";
 import {LOGIN_URL} from "@/apps/auth/urls/client.ts";
 import {signup} from "@/apps/auth/store/actions/auth.ts";
 import React from "react";
@@ -24,9 +25,9 @@ const Signup = () => {
           <p>{t("auth.signup.thanksForSigningUp")}</p>
         ) : (
           <>
-            <GoogleAuth type={signup}/>
-            <AuthDivider/>
-            <EmailSignUp onSignupSuccessChange={onSignupSuccessChange}/>
+            {GOOGLE_AUTH && <GoogleAuth type={signup}/>}
+            {EMAIL_AUTH && GOOGLE_AUTH && <AuthDivider/>}
+            {EMAIL_AUTH && <EmailSignUp onSignupSuccessChange={onSignupSuccessChange}/>}
             <TermsAndPrivacyPolicy/>
           </>
         )}

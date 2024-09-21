@@ -2,6 +2,7 @@ import AuthDivider from "@/apps/auth/components/auth/email/AuthDivider.tsx";
 import AuthHeader from "@/apps/auth/components/auth/email/AuthHeader.tsx";
 import EmailLogin from "@/apps/auth/components/auth/email/EmailLogin.tsx";
 import GoogleAuth from "@/apps/auth/components/auth/google/GoogleAuth.tsx";
+import {EMAIL_AUTH, EMAIL_AUTH_PRESELECTED, GOOGLE_AUTH} from "@/apps/auth/config/settings.ts";
 import {SIGNUP_URL} from "@/apps/auth/urls/client.ts";
 import {login} from "@/apps/auth/store/actions/auth.ts";
 import React from "react";
@@ -13,7 +14,7 @@ interface LoginProps {
   headerMessageText?: string;
 }
 
-const Login: React.FC<LoginProps> = ({isEmailLoginSelected= false, headerMessageText}) => {
+const Login: React.FC<LoginProps> = ({isEmailLoginSelected = EMAIL_AUTH_PRESELECTED, headerMessageText}) => {
   const { t } = useTranslation();
 
   return (
@@ -25,22 +26,20 @@ const Login: React.FC<LoginProps> = ({isEmailLoginSelected= false, headerMessage
       <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
         {!isEmailLoginSelected && (
           <>
-            <GoogleAuth type={login}/>
-            <AuthDivider/>
+            {GOOGLE_AUTH && <GoogleAuth type={login}/>}
+            {EMAIL_AUTH && GOOGLE_AUTH && <AuthDivider/>}
           </>
         )}
-        <EmailLogin isEmailLoginSelected={isEmailLoginSelected}/>
+        {EMAIL_AUTH && <EmailLogin isEmailLoginSelected={isEmailLoginSelected}/>}
       </div>
-      {!isEmailLoginSelected && (
-        <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-          <p className="text-center">
-            {t("auth.signup.needToCreateAccount")}&nbsp;
-            <Link to={SIGNUP_URL} className="text-primary">
-              {t("navigation.signup")}
-            </Link>
-          </p>
-        </div>
-      )}
+      <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
+        <p className="text-center">
+          {t("auth.signup.needToCreateAccount")}&nbsp;
+          <Link to={SIGNUP_URL} className="text-primary">
+            {t("navigation.signup")}
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
