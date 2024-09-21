@@ -100,7 +100,7 @@ const PasswordUpdateForm: React.FC<PasswordUpdateFormProps> = ({type, uid, token
           label={t("auth.forms.confirmNewPassword")}
         />
       </CardBody>
-      <ProfileFooter title={t("forms.save")} isLoading={isSubmitting} isDisabled={isSubmitting}/>
+      <ProfileFooter title={t("base.forms.labels.save")} isLoading={isSubmitting} isDisabled={isSubmitting}/>
     </form>
   );
 }

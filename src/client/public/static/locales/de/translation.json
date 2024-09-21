@@ -1,4 +1,15 @@
 {
+  "base": {
+    "forms": {
+      "labels": {
+        "websiteLanguage": "Website-Sprache",
+        "submit": "Absenden",
+        "save": "Speichern",
+        "send": "Senden",
+        "cancel": "Abbrechen"
+      }
+    }
+  },
   "navigation": {
     "home": "Startseite",
     "about": "Über uns",
@@ -33,13 +44,6 @@
     "emailNotFound": "Kein Konto für diese E-Mail gefunden. Bitte überprüfen Sie die E-Mail und versuchen Sie es erneut oder erstellen Sie ein neues Konto.",
     "authToken": "Fehler beim Löschen des Authentifizierungstokens.",
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten."
-  },
-  "forms": {
-    "websiteLanguage": "Website-Sprache",
-    "submit": "Absenden",
-    "save": "Speichern",
-    "send": "Senden",
-    "cancel": "Abbrechen"
   },
   "common": {
     "welcome": "Willkommen",

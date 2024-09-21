@@ -122,7 +122,7 @@ const ProfileUpdate = (props: CardProps) => {
             autoComplete={"family-name"}
           />
         </CardBody>
-        <ProfileFooter title={t("forms.save")} isLoading={isSubmitting} isDisabled={isSubmitting} />
+        <ProfileFooter title={t("base.forms.labels.save")} isLoading={isSubmitting} isDisabled={isSubmitting} />
       </form>
     </Card>
   ) : null;

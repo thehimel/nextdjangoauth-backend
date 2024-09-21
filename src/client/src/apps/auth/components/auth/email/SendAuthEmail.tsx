@@ -91,7 +91,7 @@ const SendAuthEmail: FC<SendEmailProps> = ({type}) => {
               errorMessage={errors["email"]?.message}
               isSubmitting={isSubmitting}
             />
-            <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("forms.send")} color={"default"}/>
+            <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={t("base.forms.labels.send")} color={"default"}/>
           </form>
         }
       </div>

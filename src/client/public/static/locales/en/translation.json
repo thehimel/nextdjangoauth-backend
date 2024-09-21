@@ -1,4 +1,15 @@
 {
+  "base": {
+    "forms": {
+      "labels": {
+        "websiteLanguage": "Website Language",
+        "submit": "Submit",
+        "save": "Save",
+        "send": "Send",
+        "cancel": "Cancel"
+      }
+    }
+  },
   "navigation": {
     "home": "Home",
     "about": "About Us",
@@ -33,13 +44,6 @@
     "emailNotFound": "No account found for this email. Please check the email and try again or create a new account.",
     "authToken": "Error clearing authentication token.",
     "unexpectedError": "An unexpected error occurred."
-  },
-  "forms": {
-    "websiteLanguage": "Website Language",
-    "submit": "Submit",
-    "save": "Save",
-    "send": "Send",
-    "cancel": "Cancel"
   },
   "common": {
     "welcome": "Welcome",

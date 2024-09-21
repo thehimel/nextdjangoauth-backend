@@ -35,7 +35,7 @@ const LanguageSelector = () => {
         </Button>
       </DropdownTrigger>
       <DropdownMenu
-        aria-label={t("forms.websiteLanguage")}
+        aria-label={t("base.forms.labels.websiteLanguage")}
         variant="flat"
         disallowEmptySelection
         selectionMode="single"
