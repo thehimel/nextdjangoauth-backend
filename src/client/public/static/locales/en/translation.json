@@ -1,4 +1,13 @@
 {
+  "common": {
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "search": "Search",
+    "yes": "Yes",
+    "no": "No",
+    "and": "and",
+    "or": "or"
+  },
   "base": {
     "navigation": {
       "home": "Home",
@@ -44,15 +53,6 @@
     "emailNotFound": "No account found for this email. Please check the email and try again or create a new account.",
     "authToken": "Error clearing authentication token.",
     "unexpectedError": "An unexpected error occurred."
-  },
-  "common": {
-    "welcome": "Welcome",
-    "loading": "Loading...",
-    "search": "Search",
-    "yes": "Yes",
-    "no": "No",
-    "and": "and",
-    "or": "or"
   },
   "auth": {
     "navigation": {

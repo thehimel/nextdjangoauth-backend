@@ -1,4 +1,13 @@
 {
+  "common": {
+    "welcome": "Willkommen",
+    "loading": "Lädt...",
+    "search": "Suchen",
+    "yes": "Ja",
+    "no": "Nein",
+    "and": "und",
+    "or": "oder"
+  },
   "base": {
     "navigation": {
       "home": "Startseite",
@@ -44,15 +53,6 @@
     "emailNotFound": "Kein Konto für diese E-Mail gefunden. Bitte überprüfen Sie die E-Mail und versuchen Sie es erneut oder erstellen Sie ein neues Konto.",
     "authToken": "Fehler beim Löschen des Authentifizierungstokens.",
     "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten."
-  },
-  "common": {
-    "welcome": "Willkommen",
-    "loading": "Lädt...",
-    "search": "Suchen",
-    "yes": "Ja",
-    "no": "Nein",
-    "and": "und",
-    "or": "oder"
   },
   "auth": {
     "navigation": {
