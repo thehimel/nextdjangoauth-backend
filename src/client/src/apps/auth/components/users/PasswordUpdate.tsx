@@ -21,8 +21,7 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
   const location = useLocation();
   const redirectPath = location.pathname;  // Store the path to redirect to after login
 
-  const pageTitle = type === "change" ? t("profile.labels.changePassword")
-    : t("auth.passwordReset.resetPassword");
+  const pageTitle = type === "change" ? t("profile.labels.changePassword") : t("auth.passwordReset.labels.base");
 
   const isLoggedIn = useAppSelector((state) => state.auth.loggedIn);
   const userData = useAppSelector((state) => state.auth.userData);
@@ -40,7 +39,7 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
     <>
       {!isSuccess && (
         <div className={`w-full flex flex-col ${type === "reset" ? 'max-w-sm' : 'max-w-xl'}`}>
-          {type === "reset" && <AuthHeader title={t("auth.passwordReset.resetPassword")}/>}
+          {type === "reset" && <AuthHeader title={t("auth.passwordReset.labels.base")}/>}
           <Card className="p-6 mt-2">
             {type === "change" && (
               <ProfileHeader
@@ -57,15 +56,15 @@ const PasswordUpdate: React.FC<PasswordUpdateProps> = ({type}) => {
             {!showForm && type === "reset" && (
               <CardHeader className="flex flex-col pt-0 pb-0">
                 <p className="text-center text-danger">
-                  {t("auth.passwordReset.invalidLink")}&nbsp;
-                  <Link href={PASSWORD_RESET_URL}>{t("auth.passwordReset.resendLink")}</Link>
+                  {t("auth.passwordReset.errors.invalidLink")}&nbsp;
+                  <Link href={PASSWORD_RESET_URL}>{t("auth.passwordReset.navigation.resendLink")}</Link>
                 </p>
               </CardHeader>
             )}
           </Card>
         </div>
       )}
-      {isSuccess && type === "reset" && <Login isEmailLoginSelected headerMessageText={t("auth.passwordReset.success")}/>}
+      {isSuccess && type === "reset" && <Login isEmailLoginSelected headerMessageText={t("auth.passwordReset.messages.success")}/>}
     </>
   );
 }

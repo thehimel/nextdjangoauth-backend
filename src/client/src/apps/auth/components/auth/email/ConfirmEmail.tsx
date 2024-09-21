@@ -24,7 +24,7 @@ const ConfirmEmail = () => {
         const response = await dispatch(verifyEmail({ key }));
         if (response) {
           setIsEmailVerified(true);
-          toast.success(t("auth.emailVerification.success"))
+          toast.success(t("auth.emailVerification.messages.success"))
         }
       }
     };
@@ -38,11 +38,11 @@ const ConfirmEmail = () => {
     <>
       {isLoading && (
         <div className="mt-2 flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 py-6 shadow-small">
-          <span className="text-center">{t("auth.emailVerification.verifyingEmail")}&nbsp;<Spinner size="sm" color="default"/></span>
+          <span className="text-center">{t("auth.emailVerification.info.verifyingEmail")}&nbsp;<Spinner size="sm" color="default"/></span>
         </div>
       )}
       {!isLoading && isEmailVerified && (
-        <Login isEmailLoginSelected headerMessageText={t("auth.emailVerification.successLogin")}/>
+        <Login isEmailLoginSelected headerMessageText={t("auth.emailVerification.messages.successLogin")}/>
       )}
       {!isLoading && !isEmailVerified && (<SendAuthEmail type={"resend_email_verification"}/>)}
     </>
