@@ -192,6 +192,8 @@ ACCOUNT_RATE_LIMITS = {
     'registration_failed': '10/hour',  # Up to 10 failed registration attempts per hour.
 }
 
+FRONTEND_URL = config('FRONTEND_URL', default='http://127.0.0.1:8000')
+
 
 # LOGIN_REDIRECT_URL = "base:home"
 # LOGIN_URL = '/'

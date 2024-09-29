@@ -3,7 +3,8 @@ from django.contrib.sites.models import Site
 from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 
-from apps.auth.constants import DOMAIN_NAME
+from urllib.parse import urlparse
+
 from apps.auth.utils.utils import logger
 from core.constants import BRAND_NAME
 
@@ -18,7 +19,7 @@ def set_default_site(sender, **kwargs):
         return
 
     site_id = getattr(settings, 'SITE_ID', 1)  # Get SITE_ID from settings, default to 1 if not set
-    domain = DOMAIN_NAME
+    domain = urlparse(settings.FRONTEND_URL).netloc
     name = BRAND_NAME.lower()
 
     if Site.objects.filter(id=site_id).exists():

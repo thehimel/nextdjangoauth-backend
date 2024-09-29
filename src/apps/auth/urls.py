@@ -7,7 +7,7 @@ from apps.auth.views.google_login import GoogleLogin
 
 app_name = 'auth'
 
-verify_email_path = 'auth/signup/verify-email/'
+verify_email_path = 'auth/signup/verify-email'
 
 urlpatterns = [
     path('', ClientView.as_view(), name='client'),
@@ -16,7 +16,7 @@ urlpatterns = [
     path('auth/google/callback/', ClientView.as_view(), name='google_callback'),
     path('auth/login/', ClientView.as_view(), name='login'),
     path('auth/signup/', ClientView.as_view(), name='signup'),
-    re_path(f'{verify_email_path}(?P<key>.+)/', ClientView.as_view(), name='verify_email'),
+    re_path(f'{verify_email_path}/(?P<key>.+)/', ClientView.as_view(), name='verify_email'),
 
     path('users/profile/', ClientView.as_view(), name='profile'),
 
@@ -37,3 +37,4 @@ urlpatterns = [
         name='resend_verification_email'
     ),
 ]
+
