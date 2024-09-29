@@ -37,4 +37,3 @@ urlpatterns = [
         name='resend_verification_email'
     ),
 ]
-
