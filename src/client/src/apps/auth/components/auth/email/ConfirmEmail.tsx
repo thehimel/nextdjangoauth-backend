@@ -24,15 +24,21 @@ const ConfirmEmail = () => {
         const response = await dispatch(verifyEmail({ key }));
         if (response) {
           setIsEmailVerified(true);
-          toast.success(t("auth.emailVerification.messages.success"))
         }
       }
     };
     setIsLoading(true);
     verifyUserEmail().then(() => {
       setIsLoading(false);
-    })
-  }, [key, dispatch, t]);
+    });
+  }, [key, dispatch]);
+
+  // Separate the toast notification outside the main useEffect
+  useEffect(() => {
+    if (isEmailVerified) {
+      toast.success(t("auth.emailVerification.messages.success"));
+    }
+  }, [isEmailVerified, t]);  // Only trigger toast when `isEmailVerified` changes
 
   return (
     <>
@@ -47,6 +53,7 @@ const ConfirmEmail = () => {
       {!isLoading && !isEmailVerified && (<SendAuthEmail type={"resend_email_verification"}/>)}
     </>
   );
-}
+};
+
 
 export default ConfirmEmail;
