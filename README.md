@@ -15,3 +15,7 @@
 * Migrating Database:
   * `python3 manage.py makemigrations`
   * `python3 manage.py migrate`
+
+### Create Super User
+
+* `python manage.py create_superuser`
