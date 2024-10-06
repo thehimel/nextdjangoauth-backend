@@ -21,7 +21,7 @@ export const verifyEmail = ({key}: VerifyEmailInterface) => {
     try {
       dispatch(authActions.setAuthLoading(true));
       const params: Record<string, string> = { key: key };
-      await axios.post(VERIFY_EMAIL_API_URL, params,{headers: headers});
+      await axios.post(VERIFY_EMAIL_API_URL, params, {headers: headers});
       response = true;
     } catch (error) {
       getErrors(error as AxiosError);
