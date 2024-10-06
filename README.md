@@ -1,11 +1,17 @@
-# vocabulary
+# auth8
 
-## Run
+## Getting Started
 
 ### Initialize Client
 
-* Install: `npm install`
-* Run: `npm run dev`
-* Build: `npx vite build`
+* Steps are mentioned [here](src/client/README.md)
 
-> The built version is used in the backend to access the client.
+### Initialize Server
+
+* Clone the repository.
+* Create the `.env` file from `.env-template`.
+* Upgrade pip: `python -m pip install --upgrade pip`
+* Installing packages: `pip install -r requirements.txt`
+* Migrating Database:
+  * `python3 manage.py makemigrations`
+  * `python3 manage.py migrate`
