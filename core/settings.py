@@ -178,7 +178,7 @@ AUTHENTICATION_BACKENDS = [
 ACCOUNT_ADAPTER = 'apps.auth.adapters.AccountAdapter'  # Custom URLs
 
 # Use username or email as the primary identifier
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True  # Verify email by clicking on the confirmation URL.
