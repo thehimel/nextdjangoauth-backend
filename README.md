@@ -6,7 +6,7 @@ You can simply run [init.sh](init.sh) to set up everything, or follow the steps 
 
 ### Initialize Client
 
-* Steps are mentioned [here](src/client/README.md)
+* Steps are mentioned [here](client/README.md)
 
 ### Initialize Server
 
