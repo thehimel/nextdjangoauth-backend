@@ -28,7 +28,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 ENVIRONMENT = config("ENVIRONMENT", default=DEVELOPMENT)
-SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else config("SECURE_SSL_REDIRECT", cast=bool, default=True)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key())
@@ -36,8 +35,48 @@ SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if ENVIRONMENT == DEVELOPMENT else config("DEBUG", cast=bool, default=False)
 
-ALLOWED_HOSTS = ["*"]
-CORS_ALLOW_ALL_ORIGINS = True
+NEXT_FRONTEND_URL = config("NEXT_FRONTEND_URL", default="http://localhost:3000")
+DJANGO_BACKEND_HOST = config("DJANGO_BACKEND_HOST", default="localhost")
+
+ALLOWED_HOSTS = [DJANGO_BACKEND_HOST]
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+if ENVIRONMENT == DEVELOPMENT:
+    CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
+else:
+    CORS_ALLOWED_ORIGINS = [NEXT_FRONTEND_URL]
+    CSRF_TRUSTED_ORIGINS = [NEXT_FRONTEND_URL]
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = [
+    "OPTIONS",
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+]
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else True
+SESSION_COOKIE_SECURE = False if ENVIRONMENT == DEVELOPMENT else True
+CSRF_COOKIE_SECURE = False if ENVIRONMENT == DEVELOPMENT else True
 
 # Application definition
 INSTALLED_APPS = [
