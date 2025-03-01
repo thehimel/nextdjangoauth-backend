@@ -1,0 +1,13 @@
+Login to {{ brand_name }}
+
+Hello {{ user.first_name|default:"there" }},
+
+Click the link below to sign in to your {{ brand_name }} account:
+
+{{ magic_link }}
+
+This link will expire in 24 hours.
+
+If you didn't request this email, you can safely ignore it.
+
+© {{ brand_name }}
