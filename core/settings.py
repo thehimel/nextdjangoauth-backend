@@ -38,14 +38,14 @@ DEBUG = True if ENVIRONMENT == DEVELOPMENT else config("DEBUG", cast=bool, defau
 NEXT_FRONTEND_URL = config("NEXT_FRONTEND_URL", default="http://localhost:3000")
 DJANGO_BACKEND_HOST = config("DJANGO_BACKEND_HOST", default="localhost")
 
-ALLOWED_HOSTS = [DJANGO_BACKEND_HOST]
-
 CORS_ALLOW_ALL_ORIGINS = False
 
 if ENVIRONMENT == DEVELOPMENT:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
     CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
     CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
 else:
+    ALLOWED_HOSTS = [DJANGO_BACKEND_HOST]
     CORS_ALLOWED_ORIGINS = [NEXT_FRONTEND_URL]
     CSRF_TRUSTED_ORIGINS = [NEXT_FRONTEND_URL]
 
@@ -103,6 +103,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    # --- Magic Link Authentication
+    'sesame',  # Django Sesame for magic link authentication
     # --- Utilities
     'django_extensions',  # Generate graph model.
     # --- Storage
@@ -119,6 +121,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'sesame.middleware.AuthenticationMiddleware',  # Add Sesame middleware after Django auth middleware
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",  # The allauth account middleware.
@@ -212,6 +215,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     # `allauth` specific authentication methods, such as login by email.
     'allauth.account.auth_backends.AuthenticationBackend',
+    # Sesame magic link authentication
+    'sesame.backends.ModelBackend',
 ]
 
 ACCOUNT_ADAPTER = 'apps.auth.adapters.AccountAdapter'  # Custom URLs
@@ -233,6 +238,10 @@ ACCOUNT_RATE_LIMITS = {
 
 FRONTEND_URL = config('FRONTEND_URL', default='http://127.0.0.1:8000')
 
+# Magic Link Configuration
+SESAME_MAX_AGE = 60 * 60 * 24  # 24 hours in seconds
+SESAME_ONE_TIME = True  # One-time use tokens
+SESAME_TOKEN_NAME = "token"  # Query parameter name for the token
 
 # LOGIN_REDIRECT_URL = "base:home"
 # LOGIN_URL = '/'
@@ -249,6 +258,7 @@ AUTH_USER_MODEL = "users.User"  # Using custom user model.
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'apps.auth.authentication.SesameAuthentication',  # Add Sesame authentication
     )
 }
 

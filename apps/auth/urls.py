@@ -4,6 +4,7 @@ from apps.auth.views.auth import LoginView, SignupView
 from apps.auth.views.client import ClientView
 from apps.auth.views.emails import ResendEmailVerificationView
 from apps.auth.views.google_login import GoogleLogin
+from apps.auth.views.magic_link import MagicLinkView, VerifyMagicLinkView
 
 app_name = 'auth'
 
@@ -36,4 +37,7 @@ urlpatterns = [
         ResendEmailVerificationView.as_view(),
         name='resend_verification_email'
     ),
+
+    path('api/auth/magic-link/', MagicLinkView.as_view(), name='magic_link'),
+    path('api/auth/magic-link/verify/', VerifyMagicLinkView.as_view(), name='verify_magic_link'),
 ]

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ brand_name }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .button:hover { background-color: #0052a3; }
+        .footer { margin-top: 30px; font-size: 12px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login to {{ brand_name }}</h1>
+        <p>Hello {{ user.first_name|default:"there" }},</p>
+        <p>Click the button below to sign in to your {{ brand_name }} account. This link will expire in 24 hours.</p>
+        <p>
+            <a href="{{ magic_link }}" class="button" style="color: white;">Sign In</a>
+        </p>
+        <p>Or copy and paste this URL into your browser:</p>
+        <p>{{ magic_link }}</p>
+        <div class="footer">
+            <p>If you didn't request this email, you can safely ignore it.</p>
+            <p>© {{ brand_name }}</p>
+        </div>
+    </div>
+</body>
+</html>
