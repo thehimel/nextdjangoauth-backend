@@ -4,18 +4,51 @@
     <meta charset="utf-8">
     <title>{{ brand_name }}</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
         .button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 15px 0; /* Adjusted padding for a taller button */
             background-color: #0066cc;
             color: white;
             text-decoration: none;
             border-radius: 4px;
+            text-align: center;
+            width: 100%; /* Full-width button */
+            box-sizing: border-box; /* Ensures padding is included in width */
         }
-        .button:hover { background-color: #0052a3; }
-        .footer { margin-top: 30px; font-size: 12px; color: #888; }
+        .button:hover {
+            background-color: #0052a3;
+        }
+        .token-box {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            word-wrap: break-word;
+            text-align: center;
+        }
+        .token-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .hidden-unique-id {
+            display: none; /* Ensures it's invisible in the rendered email */
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -26,12 +59,18 @@
         <p>
             <a href="{{ magic_link }}" class="button" style="color: white;">Sign In</a>
         </p>
-        <p>Or copy and paste this URL into your browser:</p>
-        <p>{{ magic_link }}</p>
+        <p>Or copy and paste this verification code in the sign-in page:</p>
+        <div class="token-box">
+            <span class="token-text">{{ token }}</span>
+        </div>
         <div class="footer">
-            <p>If you didn't request this email, you can safely ignore it.</p>
+            <p>If you didn’t attempt to sign in, you can safely disregard this email.</p>
             <p>© {{ brand_name }}</p>
         </div>
     </div>
+    {% comment %}
+     Add a unique identifier to force Gmail to differentiate the content between emails.
+    {% endcomment %}
+    <div class="hidden-unique-id">{{ now|date:"U" }}-{{ token|slice:":5" }}</div>
 </body>
 </html>

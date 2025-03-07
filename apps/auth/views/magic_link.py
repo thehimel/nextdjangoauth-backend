@@ -134,6 +134,7 @@ class MagicLinkView(APIView):
         # Prepare email context
         context = {
             'user': user,
+            'token': token,
             'magic_link': magic_link,
             'brand_name': settings.BRAND_NAME,
         }

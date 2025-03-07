@@ -2,12 +2,14 @@ Login to {{ brand_name }}
 
 Hello {{ user.first_name|default:"there" }},
 
-Click the link below to sign in to your {{ brand_name }} account:
+Click the link below to sign in to your {{ brand_name }} account. This link will expire in 24 hours:
 
 {{ magic_link }}
 
-This link will expire in 24 hours.
+Or copy and paste this verification code in the sign-in page:
 
-If you didn't request this email, you can safely ignore it.
+{{ token }}
+
+If you didn’t attempt to sign in, you can safely disregard this email.
 
 © {{ brand_name }}
