@@ -239,7 +239,7 @@ ACCOUNT_RATE_LIMITS = {
 FRONTEND_URL = config('FRONTEND_URL', default='http://127.0.0.1:8000')
 
 # Magic Link Configuration
-SESAME_MAX_AGE = 60 * 60 * 24  # 24 hours in seconds
+SESAME_MAX_AGE = 900  # 15 minutes in seconds
 SESAME_ONE_TIME = True  # One-time use tokens
 SESAME_TOKEN_NAME = "token"  # Query parameter name for the token
 

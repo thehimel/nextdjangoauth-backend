@@ -2,7 +2,7 @@ Login to {{ brand_name }}
 
 Hello {{ user.first_name|default:"there" }},
 
-Click the link below to sign in to your {{ brand_name }} account. This link will expire in 24 hours:
+Click the link below to sign in to your {{ brand_name }} account. This link will expire in 15 minutes:
 
 {{ magic_link }}
 
