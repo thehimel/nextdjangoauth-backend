@@ -129,7 +129,7 @@ class MagicLinkView(APIView):
 
         # Generate a magic link token for the user
         token = get_token(user)
-        magic_link = f"{settings.NEXT_FRONTEND_URL}/auth/signin?{settings.SESAME_TOKEN_NAME}={token}"
+        magic_link = f"{settings.NEXT_FRONTEND_URL}/auth/login?{settings.SESAME_TOKEN_NAME}={token}"
 
         # Prepare email context
         context = {
