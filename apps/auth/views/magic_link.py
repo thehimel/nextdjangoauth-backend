@@ -23,6 +23,8 @@ class MagicLinkRequestSerializer(serializers.Serializer):
     Serializer for Magic Link request input
     """
     email = serializers.EmailField(help_text="The email address associated with the user.")
+    login_path = serializers.CharField(required=False,
+                                       help_text="Custom login path to use in the magic link (default: /auth/login).")
 
 
 class MagicLinkResponseSerializer(serializers.Serializer):
@@ -78,11 +80,17 @@ class MagicLinkView(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        email = serializer.validated_data['email']
+        email = serializer.validated_data["email"]
+
+        # Get login path from request or use default
+        login_path = serializer.validated_data.get("login_path", "/auth/login")
+
+        # Clean the login path - remove leading and trailing slashes
+        login_path = login_path.strip('/')
 
         if not email:
             return Response(
-                {'error': 'Email is required'},
+                {"error": "Email is required"},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -120,8 +128,8 @@ class MagicLinkView(APIView):
                 password=password,
             )
 
-            user.first_name = ''
-            user.last_name = ''
+            user.first_name = ""
+            user.last_name = ""
             user.save()
 
             # Create an EmailAddress object for Allauth
@@ -129,20 +137,20 @@ class MagicLinkView(APIView):
 
         # Generate a magic link token for the user
         token = get_token(user)
-        magic_link = f"{settings.NEXT_FRONTEND_URL}/auth/login?{settings.SESAME_TOKEN_NAME}={token}"
+        magic_link = f"{settings.NEXT_FRONTEND_URL}/{login_path}?{settings.SESAME_TOKEN_NAME}={token}"
 
         # Prepare email context
         context = {
-            'user': user,
-            'token': token,
-            'magic_link': magic_link,
-            'brand_name': settings.BRAND_NAME,
+            "user": user,
+            "token": token,
+            "magic_link": magic_link,
+            "brand_name": settings.BRAND_NAME,
         }
 
         # Send the magic link email
         subject = f"Your {settings.BRAND_NAME} Login Link"
-        html_message = render_to_string('auth/magic_link_email.html', context)
-        plain_message = render_to_string('auth/magic_link_email.txt', context)
+        html_message = render_to_string("auth/magic_link_email.html", context)
+        plain_message = render_to_string("auth/magic_link_email.txt", context)
 
         send_mail(
             subject=subject,
@@ -153,7 +161,7 @@ class MagicLinkView(APIView):
         )
 
         return Response(
-            {'message': 'Magic link sent successfully.'},
+            {"message": "Magic link sent successfully."},
             status=status.HTTP_200_OK
         )
 
@@ -179,7 +187,7 @@ class VerifyMagicLinkView(APIView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        sesame_token = serializer.validated_data['token']
+        sesame_token = serializer.validated_data["token"]
 
         if not sesame_token:
             return Response(
